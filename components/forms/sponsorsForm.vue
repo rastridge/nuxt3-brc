@@ -137,7 +137,6 @@
 		)
 		state.value = data.value
 	}
-
 	//
 	// progress modal
 	//
