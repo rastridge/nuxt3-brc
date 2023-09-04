@@ -15,7 +15,8 @@ export const useMenuStore = defineStore('menuitems', {
 					})
 				// Add properties for Primevue navigation
 				for (let i in this.items) {
-					this.items[i].label = this.items[i].content_name
+					// this.items[i].label = this.items[i].content_name
+					this.items[i].label = 'hellol'
 					this.items[i].to = `/content/${this.items[i].content_id}`
 
 					this.items[i].visible = '() => !auth.isLoggedIn'
