@@ -13,6 +13,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 		placemark.setMemberTypeId(2)
 		placemark.setGameTypeId(1)
 	}
+
 	// Handle pages outside of admin
 	// return from games and stats
 	if (
@@ -22,14 +23,15 @@ export default defineNuxtRouteMiddleware((to, from) => {
 			from.path.slice(0, 6) !== '/games' &&
 			from.path.slice(0, 5) !== '/stats')
 	) {
-		// if (to.path !== from.path) {
 		placemark.setPage(0)
 		placemark.initYear()
 		placemark.setGameTypeId(1)
 	}
 	//
-	// clear previous alerts
+	// clear previous alerts on any page change
 	//
-	const alert = useAlertStore()
-	alert.clear()
+	if (to.path !== from.path) {
+		const alert = useAlertStore()
+		alert.clear()
+	}
 })

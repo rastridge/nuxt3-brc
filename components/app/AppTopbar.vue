@@ -12,7 +12,7 @@
 		<div v-if="!auth.isLoggedIn" class="w-full h-5.5rem md:h-8rem xl:h-14rem">
 			<app-brand />
 		</div>
-		<div class="w-full h-4rem">
+		<div class="w-10rem lg:w-full h-4rem">
 			<app-menu />
 		</div>
 	</div>

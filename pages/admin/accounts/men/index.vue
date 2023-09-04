@@ -3,28 +3,33 @@
 		<Head>
 			<Title>Accounts List</Title>
 		</Head>
-		<admin-header :title="app" />
-		<p v-if="pending"><ProgressSpinner /> Loading ...</p>
-
-		<div class="text-center mb-2">
-			<Dropdown
-				v-model="member_type_id"
-				:options="memberTypeOptions"
-				optionLabel="label"
-				optionValue="value"
-				placeholder="Select a member type"
-			/>
+		<div class="flex flex-column justify-content-cente gap-1">
+			<div class="w-full align-items-center justify-content-center">
+				<admin-header :title="app" />
+			</div>
+			<div class="flex w-fullalign-items-center justify-content-center">
+				<p v-if="pending"><ProgressSpinner /> Loading ...</p>
+			</div>
+			<div class="flex w-full align-items-center justify-content-center">
+				<p class="text-sm md:text-lg font-semibold">Member type</p>
+				<Dropdown
+					v-model="member_type_id"
+					:options="memberTypeOptions"
+					optionLabel="label"
+					optionValue="value"
+					placeholder="Select a member type"
+				/>
+			</div>
+			<div class="flex w-full align-items-center justify-content-center">
+				<FormKit
+					v-model="alpha"
+					type="select"
+					label="Last name begins with"
+					:options="alphas"
+				/>
+			</div>
 		</div>
-		<div class="text-center mb-2">
-			<FormKit
-				v-model="alpha"
-				type="select"
-				label="Last name begins with"
-				:options="alphas"
-			/>
-		</div>
-		<div v-if="pending" class="text-center text-2xl">Loading ...</div>
-		<div v-else>
+		<div>
 			<render-list
 				:data="filteredData"
 				:app="app"
