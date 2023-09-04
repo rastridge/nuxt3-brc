@@ -165,7 +165,6 @@
 				resolve(dimensions)
 			}
 		})
-		// console.log(imageDimensions)
 
 		if (imageDimensions.height === 125 && imageDimensions.width === 750) {
 			const formData = new FormData()
