@@ -1,0 +1,376 @@
+*******************************************************
+layout/layout.scss
+
+@import "_variables";
+@import "layouts/sakai/layout";
+@import "_overrides";
+
+.markdown {
+  table, th, td {
+    padding: 0.5rem;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    a {
+      color: inherit;
+    }
+  }
+}
+
+*******************************************************
+layout/_overrides.sccss
+
+// Suggested location to add your overrides so that migration would be easy by just updating the SASS folder in the future
+@import '_myadditions';
+
+// why ???
+/* a {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+button {
+	outline: none !important;
+	box-shadow: none !important;
+} */
+
+// increase padding on large screens
+
+.card {
+	padding: 0.5rem;
+}
+@media (min-width: 768px) {
+	.card {
+		padding: 1.5rem;
+	}
+}
+
+.p-radiobutton {
+	margin-right: 5px;
+}
+
+.field-radiobutton {
+	margin-top: 10px;
+}
+// overrides all themes
+body {
+	background-color: rgb(0, 0, 150);
+}
+
+********************************************************
+layouts/sakai/_clayout.scss
+
+@import 'mixins';
+@import 'splash';
+@import 'main';
+@import 'topbar';
+@import 'menu';
+@import 'config';
+@import 'content';
+@import 'footer';
+@import 'responsive';
+@import 'utils';
+@import 'typography';
+
+
+********************************************************
+layouts/sakai/_contents.scss
+
+.layout-main-container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	justify-content: space-between;
+	padding: 8rem 1rem 1rem 1rem;
+	transition: margin-left $transitionDuration;
+	border: solid 1px yellow;
+}
+
+@media (min-width: 992px) {
+	.layout-main-container {
+		padding: 20rem 2rem 2rem 2rem;
+	}
+}
+
+.layout-main {
+	flex: 1 1 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**********************************************************
+layouts/sakai/_topbar.scss
+
+.layout-topbar {
+	position: fixed;
+	height: 7rem;
+	z-index: 997;
+	left: 0;
+	top: 0;
+	width: 100%;
+	padding: 0 2rem;
+	background-color: var(--surface-card);
+	transition: left $transitionDuration;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: solid 2px green;
+
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05),
+		0px 1px 4px rgba(0, 0, 0, 0.08);
+
+	.layout-topbar-logo {
+		display: flex;
+		align-items: center;
+		color: var(--surface-900);
+		font-size: 1.5rem;
+		font-weight: 500;
+		width: 300px;
+		border-radius: 12px;
+
+		img {
+			height: 2.5rem;
+			margin-right: 0.5rem;
+		}
+
+		&:focus {
+			@include focused();
+		}
+	}
+
+	.layout-topbar-button {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		color: var(--text-color-secondary);
+		border-radius: 50%;
+		width: 3rem;
+		height: 3rem;
+		cursor: pointer;
+		transition: background-color $transitionDuration;
+
+
+
+
+
+		&:hover {
+			color: var(--text-color);
+			background-color: var(--surface-hover);
+		}
+
+		&:focus {
+			@include focused();
+		}
+
+		i {
+			font-size: 1.5rem;
+		}
+
+		span {
+			font-size: 1rem;
+			display: none;
+		}
+	}
+
+	.layout-menu-button {
+		margin-left: 2rem;
+	}
+
+	.layout-topbar-menu-button {
+		display: none;
+
+		i {
+			font-size: 1.25rem;
+		}
+	}
+
+	.layout-topbar-menu {
+		margin: 0 0 0 auto;
+		padding: 0;
+		list-style: none;
+		display: flex;
+
+		.layout-topbar-button {
+			margin-left: 1rem;
+		}
+	}
+}
+
+@media (min-width: 991px) {
+	.layout-topbar {
+		height: 18rem;
+		justify-content: space-between;
+
+		.layout-topbar-logo {
+			width: auto;
+			order: 2;
+		}
+
+
+
+
+		.layout-menu-button {
+			margin-left: 0;
+			order: 1;
+		}
+
+		.layout-topbar-menu-button {
+			display: inline-flex;
+			margin-left: 0;
+			order: 3;
+		}
+
+		.layout-topbar-menu {
+			margin-left: 0;
+			position: absolute;
+			// right: 2rem;
+			// top: 5rem;
+			top: 0;
+			flex-direction: column;
+			flex-direction: row;
+			background-color: var(--surface-overlay);
+			box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02),
+				0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08);
+			border-radius: 12px;
+			// padding: 1rem;
+			padding: 0.5rem;
+
+			min-width: 15rem;
+
+			.layout-topbar-button {
+				margin-left: 0;
+				display: flex;
+				width: 100%;
+				height: auto;
+				justify-content: flex-start;
+				border-radius: 12px;
+				// padding: 1rem;
+				padding: 0.5rem;
+
+				i {
+					font-size: 1rem;
+					margin-right: 0.5rem;
+				}
+
+				span {
+					font-weight: medium;
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+*****************************************************
+layouts/sakai/_typography.scss
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 1.5rem 0 1rem 0;
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.2;
+	color: inherit;
+
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+h1 {
+	font-size: 2.5rem;
+}
+
+h2 {
+	font-size: 2rem;
+}
+
+h3 {
+	font-size: 1.75rem;
+}
+
+h4 {
+	font-size: 1.5rem;
+}
+
+h5 {
+	font-size: 1.25rem;
+}
+
+h6 {
+	font-size: 1rem;
+}
+
+mark {
+	background: #fff8e1;
+	padding: 0.25rem 0.4rem;
+	border-radius: $borderRadius;
+	font-family: monospace;
+}
+
+
+
+
+
+
+blockquote {
+	margin: 1rem 0;
+	padding: 0 2rem;
+	border-left: 4px solid #90a4ae;
+}
+
+hr {
+	border-top: solid var(--surface-border);
+	border-width: 1px 0 0 0;
+	margin: 1rem 0;
+}
+
+p {
+	margin: 0 0 1rem 0;
+	line-height: 1.5;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+******************************************************
+layouts/sakai/_utils.scss
+
+.card {
+    background-color: var(--surface-card);
+    padding: 1.5rem;
+    color: var(--surface-900);
+    margin-bottom: 1rem;
+    border-radius: $borderRadius;
+    box-shadow: 0px 3px 5px rgba(0,0,0,.02), 0px 0px 2px rgba(0,0,0,.05), 0px 1px 4px rgba(0,0,0,.08) !important;
+
+    &.card-w-title {
+        padding-bottom: 2rem;
+    }
+}
+
+
+
