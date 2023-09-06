@@ -7,7 +7,7 @@
 			optionValue="value"
 			placeholder="Select Game Type"
 			:pt="{
-				root: { class: 'w-full md:w-8rem' },
+				root: { class: 'w-full md:w-8rem mb-3' },
 				item: { class: 'text-xl' },
 				// input: ({ props, state, context }) => ({ class: 'text-2xl' }),
 				input: { class: 'md:text-xl font-semibold' },

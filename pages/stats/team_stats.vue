@@ -1,49 +1,68 @@
 <template>
 	<div id="team_stats">
-		<div class="center-content">
-			<common-header title="Team Record" />
-		</div>
-
-		<!--Select season -->
-		<div class="text-center m-5">
-			<select-game-type :currenttype="gametype" @submitted="onSubmitGameType" />
-			<h6 class="text-2xl">All Time</h6>
-
-			<div style="overflow-x: auto">
-				<table class="nowrap">
-					<thead>
-						<tr>
-							<th class="text-center">Games</th>
-							<th class="text-center">Wins</th>
-							<th class="text-center">Losses</th>
-							<th class="text-center">Ties</th>
-							<th class="text-center">Unknown</th>
-							<th class="text-center">Win%</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="text-center">{{ total.game_count }}</td>
-							<td class="text-center">{{ total.wins }}</td>
-							<td class="text-center">{{ total.losses }}</td>
-							<td class="text-center">{{ total.ties }}</td>
-							<td class="text-center">{{ total.unknown }}</td>
-							<td class="text-center">
-								{{
-									(
-										(total.wins / (total.game_count - total.unknown)) *
-										100
-									).toFixed(0)
-								}}
-								%
-							</td>
-						</tr>
-					</tbody>
-				</table>
+		<Head>
+			<Title>Team Record</Title>
+		</Head>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<common-header title="Team Record" />
 			</div>
+
+			<div class="topsectionitem">
+				<h6 class="text-xl">All Time</h6>
+				<select-game-type
+					:currenttype="gametype"
+					@submitted="onSubmitGameType"
+				/>
+			</div>
+			<div v-if="!data" class="topsectionitem">Loading ...</div>
+		</div>
+		<div class="mb-2" style="overflow-x: auto">
+			<table class="nowrap">
+				<thead>
+					<tr>
+						<th class="text-center">Games</th>
+						<th class="text-center">Wins</th>
+						<th class="text-center">Losses</th>
+						<th class="text-center">Ties</th>
+						<th class="text-center">Unknown</th>
+						<th class="text-center">Win%</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-center">{{ total.game_count }}</td>
+						<td class="text-center">{{ total.wins }}</td>
+						<td class="text-center">{{ total.losses }}</td>
+						<td class="text-center">{{ total.ties }}</td>
+						<td class="text-center">{{ total.unknown }}</td>
+						<td class="text-center">
+							{{
+								(
+									(total.wins / (total.game_count - total.unknown)) *
+									100
+								).toFixed(0)
+							}}
+							%
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
-		<DataTable :value="filteredData">
+		<DataTable
+			:value="filteredData"
+			:pt="{
+				wrapper: {
+					style: {
+						padding: '0.5rem',
+						minWidth: '10rem',
+						border: '2px #00C solid',
+						'border-radius': '10px',
+					},
+				},
+			}"
+		>
 			<!-- <DataTable :value="filteredData" paginator :rows="20"> -->
 			<Column field="season" header="Season">
 				<template #body="slotProps">
@@ -96,7 +115,7 @@
 	})
 
 	const url = `/game_player_stats/getteamstats/` + gametype.value
-	const { data, error } = await useFetch(url, {
+	const { data, pending, error } = await useFetch(url, {
 		method: 'get',
 		headers: {
 			// authorization: auth.user.token,

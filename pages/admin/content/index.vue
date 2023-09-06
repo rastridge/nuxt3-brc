@@ -3,9 +3,12 @@
 		<Head>
 			<Title>{{ app }} List</Title>
 		</Head>
-		<admin-header :title="app" />
-
-		<div v-if="pending" class="text-center text-2xl">Loading ...</div>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header :title="app" />
+			</div>
+		</div>
+		<div v-if="pending" class="topsectionitem">Loading ...</div>
 		<div v-else>
 			<render-list
 				:data="content_data"

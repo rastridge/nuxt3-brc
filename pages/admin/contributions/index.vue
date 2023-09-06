@@ -3,13 +3,15 @@
 		<Head>
 			<Title>Contributions Admin</Title>
 		</Head>
-		<admin-header :title="app" />
-		<div v-if="!contributions" class="text-center text-2xl">
-			<ProgressSpinner /> Loading ...
-		</div>
-		<div v-else>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header :title="app" />
+			</div>
+			<div v-if="!contributions" class="topsectionitem">
+				<ProgressSpinner /> Loading ...
+			</div>
 			<!--Select year -->
-			<div class="text-center m-5">
+			<div class="topsectionitem">
 				<select-year
 					:startyear="startyear"
 					:currentyear="year"
@@ -17,19 +19,19 @@
 					class="mb-3"
 				/>
 			</div>
-
-			<render-list
-				:data="filteredData"
-				:app="app"
-				:statusable="statusable"
-				:editable="editable"
-				:deleteable="deleteable"
-				:addable="addable"
-				:viewable="viewable"
-				@changeStatus="changeStatus"
-				@deleteItem="deleteItem"
-			/>
 		</div>
+
+		<render-list
+			:data="filteredData"
+			:app="app"
+			:statusable="statusable"
+			:editable="editable"
+			:deleteable="deleteable"
+			:addable="addable"
+			:viewable="viewable"
+			@changeStatus="changeStatus"
+			@deleteItem="deleteItem"
+		/>
 	</div>
 </template>
 

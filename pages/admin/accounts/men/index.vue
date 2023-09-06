@@ -3,14 +3,14 @@
 		<Head>
 			<Title>Accounts List</Title>
 		</Head>
-		<div class="flex flex-column justify-content-cente gap-1">
-			<div class="w-full align-items-center justify-content-center">
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
 				<admin-header :title="app" />
 			</div>
-			<div class="flex w-fullalign-items-center justify-content-center">
-				<p v-if="pending"><ProgressSpinner /> Loading ...</p>
-			</div>
-			<div class="flex w-full align-items-center justify-content-center">
+			<p v-if="pending" class="topsectionitem">
+				<ProgressSpinner /> Loading ...
+			</p>
+			<div class="topsectionitem">
 				<p class="text-sm md:text-lg font-semibold">Member type</p>
 				<Dropdown
 					v-model="member_type_id"
@@ -20,7 +20,7 @@
 					placeholder="Select a member type"
 				/>
 			</div>
-			<div class="flex w-full align-items-center justify-content-center">
+			<div class="topsectionitem">
 				<FormKit
 					v-model="alpha"
 					type="select"

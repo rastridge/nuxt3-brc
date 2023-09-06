@@ -41,6 +41,7 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'@nuxtjs/i18n',
 		'@vueuse/nuxt',
+		'vue3-carousel-nuxt',
 	],
 	buildModules: ['@nuxtjs/google-fonts'],
 	components: [
@@ -49,7 +50,9 @@ export default defineNuxtConfig({
 		'~/components/displays',
 		'~/components',
 	],
-
+	/* 	carousel: {
+		prefix: 'Vue',
+	}, */
 	dayjs: {
 		locales: ['en'],
 		defaultLocale: 'en',

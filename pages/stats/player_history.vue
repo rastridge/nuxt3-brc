@@ -1,148 +1,168 @@
 <template>
-	<div id="player-history"></div>
-	<CommonHeader title="Player game history" />
-	<Card style="width: 20em; margin-bottom: 1rem">
-		<template #title> Player name</template>
-		<template #content>
-			<AutoComplete
-				v-model="selectedItem"
-				optionLabel="title"
-				:suggestions="filteredNames"
-				@complete="search"
-				@item-select="getHistory"
-			/>
-		</template>
-	</Card>
-
-	<DataTable
-		:value="history"
-		dataKey="account_id"
-		v-model:filters="filters"
-		:globalFilterFields="['opponent_name']"
-		:class="'p-datatable-sm'"
-		stripedRows
-		filterDisplay="row"
-		paginator
-		:rows="20"
-		:rowsPerPageOptions="[5, 10, 20, 50]"
-		paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-		currentPageReportTemplate="{first} to {last} of {totalRecords}"
-		selectionMode="single"
-	>
-		<template #empty> No members found. </template>
-		<template #loading> Loading Membership data. Please wait. </template>
-		<Column
-			header="Date"
-			field="date"
-			:showFilterMenu="true"
-			style="width: 10rem"
-		>
-			<template #body="{ data }">
-				<span class="text-sm md:text-lg">{{
-					$dayjs(data.date).format('MMM DD YYYY')
-				}}</span>
-			</template>
-			<template #filter="{ filterModel, filterCallback }">
-				<InputText
-					v-model="filterModel.value"
-					type="text"
-					@input="filterCallback()"
-					class="p-column-filter"
-					placeholder="Search by date"
-				/>
-			</template>
-		</Column>
-		<Column
-			header="Opponent"
-			field="opponent_name"
-			:showFilterMenu="true"
-			style="width: 25rem"
-		>
-			<template #body="{ data }">
-				<Button link @click="openGameModal(data.game_id)">
-					<span class="text-sm md:text-lg">{{ data.opponent_name }}</span>
-				</Button>
-			</template>
-			<template #filter="{ filterModel, filterCallback }">
-				<InputText
-					v-model="filterModel.value"
-					type="text"
-					@input="filterCallback()"
-					class="p-column-filter"
-					placeholder="Search by opponent"
-				/>
-			</template>
-		</Column>
-		<Column
-			header="Venue"
-			field="venue"
-			:showFilterMenu="true"
-			style="width: 20rem"
-		>
-			<template #body="{ data }">
-				<span class="text-sm md:text-lg">{{ data.venue }}</span>
-			</template>
-			<template #filter="{ filterModel, filterCallback }">
-				<InputText
-					v-model="filterModel.value"
-					type="text"
-					@input="filterCallback()"
-					class="p-column-filter"
-					placeholder="Search by venue"
-				/>
-			</template>
-		</Column>
-		<Column
-			header="Occasion"
-			field="occasion"
-			:showFilterMenu="true"
-			style="width: 20rem"
-		>
-			<template #body="{ data }">
-				<span class="text-sm md:text-lg">{{ data.occasion }}</span>
-			</template>
-		</Column>
-		<Column
-			header="Level"
-			field="game_level"
-			:showFilterMenu="true"
-			style="width: 10rem"
-		>
-			<template #body="{ data }">
-				<span class="text-sm md:text-lg">{{ data.game_level }}</span>
-			</template>
-		</Column>
-		<Column
-			header="Type"
-			field="game_type"
-			:showFilterMenu="true"
-			style="width: 10rem"
-		>
-			<template #body="{ data }">
-				<span class="text-sm md:text-lg">{{ data.game_type }}</span>
-			</template>
-		</Column>
-	</DataTable>
-
-	<!-- Modal -->
-	<Dialog
-		v-model:visible="displayModal"
-		:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-		:style="{ width: '60vw' }"
-	>
-		<display-game-info :item="game" />
-		<display-roster :players="players" />
-		<template #footer>
-			<div>
-				<Button
-					label="Return"
-					@click="closeModal"
-					class="p-button-sm"
-					autofocus
-				/>
+	<div id="player-history">
+		<Head>
+			<Title>Player History</Title>
+		</Head>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<CommonHeader title="Player game history" />
 			</div>
-		</template>
-	</Dialog>
+			<div class="topsectionitem">
+				<Card style="width: 20em; margin-bottom: 1rem">
+					<template #title> Player name</template>
+					<template #content>
+						<AutoComplete
+							v-model="selectedItem"
+							optionLabel="title"
+							:suggestions="filteredNames"
+							@complete="search"
+							@item-select="getHistory"
+						/>
+					</template>
+				</Card>
+			</div>
+		</div>
+
+		<DataTable
+			:value="history"
+			dataKey="account_id"
+			v-model:filters="filters"
+			:globalFilterFields="['opponent_name']"
+			:class="'p-datatable-sm'"
+			:pt="{
+				wrapper: {
+					style: {
+						padding: '0.5rem',
+						minWidth: '10rem',
+						border: '2px #00C solid',
+						'border-radius': '10px',
+					},
+				},
+			}"
+			stripedRows
+			filterDisplay="row"
+			paginator
+			:rows="20"
+			:rowsPerPageOptions="[5, 10, 20, 50]"
+			paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+			currentPageReportTemplate="{first} to {last} of {totalRecords}"
+			selectionMode="single"
+		>
+			<template #empty> No members found. </template>
+			<template #loading> Loading Membership data. Please wait. </template>
+			<Column
+				header="Date"
+				field="date"
+				:showFilterMenu="true"
+				style="width: 10rem"
+			>
+				<template #body="{ data }">
+					<span class="text-sm md:text-lg">{{
+						$dayjs(data.date).format('MMM DD YYYY')
+					}}</span>
+				</template>
+				<template #filter="{ filterModel, filterCallback }">
+					<InputText
+						v-model="filterModel.value"
+						type="text"
+						@input="filterCallback()"
+						class="p-column-filter"
+						placeholder="Search by date"
+					/>
+				</template>
+			</Column>
+			<Column
+				header="Opponent"
+				field="opponent_name"
+				:showFilterMenu="true"
+				style="width: 25rem"
+			>
+				<template #body="{ data }">
+					<Button link @click="openGameModal(data.game_id)">
+						<span class="text-sm md:text-lg">{{ data.opponent_name }}</span>
+					</Button>
+				</template>
+				<template #filter="{ filterModel, filterCallback }">
+					<InputText
+						v-model="filterModel.value"
+						type="text"
+						@input="filterCallback()"
+						class="p-column-filter"
+						placeholder="Search by opponent"
+					/>
+				</template>
+			</Column>
+			<Column
+				header="Venue"
+				field="venue"
+				:showFilterMenu="true"
+				style="width: 20rem"
+			>
+				<template #body="{ data }">
+					<span class="text-sm md:text-lg">{{ data.venue }}</span>
+				</template>
+				<template #filter="{ filterModel, filterCallback }">
+					<InputText
+						v-model="filterModel.value"
+						type="text"
+						@input="filterCallback()"
+						class="p-column-filter"
+						placeholder="Search by venue"
+					/>
+				</template>
+			</Column>
+			<Column
+				header="Occasion"
+				field="occasion"
+				:showFilterMenu="true"
+				style="width: 20rem"
+			>
+				<template #body="{ data }">
+					<span class="text-sm md:text-lg">{{ data.occasion }}</span>
+				</template>
+			</Column>
+			<Column
+				header="Level"
+				field="game_level"
+				:showFilterMenu="true"
+				style="width: 10rem"
+			>
+				<template #body="{ data }">
+					<span class="text-sm md:text-lg">{{ data.game_level }}</span>
+				</template>
+			</Column>
+			<Column
+				header="Type"
+				field="game_type"
+				:showFilterMenu="true"
+				style="width: 10rem"
+			>
+				<template #body="{ data }">
+					<span class="text-sm md:text-lg">{{ data.game_type }}</span>
+				</template>
+			</Column>
+		</DataTable>
+
+		<!-- Modal -->
+		<Dialog
+			v-model:visible="displayModal"
+			:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
+			:style="{ width: '60vw' }"
+		>
+			<display-game-info :item="game" />
+			<display-roster :players="players" />
+			<template #footer>
+				<div>
+					<Button
+						label="Return"
+						@click="closeModal"
+						class="p-button-sm"
+						autofocus
+					/>
+				</div>
+			</template>
+		</Dialog>
+	</div>
 </template>
 
 <script setup>

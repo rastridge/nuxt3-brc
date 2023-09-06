@@ -1,5 +1,5 @@
 <template>
-	<div class="text-center m-5 md:text-2xl">
+	<div class="m-5 md:text-2xl">
 		{{ title.charAt(0).toUpperCase() + title.slice(1) }}
 		<user-logged-in />
 	</div>

@@ -1,7 +1,14 @@
 <template>
 	<div>
-		<admin-header :title="app" />
-		<span v-if="error" class="text-danger">ERROR: {{ error }}</span>
+		<Head>
+			<Title>{{ app }} Admin</Title>
+		</Head>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header :title="app" />
+			</div>
+			<span v-if="error" class="text-danger">ERROR: {{ error }}</span>
+		</div>
 		<render-list
 			:data="payments"
 			:app="app"

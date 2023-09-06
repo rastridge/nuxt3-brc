@@ -47,6 +47,7 @@
 		"primevue": "^3.29.2",
 		"quill-image-uploader": "^1.2.4",
 		"sweetalert2": "^11.7.5",
-		"twilio": "^4.11.0"
+		"twilio": "^4.11.0",
+		"vue3-carousel-nuxt": "^1.1.0"
 	}
 }

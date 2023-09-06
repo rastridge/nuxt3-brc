@@ -1,21 +1,27 @@
 <template>
-	<div id="events">
-		<div class="center-content">
-			<common-header title="Game Schedule" />
-		</div>
-		id = {{ id }} year = {{ year }} placemark.getYear {{ placemark.getYear }}
-		<!--Select season -->
-		<div class="text-center m-5">
-			<select-season
-				:startyear="startyear"
-				:currentyear="year"
-				@submitted="onSubmit"
-				class="mb-3"
-			/>
-			<select-game-type :currenttype="gametype" @submitted="onSubmitGameType" />
+	<div id="schedule">
+		<Head>
+			<Title>Schedule</Title>
+		</Head>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<common-header title="Game Schedule" />
+			</div>
+			<div class="topsectionitem">
+				<select-season
+					:startyear="startyear"
+					:currentyear="year"
+					@submitted="onSubmit"
+					class="mb-3"
+				/>
+
+				<select-game-type
+					:currenttype="gametype"
+					@submitted="onSubmitGameType"
+				/>
+			</div>
 		</div>
 
-		<!-- <DataView :value="season"> -->
 		<DataView
 			:value="filteredData"
 			paginator
@@ -223,3 +229,5 @@
 		navigateTo(`/games/history/${id}`)
 	}
 </script>
+
+<style scoped></style>

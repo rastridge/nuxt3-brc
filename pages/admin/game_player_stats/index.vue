@@ -3,26 +3,29 @@
 		<Head>
 			<Title>Stats Admin</Title>
 		</Head>
-		<admin-header :title="app" />
-		<div v-if="!stats" class="text-center text-2xl">
-			<ProgressSpinner /> Loading ...
-		</div>
-		<div v-else>
-			<!--Select season -->
-			<div class="text-center m-5">
-				<select-season
-					:startyear="startyear"
-					:currentyear="year"
-					@submitted="onSubmit"
-					class="mb-3"
-				/>
-
-				<select-game-type
-					:currenttype="gametype"
-					@submitted="onSubmitGameType"
-				/>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header :title="app" />
 			</div>
+			<div v-if="!stats" class="topsectionitem">
+				<ProgressSpinner /> Loading ...
+			</div>
+			<div v-else>
+				<!--Select season -->
+				<div class="topsectionitem">
+					<select-season
+						:startyear="startyear"
+						:currentyear="year"
+						@submitted="onSubmit"
+						class="mb-3"
+					/>
 
+					<select-game-type
+						:currenttype="gametype"
+						@submitted="onSubmitGameType"
+					/>
+				</div>
+			</div>
 			<render-list
 				:data="filteredData"
 				:app="app"

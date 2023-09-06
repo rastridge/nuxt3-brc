@@ -48,9 +48,7 @@
 
 			<!-- ad image file upload 			-->
 			<p>Image must be 750w 125h 72dpi</p>
-			<label for="ad_image">Add or Replace Advert image file</label><br />
-
-			<!-- <Toast /> -->
+			<label for="ad_image">Add or Replace Sponsor image file</label><br />
 
 			<FileUpload
 				mode="basic"

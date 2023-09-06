@@ -1,24 +1,25 @@
 <template>
 	<div>
 		<Head>
-			<Title>Videos List</Title>
+			<Title>{{ app }} Admin</Title>
 		</Head>
-		<admin-header :title="app" />
-
-		<div v-if="pending" class="text-center text-2xl">Loading ...</div>
-		<div v-else>
-			<render-list
-				:data="video_data"
-				:app="app"
-				:statusable="statusable"
-				:editable="editable"
-				:deleteable="deleteable"
-				:addable="addable"
-				:viewable="viewable"
-				@changeStatus="changeStatus"
-				@deleteItem="deleteItem"
-			/>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header :title="app" />
+			</div>
+			<div v-if="pending" class="topsectionitem">Loading ...</div>
 		</div>
+		<render-list
+			:data="video_data"
+			:app="app"
+			:statusable="statusable"
+			:editable="editable"
+			:deleteable="deleteable"
+			:addable="addable"
+			:viewable="viewable"
+			@changeStatus="changeStatus"
+			@deleteItem="deleteItem"
+		/>
 	</div>
 </template>
 

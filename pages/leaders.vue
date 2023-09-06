@@ -7,6 +7,16 @@
 			<DataTable
 				:value="leaders"
 				class="p-datatable-sm"
+				:pt="{
+					wrapper: {
+						style: {
+							padding: '0.5rem',
+							minWidth: '10rem',
+							border: '2px #00C solid',
+							'border-radius': '10px',
+						},
+					},
+				}"
 				tableStyle="min-width: 50rem"
 				stripedRows
 				paginator

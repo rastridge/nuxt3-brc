@@ -28,7 +28,7 @@
 			]"
 		>
 			<!-- <div class="layout-main-container"> -->
-			<div class="layout-main card">
+			<div class="layout-main surface-100 card">
 				<slot />
 			</div>
 			<div v-if="!auth.isLoggedIn"><AppFooter /></div>

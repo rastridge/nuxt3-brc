@@ -1,33 +1,35 @@
 <template>
 	<div>
 		<Head>
-			<Title>News Items Admin</Title>
+			<Title>{{ app }} admin</Title>
 		</Head>
-		<admin-header :title="app" />
-
-		<div v-if="pending" class="text-center text-2xl">Loading ...</div>
-		<div v-else>
-			<!--Select year -->
-			<div class="text-center m-5">
-				<select-year
-					:startyear="startyear"
-					:currentyear="year"
-					@submitted="onSubmit"
-					class="mb-3"
-				/>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header :title="app" />
 			</div>
-			<render-list
-				:data="filteredData"
-				:app="app"
-				:statusable="statusable"
-				:editable="editable"
-				:deleteable="deleteable"
-				:addable="addable"
-				:viewable="viewable"
-				@changeStatus="changeStatus"
-				@deleteItem="deleteItem"
-			/>
+			<div v-if="pending" class="topsectionitem">Loading ...</div>
+			<div v-else>
+				<div class="topsectionitem">
+					<select-year
+						:startyear="startyear"
+						:currentyear="year"
+						@submitted="onSubmit"
+						class="mb-3"
+					/>
+				</div>
+			</div>
 		</div>
+		<render-list
+			:data="filteredData"
+			:app="app"
+			:statusable="statusable"
+			:editable="editable"
+			:deleteable="deleteable"
+			:addable="addable"
+			:viewable="viewable"
+			@changeStatus="changeStatus"
+			@deleteItem="deleteItem"
+		/>
 	</div>
 </template>
 
