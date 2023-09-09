@@ -40,6 +40,7 @@
 
 			<h4>Content</h4>
 			<input-body
+				app="newsletter"
 				:field="state.newsletter_body_html"
 				@changeState="changeState"
 			></input-body>

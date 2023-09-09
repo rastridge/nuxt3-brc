@@ -58,20 +58,6 @@
 		)
 		return data.value
 	}
-	/* 					if (!$store.state.ads.ads) {
-							sponsorService.getAllCurrent().then(
-								(data) => {
-									sponsors.value = data
-									showRandomSponsor()
-									$store.commit('ads/saveads', sponsors.value)
-								},
-								(error) => {
-									error.value = error
-								}
-							)
-						} else {
-							sponsors.value = $store.state.ads.ads
-						} */
 
 	const getOne = async (id) => {
 		//

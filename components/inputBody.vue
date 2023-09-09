@@ -46,6 +46,7 @@
 	//
 	const props = defineProps({
 		field: { type: String, required: true },
+		app: { type: String, required: true },
 	})
 	const localfield = ref(props.field)
 
@@ -77,19 +78,15 @@
 				const formData = new FormData()
 				formData.append('file', file)
 				openProgressModal()
-				// upload to media.my-test-site.net
-				// upload to https://media.buffalorugby.org/uploads
 				// Find server code in folder Nuxt3-brc-media-api
-				const res = await fetch(
-					`https://media.buffalorugby.org/images/upload`,
-					{
-						method: 'POST',
-						body: formData,
-						headers: {
-							authorization: auth.user.token,
-						},
-					}
-				)
+				const url = `https://media.buffalorugby.org/images/${props.app}`
+				const res = await fetch(url, {
+					method: 'POST',
+					body: formData,
+					headers: {
+						authorization: auth.user.token,
+					},
+				})
 
 				const data = await res.json()
 				closeProgressModal()

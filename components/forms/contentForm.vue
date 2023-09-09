@@ -30,6 +30,7 @@
 			<h6>Content</h6>
 			<div>
 				<input-body
+					app="content"
 					:field="state.content_body"
 					@changeState="changeState"
 				></input-body>

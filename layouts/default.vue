@@ -7,6 +7,8 @@
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
 	const themeStore = useThemeStore()
+	import { useWindowSize } from '@vueuse/core'
+	const { width, height } = useWindowSize()
 </script>
 
 <template>
@@ -29,6 +31,8 @@
 		>
 			<!-- <div class="layout-main-container"> -->
 			<div class="layout-main surface-100 card">
+				width ={{ width }}
+
 				<slot />
 			</div>
 			<div v-if="!auth.isLoggedIn"><AppFooter /></div>

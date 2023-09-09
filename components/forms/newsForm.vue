@@ -34,6 +34,7 @@
 
 			<h4>Content</h4>
 			<input-body
+				app="news"
 				:field="state.news_article"
 				@changeState="changeState"
 			></input-body>

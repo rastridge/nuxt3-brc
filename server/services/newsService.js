@@ -3,12 +3,12 @@ const { doDBQuery } = useQuery()
 
 export const newsService = {
 	getAll,
+	getAllCurrent,
 	getOne,
 	addOne,
 	editOne,
 	deleteOne,
 	changeStatus,
-	getAllCurrent,
 }
 
 async function getAll() {

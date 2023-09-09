@@ -192,6 +192,12 @@ export function useNavigationMenu() {
 						visible: () => checkPerm('users') > 0,
 					},
 					{
+						label: 'Document Archive',
+						icon: 'pi pi-fw pi-user-edit',
+						to: '/admin/archives',
+						visible: () => checkPerm('archives') > 0,
+					},
+					{
 						label: 'Content',
 						icon: 'pi pi-fw pi-user-edit',
 						to: '/admin/content',

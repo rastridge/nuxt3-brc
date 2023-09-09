@@ -148,7 +148,6 @@
 
 	const customUploader = async (event) => {
 		const file = event.files[0]
-		// const photoUrl = URL.createObjectURL(file)
 
 		// voodoo
 		const image = new Image()
