@@ -153,11 +153,50 @@
 					:options="memberAdminTypeOptions"
 					validation="required"
 				/>
+				<!-- ad image file upload 			-->
+				<p>Image must be 72w 72h 72dpi</p>
+				<label>Add or Replace WOF image file</label><br />
+
+				<FileUpload
+					mode="basic"
+					name="fileInput"
+					:auto="true"
+					accept="image/*"
+					customUpload
+					@uploader="customUploader"
+				/>
+				<br />
+				<br />
+				<!-- show image file  -->
+				<div
+					v-if="state.member_pic_path"
+					class="card flex justify-content-start mb-2"
+				>
+					<label
+						>Current image filepath is<br />
+						{{ state.member_pic_path }}</label
+					>
+					<Image :src="state.member_pic_path" alt="Image" width="72" />
+				</div>
 			</FormKit>
 			<p v-if="saving" class="text-2xl"><ProgressSpinner /> Saving ...</p>
 
 			<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 		</div>
+
+		<!-- Modal -->
+		<Dialog
+			v-model:visible="displayModal"
+			:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
+			:style="{ width: '50vw' }"
+		>
+			<template #header>
+				<div class="my-dialog-header">
+					<h3>Processing file</h3>
+				</div></template
+			>
+			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+		</Dialog>
 	</div>
 </template>
 
@@ -234,6 +273,63 @@
 	//
 	const memberAdminTypeOptions = await getMemberAdminTypeOptions()
 	const memberTypeOptions = await getMemberTypeOptions()
+
+	// ////////////////// Handle wof image upload
+	//
+	// progress modal
+	//
+	const displayModal = ref(false)
+	const openProgressModal = () => {
+		displayModal.value = true
+	}
+	const closeProgressModal = () => {
+		displayModal.value = false
+	}
+
+	const customUploader = async (event) => {
+		const file = event.files[0]
+
+		// voodoo
+		const image = new Image()
+		const imageDimensions = await new Promise((resolve) => {
+			image.src = URL.createObjectURL(file)
+			image.onload = () => {
+				const dimensions = {
+					height: image.height,
+					width: image.width,
+				}
+				resolve(dimensions)
+			}
+		})
+
+		if (imageDimensions.height === 72 && imageDimensions.width === 72) {
+			const formData = new FormData()
+			formData.append('file', file)
+			openProgressModal()
+			// Find server code in folder Nuxt3-brc-media-api
+			const res = await fetch(`https://media.buffalorugby.org/images/wof`, {
+				method: 'POST',
+				body: formData,
+				headers: {
+					authorization: auth.user.token,
+				},
+			})
+
+			const data = await res.json()
+			closeProgressModal()
+			image.value = data.imageUrl
+			// console.log('IN handle image.value = ', image.value)
+			state.value.member_pic_path = data.imageUrl
+		} else {
+			alert(
+				'Illegal dimensons ' +
+					imageDimensions.height +
+					' ' +
+					imageDimensions.width +
+					'Image must be 72h 72w'
+			)
+		}
+	}
 
 	//
 	// form handlers

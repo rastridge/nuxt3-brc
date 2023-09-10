@@ -25,6 +25,8 @@ UPDATE `inbrc_stats_games` SET `date` = DATE_SUB(date, INTERVAL 4 HOUR) WHERE 1;
 https://media.my-test-site.net/upload
 http://buffalorugby.org/_img
 https://buffalorugby.org/_img
+https://buffalorugby.org/_img/_mugs
+http://buffalorugby.org/_img/_mugs
 http://buffalorugby.org/imgs
 https://buffalorugby.org/imgs
 http://buffalorugby.org/xoda
@@ -42,6 +44,7 @@ UPDATE inbrc_sponsors SET ad_image_path =
 UPDATE inbrc_clubhouse SET clubhouse_filepath =
 UPDATE inbrc_ads SET ad_path =
 UPDATE inbrc_archive SET archive_filepath =
+UPDATE inbrc_accounts SET member_pic_path =
 
 // NEWSLETTERS
 
@@ -197,6 +200,36 @@ REPLACE
 )
 WHERE
 `archive_filepath` LIKE '/xoda/files%'
+
+//////////////// ACCOUNTS (WOF)
+// remaining
+SELECT
+account_id,
+SUBSTR(
+`member_pic_path`,
+INSTR(`member_pic_path`, '/\_img/\_mugs'),
+100
+) AS src
+FROM
+`inbrc_accounts`
+WHERE
+INSTR(`member_pic_path`, '/\_img/\_mugs') AND `member_pic_path` NOT LIKE '%https://media.buffalorugby.org%'
+ORDER BY
+src;
+
+// fix \_img
+UPDATE
+inbrc\*accounts
+SET
+`member_pic_path` =
+REPLACE
+(
+`member_pic_path`,
+'/\_img/\_mugs',
+'https://media.buffalorugby.org/_img/_mugs'
+)
+WHERE
+`member_pic_path` LIKE '/\_img/\_mugs%'
 
 //////////////// CONTENT
 // remaining

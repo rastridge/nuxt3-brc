@@ -167,13 +167,16 @@
 			formData.append('file', file)
 			openProgressModal()
 			// Find server code in folder Nuxt3-brc-media-api
-			const res = await fetch(`https://media.buffalorugby.org/images/upload`, {
-				method: 'POST',
-				body: formData,
-				headers: {
-					authorization: auth.user.token,
-				},
-			})
+			const res = await fetch(
+				`https://media.buffalorugby.org/images/sponsors`,
+				{
+					method: 'POST',
+					body: formData,
+					headers: {
+						authorization: auth.user.token,
+					},
+				}
+			)
 
 			const data = await res.json()
 			closeProgressModal()
