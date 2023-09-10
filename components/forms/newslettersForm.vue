@@ -117,6 +117,14 @@
 
 		state.value = news_data.value
 
+		//
+		// Insert to make images responsive
+		//
+		state.value.newsletter_body_html = state.value.newsletter_body_html.replace(
+			/\<img/g,
+			'<img width="100%"'
+		)
+
 		newsletter_opened_cnt.value = news_data.value.newsletter_opened_cnt
 	}
 	//

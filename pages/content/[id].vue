@@ -32,9 +32,10 @@
 	})
 	//
 	// make any images expand to width of container
+	// should i do this when saving to db instead ?
 	//
-	content_data.value.content_body = content_data.value.content_body.replace(
-		/img/g,
-		'img width="100%"'
-	)
+	/* 	content_data.value.content_body = content_data.value.content_body.replace(
+		/\<img/g,
+		'<img width="100%"'
+	) */
 </script>

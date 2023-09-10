@@ -71,7 +71,7 @@
 	const openModal = (item) => {
 		displayModal.value = true
 		// replace img with img width="100%"
-		item.news_article = item.news_article.replace(/\<img/g, '<img width="100%"')
+		// item.news_article = item.news_article.replace(/\<img/g, '<img width="100%"')
 
 		selectedItem.value = item
 	}

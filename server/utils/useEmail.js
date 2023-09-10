@@ -100,10 +100,10 @@ export default function useEmail() {
 			// const TRACKINGPIXEL = ''
 
 			// make image respond to width
-			newsletter_body_html = newsletter_body_html.replace(
+			/* 			newsletter_body_html = newsletter_body_html.replace(
 				/img/g,
 				'img width="100%"'
-			)
+			) */
 			const email = {
 				from: FROM,
 				fromName: FROM_NAME,

@@ -95,8 +95,6 @@
 
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
-	// import { useToast } from 'primevue/usetoast'
-	// const toast = useToast()
 
 	const auth = useAuthStore()
 	const saving = ref(false)
@@ -134,6 +132,13 @@
 			}
 		)
 		state.value = data.value
+		//
+		// Insert to make images responsive
+		//
+		state.value.ad_image_path = state.value.ad_image_path.replace(
+			/\<img/g,
+			'<img width="100%"'
+		)
 	}
 	//
 	// progress modal

@@ -17,7 +17,25 @@ export default function useQuery() {
 		await conn1.end()
 		return rows
 	}
+
+	async function doDBQueryBuffalorugby(sql, inserts) {
+		const conn1 = await mysql.createPool({
+			host: CONFIG.DB_HOST,
+			user: CONFIG.DB_USER,
+			password: CONFIG.DB_PASSWORD,
+			database: 'buffalorugby',
+		})
+		if (inserts) {
+			sql = mysql.format(sql, inserts)
+		}
+		// console.log('IN dbQery sql = ', sql)
+		const [rows, fields] = await conn1.execute(sql)
+		await conn1.end()
+		return rows
+	}
+
 	return {
 		doDBQuery,
+		doDBQueryBuffalorugby,
 	}
 }

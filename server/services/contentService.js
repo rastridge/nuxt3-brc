@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise'
 
 const CONFIG = useRuntimeConfig()
-const { doDBQuery } = useQuery()
+const { doDBQueryBuffalorugby } = useQuery()
 
 export const contentService = {
 	getAll,
@@ -37,7 +37,7 @@ async function getAll() {
 			ORDER BY
 				dt DESC`
 
-	const content = await doDBQuery(sql)
+	const content = await doDBQueryBuffalorugby(sql)
 	return content
 }
 
@@ -55,7 +55,7 @@ async function getCustomMenuItems() {
 									content_order != 0
 							ORDER BY
 									content_order ASC`
-	const content = await doDBQuery(sql)
+	const content = await doDBQueryBuffalorugby(sql)
 
 	return content
 }
@@ -80,7 +80,7 @@ async function getOne(id) {
                     AND
                     content_id = ${id}`
 
-	const content = await doDBQuery(sql)
+	const content = await doDBQueryBuffalorugby(sql)
 
 	return content[0]
 }
@@ -105,7 +105,7 @@ async function editOne(item) {
 		item.content_expire_dt,
 		item.id
 	)
-	const content = await doDBQuery(sql, inserts)
+	const content = await doDBQueryBuffalorugby(sql, inserts)
 	return content
 }
 
@@ -131,7 +131,7 @@ async function addOne(item) {
 		item.content_expire_dt
 	)
 
-	const content = await doDBQuery(sql, inserts)
+	const content = await doDBQueryBuffalorugby(sql, inserts)
 	return content
 }
 
@@ -139,7 +139,7 @@ async function deleteOne(id) {
 	const sql =
 		`UPDATE inbrc_content SET deleted = 1, deleted_dt= NOW() WHERE content_id = ` +
 		id
-	const content = await doDBQuery(sql)
+	const content = await doDBQueryBuffalorugby(sql)
 	return content
 }
 
@@ -149,6 +149,6 @@ async function changeStatus({ id, status }) {
 		status +
 		`" WHERE content_id = ` +
 		id
-	const content = await doDBQuery(sql)
+	const content = await doDBQueryBuffalorugby(sql)
 	return content
 }

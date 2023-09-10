@@ -127,6 +127,14 @@
 		})
 		state.value = news_data.value
 
+		//
+		// Insert to make images responsive
+		//
+		state.value.news_article = state.value.news_article.replace(
+			/\<img/g,
+			'<img width="100%"'
+		)
+
 		// Adjust for local time and Format for Primevue calendar
 		state.value.news_event_dt = $dayjs(news_data.value.news_event_dt).format(
 			'YYYY-MM-DD'

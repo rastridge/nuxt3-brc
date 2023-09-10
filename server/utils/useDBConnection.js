@@ -12,7 +12,19 @@ export default function useDBConnection() {
 		return CONN
 	}
 
+	async function getConnectionBuffalorugby() {
+		const CONFIG = useRuntimeConfig()
+		const CONN = await mysql.createPool({
+			host: CONFIG.DB_HOST,
+			user: CONFIG.DB_USER,
+			password: CONFIG.DB_PASSWORD,
+			database: 'buffalorugby',
+		})
+		return CONN
+	}
+
 	return {
 		getConnection,
+		getConnectionBuffalorugby,
 	}
 }

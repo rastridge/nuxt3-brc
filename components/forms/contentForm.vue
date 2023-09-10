@@ -125,6 +125,14 @@
 
 		state.value = content_data.value
 
+		//
+		// Insert to make images responsive
+		//
+		state.value.content_body = state.value.content_body.replace(
+			/\<img/g,
+			'<img width="100%"'
+		)
+
 		// Adjust for local time and Format for Primevue calendar
 		state.value.content_release_dt = $dayjs(
 			content_data.value.content_release_dt
