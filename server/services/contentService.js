@@ -60,7 +60,6 @@ async function getCustomMenuItems() {
 							ORDER BY
 									content_order ASC`
 	const content = await doDBQueryBuffalorugby(sql)
-
 	return content
 }
 
@@ -85,7 +84,6 @@ async function getOne(id) {
                     content_id = ${id}`
 
 	const content = await doDBQueryBuffalorugby(sql)
-
 	return content[0]
 }
 
