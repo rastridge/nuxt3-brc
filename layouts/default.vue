@@ -9,6 +9,9 @@
 	const themeStore = useThemeStore()
 	import { useWindowSize } from '@vueuse/core'
 	const { width, height } = useWindowSize()
+	import { useMenuStore } from '@/stores'
+	const menuStore = useMenuStore()
+	const customMenuItems = menuStore.getCustomMenuItems
 </script>
 
 <template>

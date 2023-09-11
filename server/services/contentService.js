@@ -53,6 +53,10 @@ async function getCustomMenuItems() {
 									status = 1
 									AND
 									content_order != 0
+									AND
+                  DATEDIFF( CURDATE(), content_release_dt)  >  0
+																		AND
+                  DATEDIFF( CURDATE(), content_expire_dt)  <=  0
 							ORDER BY
 									content_order ASC`
 	const content = await doDBQueryBuffalorugby(sql)

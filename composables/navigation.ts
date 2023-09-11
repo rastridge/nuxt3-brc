@@ -15,6 +15,30 @@ const checkPerm = (app) => {
 
 export function useNavigationMenu() {
 	const navigationMenu = () => {
+		let menu = []
+		customMenuItems.forEach((element) => {
+			menu.push(element)
+		})
+		menu.push(
+			{
+				label: 'Officers',
+				to: '/officers',
+			},
+			{
+				label: 'Members',
+				to: '/members',
+			},
+
+			{
+				label: 'Sponsors',
+				to: '/sponsors',
+			},
+			{
+				label: 'Payments',
+				to: '/payments',
+			}
+		)
+
 		return [
 			{
 				label: 'Homepage',
@@ -26,11 +50,17 @@ export function useNavigationMenu() {
 				label: 'About',
 				icon: 'pi pi-fw pi-file',
 				visible: () => !auth.isLoggedIn,
-
-				items: [
-					customMenuItems[0],
+				items: menu,
+				/* 				items: [
+					c0,
+					c1,
+					c2,
 					customMenuItems[1],
 					customMenuItems[2],
+					customMenuItems[3],
+					customMenuItems[4],
+					customMenuItems[5],
+
 					{
 						label: 'Officers',
 						to: '/officers',
@@ -47,7 +77,7 @@ export function useNavigationMenu() {
 						label: 'Sponsors',
 						to: '/sponsors',
 					},
-				],
+				], */
 			},
 			{
 				label: 'News',
