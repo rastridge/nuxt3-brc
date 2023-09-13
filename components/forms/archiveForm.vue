@@ -19,14 +19,9 @@
 				type="textarea"
 				validation="required"
 			/>
-			<FormKit
-				label="Category"
-				name="archive_category"
-				type="text"
-				validation="required"
-			/>
+			<FormKit label="Category" name="archive_category" type="text" />
 			<h5>PDF file</h5>
-			<h6>{{ filepath }}</h6>
+			<h6>File {{ state.archive_filepath }}</h6>
 			<FileUpload
 				class="mb-4"
 				mode="basic"
@@ -84,7 +79,6 @@
 	// Initialize Add form
 	//
 	let state = ref({})
-	const filepath = ref('')
 	//
 	// edit if there is an id - add if not
 	//
@@ -104,6 +98,11 @@
 			},
 		})
 		state.value = archive_data.value
+		// Adjust for local time and Format for Primevue calendar
+
+		state.value.archive_date = $dayjs(archive_data.value.archive_date).format(
+			'YYYY-MM-DD'
+		)
 	}
 
 	//
@@ -135,7 +134,7 @@
 
 		const data = await res.json()
 		closeProgressModal()
-		filepath.value = data.imageUrl
+		state.value.archive_filepath = data.imageUrl
 	}
 	//
 	// form handlers
@@ -146,6 +145,6 @@
 	}
 
 	const cancelForm = () => {
-		navigateTo('/admin/archives') // needs to be / for self register
+		navigateTo('/admin/archive') // needs to be / for self register
 	}
 </script>

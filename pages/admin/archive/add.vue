@@ -7,18 +7,18 @@
 	// archives form action
 	//
 	const onSubmit = async function (form_state) {
-		await onSubmitAdd('archives', form_state)
-		navigateTo(`/admin/archives`)
+		await onSubmitAdd('archive', form_state)
+		navigateTo(`/admin/archive`)
 	}
 </script>
 
 <template>
 	<div>
 		<Head>
-			<Title>Add archives Item</Title>
+			<Title>Add archive Item</Title>
 		</Head>
-		<admin-header title="Add archives item" />
-		<archives-form app="archives" @submitted="onSubmit" />
+		<admin-header title="Add archive item" />
+		<archive-form app="archive" @submitted="onSubmit" />
 	</div>
 </template>
 

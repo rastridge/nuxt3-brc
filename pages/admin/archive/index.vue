@@ -41,7 +41,7 @@
 	// Initialize values for Renderlist and Select Year
 	//
 	const { getAccess } = useRenderListAccess()
-	const app = 'archives'
+	const app = 'archive'
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
 
 	//
@@ -77,10 +77,10 @@
 	// Renderlist actions
 	//
 	const deleteItem = async (id) => {
-		await deleteOne('archives', id)
+		await deleteOne('archive', id)
 	}
 
 	const changeStatus = async ({ id, status }) => {
-		await changeStatusOne('archives', { id, status })
+		await changeStatusOne('archive', { id, status })
 	}
 </script>

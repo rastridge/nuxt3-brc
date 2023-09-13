@@ -3,8 +3,8 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 const { EE_API_KEY } = useRuntimeConfig()
 const { sendEmail } = useEmail()
-const { doDBQuery } = useQuery()
-const { getConnection } = useDBConnection()
+const { doDBQueryBuffalorugby } = useQuery()
+const { getConnectionBuffalorugby } = useDBConnection()
 
 // import querystring from 'querystring'
 // import https from 'https'
@@ -37,7 +37,7 @@ async function _setPerms(aPerms, id) {
             WHERE
                 admin_user_id = ${id}`
 
-	await doDBQuery(sql)
+	await doDBQueryBuffalorugby(sql)
 
 	// loop through permissions array
 	aPerms.forEach(myFunction)
@@ -55,7 +55,7 @@ async function _setPerms(aPerms, id) {
 												${value.admin_app_id},
 												${value.admin_perm}
 										)`
-		await doDBQuery(sql)
+		await doDBQueryBuffalorugby(sql)
 	}
 	return true
 }
@@ -77,7 +77,7 @@ async function _getPerms(id) {
 								p.admin_user_id  = ${id}
 								ORDER BY a.admin_app_name ASC`
 
-	const perms = await doDBQuery(sql)
+	const perms = await doDBQueryBuffalorugby(sql)
 
 	return perms
 }
@@ -90,7 +90,7 @@ async function authenticate({ username, password }) {
 								FROM inbrc_admin_users
 								WHERE deleted = 0`
 
-	const users = await doDBQuery(sql)
+	const users = await doDBQueryBuffalorugby(sql)
 
 	let user = users.find((u) => {
 		let match = false
@@ -133,7 +133,7 @@ async function getAll() {
 								FROM inbrc_admin_users
 								WHERE deleted = 0
 								ORDER BY dt DESC`
-	const users = await doDBQuery(sql)
+	const users = await doDBQueryBuffalorugby(sql)
 
 	return users
 }
@@ -150,7 +150,7 @@ async function getOne(id) {
 							WHERE 
 								admin_user_id = ${id}`
 
-	const user = await doDBQuery(sql)
+	const user = await doDBQueryBuffalorugby(sql)
 	const perms = await _getPerms(id)
 	let jsObj2 = perms
 	let jsObj = user[0]
@@ -164,7 +164,7 @@ async function deleteOne(id) {
 								SET deleted=1, deleted_dt= NOW()
 								WHERE admin_user_id=` + id
 
-	const user = await doDBQuery(sql)
+	const user = await doDBQueryBuffalorugby(sql)
 
 	return user
 }
@@ -173,7 +173,7 @@ async function deleteOne(id) {
 /***************************************** */
 async function addOne({ admin_user_name, password, admin_user_email, perms }) {
 	try {
-		const conn = await getConnection()
+		const conn = await getConnectionBuffalorugby()
 		await conn.query('START TRANSACTION')
 
 		// check for existing username or email
@@ -277,7 +277,7 @@ async function editOne(info) {
 	const { admin_user_id, admin_user_name, admin_user_email, perms, password } =
 		info
 
-	const conn = await getConnection()
+	const conn = await getConnectionBuffalorugby()
 
 	try {
 		await conn.query('START TRANSACTION')
@@ -418,7 +418,7 @@ async function changeStatus({ id, status }) {
 		status +
 		`" WHERE admin_user_id  = ` +
 		id
-	const user = await doDBQuery(sql)
+	const user = await doDBQueryBuffalorugby(sql)
 
 	return user
 }
@@ -434,7 +434,7 @@ async function getApps() {
                 ORDER BY
                     admin_app_name`
 
-	const apps = await doDBQuery(sql)
+	const apps = await doDBQueryBuffalorugby(sql)
 
 	return apps
 }
@@ -452,7 +452,7 @@ async function getApps() {
 							ORDER BY
                     admin_app_id`
 
-	const perms = await doDBQuery(sql)
+	const perms = await doDBQueryBuffalorugby(sql)
 
 	return perms
 }
@@ -474,7 +474,7 @@ async function getAppPerms() {
 								AND
 								p.admin_user_id = u.admin_user_id`
 
-	const perms = await doDBQuery(sql)
+	const perms = await doDBQueryBuffalorugby(sql)
 
 	return perms
 }
@@ -492,7 +492,7 @@ async function resetRequest({ username }) {
 							WHERE
 								admin_user_name = '${username}'`
 
-	const rows = await doDBQuery(sql)
+	const rows = await doDBQueryBuffalorugby(sql)
 
 	const cnt = rows[0].cnt
 	const admin_user_email = rows[0].admin_user_email
@@ -525,7 +525,7 @@ async function resetPassword({ username, password }) {
 	const hashedpassword = await bcrypt.hashSync(password, 10)
 	const inserts = []
 	inserts.push(hashedpassword, username)
-	const result = await doDBQuery(sql, inserts)
+	const result = await doDBQueryBuffalorugby(sql, inserts)
 
 	sendEmail(
 		'ron.astridge@me.com',

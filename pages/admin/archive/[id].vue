@@ -13,17 +13,17 @@
 	// archives form action
 	//
 	const onSubmit = async function (form_state) {
-		await onSubmitEdit('archives', form_state)
-		navigateTo(`/admin/archives`)
+		await onSubmitEdit('archive', form_state)
+		navigateTo(`/admin/archive`)
 	}
 </script>
 
 <template>
 	<div>
 		<Head>
-			<Title>Edit archives Item {{ id }}</Title>
+			<Title>Edit archive Item {{ id }}</Title>
 		</Head>
-		<admin-header title="Edit archives Item" />
-		<archives-form app="archives" :id="id" @submitted="onSubmit" />
+		<admin-header title="Edit archive Item" />
+		<archive-form app="archive" :id="id" @submitted="onSubmit" />
 	</div>
 </template>
