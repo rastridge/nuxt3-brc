@@ -13,18 +13,18 @@
 	// archives form action
 	//
 	const onSubmit = async function (form_state) {
-		await onSubmitEdit('archive', form_state)
-		navigateTo(`/admin/archive`)
+		await onSubmitEdit('clubhouse', form_state)
+		navigateTo(`/admin/clubhouse`)
 	}
 </script>
 
 <template>
 	<div>
 		<Head>
-			<Title>Edit archive Item {{ id }}</Title>
+			<Title>Edit clubhouse Item {{ id }}</Title>
 		</Head>
-		<admin-header title="Edit archive Item" />
-		<!-- <archive-form app="archive" :id="id" @submitted="onSubmit" /> -->
-		<archive-form :id="id" @submitted="onSubmit" />
+		<admin-header title="Edit clubhouse Item" />
+		<!-- <clubhouse-form app="clubhouse" :id="id" @submitted="onSubmit" /> -->
+		<clubhouse-form app="clubhouse" :id="id" @submitted="onSubmit" />
 	</div>
 </template>

@@ -153,6 +153,11 @@ export function useNavigationMenu() {
 						to: '/opponents',
 					},
 					{
+						label: 'Document Archives',
+						icon: 'pi pi-fw pi-pencil',
+						to: '/archive/documents',
+					},
+					{
 						label: 'Leaders',
 						icon: 'pi pi-fw pi-power-off',
 						to: '/leaders',
@@ -160,7 +165,7 @@ export function useNavigationMenu() {
 					{
 						label: 'Videos',
 						icon: 'pi pi-fw pi-power-off',
-						to: '/sponsors',
+						to: '/videos',
 					},
 					{
 						label: 'Photos',
@@ -222,10 +227,10 @@ export function useNavigationMenu() {
 						visible: () => checkPerm('users') > 0,
 					},
 					{
-						label: 'Document Archive',
+						label: 'Clubhouse',
 						icon: 'pi pi-fw pi-user-edit',
-						to: '/admin/archive',
-						visible: () => checkPerm('archive') > 0,
+						to: '/admin/clubhouse',
+						visible: () => checkPerm('clubhouse') > 0,
 					},
 					{
 						label: 'Content',
@@ -238,6 +243,12 @@ export function useNavigationMenu() {
 						icon: 'pi pi-fw pi-user-edit',
 						to: '/admin/contributions',
 						visible: () => checkPerm('contributions') > 0,
+					},
+					{
+						label: 'Document Archive',
+						icon: 'pi pi-fw pi-user-edit',
+						to: '/admin/archive',
+						visible: () => checkPerm('archive') > 0,
 					},
 					{
 						label: 'Events',

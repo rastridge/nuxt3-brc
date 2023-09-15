@@ -8,36 +8,38 @@
 			@submit="submitForm(state)"
 		>
 			<FormKit
-				label="Archive Title"
-				name="archive_title"
+				label="Title"
+				name="clubhouse_title"
 				type="text"
 				validation="required"
 			/>
 			<FormKit
 				label="Description"
-				name="archive_description"
+				name="clubhouse_description"
 				type="textarea"
 				validation="required"
 			/>
-			<FormKit label="Category" name="archive_category" type="text" />
-			<h5>PDF file</h5>
-			<h6>File {{ state.archive_filepath }}</h6>
-			<FileUpload
-				class="mb-4"
-				mode="basic"
-				name="fileInput"
-				:auto="true"
-				accept="application/pdf"
-				customUpload
-				@uploader="submitFileUpload"
-			/>
+			<FormKit label="Category" name="clubhouse_category" type="text" />
+			<FormKit label="Owner" name="clubhouse_owner" type="text" />
 			<FormKit
-				type="date"
-				label="Document Date"
-				name="archive_date"
+				type="text"
+				label="Year"
+				name="clubhouse_date"
 				validation="required"
 			/>
 		</FormKit>
+		<h5>Image file</h5>
+		<h6>File {{ state.clubhouse_filepath }}</h6>
+		<FileUpload
+			class="mb-4"
+			mode="basic"
+			name="fileInput"
+			:auto="true"
+			accept="image/*"
+			customUpload
+			@uploader="submitFileUpload"
+		/>
+
 		<p v-if="saving" class="text-2xl"><ProgressSpinner /> Saving ...</p>
 		<Button label="Cancel" @click.prevent="cancelForm()"> </Button>
 
@@ -87,22 +89,17 @@
 		// Initialize Edit form
 		//
 		const {
-			data: archive_data,
+			data: clubhouse_data,
 			pending,
 			error,
 			refresh,
-		} = await useFetch(`/archive/${props.id}`, {
+		} = await useFetch(`/clubhouse/${props.id}`, {
 			method: 'get',
 			headers: {
 				authorization: auth.user.token,
 			},
 		})
-		state.value = archive_data.value
-
-		// Adjust for local time and Format for Primevue calendar
-		state.value.archive_date = $dayjs(archive_data.value.archive_date).format(
-			'YYYY-MM-DD'
-		)
+		state.value = clubhouse_data.value
 	}
 
 	//
@@ -123,7 +120,7 @@
 		formData.append('file', file)
 		openProgressModal()
 		// Find server code in folder Nuxt3-brc-media-api
-		const url = `https://media.buffalorugby.org/images/archives`
+		const url = `https://media.buffalorugby.org/images/clubhouse`
 		const res = await fetch(url, {
 			method: 'POST',
 			body: formData,
@@ -134,7 +131,7 @@
 
 		const data = await res.json()
 		closeProgressModal()
-		state.value.archive_filepath = data.imageUrl
+		state.value.clubhouse_filepath = data.imageUrl
 	}
 	//
 	// form handlers
@@ -145,6 +142,6 @@
 	}
 
 	const cancelForm = () => {
-		navigateTo('/admin/archive') // needs to be / for self register
+		navigateTo('/admin/clubhouse') // needs to be / for self register
 	}
 </script>

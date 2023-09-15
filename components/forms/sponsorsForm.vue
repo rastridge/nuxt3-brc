@@ -108,7 +108,7 @@
 	// Incoming
 	//
 	const props = defineProps({
-		id: { Number, default: 0 },
+		src: { String, required: true },
 	})
 
 	//
