@@ -23,9 +23,9 @@
 					</span>
 					|
 
-					<a :href="itm.archive_filepath" target="blank">READ</a>
-					<!-- <button @click="openModal(itm.archive_filepath)">Display PDF</button>
-					<span>{{ itm.archive_filepath }}</span> -->
+					<!-- <a :href="itm.archive_filepath" target="blank">READ</a> -->
+					<button @click="openModal(itm.archive_filepath)">Display PDF</button>
+					<span>{{ itm.archive_filepath }}</span>
 				</li>
 			</ul>
 		</div>

@@ -2,8 +2,8 @@
 const CONFIG = useRuntimeConfig()
 
 const { sendEmail } = useEmail()
-const { doDBQuery } = useQuery()
-const { getConnection } = useDBConnection()
+const { doDBQueryBuffalorugby } = useQuery()
+const { getConnectionBuffalorugby } = useDBConnection()
 
 export const accountsService = {
 	getAll,
@@ -49,7 +49,7 @@ async function getAll() {
 							WHERE deleted = 0
 							ORDER BY member_lastname ASC`
 
-	const accounts = await doDBQuery(sql)
+	const accounts = await doDBQueryBuffalorugby(sql)
 	return accounts
 }
 
@@ -96,7 +96,7 @@ async function getShow() {
 									a.member_type_id NOT IN('9', '13') AND a.STATUS = 1 AND a.deleted = 0 AND a.member_type_id = mt.member_type_id  
 							ORDER BY a.member_lastname ASC`
 
-	const accounts = await doDBQuery(sql)
+	const accounts = await doDBQueryBuffalorugby(sql)
 	return accounts
 }
 
@@ -104,7 +104,7 @@ async function getOne(id) {
 	const sql = `SELECT *
 							FROM inbrc_accounts
 							WHERE account_id = ?`
-	const accounts = await doDBQuery(sql, [id])
+	const accounts = await doDBQueryBuffalorugby(sql, [id])
 	const account = accounts[0]
 	return account
 }
@@ -114,7 +114,7 @@ async function getOne(id) {
 /***************************************** */
 async function addOne(info) {
 	try {
-		const CONN = await getConnection()
+		const CONN = await getConnectionBuffalorugby()
 		await CONN.query('START TRANSACTION')
 
 		// check for existing email
@@ -256,7 +256,7 @@ async function addOne(info) {
 /*               editOne                   */
 /***************************************** */
 async function editOne(info) {
-	const CONN = await getConnection()
+	const CONN = await getConnectionBuffalorugby()
 	try {
 		await CONN.query('START TRANSACTION')
 
@@ -413,7 +413,7 @@ async function getOfficers() {
 								ORDER BY
 									a.member_admin_type_id`
 
-	const officers = await doDBQuery(sql)
+	const officers = await doDBQueryBuffalorugby(sql)
 	return officers
 }
 
@@ -427,7 +427,7 @@ async function getSuggestions() {
 							WHERE deleted = 0 AND status = 1
 							ORDER BY member_lastname ASC`
 
-	const accounts = await doDBQuery(sql)
+	const accounts = await doDBQueryBuffalorugby(sql)
 	return accounts
 }
 
@@ -439,7 +439,7 @@ async function deleteOne(id) {
 								WHERE account_id = ?;`
 	let inserts = []
 	inserts.push(id)
-	const accounts = await doDBQuery(sql, inserts)
+	const accounts = await doDBQueryBuffalorugby(sql, inserts)
 	return accounts
 }
 
@@ -451,17 +451,17 @@ async function changeStatus({ id, status }) {
 								WHERE account_id = ?;`
 	let inserts = []
 	inserts.push(status, id)
-	const accounts = await doDBQuery(sql, inserts)
+	const accounts = await doDBQueryBuffalorugby(sql, inserts)
 	return accounts
 }
 
 async function getMemberTypes() {
 	const sql = `SELECT * FROM inbrc_member_types WHERE 1`
-	const membertypes = await doDBQuery(sql)
+	const membertypes = await doDBQueryBuffalorugby(sql)
 	return membertypes
 }
 async function getMemberAdminTypes() {
 	const sql = `SELECT * FROM inbrc_member_admin_types WHERE 1`
-	const memberadmintypes = await doDBQuery(sql)
+	const memberadmintypes = await doDBQueryBuffalorugby(sql)
 	return memberadmintypes
 }

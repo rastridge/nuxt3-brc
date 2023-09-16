@@ -170,7 +170,7 @@ export function useNavigationMenu() {
 					{
 						label: 'Photos',
 						icon: 'pi pi-fw pi-power-off',
-						to: '/sponsors',
+						to: '/photos',
 					},
 					{
 						label: 'Newsletters',

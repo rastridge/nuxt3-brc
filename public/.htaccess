@@ -1,0 +1,70 @@
+Options -Indexes
+RewriteEngine On
+#
+# See https://htaccess.madewithlove.com/ for debugging
+#
+RewriteRule ^about-us /content/1 [R]
+#
+RewriteRule ^join /content/55 [R]
+#
+RewriteRule ^directions /content/2 [R]
+#
+RewriteRule ^online-payments /payments [R]
+#
+RewriteRule ^community-service /content/75 [R]
+#
+RewriteRule ^admin-login /loginpage [R]
+#
+# RewriteRule ^officers /members/officers [R]
+#
+RewriteRule ^virtual-clubhouse /clubhouse [R]
+#
+RewriteRule ^schedule-and-results7s /games/schedule [R]
+#
+RewriteRule ^schedule-and-results /games/schedule [R]
+#
+RewriteRule ^flag-register /register/flag [R]
+#
+RewriteRule ^wall-of-fame /clubhouse/wof [R]
+#
+RewriteRule ^videos /videos [R]
+#
+RewriteRule ^site/video /videos [R]
+#
+RewriteRule ^team-statistics /stats/team_stats [R]
+#
+RewriteRule ^player-statistics /stats/player_stats [R]
+#
+RewriteRule ^photos /photos [R]
+#
+#
+# RewriteRule ^history /content/74 [R]
+#
+RewriteRule ^player-games-history /stats/player_history [R]
+##
+RewriteCond %{QUERY_STRING} ^id=([0-9]*)
+RewriteRule ^site/stats/detail.php$ /games/schedule/page/%1? [R,L]
+#
+RewriteRule ^site/stats$ /games/schedule [R]
+#
+RewriteRule ^buffalogallery/v /content/34 [R]
+#
+RewriteRule ^v-web/gallery /content/34 [R]
+#
+RewriteRule ^gallery3/index.php /content/34 [R]
+#
+RewriteRule ^site/newsletters/newsletters_archive.php /archive/newsletters  [R]
+#
+RewriteCond %{QUERY_STRING} ^id=(\d*[^&])$
+RewriteRule ^site/news/detail.php /archive/news/page/%1? [R,L]
+#
+RewriteCond %{QUERY_STRING} ^index=(\d*[^&])
+RewriteRule ^site/news/detail_for_FB.php /archive/news/page/%1? [R,L]
+#
+RewriteRule ^site/news/news_archive.php /archive/news  [R]
+#
+RewriteRule ^archive$ /archive/documents  [R]
+#
+RewriteRule ^50th-anniversary /content/58 [R]
+#
+FallbackResource /index

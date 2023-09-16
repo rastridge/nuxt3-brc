@@ -1,4 +1,4 @@
-const { doDBQuery } = useQuery()
+const { doDBQueryBuffalorugby } = useQuery()
 export const leadersService = {
 	getAll,
 	getAllCurrent,
@@ -20,7 +20,7 @@ async function getYears() {
 							ORDER BY 
 								leaders_year`
 
-	const years = await doDBQuery(sql)
+	const years = await doDBQueryBuffalorugby(sql)
 	return years
 }
 
@@ -49,7 +49,7 @@ async function getAll() {
                 WHERE deleted = 0
                 ORDER BY title ASC`
 
-	const leaders = await doDBQuery(sql)
+	const leaders = await doDBQueryBuffalorugby(sql)
 	return leaders
 }
 
@@ -80,7 +80,7 @@ async function getAllCurrent() {
 										AND
 										STATUS = 1`
 
-	const leaders = await doDBQuery(sql)
+	const leaders = await doDBQueryBuffalorugby(sql)
 	return leaders
 }
 
@@ -105,7 +105,7 @@ async function getOne(id) {
 							where 
 								leaders_id=${id}`
 
-	const leaders = await doDBQuery(sql)
+	const leaders = await doDBQueryBuffalorugby(sql)
 	return leaders[0]
 }
 
@@ -158,7 +158,7 @@ async function addOne({
 		assistant_coach,
 		chair_bod
 	)
-	const leaders = await doDBQuery(sql, inserts)
+	const leaders = await doDBQueryBuffalorugby(sql, inserts)
 	return leaders
 }
 
@@ -209,13 +209,13 @@ async function editOne({
 		chair_bod,
 		id
 	)
-	const sponsor = await doDBQuery(sql, inserts)
+	const sponsor = await doDBQueryBuffalorugby(sql, inserts)
 	return sponsor
 }
 
 async function deleteOne(id) {
 	const sql = `UPDATE inbrc_leaders SET deleted=1, deleted_dt=NOW() WHERE leaders_id=${id}`
-	const sponsor = await doDBQuery(sql)
+	const sponsor = await doDBQueryBuffalorugby(sql)
 	return sponsor
 }
 
@@ -225,6 +225,6 @@ async function changeStatus({ id, status }) {
 		status +
 		`" WHERE leaders_id  = ` +
 		id
-	const sponsor = await doDBQuery(sql)
+	const sponsor = await doDBQueryBuffalorugby(sql)
 	return sponsor
 }
