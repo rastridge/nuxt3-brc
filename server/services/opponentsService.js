@@ -1,5 +1,5 @@
 const CONFIG = useRuntimeConfig()
-const { doDBQuery } = useQuery()
+const { doDBQueryBuffalorugby } = useQuery()
 
 export const opponentsService = {
 	getAll,
@@ -35,7 +35,7 @@ async function getAll() {
 			ORDER BY
 				opponent_name ASC`
 
-	const opponents = await doDBQuery(sql)
+	const opponents = await doDBQueryBuffalorugby(sql)
 	return opponents
 }
 
@@ -48,7 +48,7 @@ async function getSuggestions() {
 							WHERE deleted = 0 AND status = 1
 							ORDER BY opponent_name ASC`
 
-	const suggestions = await doDBQuery(sql)
+	const suggestions = await doDBQueryBuffalorugby(sql)
 	return suggestions
 }
 
@@ -72,7 +72,7 @@ async function getOne(id) {
 								AND
 								opponent_id = ${id}`
 
-	const opponents = await doDBQuery(sql)
+	const opponents = await doDBQueryBuffalorugby(sql)
 	return opponents[0]
 }
 
@@ -96,7 +96,7 @@ async function editOne(item) {
 		item.opponent_description,
 		item.id
 	)
-	const opponents = await doDBQuery(sql, inserts)
+	const opponents = await doDBQueryBuffalorugby(sql, inserts)
 	return opponents
 }
 
@@ -123,7 +123,7 @@ async function addOne(item) {
 		item.opponent_level,
 		item.opponent_description
 	)
-	const opponents = await doDBQuery(sql, inserts)
+	const opponents = await doDBQueryBuffalorugby(sql, inserts)
 	return opponents
 }
 
@@ -131,7 +131,7 @@ async function deleteOne(id) {
 	const sql =
 		`UPDATE inbrc_opponents SET deleted = 1, deleted_dt= NOW() WHERE opponent_id = ` +
 		id
-	const opponents = await doDBQuery(sql)
+	const opponents = await doDBQueryBuffalorugby(sql)
 	return opponents
 }
 
@@ -141,6 +141,6 @@ async function changeStatus({ id, status }) {
 		status +
 		`" WHERE opponent_id = ` +
 		id
-	const opponents = await doDBQuery(sql)
+	const opponents = await doDBQueryBuffalorugby(sql)
 	return opponents
 }

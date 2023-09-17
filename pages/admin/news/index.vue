@@ -77,10 +77,10 @@
 	// Renderlist actions
 	//
 	const deleteItem = async (id) => {
-		await deleteOne('news', id)
+		await deleteOne(app, id)
 	}
 
 	const changeStatus = async ({ id, status }) => {
-		await changeStatusOne('news', { id, status })
+		await changeStatusOne(app, { id, status })
 	}
 </script>

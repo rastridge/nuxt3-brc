@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise'
 const { SEASON_DIVIDE_DATE } = useRuntimeConfig()
-const { doDBQuery } = useQuery()
-const { getConnection } = useDBConnection()
+const { doDBQueryBuffalorugby } = useQuery()
+const { getConnectionBuffalorugby } = useDBConnection()
 
 export const statsService = {
 	getAll,
@@ -46,7 +46,7 @@ async function getHistoryTotals(id) {
 								AND deleted = 0
 								AND Status = 1`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats[0]
 }
 
@@ -81,7 +81,7 @@ async function getHistoryStreaks(id) {
 								HAVING COUNT(*) > 1
 								ORDER BY Min(date)`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
 async function getHistoryCurrentStreak(id) {
@@ -163,7 +163,7 @@ async function getHistoryCurrentStreak(id) {
 									AND
 									opponent_id = ${id}`
 
-	stats = await doDBQuery(sql)
+	stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
 
@@ -188,7 +188,7 @@ async function getHistory(id) {
 		ORDER BY
 			g.date ASC`
 
-	const games = await doDBQuery(sql)
+	const games = await doDBQueryBuffalorugby(sql)
 	return games
 }
 
@@ -228,7 +228,7 @@ async function getAll(sort = 'DESC') {
 			ORDER BY
 				dt ` + sort
 
-	const games = await doDBQuery(sql)
+	const games = await doDBQueryBuffalorugby(sql)
 	return games
 }
 
@@ -248,7 +248,7 @@ async function getPrevious(date) {
 					ORDER BY
 						date DESC
 					LIMIT 10`
-	const games = await doDBQuery(sql)
+	const games = await doDBQueryBuffalorugby(sql)
 	return games
 }
 
@@ -288,7 +288,7 @@ async function getYear(year) {
 			ORDER BY
 				dt DESC`
 
-	const games = await doDBQuery(sql)
+	const games = await doDBQueryBuffalorugby(sql)
 	return games
 }
 
@@ -329,7 +329,7 @@ async function getSeason(year) {
 								AND ( DATE(date) > DATE(CONCAT("${year}","${SEASON_DIVIDE_DATE}"))) AND ( DATE(date) <= DATE(CONCAT("${YEAR2}","${SEASON_DIVIDE_DATE}")) )
 							ORDER BY
 								dt DESC`
-	const games = await doDBQuery(sql)
+	const games = await doDBQueryBuffalorugby(sql)
 	return games
 }
 
@@ -341,7 +341,7 @@ async function getGameTypes() {
 				inbrc_stats_game_types
 			WHERE 1`
 
-	const gametypes = await doDBQuery(sql)
+	const gametypes = await doDBQueryBuffalorugby(sql)
 	return gametypes
 }
 
@@ -371,7 +371,7 @@ async function getOne(id) {
 									g.game_id = ${id}
 									AND g.game_type_id = t.game_type_id`
 
-	const games = await doDBQuery(sql)
+	const games = await doDBQueryBuffalorugby(sql)
 	return games[0]
 }
 
@@ -411,7 +411,7 @@ async function getAdjacent(direction) {
 					date ${FILTER2}
 				LIMIT 2`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
 
@@ -453,7 +453,7 @@ async function getRosterStats() {
 								yr
 							DESC`
 
-	const roster_count = await doDBQuery(sql)
+	const roster_count = await doDBQueryBuffalorugby(sql)
 	return roster_count
 }
 
@@ -484,7 +484,7 @@ async function getPlayers(id) {
 							ORDER BY
 								position_id asc`
 
-	const players = await doDBQuery(sql)
+	const players = await doDBQueryBuffalorugby(sql)
 	return players
 }
 
@@ -514,7 +514,7 @@ WHERE
     AND(g.game_type_id <> 8) 
     AND(a.account_id = ${account_id})`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats[0].gamecount
 }
 
@@ -561,7 +561,7 @@ async function getPlayerStats(id) {
 							ORDER BY
 								games desc`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
 
@@ -607,7 +607,7 @@ async function getTeamStats(gt) {
 							ORDER BY
 								season ASC`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
 
@@ -632,7 +632,7 @@ async function getTeamStatsTotal(gt) {
 								${FILTER}
 								AND Status = 1`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats[0]
 }
 
@@ -674,7 +674,7 @@ async function getPlayerGames(id) {
 				ORDER BY
 					g.date DESC`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 
 	return stats
 }
@@ -693,7 +693,7 @@ async function addOne({
 	players,
 }) {
 	try {
-		const conn = await getConnection()
+		const conn = await getConnectionBuffalorugby()
 		await conn.query('START TRANSACTION')
 
 		let sql = `INSERT INTO inbrc_stats_games 
@@ -790,7 +790,7 @@ async function editOne({
 	players,
 }) {
 	try {
-		const conn = await getConnection()
+		const conn = await getConnectionBuffalorugby()
 		await conn.query('START TRANSACTION')
 
 		let sql = `UPDATE inbrc_stats_games SET
@@ -871,7 +871,7 @@ async function editOne({
 }
 
 async function deleteOne(id) {
-	const conn = await getConnection()
+	const conn = await getConnectionBuffalorugby()
 
 	try {
 		await conn.query('START TRANSACTION')
@@ -897,7 +897,7 @@ async function changeStatus({ id, status }) {
 		`UPDATE inbrc_stats_games SET status = "` +
 		status +
 		`" WHERE game_id = ${id}`
-	const players = await doDBQuery(sql)
+	const players = await doDBQueryBuffalorugby(sql)
 
 	return players
 }

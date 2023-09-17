@@ -20,7 +20,7 @@
 		<Head>
 			<Title>Edit Opponent {{ id }}</Title>
 		</Head>
-		<common-header title="Edit Newsletter" />
+		<common-header title="Edit Opponent" />
 		<opponents-form :id="id" @submitted="onSubmit" />
 	</div>
 </template>

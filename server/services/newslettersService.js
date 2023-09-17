@@ -1,6 +1,6 @@
 import mysql from 'mysql2/promise'
-import querystring from 'querystring'
-import https from 'https'
+// import querystring from 'querystring'
+// import https from 'https'
 
 const {
 	DB_DATABASE,
@@ -12,8 +12,8 @@ const {
 	EE_API_KEY,
 } = useRuntimeConfig()
 
-const { doDBQuery } = useQuery()
-const { getConnection } = useDBConnection()
+const { doDBQueryBuffalorugby } = useQuery()
+const { getConnectionBuffalorugby } = useDBConnection()
 const { sendNewsletters } = useEmail()
 
 export const newslettersService = {
@@ -50,7 +50,7 @@ async function getAll() {
 								deleted = 0
 							ORDER BY dt DESC`
 
-	const newsletter = await doDBQuery(sql)
+	const newsletter = await doDBQueryBuffalorugby(sql)
 
 	return newsletter
 }
@@ -79,7 +79,7 @@ async function getYear(year) {
 				ORDER BY
           dt DESC`
 
-	const newsletters = await doDBQuery(sql)
+	const newsletters = await doDBQueryBuffalorugby(sql)
 	return newsletters
 }
 
@@ -118,7 +118,7 @@ async function sendNewsletter({
 					FROM inbrc_accounts a
 					WHERE deleted = 0
 					ORDER BY account_email ASC`
-	const accounts = await doDBQuery(sql)
+	const accounts = await doDBQueryBuffalorugby(sql)
 	//
 	// filter match member types with recipient types
 	//
@@ -227,7 +227,7 @@ async function sendNewsletter({
 								WHERE
 									newsletter_id = ${newsletter_id}`
 
-	const newsletters = await doDBQuery(sql2)
+	const newsletters = await doDBQueryBuffalorugby(sql2)
 
 	return 'all done'
 }
@@ -236,13 +236,13 @@ async function sendNewsletter({
 //
 async function getOne(id) {
 	const sql = `select * from inbrc_newsletters where newsletter_id = ` + id
-	const newsletter = await doDBQuery(sql)
+	const newsletter = await doDBQueryBuffalorugby(sql)
 	return newsletter[0]
 }
 
 async function trackNewsletter(query) {
 	try {
-		const conn = await getConnection()
+		const conn = await getConnectionBuffalorugby()
 		await conn.query('START TRANSACTION')
 
 		// update member last email opened date
@@ -332,7 +332,7 @@ async function addOne({
 		newsletter_body_text,
 		newsletter_body_html
 	)
-	const newsletter = await doDBQuery(sql, inserts)
+	const newsletter = await doDBQueryBuffalorugby(sql, inserts)
 	return newsletter
 }
 
@@ -370,7 +370,7 @@ async function editOne({
 		newsletter_send_status,
 		newsletter_id
 	)
-	const newsletter = await doDBQuery(sql, inserts)
+	const newsletter = await doDBQueryBuffalorugby(sql, inserts)
 
 	return newsletter
 }
@@ -379,7 +379,7 @@ async function deleteOne(id) {
 	const sql =
 		`UPDATE inbrc_newsletters SET deleted=1, deleted_dt= NOW() WHERE newsletter_id = ` +
 		id
-	const newsletter = await doDBQuery(sql)
+	const newsletter = await doDBQueryBuffalorugby(sql)
 
 	return newsletter
 }
@@ -390,13 +390,13 @@ async function changeStatus({ id, status }) {
 		status +
 		`" WHERE newsletter_id = ` +
 		id
-	const newsletter = await doDBQuery(sql)
+	const newsletter = await doDBQueryBuffalorugby(sql)
 
 	return newsletter
 }
 
 async function getRecipientTypes() {
 	const sql = `SELECT * FROM inbrc_newsletter_recipient_types WHERE 1`
-	const recipienttypes = await doDBQuery(sql)
+	const recipienttypes = await doDBQueryBuffalorugby(sql)
 	return recipienttypes
 }

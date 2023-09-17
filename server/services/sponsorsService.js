@@ -1,4 +1,4 @@
-const { doDBQuery } = useQuery()
+const { doDBQueryBuffalorugby } = useQuery()
 export const sponsorsService = {
 	getAll,
 	getAllCurrent,
@@ -30,7 +30,7 @@ async function getAll() {
                 WHERE deleted = 0
                 ORDER BY title ASC`
 
-	const sponsors = await doDBQuery(sql)
+	const sponsors = await doDBQueryBuffalorugby(sql)
 	return sponsors
 }
 
@@ -56,7 +56,7 @@ async function getAllCurrent() {
 										AND
 										STATUS = 1`
 
-	const sponsors = await doDBQuery(sql)
+	const sponsors = await doDBQueryBuffalorugby(sql)
 	return sponsors
 }
 
@@ -75,7 +75,7 @@ async function getOne(id) {
 							where 
 								ad_client_id=${id}`
 
-	const sponsor = await doDBQuery(sql)
+	const sponsor = await doDBQueryBuffalorugby(sql)
 	return sponsor[0]
 }
 async function getSponsorIds() {
@@ -88,7 +88,7 @@ async function getSponsorIds() {
 								STATUS
 										= 1`
 
-	const adIds = await doDBQuery(sql)
+	const adIds = await doDBQueryBuffalorugby(sql)
 	return adIds
 }
 
@@ -102,7 +102,7 @@ async function addOne({
 }) {
 	// check for other users with proposed email address
 	let sql = `select * from inbrc_sponsors where deleted = 0`
-	const sponsors = await doDBQuery(sql)
+	const sponsors = await doDBQueryBuffalorugby(sql)
 	let sponsor = sponsors.find((u) => u.ad_client_email === ad_client_email)
 
 	if (!sponsor) {
@@ -129,7 +129,7 @@ async function addOne({
 			ad_client_website,
 			ad_image_path
 		)
-		const sponsor = await doDBQuery(sql, inserts)
+		const sponsor = await doDBQueryBuffalorugby(sql, inserts)
 		sponsor.error = ''
 
 		/* const email = {
@@ -160,7 +160,7 @@ async function editOne({
 }) {
 	// check for existing email
 	let sql = `SELECT * FROM inbrc_sponsors WHERE deleted = 0 AND ad_client_id <> ${id}`
-	const sponsors = await doDBQuery(sql)
+	const sponsors = await doDBQueryBuffalorugby(sql)
 	const sponsor_exists = sponsors.find(
 		(u) => u.ad_client_email === ad_client_email
 	)
@@ -187,7 +187,7 @@ async function editOne({
 			ad_image_path,
 			id
 		)
-		sponsor = await doDBQuery(sql, inserts)
+		sponsor = await doDBQueryBuffalorugby(sql, inserts)
 		sponsor.error = ''
 
 		/* const email = {
@@ -207,7 +207,7 @@ async function editOne({
 
 async function deleteOne(id) {
 	const sql = `UPDATE inbrc_sponsors SET deleted=1, deleted_dt=NOW() WHERE ad_client_id=${id}`
-	const sponsor = await doDBQuery(sql)
+	const sponsor = await doDBQueryBuffalorugby(sql)
 	return sponsor
 }
 
@@ -217,6 +217,6 @@ async function changeStatus({ id, status }) {
 		status +
 		`" WHERE ad_client_id  = ` +
 		id
-	const sponsor = await doDBQuery(sql)
+	const sponsor = await doDBQueryBuffalorugby(sql)
 	return sponsor
 }

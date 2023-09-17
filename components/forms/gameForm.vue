@@ -477,7 +477,7 @@
 				' Game level ' +
 				old.game_level +
 				' Date ' +
-				$dayjs(date).format('YYYY-MM-DD')
+				$dayjs(old.date).format('MM-DD-YYYY')
 			n.value = old.game_id
 			result.push(n)
 		})

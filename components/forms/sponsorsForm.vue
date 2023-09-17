@@ -105,10 +105,10 @@
 	//
 	const emit = defineEmits(['submitted'])
 	//
-	// Incoming
+	// Incoming id
 	//
 	const props = defineProps({
-		src: { String, required: true },
+		id: { Number, default: 0 },
 	})
 
 	//
