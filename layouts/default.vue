@@ -34,7 +34,9 @@
 		>
 			<!-- <div class="layout-main-container"> -->
 			<div class="layout-main surface-100 card">
-				width ={{ width }}
+				<p class="text-center text-xl">
+					Refactoring in progress | Experimental
+				</p>
 
 				<slot />
 			</div>
