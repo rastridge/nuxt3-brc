@@ -25,7 +25,7 @@
 		<DataView
 			:value="filteredData"
 			paginator
-			:rows="5"
+			:rows="50"
 			:first="first"
 			:pt="{
 				root: {
@@ -78,7 +78,7 @@
 								<Button
 									:label="slotProps.data.title"
 									text
-									class="text-3xl font-bold"
+									class="text-3xl text-300 font-bold"
 									@click.prevent="showGame(slotProps.data.game_id)"
 								>
 								</Button>
@@ -109,6 +109,7 @@
 							<div class="flex align-items-center border-soli">
 								<Button
 									label="Show history"
+									class="text-300"
 									link
 									size="small"
 									@click.prevent="showHistory(slotProps.data.opponent_id)"

@@ -51,33 +51,6 @@ export function useNavigationMenu() {
 				icon: 'pi pi-fw pi-file',
 				visible: () => !auth.isLoggedIn,
 				items: menu,
-				/* 				items: [
-					c0,
-					c1,
-					c2,
-					customMenuItems[1],
-					customMenuItems[2],
-					customMenuItems[3],
-					customMenuItems[4],
-					customMenuItems[5],
-
-					{
-						label: 'Officers',
-						to: '/officers',
-					},
-					{
-						label: 'Members',
-						to: '/members',
-					},
-					{
-						label: 'Payments',
-						to: '/payments',
-					},
-					{
-						label: 'Sponsors',
-						to: '/sponsors',
-					},
-				], */
 			},
 			{
 				label: 'News',
@@ -299,7 +272,7 @@ export function useNavigationMenu() {
 						visible: () => checkPerm('sponsors') > 0,
 					},
 					{
-						label: 'Stats',
+						label: 'Game stats',
 						icon: 'pi pi-fw pi-user-edit',
 						to: '/admin/game_player_stats',
 						visible: () => checkPerm('game_player_stats') > 0,

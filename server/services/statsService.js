@@ -68,6 +68,8 @@ async function getHistoryStreaks(id) {
 									inbrc_stats_games GR
 								WHERE
 									opponent_id = ${id} AND result <> 'U'
+									AND GR.deleted = 0
+									AND GR.Status = 1
 								ORDER BY
 									date ASC`
 
@@ -102,6 +104,8 @@ async function getHistoryCurrentStreak(id) {
 									inbrc_stats_games GR
 								WHERE
 									opponent_id = ${id}
+									AND GR.deleted = 0
+									AND GR.Status = 1
 								ORDER BY
 									date ASC`
 
@@ -126,6 +130,8 @@ async function getHistoryCurrentStreak(id) {
 									inbrc_stats_games GR
 								WHERE
 									opponent_id = ${id}
+									AND GR.deleted = 0
+									AND GR.Status = 1
 								ORDER BY
 									date ASC) A
 								GROUP BY result, RunGroup
@@ -153,6 +159,8 @@ async function getHistoryCurrentStreak(id) {
 									inbrc_stats_games GR
 								WHERE
 									opponent_id = ${id}
+									AND GR.deleted = 0
+									AND GR.Status = 1
 								ORDER BY
 									date ASC) A
 								GROUP BY result, RunGroup
@@ -185,6 +193,8 @@ async function getHistory(id) {
 		WHERE
 			t.game_type_id = g.game_type_id
 			AND g.opponent_id = ${id}
+			AND g.deleted = 0
+			AND g.Status = 1
 		ORDER BY
 			g.date ASC`
 
@@ -244,6 +254,8 @@ async function getPrevious(date) {
 						LEFT JOIN inbrc_opponents o ON o.opponent_id = g.opponent_id
 					WHERE
 						g.deleted = 0
+						AND
+						g.status = 1
 						AND date <= '${date}'
 					ORDER BY
 						date DESC
@@ -324,11 +336,13 @@ async function getSeason(year) {
 								LEFT JOIN inbrc_opponents o ON o.opponent_id = g.opponent_id
 							WHERE
 								g.deleted = 0
+								AND
+								g.status = 1
 								AND t.game_type_id = g.game_type_id
 								AND ( YEAR(date) = ${year} OR YEAR(date) = ${YEAR2} )
 								AND ( DATE(date) > DATE(CONCAT("${year}","${SEASON_DIVIDE_DATE}"))) AND ( DATE(date) <= DATE(CONCAT("${YEAR2}","${SEASON_DIVIDE_DATE}")) )
 							ORDER BY
-								dt DESC`
+								dt ASC`
 	const games = await doDBQueryBuffalorugby(sql)
 	return games
 }
@@ -512,7 +526,9 @@ WHERE
     AND(p.game_id = g.game_id) 
     AND(g.game_type_id ${FILTER} ) 
     AND(g.game_type_id <> 8) 
-    AND(a.account_id = ${account_id})`
+    AND(a.account_id = ${account_id})
+		AND g.Status = 1
+		AND g.deleted = 0`
 
 	const stats = await doDBQueryBuffalorugby(sql)
 	return stats[0].gamecount
@@ -556,6 +572,8 @@ async function getPlayerStats(id) {
 								AND (p.game_id = g.game_id)
 								AND (g.game_type_id ${FILTER})
 								AND (g.game_type_id <> 8)
+								AND g.Status = 1
+								AND g.deleted = 0
 							GROUP BY
 								p.player_id
 							ORDER BY
@@ -602,6 +620,7 @@ async function getTeamStats(gt) {
 								game_type_id <> 8
 								${FILTER}
 								AND Status = 1
+								AND deleted = 0
 							GROUP BY
 								season
 							ORDER BY
@@ -630,7 +649,8 @@ async function getTeamStatsTotal(gt) {
 							WHERE
 								game_type_id <> 8
 								${FILTER}
-								AND Status = 1`
+								AND Status = 1
+								AND deleted = 0`
 
 	const stats = await doDBQueryBuffalorugby(sql)
 	return stats[0]
@@ -671,6 +691,8 @@ async function getPlayerGames(id) {
 					p.player_id = a.account_id
 					AND
 					g.game_type_id = t.game_type_id
+					AND g.Status = 1
+					AND g.deleted = 0
 				ORDER BY
 					g.date DESC`
 
@@ -877,10 +899,10 @@ async function deleteOne(id) {
 		await conn.query('START TRANSACTION')
 
 		let sql = `UPDATE inbrc_stats_games SET deleted = 1, deleted_dt = NOW() WHERE game_id = ${id}`
-		conn.execute(sql)
+		await conn.execute(sql)
 
 		sql = `UPDATE inbrc_stats_player SET deleted = 1, deleted_dt = NOW() WHERE game_id = ${id}`
-		conn.execute(sql)
+		await conn.execute(sql)
 
 		await conn.query('COMMIT')
 		await conn.end()

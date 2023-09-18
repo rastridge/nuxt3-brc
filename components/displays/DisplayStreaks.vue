@@ -22,7 +22,7 @@
 <script setup>
 	const historystreaks = ref({})
 	const props = defineProps({
-		opponent_id: { type: String, required: true },
+		opponent_id: { type: Number, required: true },
 	})
 	const url = `/game_player_stats/streaks/${props.opponent_id}`
 	const { data, error } = await useFetch(url, {

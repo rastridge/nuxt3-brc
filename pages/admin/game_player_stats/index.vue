@@ -48,9 +48,10 @@
 	// initialize renderlist
 	//
 	const { getAccess } = useRenderListAccess()
-	const app = 'game_player_stats'
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
 	const stats = ref([])
+
+	const app = 'game_player_stats'
 
 	//
 	// Initialize year select
@@ -120,10 +121,10 @@
 	const { deleteOne, changeStatusOne } = useFetchAll()
 
 	const deleteItem = async (id) => {
-		await deleteOne('stats', id)
+		await deleteOne(app, id)
 	}
 
 	const changeStatus = async ({ id, status }) => {
-		await changeStatusOne('stats', { id, status })
+		await changeStatusOne(app, { id, status })
 	}
 </script>
