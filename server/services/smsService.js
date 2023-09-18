@@ -1,4 +1,4 @@
-const { doDBQuery } = useQuery()
+const { doDBQueryBuffalorugby } = useQuery()
 const { sendOneSMS } = useSMS()
 
 export const smsService = {
@@ -39,7 +39,7 @@ async function getAll() {
 								deleted = 0
 							ORDER BY dt DESC`
 
-	const result = await doDBQuery(sql)
+	const result = await doDBQueryBuffalorugby(sql)
 	return result
 }
 
@@ -73,7 +73,7 @@ async function sendSMS({ sms_id, sms_body_text, sms_recipient_type_id }) {
 					FROM inbrc_accounts a
 					WHERE deleted = 0
 					ORDER BY account_email ASC`
-	const accounts = await doDBQuery(sql)
+	const accounts = await doDBQueryBuffalorugby(sql)
 	//
 	// make recipients list
 	//
@@ -171,7 +171,7 @@ async function sendSMS({ sms_id, sms_body_text, sms_recipient_type_id }) {
 							sms_recp_cnt = ${rec_cnt}
 						WHERE sms_id = ${sms_id}`
 
-	const sms = await doDBQuery(sql2)
+	const sms = await doDBQueryBuffalorugby(sql2)
 	return sms
 }
 //
@@ -179,7 +179,7 @@ async function sendSMS({ sms_id, sms_body_text, sms_recipient_type_id }) {
 //
 async function getOne(id) {
 	const sql = `select * from inbrc_sms where sms_id = ` + id
-	const result = await doDBQuery(sql)
+	const result = await doDBQueryBuffalorugby(sql)
 	return result[0]
 }
 
@@ -201,7 +201,7 @@ async function addOne({
 
 	var inserts = []
 	inserts.push(sms_recipient_type_id, admin_user_id, sms_subject, sms_body_text)
-	const sms = await doDBQuery(sql, inserts)
+	const sms = await doDBQueryBuffalorugby(sql, inserts)
 	return sms
 }
 
@@ -236,26 +236,26 @@ async function editOne({
 		sms_send_status,
 		sms_id
 	)
-	const result = await doDBQuery(sql, inserts)
+	const result = await doDBQueryBuffalorugby(sql, inserts)
 	return result
 }
 
 async function deleteOne(id) {
 	const sql =
 		`UPDATE inbrc_sms SET deleted=1, deleted_dt= NOW() WHERE sms_id = ` + id
-	const result = await doDBQuery(sql)
+	const result = await doDBQueryBuffalorugby(sql)
 	return result
 }
 
 async function changeStatus({ id, status }) {
 	const sql =
 		`UPDATE inbrc_sms SET status = "` + status + `" WHERE sms_id = ` + id
-	const result = await doDBQuery(sql)
+	const result = await doDBQueryBuffalorugby(sql)
 	return result
 }
 
 async function getRecipientTypes() {
 	const sql = `SELECT * FROM inbrc_newsletter_recipient_types WHERE 1`
-	const result = await doDBQuery(sql)
+	const result = await doDBQueryBuffalorugby(sql)
 	return result
 }

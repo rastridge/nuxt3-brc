@@ -1,6 +1,6 @@
 import mysql from 'mysql2/promise'
-const { doDBQuery } = useQuery()
-const { getConnection } = useDBConnection()
+const { doDBQueryBuffalorugby } = useQuery()
+const { getConnectionBuffalorugby } = useDBConnection()
 
 const { sendEmail } = useEmail()
 
@@ -32,8 +32,7 @@ async function getAll() {
 					AND a.account_id = c.account_id
 				ORDER BY dt DESC`
 
-	const contributions = await doDBQuery(sql)
-
+	const contributions = await doDBQueryBuffalorugby(sql)
 	return contributions
 }
 
@@ -54,7 +53,7 @@ async function getTopContributors() {
 				ORDER BY
 					Total DESC
 				LIMIT 0, 20`
-	const contributions = await doDBQuery(sql)
+	const contributions = await doDBQueryBuffalorugby(sql)
 	return contributions
 }
 
@@ -73,7 +72,7 @@ async function getPrevious(id) {
 				AND a.account_id = c.account_id
 				AND a.account_id = ${id}
 				ORDER BY dt DESC`
-	const contributions = await doDBQuery(sql)
+	const contributions = await doDBQueryBuffalorugby(sql)
 	return contributions
 }
 
@@ -87,7 +86,7 @@ async function getTotal(year) {
 				AND Status = 1
 				AND YEAR(contribution_date) = ${year}`
 
-	const total = await doDBQuery(sql)
+	const total = await doDBQueryBuffalorugby(sql)
 	return total[0]
 }
 
@@ -121,7 +120,7 @@ async function getYear(year) {
 				ORDER BY
           contribution_date DESC`
 
-	const contributions = await doDBQuery(sql)
+	const contributions = await doDBQueryBuffalorugby(sql)
 	return contributions
 }
 
@@ -143,7 +142,7 @@ async function getOne(id) {
 									AND a.account_id = c.account_id
 									AND c.contribution_id = ${id}`
 
-	const contributions = await doDBQuery(sql)
+	const contributions = await doDBQueryBuffalorugby(sql)
 	return contributions[0]
 }
 
@@ -173,7 +172,7 @@ async function editOne({
 		contribution_comment,
 		id
 	)
-	const contributions = await doDBQuery(sql, inserts)
+	const contributions = await doDBQueryBuffalorugby(sql, inserts)
 	return contributions
 }
 
@@ -188,7 +187,7 @@ async function addOne({
 	contribution_showAmount,
 	contribution_comment,
 }) {
-	const CONN = await getConnection()
+	const CONN = await getConnectionBuffalorugby()
 	try {
 		await CONN.query('START TRANSACTION')
 
@@ -245,7 +244,7 @@ async function addOne({
 }
 async function deleteOne(id) {
 	const sql = `UPDATE inbrc_contributions SET deleted = 1, deleted_dt= NOW() WHERE contribution_id = ${id}`
-	contributions = await doDBQuery(sql)
+	contributions = await doDBQueryBuffalorugby(sql)
 
 	return contributions
 }
@@ -255,7 +254,7 @@ async function changeStatus({ id, status }) {
 		`UPDATE inbrc_contributions SET status = "` +
 		status +
 		`" WHERE contribution_id = ${id}`
-	const contributions = await doDBQuery(sql)
+	const contributions = await doDBQueryBuffalorugby(sql)
 
 	return contributions
 }
