@@ -7,7 +7,6 @@
 			<div class="topsectionitem">
 				<common-header title="Team Record" />
 			</div>
-
 			<div class="topsectionitem">
 				<h6 class="text-xl">All Time</h6>
 				<select-game-type
@@ -15,9 +14,9 @@
 					@submitted="onSubmitGameType"
 				/>
 			</div>
-			<div v-if="!data" class="topsectionitem">Loading ...</div>
+			<div v-if="!record || !total" class="topsectionitem">Loading ...</div>
 		</div>
-		<div class="mb-2" style="overflow-x: auto">
+		<div v-if="total" class="mb-2" style="overflow-x: auto">
 			<table class="nowrap">
 				<thead>
 					<tr>
@@ -51,7 +50,7 @@
 		</div>
 
 		<DataTable
-			:value="filteredData"
+			:value="record"
 			:pt="{
 				wrapper: {
 					style: {
@@ -93,57 +92,46 @@
 </template>
 
 <script setup>
-	import dayjs from 'dayjs'
-	const { $dayjs } = useNuxtApp()
-
 	//
-	// get / set season data
+	// get initial 15s data
 	//
 	const gametype = ref(1)
-	const onSubmitGameType = (value) => {
-		gametype.value = value
+	const record = ref([])
+	const total = ref([])
+
+	const getRecord = async (gt) => {
+		const url = `/game_player_stats/getteamstats/${gt}`
+		const { data, pending, error } = await useFetch(url, {
+			method: 'get',
+			headers: {
+				// authorization: auth.user.token,
+				authorization: 'not-needed',
+			},
+		})
+		return data.value
 	}
 
-	const filteredData = computed(() => {
-		return data.value.filter((d) => {
-			if (gametype.value === 7) {
-				return d.game_type_id === 7
-			} else {
-				return d.game_type_id !== 7
-			}
+	const getTotals = async (gt) => {
+		const url = `/game_player_stats/getteamstatstotal/${gt}`
+		const { data, error: error2 } = await useFetch(url, {
+			method: 'get',
+			headers: {
+				// authorization: auth.user.token,
+				authorization: 'not-needed',
+			},
 		})
-	})
-
-	const url = `/game_player_stats/getteamstats/` + gametype.value
-	const { data, pending, error } = await useFetch(url, {
-		method: 'get',
-		headers: {
-			// authorization: auth.user.token,
-			authorization: 'not-needed',
-		},
-	})
-
-	const url2 = `/game_player_stats/getteamstatstotal/` + gametype.value
-	const { data: total, error: error2 } = await useFetch(url2, {
-		method: 'get',
-		headers: {
-			// authorization: auth.user.token,
-			authorization: 'not-needed',
-		},
-	})
-
-	if (error2.value) {
-		throw createError({
-			...error2.value,
-			statusMessage: `Could not get data from ${url2}`,
-		})
+		return data.value
 	}
 
-	if (error.value) {
-		throw createError({
-			...error.value,
-			statusMessage: `Could not get data from ${url}`,
-		})
+	record.value = await getRecord(gametype.value)
+	total.value = await getTotals(gametype.value)
+
+	//
+	// get new data on change of gametype
+	//
+	const onSubmitGameType = async (value) => {
+		record.value = await getRecord(value)
+		total.value = await getTotals(value)
 	}
 </script>
 
