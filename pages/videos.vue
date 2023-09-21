@@ -1,25 +1,41 @@
 <template>
 	<div id="videos">
+		<Head>
+			<Title>Videos Archive </Title>
+		</Head>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<common-header title="Videos Archive" />
+			</div>
+			<div class="topsectionitem">
+				<select-year
+					:startyear="startyear"
+					:currentyear="year"
+					@submitted="onSubmit"
+					class="mb-3"
+				/>
+			</div>
+		</div>
 		<div
 			v-if="videos.length"
 			class="surface-400 pt-3 pb-3 border-round-lg border-1"
 		>
 			<ul class="list-none text-xl">
 				<li
-					v-for="itm in videos"
+					v-for="itm in filteredData"
 					:key="itm.video_id"
 					class="cursor-pointer bg-white border-1 p-3 m-2"
 					href="#"
 					@click.prevent="selectItem(itm)"
 				>
 					<span class="font-italic">
-						{{ $dayjs(itm.video_event_dt).format('YYYY MMM') }}
+						{{ $dayjs(itm.dt).format('YYYY MMM') }}
 					</span>
-					|
+					-
 					<span class="font-semibold">
 						{{ itm.video_title }}
 					</span>
-					|
+					-
 					<span class="text-lg">
 						{{ itm.video_synop }}
 					</span>
@@ -52,6 +68,19 @@
 <script setup>
 	import { getIdFromURL } from 'vue-youtube-embed'
 	const { $dayjs } = useNuxtApp()
+
+	// initial values
+	const year = ref(parseInt($dayjs().format('YYYY')))
+	const startyear = 1985
+
+	const filteredData = computed(() => {
+		return videos.value.filter((d) => {
+			return parseInt($dayjs(d.dt).format('YYYY')) === year.value
+		})
+	})
+	const onSubmit = (value) => {
+		year.value = value
+	}
 
 	const item = ref({})
 	const video_url = ref('')

@@ -19,13 +19,23 @@
 				type="textarea"
 				validation="required"
 			/>
-			<FormKit label="Category" name="clubhouse_category" type="text" />
+
+			<FormKit
+				type="select"
+				label="Category?"
+				name="clubhouse_category"
+				placeholder="Select a category"
+				:options="['ball', 'jersey', 'plaque', 'team photo', 'trophy']"
+				validation="required"
+			/>
+
 			<FormKit label="Owner" name="clubhouse_owner" type="text" />
 			<FormKit
 				type="text"
 				label="Year"
 				name="clubhouse_date"
-				validation="required"
+				validation="required|number|between:1965,2050"
+				validation-visibility="live"
 			/>
 		</FormKit>
 		<h5>Image file</h5>
