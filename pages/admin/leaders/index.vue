@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<Head>
-			<Title>{{ app }} Administration</Title>
+			<Title>{{ app }} Admin</Title>
 		</Head>
 		<div class="topsectioncenter">
 			<div class="topsectionitem">

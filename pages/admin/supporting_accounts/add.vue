@@ -4,7 +4,7 @@
 	// Sponsors form action
 	//
 	const onSubmit = async function (state) {
-		await onSubmitAdd('admin/supporting_accounts', state)
+		await onSubmitAdd('supporting_accounts', state)
 		navigateTo(`/admin/supporting_accounts`)
 	}
 </script>

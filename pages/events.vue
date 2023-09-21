@@ -10,9 +10,13 @@
 				class="flex justify-content-center shadow-6 m-2 p-3 bg-blue-600 text-white font-semibold"
 			>
 				<template #header>
-					{{ $dayjs(item.dt).format('MMM D, YYYY HH:mm a') }}</template
+					{{ $dayjs(item.dt).format('MMM D') }}
+				</template>
+				<template #subtitle>
+					<span class="text-xl text-white font-semibold">{{
+						item.title
+					}}</span></template
 				>
-				<template #subtitle> {{ item.title }}</template>
 				<template #content
 					>{{ item.event_description }} LOCATION:
 					{{ item.event_location }}</template

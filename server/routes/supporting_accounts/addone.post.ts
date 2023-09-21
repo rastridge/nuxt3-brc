@@ -2,5 +2,6 @@ import { supportingaccountsService } from '~/server/services/supportingaccountsS
 
 export default defineEventHandler(async (event) => {
 	const body = await readBody(event)
+	console.log('IN route body = ', body)
 	return supportingaccountsService.addOne(body)
 })

@@ -87,7 +87,6 @@
 	// edit if there is an id - add if not
 	//
 	if (props.id !== 0) {
-		// get opponent with id === props.id
 		const { data, pending, error, refresh } = await useFetch(
 			`/supporting_accounts/${props.id}`,
 			{

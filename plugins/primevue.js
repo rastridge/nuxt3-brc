@@ -2,7 +2,7 @@ import PrimeVue from 'primevue/config'
 import AutoComplete from 'primevue/autocomplete'
 import Button from 'primevue/button'
 import Card from 'primevue/card'
-// import Carousel from 'primevue/carousel'
+import Carousel from 'primevue/carousel'
 import Chart from 'primevue/chart'
 import Checkbox from 'primevue/checkbox'
 import Column from 'primevue/column'
@@ -28,7 +28,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 	nuxtApp.vueApp.component('AutoComplete', AutoComplete)
 	nuxtApp.vueApp.component('Button', Button)
 	nuxtApp.vueApp.component('Card', Card)
-	// nuxtApp.vueApp.component('Carousel', Carousel)
+	nuxtApp.vueApp.component('Carousel', Carousel)
 	nuxtApp.vueApp.component('Chart', Chart)
 	nuxtApp.vueApp.component('Checkbox', Checkbox)
 	nuxtApp.vueApp.component('Column', Column)

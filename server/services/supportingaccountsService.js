@@ -1,4 +1,4 @@
-const { doDBQuery } = useQuery()
+const { doDBQueryBuffalorugby } = useQuery()
 export const supportingaccountsService = {
 	getAll,
 	getAllCurrent,
@@ -29,7 +29,7 @@ async function getAll() {
                 WHERE deleted = 0
                 ORDER BY title ASC`
 
-	const supportingaccounts = await doDBQuery(sql)
+	const supportingaccounts = await doDBQueryBuffalorugby(sql)
 	return supportingaccounts
 }
 
@@ -55,7 +55,7 @@ async function getAllCurrent() {
 								AND
 								STATUS = 1`
 
-	const supportingaccounts = await doDBQuery(sql)
+	const supportingaccounts = await doDBQueryBuffalorugby(sql)
 	return supportingaccounts
 }
 
@@ -75,7 +75,7 @@ async function getOne(id) {
 							WHERE 
 								supportingApp_id=${id}`
 
-	const supportingaccounts = await doDBQuery(sql)
+	const supportingaccounts = await doDBQueryBuffalorugby(sql)
 	return supportingaccounts[0]
 }
 
@@ -110,7 +110,7 @@ async function addOne({
 		supportingApp_username,
 		supportingApp_password
 	)
-	const supportingaccounts = await doDBQuery(sql, inserts)
+	const supportingaccounts = await doDBQueryBuffalorugby(sql, inserts)
 	return supportingaccounts
 }
 
@@ -143,13 +143,13 @@ async function editOne({
 		supportingApp_password,
 		id
 	)
-	const supportingaccounts = await doDBQuery(sql, inserts)
+	const supportingaccounts = await doDBQueryBuffalorugby(sql, inserts)
 	return supportingaccounts
 }
 
 async function deleteOne(id) {
 	const sql = `UPDATE inbrc_supportingaccts SET deleted=1, deleted_dt=NOW() WHERE supportingApp_id=${id}`
-	const supportingaccounts = await doDBQuery(sql)
+	const supportingaccounts = await doDBQueryBuffalorugby(sql)
 	return supportingaccounts
 }
 
@@ -159,6 +159,6 @@ async function changeStatus({ id, status }) {
 		status +
 		`" WHERE supportingApp_id  = ` +
 		id
-	const supportingaccounts = await doDBQuery(sql)
+	const supportingaccounts = await doDBQueryBuffalorugby(sql)
 	return supportingaccounts
 }

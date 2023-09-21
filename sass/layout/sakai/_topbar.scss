@@ -9,7 +9,7 @@
 	background-color: var(--surface-card);
 	background-color: gray;
 	transition: left $transitionDuration;
-
+	/*  
 	.layout-topbar-logo {
 		display: flex;
 		align-items: center;
@@ -84,7 +84,9 @@
 			margin-left: 1rem;
 		}
 	}
+	*/
 }
+
 .layout-topbar {
 	position: fixed;
 	height: 9rem;
@@ -97,7 +99,7 @@
 	background-color: gray;
 	transition: left $transitionDuration;
 
-	.layout-topbar-logo {
+	/* 	.layout-topbar-logo {
 		display: flex;
 		align-items: center;
 		color: var(--surface-900);
@@ -115,6 +117,7 @@
 			@include focused();
 		}
 	}
+ */
 
 	.layout-topbar-button {
 		display: inline-flex;
@@ -122,6 +125,7 @@
 		align-items: center;
 		position: relative;
 		color: var(--text-color-secondary);
+		color: green;
 		border-radius: 50%;
 		width: 3rem;
 		height: 3rem;
@@ -163,6 +167,7 @@
 
 	.layout-topbar-menu {
 		margin: 0 0 0 auto;
+		margin-top: 0.5rem;
 		padding: 0;
 		list-style: none;
 		display: flex;
@@ -177,7 +182,7 @@
 	.layout-topbar {
 		height: 15rem;
 
-		.layout-topbar-logo {
+		/* 		.layout-topbar-logo {
 			width: auto;
 			order: 2;
 		}
@@ -191,7 +196,7 @@
 			display: inline-flex;
 			margin-left: 0;
 			order: 3;
-		}
+		} */
 
 		.layout-topbar-menu {
 			// margin-left: 0;

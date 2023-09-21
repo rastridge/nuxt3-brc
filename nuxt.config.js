@@ -41,7 +41,6 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'@nuxtjs/i18n',
 		'@vueuse/nuxt',
-		'vue3-carousel-nuxt',
 	],
 	buildModules: ['@nuxtjs/google-fonts'],
 	components: [

@@ -2,7 +2,7 @@
 	const { onSubmitEdit } = useSubmit()
 
 	//
-	// Get sponsor id
+	// Get leader id
 	//
 	const route = useRoute()
 	const id = ref(route.params.id)
@@ -18,7 +18,7 @@
 <template>
 	<div>
 		<Head>
-			<Title>Edit Sponsor {{ id }}</Title>
+			<Title>Edit Leader {{ id }}</Title>
 		</Head>
 		<admin-header title="Leaders" />
 		<leaders-form :id="id" @submitted="onSubmit" />

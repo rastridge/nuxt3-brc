@@ -30,6 +30,8 @@ export default function useSubmit() {
 		}
 	}
 	const onSubmitAdd = async function (app, form_state) {
+		console.log('IN onSubmitAdd app, form_state = ', app, form_state)
+
 		const { data, error } = await useFetch(`/${app}/addone`, {
 			method: 'post',
 			body: form_state,
