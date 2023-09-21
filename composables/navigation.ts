@@ -121,12 +121,7 @@ export function useNavigationMenu() {
 						to: '/sponsors',
 					},
 					{
-						label: 'Opponents',
-						icon: 'pi pi-fw pi-power-off',
-						to: '/opponents',
-					},
-					{
-						label: 'Document Archives',
+						label: 'Document Archive',
 						icon: 'pi pi-fw pi-pencil',
 						to: '/archive/documents',
 					},
@@ -136,34 +131,31 @@ export function useNavigationMenu() {
 						to: '/leaders',
 					},
 					{
-						label: 'Videos',
+						label: 'News Archive',
 						icon: 'pi pi-fw pi-power-off',
-						to: '/videos',
+						to: '/sponsors',
 					},
 					{
-						label: 'Photos',
+						label: 'Newsletters Archive',
+						icon: 'pi pi-fw pi-power-off',
+						to: '/sponsors',
+					},
+					{
+						label: 'Opponents',
+						icon: 'pi pi-fw pi-power-off',
+						to: '/opponents',
+					},
+					{
+						label: 'Photo Album',
 						icon: 'pi pi-fw pi-power-off',
 						to: '/photos',
 					},
 					{
-						label: 'Newsletters',
+						label: 'Videos',
 						icon: 'pi pi-fw pi-power-off',
-						to: '/sponsors',
+						to: '/videos',
 					},
-					{
-						label: 'News',
-						icon: 'pi pi-fw pi-power-off',
-						to: '/sponsors',
-					},
-					{
-						label: 'Documents',
-						icon: 'pi pi-fw pi-power-off',
-					},
-					{
-						label: 'Photos',
-						icon: 'pi pi-fw pi-power-off',
-						to: '/sponsors',
-					},
+
 					{
 						label: '50th Anniversary',
 						icon: 'pi pi-fw pi-power-off',
@@ -171,12 +163,6 @@ export function useNavigationMenu() {
 					},
 				],
 			},
-			/* 			{
-				label: 'Custom Pages',
-				items: customMenuItems,
-				visible: () => !auth.isLoggedIn,
-			}, */
-
 			{
 				label: 'Login',
 				icon: 'pi pi-fw pi-sign-in',

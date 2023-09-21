@@ -231,7 +231,7 @@
 	topcontributors.value = getTopContributors()
 
 	// initial values
-	const year = ref(2023)
+	const year = ref(parseInt($dayjs().format('YYYY')))
 	const contributions = ref([])
 	contributions.value = getYearContributiions(year.value)
 
