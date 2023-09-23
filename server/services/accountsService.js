@@ -11,6 +11,7 @@ export const accountsService = {
 	addOne,
 	editOne,
 	getOfficers,
+	getWof,
 	getSuggestions,
 	changeStatus,
 	deleteOne,
@@ -415,6 +416,25 @@ async function getOfficers() {
 
 	const officers = await doDBQueryBuffalorugby(sql)
 	return officers
+}
+
+async function getWof() {
+	const sql = `SELECT
+								account_id as id,
+								account_id,
+								CONCAT(member_firstname," ",member_lastname) AS name,
+								member_wall_of_fame_year,
+								member_pic_path
+							FROM
+									inbrc_accounts
+							WHERE
+									member_wall_of_fame_year != ''
+									AND deleted = 0
+									AND Status = 1
+							ORDER BY member_wall_of_fame_year`
+
+	const wof = await doDBQueryBuffalorugby(sql)
+	return wof
 }
 
 async function getSuggestions() {

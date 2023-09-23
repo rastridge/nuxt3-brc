@@ -34,7 +34,7 @@
 		>
 			<!-- <div class="layout-main-container"> -->
 			<div class="layout-main surface-100 card">
-				<p class="text-center text-xl">
+				<p class="text-center text-sm">
 					Refactoring in progress | Experimental
 				</p>
 

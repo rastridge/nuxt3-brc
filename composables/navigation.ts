@@ -118,7 +118,7 @@ export function useNavigationMenu() {
 					{
 						label: 'Clubhouse',
 						icon: 'pi pi-fw pi-pencil',
-						to: '/sponsors',
+						to: '/clubhouse',
 					},
 					{
 						label: 'Document Archive',
