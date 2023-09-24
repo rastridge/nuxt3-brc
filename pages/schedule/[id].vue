@@ -1,71 +1,89 @@
 <template>
-	<div id="events">
-		<div class="center-content">
-			<common-header title="Game Schedule" />
-		</div>
-		year = {{ year }}
-		<!--Select season -->
-		<div class="text-center m-5">
-			<select-season
-				:startyear="startyear"
-				:currentyear="year"
-				@submitted="onSubmit"
-				class="mb-3"
-			/>
+	<div id="schedule">
+		<Head>
+			<Title>Schedule</Title>
+		</Head>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<common-header title="Game Schedule" />
+			</div>
+			<div class="topsectionitem">
+				<select-season
+					:startyear="startyear"
+					:currentyear="year"
+					@submitted="onSubmit"
+					class="mb-3"
+				/>
 
-			<select-game-type :currenttype="gametype" @submitted="onSubmitGameType" />
+				<select-game-type
+					:currenttype="gametype"
+					@submitted="onSubmitGameType"
+				/>
+			</div>
 		</div>
 
-		<!-- <DataView :value="season"> -->
 		<DataView
 			:value="filteredData"
 			paginator
-			:rows="5"
+			:rows="50"
 			:first="first"
+			:pt="{
+				root: {
+					style: {
+						padding: '0.5rem',
+						minWidth: '10rem',
+						border: '2px #00C solid',
+						'border-radius': '10px',
+					},
+				},
+			}"
 			@page="onPaginate"
 		>
 			<template #list="slotProps">
 				<div class="col-12">
 					<div
-						class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4 m-2 p-2 border-dotted border-black"
+						class="flex flex-column md:flex-row justify-content-between align-items-center xl:align-items-center gap-2 mb-2 p-3 border-round-md shadow-4 bg-blue-600 text-white font-semibold"
 					>
+						<!-- left -->
 						<div
-							class="flex flex-column align-items-center sm:align-items-start gap-2 border-soli border-blue w-3"
+							class="flex flex-row justify-content-center md:flex-column align-items-center md:align-items-start gap-3 border-soli w-full md:w-3"
 						>
-							<div class="flex align-items-center border-soli border-yellow">
-								<span class="text-xl font-bold text-900">
+							<div class="flex align-items-center border-soli">
+								<span class="lg:text-xl font-bold text-900">
 									{{
 										$dayjs(slotProps.data.date).format('MMMM D @ h:mm A')
 									}}</span
 								>
 							</div>
 
-							<div class="flex align-items-center border-soli border-yellow">
+							<div class="flex align-items-center border-soli">
 								<span class="font-semibold"
 									>{{ getGameLevelCode(slotProps.data) }} Side
 								</span>
 							</div>
 
-							<div class="flex align-items-center border-soli border-yellow">
+							<div class="flex align-items-center border-soli">
 								<span class="font-semibold">{{
 									slotProps.data.game_type
 								}}</span>
 							</div>
 						</div>
 
+						<!-- center -->
+
 						<div
-							class="flex flex-row justify-content-between align-items-center gap-2 border-soli border-blue w-6"
+							class="flex flex-column align-items-center gap-1 border-soli w-full md:w-6"
 						>
-							<div class="flex align-items-center border-soli border-yellow">
+							<div class="flex align-items-center border-soli">
 								<Button
 									:label="slotProps.data.title"
 									text
-									class="text-3xl font-bold"
+									class="text-3xl text-300 font-bold"
 									@click.prevent="showGame(slotProps.data.game_id)"
 								>
 								</Button>
 							</div>
-							<div class="flex align-items-center border-soli border-yellow">
+							<div class="flex align-items-center border-soli">
 								<span class="text-2xl font-semibold">
 									{{ getResultCode(slotProps.data) }} &nbsp;&nbsp;&nbsp;
 									{{ slotProps.data.ptsFor }} -
@@ -74,28 +92,32 @@
 							</div>
 						</div>
 
+						<!-- right -->
 						<div
-							class="flex flex-column align-items-center sm:align-items-start gap-2 border-soli border-blue w-3"
+							class="flex flex-row justify-content-center md:flex-column align-items-center md:align-items-start gap-2 border-soli w-full md:w-3"
 						>
-							<div
-								class="flex align-items-center gap-3 border-soli border-yellow"
-							>
-								<span class="text-xl font-semibold">{{
-									slotProps.data.venue
-								}}</span>
+							<div class="flex align-items-center gap-3 border-soli">
+								<span class="md:text-xl font-semibold"
+									>@ {{ slotProps.data.venue }}</span
+								>
 							</div>
-							<div class="flex align-items-center border-soli border-yellow">
+							<div class="flex align-items-center border-soli">
 								<span>
 									{{ slotProps.data.occasion }}
 								</span>
 							</div>
-							<div class="flex align-items-center border-soli border-yellow">
+							<div class="flex align-items-center border-soli">
 								<Button
 									label="Show history"
-									text
+									class="text-300"
+									link
+									size="small"
 									@click.prevent="showHistory(slotProps.data.opponent_id)"
 								>
 								</Button>
+								<span class="text-sm text-800">
+									{{ slotProps.data.game_id }}
+								</span>
 							</div>
 						</div>
 					</div>
@@ -115,10 +137,28 @@
 	const { getGameLevelCode, getResultCode } = useGames()
 
 	//
+	// Get account id to edit
+	//
+	const route = useRoute()
+	const id = ref(parseInt(route.params.id))
+	//
 	// Initialize year select
 	//
 	const startyear = 1966
-	const year = ref(placemark.getYear)
+	const year = ref(0)
+
+	if (id.value === 0) {
+		if (placemark.getYear === 0) {
+			placemark.initYear()
+			year.value = placemark.getYear
+		} else {
+			year.value = placemark.getYear
+		}
+	} else {
+		placemark.setYear(id.value)
+		year.value = placemark.getYear
+	}
+
 	//
 	// select Game type
 	//
@@ -186,10 +226,12 @@
 
 	const showGame = (id) => {
 		placemark.setYear(year.value)
-		navigateTo(`/games/game/${id}`)
+		navigateTo(`/schedule/game/${id}`)
 	}
 	const showHistory = (id) => {
 		placemark.setYear(year.value)
 		navigateTo(`/games/history/${id}`)
 	}
 </script>
+
+<style scoped></style>

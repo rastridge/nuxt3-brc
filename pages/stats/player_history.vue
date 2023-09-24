@@ -193,7 +193,6 @@
 		displayModal.value = false
 	}
 	const openGameModal = async (id) => {
-		console.log(id)
 		await getOne(id) // get game info
 		await getPlayers(id) // get game info for players
 		openModal()

@@ -4,27 +4,23 @@
 			<common-header title="Virtual Clubhouse" />
 			<button @click="returnToList()">Return to Main Room</button>
 		</div>
-		<!-- clubhouse_category {{ clubhouse_category }} wofdata[0] {{ wofdata[0] }} -->
-		<!-- clubhouse_category {{ clubhouse_category }} -->
+		clubhouse_category {{ clubhouse_category }} wofdata[0] {{ wofdata[0] }}
 		<div class="bg">
 			<div v-if="wofdata">
-				<!-- <div v-for="item in wofdata" :key="item.id" class="wof-card"> -->
-
-				<div
-					class="flex flex-row flex-wrap align-items-center justify-content-center gap-3"
-				>
-					<div
-						v-for="item in wofdata"
-						:key="item.id"
-						class="text-center w-10rem h-10rem shadow-6 surface-400"
-					>
-						<div class="m-1 mt-2">{{ item.member_wall_of_fame_year }}</div>
-						<img class="m-1 border-3" :src="item.member_pic_path" />
-						<div class="m-1">{{ item.name }}</div>
+				<div v-for="item in wofdata" :key="item.id" class="card wof-card">
+					<div class="card-header">{{ item.member_wall_of_fame_year }}</div>
+					<div class="card-body">
+						<!-- <div
+							class="flex flex-wrap align-items-center justify-content-center"
+						> -->
+						<img class="wof-img" :src="item.member_pic_path" />
 					</div>
+					<!-- </div> -->
+					<div class="card-footer">{{ item.name }}</div>
 				</div>
 			</div>
-			<!-- 		
+		</div>
+		<!-- 		
 			<div v-if="otherdata.length" class="bg">
 				<div v-for="item in filteredData" :key="item.id" class="card my-card">
 					<b-img-lazy :src="item.clubhouse_filepath" fluid> </b-img-lazy>
@@ -34,7 +30,6 @@
 				</div>
 			</div>
 		</div> -->
-		</div>
 	</div>
 </template>
 
@@ -51,18 +46,17 @@
 	const otherdata = ref(null)
 	const wofdata = ref(null)
 
-	onMounted(async () => {
-		await getAll()
+	onMounted(() => {
+		getAll()
 	})
 	/* 
 	const filteredData = computed(() => {
 		data.value.filter((d) => d.clubhouse_category === clubhouse_category.value)
 	})	
- */
 	const returnToList = () => {
 		navigateTo('/clubhouse')
 	}
-
+ */
 	const getAll = async () => {
 		if (clubhouse_category.value !== 'wof') {
 			const { data, pending, error, refresh } = await useFetch(
@@ -114,5 +108,20 @@
 		padding: 0.5em;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 		font-size: small;
+	}
+	.wof-card {
+		text-align: center;
+		width: 160px;
+		display: inline-block;
+		margin: 1rem;
+		background: #b6b6b6;
+		-webkit-box-shadow: 4px 3px 13px 0px rgba(0, 0, 0, 0.75);
+		-moz-box-shadow: 4px 3px 13px 0px rgba(0, 0, 0, 0.75);
+		box-shadow: 4px 3px 13px 0px rgba(0, 0, 0, 0.75);
+	}
+	.wof-img {
+		height: 72px;
+		width: 72px;
+		border: solid thick black;
 	}
 </style>

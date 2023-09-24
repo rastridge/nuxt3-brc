@@ -115,6 +115,9 @@
 									@click.prevent="showHistory(slotProps.data.opponent_id)"
 								>
 								</Button>
+								<span class="text-sm text-800">
+									{{ slotProps.data.game_id }}
+								</span>
 							</div>
 						</div>
 					</div>
@@ -223,7 +226,7 @@
 
 	const showGame = (id) => {
 		placemark.setYear(year.value)
-		navigateTo(`/games/game/${id}`)
+		navigateTo(`/page/game/${id}`)
 	}
 	const showHistory = (id) => {
 		placemark.setYear(year.value)

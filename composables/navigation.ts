@@ -82,10 +82,15 @@ export function useNavigationMenu() {
 				visible: () => !auth.isLoggedIn,
 
 				items: [
-					{
+					/* {
 						label: 'Schedule',
 						icon: 'pi pi-fw pi-user-plus',
 						to: '/games/schedule/0',
+					}, */
+					{
+						label: 'Schedule',
+						icon: 'pi pi-fw pi-user-plus',
+						to: '/schedule/0',
 					},
 					{
 						label: 'Player Stats 15s',
