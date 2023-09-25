@@ -11,17 +11,15 @@ RewriteRule ^directions /content/2 [R]
 #
 RewriteRule ^online-payments /payments [R]
 #
-RewriteRule ^community-service /content/75 [R]
+RewriteRule ^community-service /communityservice [R]
 #
 RewriteRule ^admin-login /loginpage [R]
 #
-# RewriteRule ^officers /members/officers [R]
-#
 RewriteRule ^virtual-clubhouse /clubhouse [R]
 #
-RewriteRule ^schedule-and-results7s /games/schedule [R]
+RewriteRule ^schedule-and-results7s /schedule [R]
 #
-RewriteRule ^schedule-and-results /games/schedule [R]
+RewriteRule ^schedule-and-results /schedule [R]
 #
 RewriteRule ^flag-register /register/flag [R]
 #
@@ -43,15 +41,15 @@ RewriteRule ^photos /photos [R]
 RewriteRule ^player-games-history /stats/player_history [R]
 ##
 RewriteCond %{QUERY_STRING} ^id=([0-9]*)
-RewriteRule ^site/stats/detail.php$ /games/schedule/page/%1? [R,L]
+RewriteRule ^site/stats/detail.php$ /schedule/page/%1? [R,L]
 #
-RewriteRule ^site/stats$ /games/schedule [R]
+RewriteRule ^site/stats$ /schedule [R]
 #
-RewriteRule ^buffalogallery/v /content/34 [R]
+RewriteRule ^buffalogallery/v /photos [R]
 #
-RewriteRule ^v-web/gallery /content/34 [R]
+RewriteRule ^v-web/gallery /photos [R]
 #
-RewriteRule ^gallery3/index.php /content/34 [R]
+RewriteRule ^gallery3/index.php /photos [R]
 #
 RewriteRule ^site/newsletters/newsletters_archive.php /archive/newsletters  [R]
 #

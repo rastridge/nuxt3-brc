@@ -65,7 +65,9 @@
 			<!-- <DataTable :value="filteredData" paginator :rows="20"> -->
 			<Column field="season" header="Season">
 				<template #body="slotProps">
-					<nuxt-link :to="`/games/schedule/${slotProps.data.year}`"
+					<!-- <nuxt-link :to="`/games/schedule/${slotProps.data.year}`"
+						>	-->
+					<nuxt-link to="/schedule" target="_blank"
 						><span class="text-lg">{{ slotProps.data.season }}</span>
 					</nuxt-link>
 				</template>

@@ -137,7 +137,7 @@
 	const { getGameLevelCode, getResultCode } = useGames()
 
 	//
-	// Get account id to edit
+	// Get id to get year
 	//
 	const route = useRoute()
 	const id = ref(parseInt(route.params.id))
@@ -233,5 +233,3 @@
 		navigateTo(`/games/history/${id}`)
 	}
 </script>
-
-<style scoped></style>
