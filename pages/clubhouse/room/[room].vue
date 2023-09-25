@@ -2,38 +2,27 @@
 	<div id="clubhouse">
 		<div class="text-center">
 			<common-header title="Virtual Clubhouse" />
-			<button @click="returnToList()">Return to Main Room</button>
+			<Button
+				class="p-button-sm mb-3"
+				label="Return to Main Room"
+				@click="navigateTo(`/clubhouse`)"
+			>
+			</Button>
 		</div>
-		<!-- clubhouse_category {{ clubhouse_category }} wofdata[0] {{ wofdata[0] }} -->
-		<!-- clubhouse_category {{ clubhouse_category }} -->
-		<div class="bg">
-			<div v-if="wofdata">
-				<!-- <div v-for="item in wofdata" :key="item.id" class="wof-card"> -->
-
-				<div
-					class="flex flex-row flex-wrap align-items-center justify-content-center gap-3"
-				>
-					<div
-						v-for="item in wofdata"
-						:key="item.id"
-						class="text-center w-10rem h-10rem shadow-6 surface-400"
-					>
-						<div class="m-1 mt-2">{{ item.member_wall_of_fame_year }}</div>
-						<img class="m-1 border-3" :src="item.member_pic_path" />
-						<div class="m-1">{{ item.name }}</div>
+		<div
+			class="flex flex-row flex-wrap align-items-center justify-content-center pt-2 pb-2 gap-3"
+			style="
+				background: url('https://media.buffalorugby.org/_img/_backgrounds/wood_clubhouse.jpg');
+			"
+		>
+			<div v-for="item in otherdata" :key="item.id" class="">
+				<div class="w-25rem border-1">
+					<img :src="item.clubhouse_filepath" class="w-full" />
+					<div class="caption">
+						{{ item.clubhouse_description }}
 					</div>
 				</div>
 			</div>
-			<!-- 		
-			<div v-if="otherdata.length" class="bg">
-				<div v-for="item in filteredData" :key="item.id" class="card my-card">
-					<b-img-lazy :src="item.clubhouse_filepath" fluid> </b-img-lazy>
-					<div class="card-body">
-						<h5 class="card-title caption">{{ item.clubhouse_description }}</h5>
-					</div>
-				</div>
-			</div>
-		</div> -->
 		</div>
 	</div>
 </template>
@@ -46,66 +35,25 @@
 	// Get account id to edit
 	//
 	const route = useRoute()
-	const clubhouse_category = ref(route.params.room)
+	const room = ref(route.params.room)
 
 	const otherdata = ref(null)
-	const wofdata = ref(null)
 
-	onMounted(async () => {
-		await getAll()
-	})
-	/* 
-	const filteredData = computed(() => {
-		data.value.filter((d) => d.clubhouse_category === clubhouse_category.value)
-	})	
- */
-	const returnToList = () => {
-		navigateTo('/clubhouse')
-	}
-
-	const getAll = async () => {
-		if (clubhouse_category.value !== 'wof') {
-			const { data, pending, error, refresh } = await useFetch(
-				`/clubhouse/getall`,
-				{
-					method: 'get',
-					headers: {
-						authorization: 'not-needed',
-					},
-				}
-			)
-			otherdata.value = data.value
-		} else {
-			const { data, pending, error, refresh } = await useFetch(
-				`/accounts/getwof`,
-				{
-					method: 'get',
-					headers: {
-						authorization: 'not-needed',
-					},
-				}
-			)
-			wofdata.value = data.value
+	const { data, pending, error, refresh } = await useFetch(
+		`/clubhouse/room/${room.value}`,
+		{
+			method: 'get',
+			headers: {
+				authorization: 'not-needed',
+			},
 		}
-	}
+	)
+	otherdata.value = data.value
 </script>
 
 <style scoped>
-	.my-card {
-		background: transparent;
-		margin: 1rem;
-		display: inline-block;
-	}
-	.bg {
-		background-image: url('/_img/_backgrounds/wood_clubhouse.jpg');
-		/* Center and scale the image nicely */
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-		padding: 2em;
-	}
 	.caption {
-		background-image: url('/_img/_backgrounds/bronze.jpg');
+		background-image: url('https://media.buffalorugby.org/_img/_backgrounds/bronze.jpg');
 		/* Center and scale the image nicely */
 		background-position: center;
 		background-repeat: no-repeat;

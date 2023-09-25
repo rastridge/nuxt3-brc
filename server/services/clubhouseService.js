@@ -5,6 +5,7 @@ export const clubhouseService = {
 	getAll,
 	getAllCurrent,
 	getOne,
+	getRoom,
 	addOne,
 	editOne,
 	deleteOne,
@@ -83,8 +84,27 @@ async function getOne(id) {
 		where clubhouse_id = ` + id
 
 	const clubhouse = await doDBQueryBuffalorugby(sql)
-
 	return clubhouse[0]
+}
+
+async function getRoom(room) {
+	const sql = `SELECT 
+									clubhouse_id,
+									clubhouse_id as room,
+									clubhouse_title,
+									clubhouse_title as title,
+									clubhouse_date,
+									clubhouse_description,
+									clubhouse_filepath,
+									clubhouse_owner,								
+									clubhouse_category
+								FROM 
+									inbrc_clubhouse
+								WHERE
+									clubhouse_category = "${room}"`
+
+	const rm = await doDBQueryBuffalorugby(sql)
+	return rm
 }
 
 async function addOne({

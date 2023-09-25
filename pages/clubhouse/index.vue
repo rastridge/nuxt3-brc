@@ -25,7 +25,7 @@
 					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-12rem p-2 border-1"
 				>
 					<div class="text-center mb-1">Wall of Fame</div>
-					<nuxt-link :to="`/clubhouse/room/wof`">
+					<nuxt-link :to="`/clubhouse/wof`">
 						<a>
 							<img
 								src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
@@ -93,7 +93,8 @@
 </template>
 
 <script setup></script>
-
+const door =
+ref("https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png")
 <style scoped>
 	.bg {
 		background-image: url('https://media.buffalorugby.org/_img/_backgrounds/wood_clubhouse.jpg');

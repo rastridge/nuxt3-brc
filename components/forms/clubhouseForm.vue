@@ -25,7 +25,7 @@
 				label="Category?"
 				name="clubhouse_category"
 				placeholder="Select a category"
-				:options="['ball', 'jersey', 'plaque', 'team photo', 'trophy']"
+				:options="['ball', 'jersey', 'plaque', 'photo', 'trophy']"
 				validation="required"
 			/>
 
