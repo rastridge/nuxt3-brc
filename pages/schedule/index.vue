@@ -126,9 +126,21 @@
 			v-model:visible="displayGameModal"
 			:breakpoints="{ '900px': '75vw', '640px': '90vw' }"
 			:style="{ width: '60vw' }"
+			:pt="{
+				root: { class: 'border-round-3xl border-3' },
+				header: { class: 'surface-300' },
+				content: {
+					class: 'text-xs md:text-lg border-1 p-2',
+				},
+				footer: { class: 'surface-300' },
+			}"
+			maximizable
+			modal
 		>
-			<display-game-info :item="info" />
-			<display-roster :players="players" />
+			<div class="m-1 p=1">
+				<display-game-info :item="info" />
+				<display-roster :players="players" />
+			</div>
 			<template #footer>
 				<div>
 					<Button
@@ -146,6 +158,14 @@
 			v-model:visible="displayHistoryModal"
 			:breakpoints="{ '900px': '75vw', '640px': '90vw' }"
 			:style="{ width: '60vw' }"
+			:pt="{
+				root: { class: 'border-round-3xl border-3' },
+				header: { class: 'surface-300' },
+				content: {
+					class: 'text-xs md:text-lg border-1 p-2',
+				},
+				footer: { class: 'surface-300' },
+			}"
 		>
 			<display-history :opponent_id="opponent_id" />
 			<display-records :opponent_id="opponent_id" />
