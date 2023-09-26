@@ -157,9 +157,8 @@
 		<Dialog
 			v-model:visible="displayHistoryModal"
 			:breakpoints="{ '900px': '75vw', '640px': '90vw' }"
-			:style="{ width: '60vw' }"
 			:pt="{
-				root: { class: 'border-round-3xl border-3' },
+				root: { class: 'w-12 sm:w-10 md:w-8' },
 				header: { class: 'surface-300' },
 				content: {
 					class: 'text-xs md:text-lg border-1 p-2',

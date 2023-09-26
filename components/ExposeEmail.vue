@@ -1,14 +1,10 @@
 <template>
 	<div>
-		<!-- <span v-if="!hover" style="color: #00c" @mouseover="hover = true"
+		<span v-if="!hover" style="color: rgb(4, 0, 255)" @mouseover="hover = true"
 			>Email</span
 		>
-		<span v-if="hover" style="color: black" @mouseleave="hover = false">
-			<a :href="'mailto:' + email">{{ email }}</a>
-		</span> -->
-		<span v-if="!hover" @mouseover="hover = true">Email</span>
 		<span v-if="hover" @mouseleave="hover = false">
-			<a :href="'mailto:' + email">{{ email }}</a>
+			<a :href="'mailto:' + email" style="color: rgb(4, 0, 255)">{{ email }}</a>
 		</span>
 	</div>
 </template>

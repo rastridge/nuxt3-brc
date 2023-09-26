@@ -57,6 +57,7 @@ async function getAll() {
 async function getShow() {
 	const sql = `SELECT
 									a.account_id,
+									a.account_email,
 									a.member_firstname,
 									a.member_lastname,
 									CONCAT(
