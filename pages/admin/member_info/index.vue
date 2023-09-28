@@ -152,7 +152,7 @@
 				<div style="text-align: left">
 					<Button
 						icon="pi pi-external-link"
-						label="Export CSV"
+						label="Export to CSV"
 						@click="exportCSV($event)"
 					/>
 				</div>
