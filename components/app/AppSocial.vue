@@ -18,7 +18,12 @@
 				<span>instagram</span>
 			</button>
 		</li>
-		<!-- <li><settings /></li> -->
+		<li>
+			<button class="p-link layout-topbar-button" @click="redirectToRegister">
+				<i class="pi pi-instagram" />
+				<span>Register to Join</span>
+			</button>
+		</li>
 	</ul>
 </template>
 
@@ -31,5 +36,8 @@
 	}
 	function redirectToInstagram(event: any) {
 		window.open('https://instagram.com/BuffaloRFC', '_blank')
+	}
+	function redirectToRegister(event: any) {
+		navigateTo('/register')
 	}
 </script>
