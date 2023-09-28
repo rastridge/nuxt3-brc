@@ -1,4 +1,3 @@
-export { useThemeStore } from './theme'
 export { useMenuStore } from './menuStore'
 export { usePlacemarkStore } from './placemarkStore'
 export { useAuthStore } from './authStore'

@@ -18,7 +18,7 @@
 				<span>instagram</span>
 			</button>
 		</li>
-		<li><settings /></li>
+		<!-- <li><settings /></li> -->
 	</ul>
 </template>
 
