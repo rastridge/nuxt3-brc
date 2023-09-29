@@ -5,3 +5,7 @@
 [[redirects]]
   from = "/join"
   to = "/page/55"
+
+[[redirects]]
+  from = "/directions"
+  to = "/page/2"
