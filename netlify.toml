@@ -1,7 +1,7 @@
 
 [[redirects]]
-/*  / 200
-
+  from = "/*"
+  to = "/"
 
 [[redirects]]
   from = "/about-us"
