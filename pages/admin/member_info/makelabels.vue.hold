@@ -1,0 +1,91 @@
+<template>
+	<div>
+		<admin-header :title="app" />
+		<span v-if="error" class="text-danger">ERROR: {{ error }}</span>
+		<em v-if="!memberTypes">Loading ...</em>
+		<div v-else>
+			<div class="">
+				Select member type of labels. Members must be marked Mail Recipient for
+				a label to be created.
+			</div>
+			<b-form-select
+				v-model="member_type_id"
+				:options="memberTypes"
+				value-field="member_type_id"
+				text-field="member_type"
+				disabled-field="notEnabled"
+				class="form-control text-center mb-3"
+				@change="setMember_type_id($event)"
+			></b-form-select>
+			<Button
+				size="sm"
+				variant="primary"
+				class="mb-2"
+				@click="makeLabels2($event, '5160', member_type_id)"
+			>
+				Make 5160 address labels
+			</Button>
+
+			<Button
+				size="sm"
+				variant="primary"
+				class="mb-2"
+				@click="makeLabels2($event, '5164', member_type_id)"
+			>
+				Make 5164 address labels
+			</Button>
+
+			<Button
+				size="sm"
+				variant="primary"
+				@click="makeReturnLabels($event, '5160')"
+			>
+				Make 5160 Return labels
+			</Button>
+		</div>
+	</div>
+</template>
+
+<script setup>
+
+				const app =ref( 'member_info')
+				const error =ref( '')
+				const member_type_id =ref( 3)
+				const memberTypes =ref( null)
+
+		created() {
+			getPerms(this)
+			this.getMemberTypes()
+		},
+		methods: {
+			getMemberTypes() {
+				accountService.getMemberTypes().then((membertypes) => {
+					this.memberTypes = membertypes
+				})
+			},
+			setMember_type_id(value) {
+				this.member_type_id = value
+			},
+			makeLabels2(e, labelType, member_type_id) {
+				memberinfoService.makeLabels(labelType, member_type_id).then(
+					(data) => {
+						window.open(`${data}`, '_blank')
+					},
+					(error) => {
+						this.error = error
+					}
+				)
+			},
+			makeReturnLabels(e) {
+				memberinfoService.makeReturnLabels().then(
+					(data) => {
+						window.open(`${data}`, '_blank')
+					},
+					(error) => {
+						this.error = error
+					}
+				)
+			},
+		},
+	}
+</script>

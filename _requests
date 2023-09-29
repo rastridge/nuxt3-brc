@@ -1,10 +1,10 @@
 # Redirect old references in DB to new locationss
 #
-/about-us /content/1 
+/about-us /page/1 
 #
-/join /content/55 
+/join /page/55 
 #
-/directions /content/2 
+/directions /page/2 
 #
 /online-payments /payments 
 #
