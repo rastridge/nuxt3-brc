@@ -95,8 +95,9 @@
 					validation-visibility="live"
 				/>
 			</FormKit>
-			<p v-if="saving" class="text-2xl"><ProgressSpinner /> Saving ...</p>
-
+			<p v-if="alert.message" class="alert-danger">
+				ERROR: {{ alert.message }}
+			</p>
 			<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 		</div>
 

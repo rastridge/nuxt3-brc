@@ -6,10 +6,16 @@
 				<span>facebook</span>
 			</button>
 		</li>
-		<li>
+		<!-- <li>
 			<button class="p-link layout-topbar-button" @click="redirectToTwitter">
 				<i class="pi pi-twitter" />
 				<span>twitter</span>
+			</button>
+		</li> -->
+		<li>
+			<button class="p-link layout-topbar-button" @click="redirectToYoutube">
+				<i class="pi pi-twitter" />
+				<span>youtube</span>
 			</button>
 		</li>
 		<li>
@@ -33,6 +39,9 @@
 	}
 	function redirectToTwitter(event: any) {
 		window.open('https://twitter.com/BuffaloRFC', '_blank')
+	}
+	function redirectToYoutube(event: any) {
+		window.open('https://youtube.com/buffalorugby', '_blank')
 	}
 	function redirectToInstagram(event: any) {
 		window.open('https://instagram.com/BuffaloRFC', '_blank')

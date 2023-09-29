@@ -58,6 +58,7 @@
 	//
 	const alpha = ref(placemark.getAlpha)
 	const member_type_id = ref(placemark.getMemberTypeId)
+	// const member_type_id = ref(9)
 	//
 	// Initialize values for Renderlist
 	//

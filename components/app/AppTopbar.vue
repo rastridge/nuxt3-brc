@@ -5,13 +5,13 @@
 
 <template>
 	<div :class="[!auth.isLoggedIn ? 'layout-topbar' : 'layout-topbar-admin']">
-		<div v-if="!auth.isLoggedIn" class="w-30rem mx-auto h-0 lg:h-3rem mb-2">
+		<div v-if="!auth.isLoggedIn" class="w-max mx-auto h-0 lg:h-3rem mb-2">
 			<app-social />
 		</div>
 		<div v-if="!auth.isLoggedIn" class="w-full h-5.5rem md:h-8rem xl:h-14rem">
 			<app-brand />
 		</div>
-		<div class="w-11 mx-auto h-0 lg:h-3rem">
+		<div class="w-full md:w-12 mx-auto h-0 lg:h-3rem">
 			<app-menu />
 		</div>
 	</div>

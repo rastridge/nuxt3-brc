@@ -1,0 +1,65 @@
+# Redirect old references in DB to new locationss
+#
+/about-us /content/1 
+#
+/join /content/55 
+#
+/directions /content/2 
+#
+/online-payments /payments 
+#
+/community-service /communityservice 
+#
+/admin-login /loginpage 
+#
+/virtual-clubhouse /clubhouse 
+#
+/schedule-and-results7s /schedule 
+#
+/schedule-and-results /schedule 
+#
+/flag-register /register/flag 
+#
+/wall-of-fame /clubhouse/wof 
+#
+/videos /videos 
+#
+/site/video /videos 
+#
+/team-statistics /stats/team_stats 
+#
+/player-statistics /stats/player_stats 
+#
+/photos /photos 
+#
+#
+# /history /content/74 
+#
+/player-games-history /stats/player_history 
+##
+RewriteCond %{QUERY_STRING} /id=([0-9]*)
+/site/stats/detail.php$ /schedule/page/%1? [R,L]
+#
+/site/stats$ /schedule 
+#
+/buffalogallery/v /photos 
+#
+/v-web/gallery /photos 
+#
+/gallery3/index.php /photos 
+#
+/site/newsletters/newsletters_archive.php /archive/newsletters  
+#
+RewriteCond %{QUERY_STRING} /id=(\d*[/&])$
+/site/news/detail.php /archive/news/page/%1? [R,L]
+#
+RewriteCond %{QUERY_STRING} /index=(\d*[/&])
+/site/news/detail_for_FB.php /archive/news/page/%1? [R,L]
+#
+/site/news/news_archive.php /archive/news  
+#
+/archive$ /archive/documents  
+#
+/50th-anniversary /content/58 
+#
+FallbackResource /index
