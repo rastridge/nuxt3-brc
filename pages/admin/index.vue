@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-	import { useAuthStore } from '~/stores/authStore'
+	import { useAuthStore } from '~/stores'
 	import { usePlacemarkStore } from '@/stores'
 	import oldblue from '~/assets/imgs/2023_old_blue_dannish.jpg'
 	const placemark = usePlacemarkStore()

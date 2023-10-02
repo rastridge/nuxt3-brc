@@ -1,4 +1,5 @@
 import pkg from './package.json'
+import path from 'path'
 
 export default defineNuxtConfig({
 	devtools: false,
@@ -49,9 +50,7 @@ export default defineNuxtConfig({
 		'~/components/displays',
 		'~/components',
 	],
-	/* 	carousel: {
-		prefix: 'Vue',
-	}, */
+
 	dayjs: {
 		locales: ['en'],
 		defaultLocale: 'en',
@@ -105,6 +104,18 @@ export default defineNuxtConfig({
 		// transpile: ['nuxt', 'primevue'],
 		transpile: ['primevue'],
 	},
+
+	/* 	vite: {
+		resolve: {
+			alias: {
+				process: 'process/browser',
+				stream: 'stream-browserify',
+				zlib: 'browserify-zlib',
+				util: 'util/',
+				'@': path.resolve(__dirname, './src'),
+			},
+		},
+	}, */
 	/* 	sourcemap: {
 		client: false,
 		server: true,

@@ -1,0 +1,133 @@
+<template>
+	<div>
+		<Head>
+			<Title>Make Labels</Title>
+		</Head>
+		<!-- <div class="w-full h-30rem border-1"> -->
+		<div class="">
+			<object
+				id="preview"
+				:data="labels"
+				type="application/pdf"
+				width="800"
+				height="680"
+			>
+				<p>
+					This browser does not support inline PDFs. Try out another browser
+					(Chrome and Firefox should work).
+				</p>
+			</object>
+		</div>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header :title="app" />
+				<span v-if="error" class="text-danger">ERROR: {{ error }}</span>
+			</div>
+			<div class="topsectionitem">
+				<Button
+					class="mb-3 center"
+					label="Cancel"
+					@click="navigateTo('/admin/member_info')"
+				>
+				</Button>
+			</div>
+			<div class="topsectionitem">
+				<div class="text-sm md:text-lg text-red-500">
+					Members must be marked Mail Recipient for a label to be created.
+				</div>
+			</div>
+			<div class="topsectionitem">
+				<div class="text-sm md:text-lg">Select member type of labels.</div>
+			</div>
+			<div class="topsectionitem">
+				<Dropdown
+					v-model="member_type_id"
+					:options="memberTypeOptions"
+					optionLabel="label"
+					optionValue="value"
+					placeholder="Select a member type"
+				/>
+			</div>
+
+			<div class="topsectionitem">
+				<Button
+					class="p-button-sm mb-2"
+					label="Make 5160 address labels"
+					@click="makeLabels('5160', member_type_id)"
+				>
+				</Button>
+			</div>
+
+			<div class="topsectionitem">
+				<Button
+					class="p-button-sm mb-2"
+					label="Make 5164 address labels"
+					@click="makeLabels('5164', member_type_id)"
+				>
+				</Button>
+			</div>
+
+			<div class="topsectionitem">
+				<Button
+					class="p-button-sm mb-2"
+					label="Make 5160 return labels"
+					@click="makeReturnLabels('5160')"
+				>
+				</Button>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script setup>
+	const app = ref('member_info')
+	const error = ref('')
+	const member_type_id = ref(3)
+	const { getMemberTypeOptions } = useMembertypes()
+	//
+	// select member type
+	//
+	const memberTypeOptions = await getMemberTypeOptions()
+
+	// /////////////////////////
+	// address labels
+	// ////////////////////////
+	const labels = ref(null)
+	const makeLabels = async (labelType, member_type_id) => {
+		const { data } = await useFetch('/member_info/makelabels', {
+			method: 'POST',
+			headers: {
+				authorization: 'not-needed',
+			},
+			body: {
+				labelType,
+				member_type_id,
+			},
+		})
+		const decoded = atob(data.value)
+		const blob = new Blob([decoded], { type: 'application/pdf' })
+		const url = URL.createObjectURL(blob)
+
+		labels.value = url
+	}
+	// /////////////////////////
+	// rturn labels
+	// ////////////////////////
+	const makeReturnLabels = async (e) => {
+		const { data, error } = await useFetch('/member_info/makereturnlabels', {
+			method: 'POST',
+			headers: {
+				authorization: 'not-needed',
+			},
+		})
+
+		const decoded = atob(data.value)
+		const blob = new Blob([decoded], { type: 'application/pdf' })
+		const url = URL.createObjectURL(blob)
+
+		labels.value = url
+
+		// window.open(`${labels}`, '_blank')
+		// error.value = error
+	}
+</script>

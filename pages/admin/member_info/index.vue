@@ -10,9 +10,7 @@
 
 			<!-- make labels -->
 			<div class="topsectionitem">
-				<Button size="sm" variant="primary" @click="makeLabels">
-					Make labels
-				</Button>
+				<Button class="" @click="makeLabels"> Make labels </Button>
 			</div>
 
 			<!-- slect member_type -->
@@ -237,12 +235,12 @@
 	const { data: m } = await getAll(app.value)
 	info.value = m.value
 
-	const { data: mt } = await useFetch('/accounts/membertypes', {
-		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
-	})
+	// const { data: mt } = await useFetch('/accounts/membertypes', {
+	// 	method: 'get',
+	// 	headers: {
+	// 		authorization: 'not-needed',
+	// 	},
+	// })
 
 	// memberTypes.value = mt.value.filter((d) => {
 	// 	return d.member_type_id !== 11 && d.member_type_id !== 12 // filter out flag and ad astra

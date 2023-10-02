@@ -1,5 +1,3 @@
-// import { defineStore } from 'pinia'
-
 export const usePlacemarkStore = defineStore('placemark', {
 	state: () => ({
 		page: 0,
@@ -22,19 +20,19 @@ export const usePlacemarkStore = defineStore('placemark', {
 			const { $dayjs } = useNuxtApp()
 			this.year = parseInt($dayjs().format('YYYY'))
 		},
-		setPage(p: number) {
+		setPage(p) {
 			this.page = p
 		},
-		setAlpha(a: string) {
+		setAlpha(a) {
 			this.alpha = a
 		},
-		setYear(y: number) {
+		setYear(y) {
 			this.year = y
 		},
-		setMemberTypeId(id: number) {
+		setMemberTypeId(id) {
 			this.membertypeid = id
 		},
-		setGameTypeId(id: number) {
+		setGameTypeId(id) {
 			this.gametypeid = id
 		},
 	},

@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-	import { usePlacemarkStore } from '@/stores'
+	import { usePlacemarkStore } from '~/stores'
 	const placemark = usePlacemarkStore()
 	const { getAll, deleteOne, changeStatusOne } = useFetchAll()
 	//

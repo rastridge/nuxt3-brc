@@ -1,5 +1,5 @@
 // import { defineStore } from 'pinia'
-export const useAlertStore = defineStore('adverts', {
+export const useAdStore = defineStore('adverts', {
 	state: () => ({
 		adverts: [],
 	}),

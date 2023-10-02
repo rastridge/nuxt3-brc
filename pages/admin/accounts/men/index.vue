@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-	import { usePlacemarkStore } from '@/stores'
+	import { usePlacemarkStore } from '~/stores'
 	import { useAlertStore } from '~/stores/alertStore'
 	const alert = useAlertStore()
 	const placemark = usePlacemarkStore()
