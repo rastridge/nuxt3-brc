@@ -1,8 +1,10 @@
 ﻿const { doDBQueryBuffalorugby } = useQuery()
 import pdf from 'pdfjs'
 import Helvetica from 'pdfjs/font/Helvetica'
+import HelveticaBold from 'pdfjs/font/Helvetica-Bold'
 const fonts = {
 	Helvetica,
+	HelveticaBold,
 }
 
 // yeah!
