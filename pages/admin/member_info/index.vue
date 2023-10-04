@@ -232,8 +232,8 @@
 		return filteredData.value.length
 	})
 
-	const { data: m } = await getAll(app.value)
-	info.value = m.value
+	const { data } = await getAll(app.value)
+	info.value = data.value
 
 	// const { data: mt } = await useFetch('/accounts/membertypes', {
 	// 	method: 'get',

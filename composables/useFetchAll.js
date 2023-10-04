@@ -21,7 +21,7 @@ export default function useFetchAll() {
 	}
 
 	const deleteOne = async (app, id) => {
-		const { pending, error, refresh } = await useFetch(`/${app}/${id}`, {
+		const { pending, error } = await useFetch(`/${app}/${id}`, {
 			method: 'DELETE',
 			headers: {
 				authorization: auth.user.token,
@@ -30,7 +30,7 @@ export default function useFetchAll() {
 	}
 
 	const changeStatusOne = async (app, { id, status }) => {
-		const { pending, error, refresh } = await useFetch(`/${app}/status`, {
+		const { pending, error } = await useFetch(`/${app}/status`, {
 			method: 'POST',
 			headers: {
 				authorization: auth.user.token,
