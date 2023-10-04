@@ -1,6 +1,16 @@
 ﻿const { doDBQueryBuffalorugby } = useQuery()
 import pdf from 'pdfjs'
-import fonts from 'pdfjs/font/Helvetica'
+import Helvetica from 'pdfjs/font/Helvetica'
+const fonts = {
+	Helvetica,
+}
+
+// yeah!
+// see https://stackblitz.com/edit/js-hkxfhq?file=index.js,logo.js
+// for other fonts
+//
+// and https://base64.guru/converter/encode/image
+//
 
 export const member_infoService = {
 	getAll,
@@ -44,7 +54,6 @@ async function getAll() {
 					a.status = 1
 				ORDER BY
 					name ASC`
-	console.log('service getall sql = ', sql)
 	const memberinfo = await doDBQueryBuffalorugby(sql)
 	return memberinfo
 }
@@ -298,10 +307,6 @@ async function makeReturnLabels() {
 	return b
 }
 
-// yeah!
-// see https://stackblitz.com/edit/js-hkxfhq?file=index.js,logo.js
-// and https://base64.guru/converter/encode/image
-//
 const logo = new pdf.Image(
 	Uint8Array.from(
 		atob(

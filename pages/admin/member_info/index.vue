@@ -235,17 +235,6 @@
 	const { data } = await getAll(app.value)
 	info.value = data.value
 
-	// const { data: mt } = await useFetch('/accounts/membertypes', {
-	// 	method: 'get',
-	// 	headers: {
-	// 		authorization: 'not-needed',
-	// 	},
-	// })
-
-	// memberTypes.value = mt.value.filter((d) => {
-	// 	return d.member_type_id !== 11 && d.member_type_id !== 12 // filter out flag and ad astra
-	// })
-
 	const filteredData = computed(() => {
 		let temp = info.value
 

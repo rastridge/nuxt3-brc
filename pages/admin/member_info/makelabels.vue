@@ -97,11 +97,6 @@
 	const show = ref(false)
 	const { getMemberTypeOptions } = useMembertypes()
 
-	// CORS
-	/* 	const url = 'https://media.buffalorugby.org/BRC_logo.jpg'
-
-	const request = await fetch(url)
-	const blob = await request.blob() */
 	//
 	// select member type
 	//
@@ -125,13 +120,6 @@
 		const decoded = atob(data.value)
 		const blob = new Blob([decoded], { type: 'application/pdf' })
 		const url = URL.createObjectURL(blob)
-
-		/* 		const image = await fetch('https://media.buffalorugby.org/images/logo')
-		const decoded2 = atob(image)
-		const imageBlog = new Blob([decoded2], { type: 'iamge/jpeg' })
-		const imageURL = URL.createObjectURL(imageBlog)
-
-		console.log(imageURL) */
 
 		labels.value = url
 		toggleLabels()
