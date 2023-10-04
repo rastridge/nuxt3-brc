@@ -44,7 +44,7 @@ async function getAll() {
 					a.status = 1
 				ORDER BY
 					name ASC`
-
+	console.log('service getall sql = ', sql)
 	const memberinfo = await doDBQueryBuffalorugby(sql)
 	return memberinfo
 }
