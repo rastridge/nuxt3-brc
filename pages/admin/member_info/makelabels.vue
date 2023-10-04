@@ -96,6 +96,12 @@
 	const member_type_id = ref(3)
 	const show = ref(false)
 	const { getMemberTypeOptions } = useMembertypes()
+
+	// CORS
+	/* 	const url = 'https://media.buffalorugby.org/BRC_logo.jpg'
+
+	const request = await fetch(url)
+	const blob = await request.blob() */
 	//
 	// select member type
 	//

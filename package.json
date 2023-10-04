@@ -48,6 +48,7 @@
 		"primeicons": "^6.0.1",
 		"primevue": "^3.29.2",
 		"quill-image-uploader": "^1.2.4",
+		"request": "^2.88.2",
 		"sweetalert2": "^11.7.5",
 		"twilio": "^4.11.0",
 		"vue-youtube-embed": "^2.2.2",
