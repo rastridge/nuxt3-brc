@@ -4,7 +4,15 @@
 			<Title>Make Labels</Title>
 		</Head>
 		<!-- <div class="w-full h-30rem border-1"> -->
-		<div class="">
+		<div v-if="labels && show">
+			<div class="topsectioncenter">
+				<div class="topsectionitem">
+					<Button class="mb-2" @click="toggleLabels()"
+						>Create Other Labels</Button
+					>
+				</div>
+			</div>
+
 			<object
 				id="preview"
 				:data="labels"
@@ -18,62 +26,65 @@
 				</p>
 			</object>
 		</div>
-		<div class="topsectioncenter">
-			<div class="topsectionitem">
-				<admin-header :title="app" />
-				<span v-if="error" class="text-danger">ERROR: {{ error }}</span>
-			</div>
-			<div class="topsectionitem">
-				<Button
-					class="mb-3 center"
-					label="Cancel"
-					@click="navigateTo('/admin/member_info')"
-				>
-				</Button>
-			</div>
-			<div class="topsectionitem">
-				<div class="text-sm md:text-lg text-red-500">
-					Members must be marked Mail Recipient for a label to be created.
+		<div v-else>
+			<div class="topsectioncenter">
+				<div class="topsectionitem">
+					<admin-header :title="app" />
+					<span v-if="error" class="text-danger">ERROR: {{ error }}</span>
 				</div>
-			</div>
-			<div class="topsectionitem">
-				<div class="text-sm md:text-lg">Select member type of labels.</div>
-			</div>
-			<div class="topsectionitem">
-				<Dropdown
-					v-model="member_type_id"
-					:options="memberTypeOptions"
-					optionLabel="label"
-					optionValue="value"
-					placeholder="Select a member type"
-				/>
-			</div>
+				<div class="topsectionitem">
+					<Button
+						class="mb-3 center"
+						label="Cancel"
+						@click="navigateTo('/admin/member_info')"
+					>
+					</Button>
+				</div>
+				<div class="topsectionitem">
+					<div class="text-sm md:text-lg text-red-500">
+						Members must be marked as a Mail Recipient for a label to be
+						created.
+					</div>
+				</div>
+				<div class="topsectionitem">
+					<div class="text-sm md:text-lg">Select member type of labels.</div>
+				</div>
+				<div class="topsectionitem">
+					<Dropdown
+						v-model="member_type_id"
+						:options="memberTypeOptions"
+						optionLabel="label"
+						optionValue="value"
+						placeholder="Select a member type"
+					/>
+				</div>
 
-			<div class="topsectionitem">
-				<Button
-					class="p-button-sm mb-2"
-					label="Make 5160 address labels"
-					@click="makeLabels('5160', member_type_id)"
-				>
-				</Button>
-			</div>
+				<div class="topsectionitem">
+					<Button
+						class="p-button-sm mb-2"
+						label="Make 5160 address labels"
+						@click="makeLabels('5160', member_type_id)"
+					>
+					</Button>
+				</div>
 
-			<div class="topsectionitem">
-				<Button
-					class="p-button-sm mb-2"
-					label="Make 5164 address labels"
-					@click="makeLabels('5164', member_type_id)"
-				>
-				</Button>
-			</div>
+				<div class="topsectionitem">
+					<Button
+						class="p-button-sm mb-2"
+						label="Make 5164 address labels"
+						@click="makeLabels('5164', member_type_id)"
+					>
+					</Button>
+				</div>
 
-			<div class="topsectionitem">
-				<Button
-					class="p-button-sm mb-2"
-					label="Make 5160 return labels"
-					@click="makeReturnLabels('5160')"
-				>
-				</Button>
+				<div class="topsectionitem">
+					<Button
+						class="p-button-sm mb-2"
+						label="Make 5160 return labels"
+						@click="makeReturnLabels('5160')"
+					>
+					</Button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -83,6 +94,7 @@
 	const app = ref('member_info')
 	const error = ref('')
 	const member_type_id = ref(3)
+	const show = ref(false)
 	const { getMemberTypeOptions } = useMembertypes()
 	//
 	// select member type
@@ -108,7 +120,15 @@
 		const blob = new Blob([decoded], { type: 'application/pdf' })
 		const url = URL.createObjectURL(blob)
 
+		/* 		const image = await fetch('https://media.buffalorugby.org/images/logo')
+		const decoded2 = atob(image)
+		const imageBlog = new Blob([decoded2], { type: 'iamge/jpeg' })
+		const imageURL = URL.createObjectURL(imageBlog)
+
+		console.log(imageURL) */
+
 		labels.value = url
+		toggleLabels()
 	}
 	// /////////////////////////
 	// rturn labels
@@ -127,7 +147,8 @@
 
 		labels.value = url
 
-		// window.open(`${labels}`, '_blank')
-		// error.value = error
+		toggleLabels()
 	}
+
+	const toggleLabels = () => (show.value = !show.value)
 </script>

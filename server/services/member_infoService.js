@@ -1,10 +1,11 @@
 ﻿const { doDBQueryBuffalorugby } = useQuery()
 import pdf from 'pdfjs'
 import fonts from 'pdfjs/font/Helvetica'
-
-const place =
-	'/Users/rastridge/code/experiments-nuxt3/nuxt3-primevue-brc-new-menus-3.7/public/templabels'
-
+import fs from 'fs'
+// const bigblue = '@/assets/imgs/bflo_blue.png'
+// import bigblue from '~/assets/imgs/bflo_blue.png'
+const bigblue =
+	'/Users/rastridge/Code/experiments-nuxt3/nuxt3-primevue-brc-new-menus-3.7/public/BRC_logo.jpg'
 export const member_infoService = {
 	getAll,
 	makeLabels,
@@ -166,9 +167,8 @@ async function makeLabels({ labelType, member_type_id }) {
 			widths: [285, 15, 285],
 		})
 
-		// const logo = new pdf.Image(
-		// 	fs.readFileSync(`${SITE_DIR}/public/BRC_logo.jpg`)
-		// )
+		// const logo = new pdf.Image(fs.readFileSync(bigblue))
+		// const logo = new pdf.Image('https://media.buffalorugby.org/BRC_logo.jpg')
 
 		// function addRow ****
 		function addRow5164(labelInfo1, labelInfo2) {
