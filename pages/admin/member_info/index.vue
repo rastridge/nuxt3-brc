@@ -238,7 +238,12 @@
 	const filteredData = computed(() => {
 		let temp = info.value
 
-		temp = temp.filter((d) => d.member_type_id == member_type_id.value)
+		temp = temp.filter(
+			(d) =>
+				d.member_type_id == member_type_id.value ||
+				d.member_type2_id == member_type_id.value
+		)
+
 		/* **********  yes email ************* */
 		if (email.value !== '2') {
 			if (email.value == '1') {

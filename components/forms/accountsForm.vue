@@ -147,11 +147,25 @@
 				/>
 				<FormKit
 					type="select"
+					label="2nd Member type"
+					placeholder="Select member type"
+					name="member_type2_id"
+					:options="memberTypeOptions"
+				/>
+				<FormKit
+					type="select"
 					label="Member Administrator role"
 					placeholder="Select admin type"
 					name="member_admin_type_id"
 					:options="memberAdminTypeOptions"
 					validation="required"
+				/>
+				<FormKit
+					type="select"
+					label="2nd Member Administrator role"
+					placeholder="Select admin type"
+					name="member_admin_type2_id"
+					:options="memberAdminTypeOptions"
 				/>
 				<!-- ad image file upload 			-->
 				<p>Image must be 72w 72h 72dpi</p>
@@ -239,7 +253,7 @@
 	state.value.sms_recipient = '1'
 
 	//
-	// edit if there is an id - add if not
+	// EDIT if there is an id - ADD if not
 	//
 	if (props.id !== 0) {
 		//
