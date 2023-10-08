@@ -8,7 +8,7 @@
 	//
 	const onSubmit = async function (form_state) {
 		alert.clear()
-		await onSubmitAdd('accounts', form_state)
+		await onSubmitAdd('accounts_flag', form_state)
 		if (alert.message === null) {
 			navigateTo(`/`)
 		}
@@ -18,9 +18,9 @@
 <template>
 	<div>
 		<Head>
-			<Title>Register to Join Men</Title>
+			<Title>Register to Join Youth Flag</Title>
 		</Head>
-		<common-header title="Register to Join Men" />
-		<register-form @submitted="onSubmit" />
+		<common-header title="Register to Join Youth Flag" />
+		<register-flag-form @submitted="onSubmit" />
 	</div>
 </template>

@@ -14,9 +14,12 @@ export default defineNuxtConfig({
 		SHADOW_DATABASE_URL: process.env.SHADOW_DATABASE_URL,
 		ONSERVER: process.server,
 		ONCLIENT: process.client,
+
 		TO: process.env.TO,
+		TO_FLAG: process.env.TO_FLAG,
 		FROM: process.env.FROM,
 		FROM_NAME: process.env.FROM_NAME,
+
 		apiSecret: process.env.API_SECRET,
 		EE_API_KEY: process.env.EE_API_KEY,
 		TWILIO_NUMBER: process.env.TWILIO_NUMBER,

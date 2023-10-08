@@ -234,6 +234,13 @@ export function useNavigationMenu() {
 						visible: () => checkPerm('accounts/men') > 0,
 					},
 					{
+						label: 'Members Flag',
+						icon: 'pi pi-fw pi-user-edit',
+						to: '/admin/accounts_flag',
+						visible: () => checkPerm('accounts_flag') > 0,
+					},
+
+					{
 						label: 'Member Info',
 						icon: 'pi pi-fw pi-user-edit',
 						to: '/admin/member_info',

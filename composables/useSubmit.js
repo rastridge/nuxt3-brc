@@ -4,10 +4,11 @@
 //
 import { useAuthStore } from '~/stores/authStore'
 import { useAlertStore } from '~/stores/alertStore'
-const alert = useAlertStore()
 
 export default function useSubmit() {
 	const auth = useAuthStore()
+	const alert = useAlertStore()
+
 	const onSubmitEdit = async function (app, form_state) {
 		const { data, error } = await useFetch(`/${app}/editone`, {
 			method: 'post',
@@ -16,6 +17,8 @@ export default function useSubmit() {
 				authorization: auth.user.token,
 			},
 		})
+		console.log('data.value.message', data.value.message)
+
 		if (error.value) {
 			throw createError({
 				...error.value,
@@ -29,9 +32,8 @@ export default function useSubmit() {
 			}
 		}
 	}
-	const onSubmitAdd = async function (app, form_state) {
-		console.log('IN onSubmitAdd app, form_state = ', app, form_state)
 
+	const onSubmitAdd = async function (app, form_state) {
 		const { data, error } = await useFetch(`/${app}/addone`, {
 			method: 'post',
 			body: form_state,

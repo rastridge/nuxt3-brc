@@ -3,200 +3,197 @@
 		<p v-if="!memberTypeOptions || !memberAdminTypeOptions || !state">
 			<ProgressSpinner /> Loading
 		</p>
-		<div v-else class="form-box">
-			<p v-if="alert.message" class="alert-danger">
-				ERROR: {{ alert.message }}
-			</p>
+		<p v-if="alert.message" class="alert-danger w-20rem">
+			ERROR: {{ alert.message }}
+		</p>
+		<FormKit
+			type="form"
+			:config="{ validationVisibility: 'live' }"
+			v-model="state"
+			submit-label="Submit member"
+			@submit="submitForm"
+		>
 			<FormKit
-				type="form"
-				:config="{ validationVisibility: 'live' }"
-				v-model="state"
-				submit-label="Submit member"
-				@submit="submitForm"
+				label="First Name"
+				name="member_firstname"
+				type="text"
+				validation="required"
+			/>
+			<FormKit
+				label="Last Name"
+				name="member_lastname"
+				type="text"
+				validation="required"
+			/>
+			<FormKit
+				type="email"
+				label="Email address"
+				name="account_email"
+				validation="required|email"
+				:errors="errors"
+			/>
+
+			<FormKit
+				type="number"
+				label="Year joined"
+				name="member_year"
+				min="1966"
+				step="1"
+			/>
+			<FormKit
+				type="text"
+				label="Street"
+				name="account_addr_street"
+				validation="required"
+			/>
+			<FormKit type="text" label="Street Ext" name="account_addr_street_ext" />
+			<FormKit
+				type="text"
+				label="City"
+				name="account_addr_city"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="Country"
+				name="account_addr_country"
+				id="account_addr_country"
+				:options="justCountries"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="Region"
+				name="account_addr_state"
+				id="account_addr_state"
+				:options="justRegions"
+				validation="required"
+			/>
+			<FormKit
+				type="text"
+				label="Postal Code"
+				name="account_addr_postal"
+				validation="required"
+			/>
+			<FormKit
+				type="tel"
+				label="Phone number"
+				name="account_addr_phone"
+				placeholder="+1##########"
+				v-model="state.account_addr_phone"
+				validation="required | matches:/^\+[1]{1}[0-9]{3}[0-9]{3}[0-9]{4}$/"
+				:validation-messages="{
+					matches: 'US/CA only. Must be in the format +1#########',
+				}"
+				validation-visibility="live"
+			/>
+			<FormKit
+				type="select"
+				label="Show phone?"
+				name="member_show_phone"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Show address?"
+				name="member_show_addr"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Receive newsletter?"
+				name="newsletter_recipient"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Receive US Mail?"
+				name="mail_recipient"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Receive SMS messages?"
+				name="sms_recipient"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Member type"
+				placeholder="Select member type"
+				name="member_type_id"
+				:options="memberTypeOptions"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="2nd Member type"
+				placeholder="Select member type"
+				name="member_type2_id"
+				:options="memberTypeOptions"
+			/>
+			<FormKit
+				type="select"
+				label="Member Administrator role"
+				placeholder="Select admin type"
+				name="member_admin_type_id"
+				:options="memberAdminTypeOptions"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="2nd Member Administrator role"
+				placeholder="Select admin type"
+				name="member_admin_type2_id"
+				:options="memberAdminTypeOptions"
+			/>
+			<!-- ad image file upload 			-->
+			<p>Image must be 72w 72h 72dpi</p>
+			<label>Add or Replace WOF image file</label><br />
+
+			<FileUpload
+				mode="basic"
+				name="fileInput"
+				:auto="true"
+				accept="image/*"
+				customUpload
+				@uploader="customUploader"
+			/>
+			<br />
+			<br />
+			<!-- show image file  -->
+			<div
+				v-if="state.member_pic_path"
+				class="card flex justify-content-start mb-2"
 			>
-				<FormKit
-					label="First Name"
-					name="member_firstname"
-					type="text"
-					validation="required"
-				/>
-				<FormKit
-					label="Last Name"
-					name="member_lastname"
-					type="text"
-					validation="required"
-				/>
-				<FormKit
-					type="email"
-					label="Email address"
-					name="account_email"
-					validation="required|email"
-					:errors="errors"
-				/>
-
-				<FormKit
-					type="number"
-					label="Year joined"
-					name="member_year"
-					min="1966"
-					step="1"
-				/>
-				<FormKit
-					type="text"
-					label="Street"
-					name="account_addr_street"
-					validation="required"
-				/>
-				<FormKit
-					type="text"
-					label="Street Ext"
-					name="account_addr_street_ext"
-				/>
-				<FormKit
-					type="text"
-					label="City"
-					name="account_addr_city"
-					validation="required"
-				/>
-				<FormKit
-					type="select"
-					label="Country"
-					name="account_addr_country"
-					id="account_addr_country"
-					:options="justCountries"
-					validation="required"
-				/>
-				<FormKit
-					type="select"
-					label="Region"
-					name="account_addr_state"
-					id="account_addr_state"
-					:options="justRegions"
-					validation="required"
-				/>
-				<FormKit
-					type="text"
-					label="Postal Code"
-					name="account_addr_postal"
-					validation="required"
-				/>
-				<FormKit
-					type="tel"
-					label="Phone number"
-					name="account_addr_phone"
-					placeholder="+1##########"
-					v-model="state.account_addr_phone"
-					validation="required | matches:/^\+[1]{1}[0-9]{3}[0-9]{3}[0-9]{4}$/"
-					:validation-messages="{
-						matches: 'US/CA only. Must be in the format +1#########',
-					}"
-					validation-visibility="live"
-				/>
-				<FormKit
-					type="select"
-					label="Show phone?"
-					name="member_show_phone"
-					:options="[
-						{ label: 'Yes', value: 1 },
-						{ label: 'No', value: 0 },
-					]"
-				/>
-				<FormKit
-					type="select"
-					label="Show address?"
-					name="member_show_addr"
-					:options="[
-						{ label: 'Yes', value: 1 },
-						{ label: 'No', value: 0 },
-					]"
-				/>
-				<FormKit
-					type="select"
-					label="Receive newsletter?"
-					name="newsletter_recipient"
-					:options="[
-						{ label: 'Yes', value: 1 },
-						{ label: 'No', value: 0 },
-					]"
-				/>
-				<FormKit
-					type="select"
-					label="Receive US Mail?"
-					name="mail_recipient"
-					:options="[
-						{ label: 'Yes', value: 1 },
-						{ label: 'No', value: 0 },
-					]"
-				/>
-				<FormKit
-					type="select"
-					label="Receive SMS messages?"
-					name="sms_recipient"
-					:options="[
-						{ label: 'Yes', value: 1 },
-						{ label: 'No', value: 0 },
-					]"
-				/>
-				<FormKit
-					type="select"
-					label="Member type"
-					placeholder="Select member type"
-					name="member_type_id"
-					:options="memberTypeOptions"
-					validation="required"
-				/>
-				<FormKit
-					type="select"
-					label="2nd Member type"
-					placeholder="Select member type"
-					name="member_type2_id"
-					:options="memberTypeOptions"
-				/>
-				<FormKit
-					type="select"
-					label="Member Administrator role"
-					placeholder="Select admin type"
-					name="member_admin_type_id"
-					:options="memberAdminTypeOptions"
-					validation="required"
-				/>
-				<FormKit
-					type="select"
-					label="2nd Member Administrator role"
-					placeholder="Select admin type"
-					name="member_admin_type2_id"
-					:options="memberAdminTypeOptions"
-				/>
-				<!-- ad image file upload 			-->
-				<p>Image must be 72w 72h 72dpi</p>
-				<label>Add or Replace WOF image file</label><br />
-
-				<FileUpload
-					mode="basic"
-					name="fileInput"
-					:auto="true"
-					accept="image/*"
-					customUpload
-					@uploader="customUploader"
-				/>
-				<br />
-				<br />
-				<!-- show image file  -->
-				<div
-					v-if="state.member_pic_path"
-					class="card flex justify-content-start mb-2"
+				<label
+					>Current image filepath is<br />
+					{{ state.member_pic_path }}</label
 				>
-					<label
-						>Current image filepath is<br />
-						{{ state.member_pic_path }}</label
-					>
-					<Image :src="state.member_pic_path" alt="Image" width="72" />
-				</div>
-			</FormKit>
-			<p v-if="saving" class="text-2xl"><ProgressSpinner /> Saving ...</p>
+				<Image :src="state.member_pic_path" alt="Image" width="72" />
+			</div>
+		</FormKit>
+		<!-- <p v-if="saving" class="text-2xl"><ProgressSpinner /> Saving ...</p> -->
+		<p v-if="alert.message" class="alert-danger w-20rem">
+			ERROR: {{ alert.message }}
+		</p>
 
-			<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
-		</div>
+		<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 
 		<!-- Modal -->
 		<Dialog
@@ -216,7 +213,7 @@
 
 <script setup>
 	import { getNode } from '@formkit/core'
-	import ProgressSpinner from 'primevue/progressspinner'
+	// import ProgressSpinner from 'primevue/progressspinner'
 	import { useAuthStore } from '~/stores/authStore'
 	import { useAlertStore } from '~/stores/alertStore'
 	const auth = useAuthStore()
@@ -224,7 +221,7 @@
 	const { $dayjs } = useNuxtApp()
 	const { getCountries, setRegions } = useLocations()
 	const { getMemberAdminTypeOptions, getMemberTypeOptions } = useMembertypes()
-	const saving = ref(false)
+	// const saving = ref(false)
 
 	//
 	// Outgoing
@@ -259,35 +256,46 @@
 		//
 		// Initialize Edit form
 		//
-		const {
-			data: formdata,
-			pending,
-			error,
-			refresh,
-		} = await useFetch(`/accounts/${props.id}`, {
-			key: props.id,
-			method: 'get',
-			headers: {
-				authorization: auth.user.token,
-			},
-		})
-		state.value = formdata.value
+		const { data, pending, error, refresh } = await useFetch(
+			`/accounts/${props.id}`,
+			{
+				key: props.id,
+				method: 'get',
+				headers: {
+					authorization: auth.user.token,
+				},
+			}
+		)
+		state.value = data.value
 	}
+
+	//
+	// Formkit preparations
 	//
 	// create coutry and region options formatted for Formkit
 	const justCountries = ref(getCountries())
-	// justCountries.value = getCountries()
-
 	const justRegions = ref(setRegions(state.value.account_addr_country))
-	// set regions for initial country
-	// justRegions.value = setRegions(state.value.account_addr_country)
-
-	//
 	// get member types for options formatted for Formkit
-	//
 	const memberAdminTypeOptions = await getMemberAdminTypeOptions()
 	const memberTypeOptions = await getMemberTypeOptions()
+	//
+	// errors
+	//
+	const errors = computed(() => {
+		return alert.message !== null ? [alert.message] : ['']
+	})
+	// Region depends on country
+	onMounted(() => {
+		// Use the IDs of the inputs you want to get
+		const countryNode = getNode('account_addr_country')
+		const stateNode = getNode('account_addr_state')
 
+		// Here we are listening for the 'commit' event
+		countryNode.on('commit', ({ payload }) => {
+			// We update the value of the regions
+			justRegions.value = setRegions(payload)
+		})
+	})
 	// ////////////////// Handle wof image upload
 	//
 	// progress modal
@@ -299,10 +307,8 @@
 	const closeProgressModal = () => {
 		displayModal.value = false
 	}
-
 	const customUploader = async (event) => {
 		const file = event.files[0]
-
 		// voodoo
 		const image = new Image()
 		const imageDimensions = await new Promise((resolve) => {
@@ -315,7 +321,6 @@
 				resolve(dimensions)
 			}
 		})
-
 		if (imageDimensions.height === 72 && imageDimensions.width === 72) {
 			const formData = new FormData()
 			formData.append('file', file)
@@ -328,7 +333,6 @@
 					authorization: auth.user.token,
 				},
 			})
-
 			const data = await res.json()
 			closeProgressModal()
 			image.value = data.imageUrl
@@ -349,33 +353,10 @@
 	// form handlers
 	//
 	const submitForm = (state) => {
-		saving.value = true
+		// saving.value = true
 		emit('submitted', state)
 	}
 	const cancelForm = () => {
 		navigateTo('/admin/accounts/men') // needs to be / for self register
 	}
-	//
-	// errors
-	//
-	const errors = computed(() => {
-		return alert.message !== null
-			? ['Account with this email already exists']
-			: ['']
-	})
-
-	//
-	// FormKit stuff
-	// Region depends on country
-	onMounted(() => {
-		// Use the IDs of the inputs you want to get
-		const countryNode = getNode('account_addr_country')
-		const stateNode = getNode('account_addr_state')
-
-		// Here we are listening for the 'commit' event
-		countryNode.on('commit', ({ payload }) => {
-			// We update the value of the regions
-			justRegions.value = setRegions(payload)
-		})
-	})
 </script>

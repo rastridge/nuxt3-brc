@@ -257,10 +257,12 @@
 			filteredNames.value = [...suggestions.value]
 		} else {
 			filteredNames.value = suggestions.value.filter((suggestion) => {
-				return suggestion.title
-					.toLowerCase()
-					.startsWith(event.query.toLowerCase())
-				// .includes(event.query.toLowerCase())
+				return (
+					suggestion.title
+						.toLowerCase()
+						// .startsWith(event.query.toLowerCase())
+						.includes(event.query.toLowerCase())
+				)
 			})
 		}
 	}

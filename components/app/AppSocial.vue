@@ -27,7 +27,16 @@
 		<li>
 			<button class="p-link layout-topbar-button" @click="redirectToRegister">
 				<i class="pi pi-instagram" />
-				<span>Register to Join</span>
+				<span>Register to Join Men</span>
+			</button>
+		</li>
+		<li>
+			<button
+				class="p-link layout-topbar-button"
+				@click="redirectToFlagRegister"
+			>
+				<i class="pi pi-instagram" />
+				<span>Register to Join Flag Youth</span>
 			</button>
 		</li>
 	</ul>
@@ -48,5 +57,8 @@
 	}
 	function redirectToRegister(event: any) {
 		navigateTo('/register')
+	}
+	function redirectToFlagRegister(event: any) {
+		navigateTo('/registerflag')
 	}
 </script>
