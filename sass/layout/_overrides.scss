@@ -47,6 +47,9 @@ body {
 .topsectionitem {
 	@include styleclass('w-20rem mt-2 text-center');
 }
+.renderlist-enclosure {
+	@include styleclass('p-1 border-1 border-round-lg bg-white min-w-min');
+}
 .mybutton {
 	@include styleclass(
 		'bg-blue-500 text-white hover:bg-blue-600 border-round transition-colors transition-duration-150 p-3 border-none'

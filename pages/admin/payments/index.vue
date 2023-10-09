@@ -9,17 +9,19 @@
 			</div>
 			<span v-if="error" class="text-danger">ERROR: {{ error }}</span>
 		</div>
-		<render-list
-			:data="payments"
-			:app="app"
-			:statusable="statusable"
-			:editable="editable"
-			:deleteable="deleteable"
-			:addable="addable"
-			:viewable="viewable"
-			@changeStatus="changeStatus"
-			@deleteItem="deleteItem"
-		/>
+		<div class="renderlist-enclosure">
+			<render-list
+				:data="payments"
+				:app="app"
+				:statusable="statusable"
+				:editable="editable"
+				:deleteable="deleteable"
+				:addable="addable"
+				:viewable="viewable"
+				@changeStatus="changeStatus"
+				@deleteItem="deleteItem"
+			/>
+		</div>
 	</div>
 </template>
 

@@ -29,7 +29,7 @@
 				/>
 			</div>
 		</div>
-		<div>
+		<div class="renderlist-enclosure">
 			<render-list
 				:data="filteredData"
 				:app="app"

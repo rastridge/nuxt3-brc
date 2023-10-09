@@ -26,17 +26,19 @@
 					/>
 				</div>
 			</div>
-			<render-list
-				:data="filteredData"
-				:app="app"
-				:statusable="statusable"
-				:editable="editable"
-				:deleteable="deleteable"
-				:addable="addable"
-				:viewable="viewable"
-				@changeStatus="changeStatus"
-				@deleteItem="deleteItem"
-			/>
+			<div class="renderlist-enclosure">
+				<render-list
+					:data="filteredData"
+					:app="app"
+					:statusable="statusable"
+					:editable="editable"
+					:deleteable="deleteable"
+					:addable="addable"
+					:viewable="viewable"
+					@changeStatus="changeStatus"
+					@deleteItem="deleteItem"
+				/>
+			</div>
 		</div>
 	</div>
 </template>

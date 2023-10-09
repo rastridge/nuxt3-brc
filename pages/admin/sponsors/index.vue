@@ -9,17 +9,19 @@
 			</div>
 			<div v-if="pending" class="topsectionitem">Loading ...</div>
 		</div>
-		<render-list
-			:data="sponsors"
-			:app="app"
-			:statusable="statusable"
-			:editable="editable"
-			:deleteable="deleteable"
-			:addable="addable"
-			:viewable="viewable"
-			@changeStatus="changeStatus"
-			@deleteItem="deleteItem"
-		/>
+		<div class="renderlist-enclosure">
+			<render-list
+				:data="sponsors"
+				:app="app"
+				:statusable="statusable"
+				:editable="editable"
+				:deleteable="deleteable"
+				:addable="addable"
+				:viewable="viewable"
+				@changeStatus="changeStatus"
+				@deleteItem="deleteItem"
+			/>
+		</div>
 	</div>
 </template>
 

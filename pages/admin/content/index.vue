@@ -9,7 +9,8 @@
 			</div>
 		</div>
 		<div v-if="pending" class="topsectionitem">Loading ...</div>
-		<div v-else>
+
+		<div v-else class="renderlist-enclosure">
 			<render-list
 				:data="content_data"
 				:app="app"

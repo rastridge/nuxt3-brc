@@ -13,7 +13,7 @@
 			>Loading ...
 		</div>
 
-		<div v-else>
+		<div v-else class="renderlist-enclosure">
 			<render-list
 				:data="users"
 				:app="app"

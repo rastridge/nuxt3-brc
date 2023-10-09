@@ -15,16 +15,6 @@
 					:value="datalocal"
 					striped-rows
 					class="p-datatable-sm p-datatable-generic"
-					:pt="{
-						wrapper: {
-							style: {
-								padding: '0.5rem',
-								minWidth: '10rem',
-								border: '2px #00C solid',
-								'border-radius': '10px',
-							},
-						},
-					}"
 					responsiveLayout="scroll"
 					:paginator="true"
 					:rows="pagesize"
