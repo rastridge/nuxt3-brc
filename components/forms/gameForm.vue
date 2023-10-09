@@ -145,7 +145,7 @@
 						<th>Conv</th>
 						<th>PenK</th>
 						<th>DrpG</th>
-						<th>Yel</th>
+						<th>Yello</th>
 						<th>Red</th>
 						<th>Replaced by</th>
 					</tr>
