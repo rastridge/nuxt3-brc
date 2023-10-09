@@ -17,8 +17,14 @@
 		<Head>
 			<Title>Add clubhouse Item</Title>
 		</Head>
-		<admin-header title="Add clubhouse item" />
-		<clubhouse-form app="clubhouse" @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add clubhouse item" />
+			</div>
+			<div class="formsectionitem">
+				<clubhouse-form app="clubhouse" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>
 

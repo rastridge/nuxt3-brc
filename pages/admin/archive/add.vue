@@ -17,8 +17,14 @@
 		<Head>
 			<Title>Add archive Item</Title>
 		</Head>
-		<admin-header title="Add archive item" />
-		<archive-form app="archive" @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add archive Item" />
+			</div>
+			<div class="formsectionitem">
+				<archive-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>
 

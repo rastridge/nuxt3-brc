@@ -40,8 +40,15 @@
 		<Head>
 			<Title>Edit SMS {{ id }}</Title>
 		</Head>
-		<admin-header title="Edit SMS" />
-		<sms-form :id="id" @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit SMS" />
+			</div>
+			<div class="formsectionitem">
+				<sms-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>
 

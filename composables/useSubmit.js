@@ -17,7 +17,6 @@ export default function useSubmit() {
 				authorization: auth.user.token,
 			},
 		})
-		console.log('data.value.message', data.value.message)
 
 		if (error.value) {
 			throw createError({

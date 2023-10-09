@@ -14,7 +14,14 @@
 		<Head>
 			<Title> Add sponsors</Title>
 		</Head>
-		<admin-header title="Add sponsors" />
-		<sponsors-form @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add sponsor" />
+			</div>
+			<div class="formsectionitem">
+				<sponsors-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

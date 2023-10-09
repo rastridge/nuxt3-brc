@@ -16,7 +16,14 @@
 		<Head>
 			<Title>Add Game</Title>
 		</Head>
-		<admin-header title="Add Game" />
-		<game-form @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add Game" />
+			</div>
+			<div class="formsectionitem">
+				<game-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

@@ -1,5 +1,4 @@
 import pkg from './package.json'
-import path from 'path'
 
 export default defineNuxtConfig({
 	devtools: false,
@@ -39,13 +38,7 @@ export default defineNuxtConfig({
 			APP_NAME: pkg.name,
 		},
 	},
-	modules: [
-		'@formkit/nuxt',
-		'@pinia/nuxt',
-		'@nuxt/image',
-		'@nuxtjs/i18n',
-		'@vueuse/nuxt',
-	],
+	modules: ['@formkit/nuxt', '@pinia/nuxt', '@nuxt/image', '@vueuse/nuxt'],
 	buildModules: ['@nuxtjs/google-fonts'],
 	components: [
 		'~/components/app',
@@ -58,19 +51,6 @@ export default defineNuxtConfig({
 		locales: ['en'],
 		defaultLocale: 'en',
 		defaultTimeZone: 'America/New_York',
-	},
-
-	i18n: {
-		lazy: true,
-		langDir: 'locales',
-		defaultLocale: 'en',
-		strategy: 'no_prefix',
-		locales: [
-			{ code: 'en', file: 'en.json', name: 'English' },
-			{ code: 'de', file: 'de.json', name: 'German' },
-		],
-
-		vueI18n: './vue-i18n.options.ts',
 	},
 
 	primevue: {

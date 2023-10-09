@@ -14,7 +14,14 @@
 		<Head>
 			<Title> Add Opponent</Title>
 		</Head>
-		<admin-header title="Add Opponent" />
-		<opponents-form @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add opponent" />
+			</div>
+			<div class="formsectionitem">
+				<opponents-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

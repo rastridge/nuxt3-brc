@@ -27,7 +27,13 @@
 		<Head>
 			<Title>Edit Flag Account {{ id }}</Title>
 		</Head>
-		<admin-header title="Edit flag account" />
-		<accounts-flag-form :id="id" @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit flag account" />
+			</div>
+			<div class="formsectionitem">
+				<accounts-flag-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

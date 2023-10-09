@@ -17,8 +17,15 @@
 		<Head>
 			<Title>Add News Item</Title>
 		</Head>
-		<admin-header title="Add News item" />
-		<news-form @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add News Item" />
+			</div>
+			<div class="formsectionitem">
+				<news-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>
 

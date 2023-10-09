@@ -1,13 +1,16 @@
 <template>
 	<div>
-		<p v-if="!apps_data"><ProgressSpinner /> Loading</p>
-		<div
-			v-else
-			style="display: block; margin-left: auto; margin-right: auto"
-			class="surface-card p-4 shadow-2 border-round w-full md:w-9"
-		>
+		<p v-if="!apps_data">
+			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar
+			>Loading
+		</p>
+		<div v-else class="">
 			<div class="text-center">
-				<p v-if="saving" class="text-2xl"><ProgressSpinner /> Saving ...</p>
+				<p v-if="saving" class="text-2xl">
+					<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+					Saving ...
+				</p>
+
 				<Button
 					class="mb-4 mr-4"
 					label="Submit user"

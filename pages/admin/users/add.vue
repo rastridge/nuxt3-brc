@@ -3,8 +3,15 @@
 		<Head>
 			<Title>Add User</Title>
 		</Head>
-		<admin-header title="Add User" />
-		<user-form @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add User" />
+			</div>
+			<div class="formsectionitem">
+				<user-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>
 

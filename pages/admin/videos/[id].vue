@@ -20,7 +20,13 @@
 		<Head>
 			<Title>Edit Video {{ id }}</Title>
 		</Head>
-		<common-header title="Edit Video" />
-		<videos-form :id="id" @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit Video" />
+			</div>
+			<div class="formsectionitem">
+				<videos-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

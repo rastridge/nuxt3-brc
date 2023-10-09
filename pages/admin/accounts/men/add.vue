@@ -20,7 +20,13 @@
 		<Head>
 			<Title>Add Account</Title>
 		</Head>
-		<common-header title="Add account" />
-		<accounts-form @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add account" />
+			</div>
+			<div class="formsectionitem">
+				<accounts-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

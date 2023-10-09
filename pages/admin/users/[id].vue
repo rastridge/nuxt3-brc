@@ -3,8 +3,18 @@
 		<Head>
 			<Title>Edit User {{ id }}</Title>
 		</Head>
-		<admin-header title="Edit users" />
-		<user-form :id="id" @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem"></div>
+		</div>
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit User" />
+			</div>
+			<div class="formsectionitem">
+				<user-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>
 

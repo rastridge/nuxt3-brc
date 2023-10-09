@@ -23,7 +23,14 @@
 		<Head>
 			<Title>Edit event{{ id }}</Title>
 		</Head>
-		<admin-header title="Edit event" />
-		<events-form :id="id" @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit Events" />
+			</div>
+			<div class="formsectionitem">
+				<events-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

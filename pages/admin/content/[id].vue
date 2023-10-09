@@ -20,7 +20,14 @@
 		<Head>
 			<Title>Edit custom page {{ id }}</Title>
 		</Head>
-		<admin-header title="Edit custom page" />
-		<content-form :id="id" @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit custom page" />
+			</div>
+			<div class="formsectionitem">
+				<content-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

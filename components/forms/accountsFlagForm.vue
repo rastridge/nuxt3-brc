@@ -4,6 +4,10 @@
 			<p v-if="alert.message" class="alert-danger w-20rem">
 				ERROR: {{ alert.message }}
 			</p>
+			<p v-if="!state">
+				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar
+				>Loading
+			</p>
 			<FormKit
 				type="form"
 				:config="{ validationVisibility: 'live' }"
@@ -214,7 +218,7 @@
 		// Initialize Edit form
 		//
 		const { data, pending, error, refresh } = await useFetch(
-			`/accounts/flag/${props.id}`,
+			`/accounts_flag/${props.id}`,
 			{
 				key: props.id,
 				method: 'get',
@@ -257,7 +261,7 @@
 		emit('submitted', state)
 	}
 	const cancelForm = () => {
-		navigateTo('/') // needs to be / for self register
+		navigateTo('/admin/accounts_flag') // needs to be / for self register
 	}
 
 	//

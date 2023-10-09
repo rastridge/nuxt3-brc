@@ -22,7 +22,14 @@
 		<Head>
 			<Title>Edit game {{ id }}</Title>
 		</Head>
-		<admin-header title="Edit game" />
-		<game-form :id="id" @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit Game" />
+			</div>
+			<div class="formsectionitem">
+				<game-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

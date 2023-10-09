@@ -20,7 +20,14 @@
 		<Head>
 			<Title>Edit Leader {{ id }}</Title>
 		</Head>
-		<admin-header title="Leaders" />
-		<leaders-form :id="id" @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit leaders" />
+			</div>
+			<div class="formsectionitem">
+				<leaders-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

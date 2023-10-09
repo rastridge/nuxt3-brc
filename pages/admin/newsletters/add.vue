@@ -37,9 +37,15 @@
 		<Head>
 			<Title>Add Newsletter</Title>
 		</Head>
-		<admin-header title="Add Newsletter" />
-		<newsletters-form @submitted="onSubmit" />
-		<!-- <newsletters-form @submitted="onSendSave" /> -->
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add Newsletter" />
+			</div>
+			<div class="formsectionitem">
+				<newsletters-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>
 

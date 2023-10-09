@@ -23,8 +23,13 @@
 		<Head>
 			<Title>Edit archive Item {{ id }}</Title>
 		</Head>
-		<admin-header title="Edit archive Item" />
-		<!-- <archive-form app="archive" :id="id" @submitted="onSubmit" /> -->
-		<archive-form :id="id" @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit archive Item" />
+			</div>
+			<div class="formsectionitem">
+				<archive-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

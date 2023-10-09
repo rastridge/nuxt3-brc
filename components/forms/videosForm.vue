@@ -17,7 +17,7 @@
 			<FormKit
 				label="Video Description"
 				name="video_synop"
-				type="text"
+				type="textarea"
 				validation="required"
 			/>
 			<FormKit

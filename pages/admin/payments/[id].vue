@@ -24,7 +24,14 @@
 		<Head>
 			<Title>Edit payment {{ id }}</Title>
 		</Head>
-		<admin-header title="Edit payment" />
-		<payments-form :id="id" @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit payment" />
+			</div>
+			<div class="formsectionitem">
+				<payments-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

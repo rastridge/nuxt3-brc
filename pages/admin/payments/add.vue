@@ -17,7 +17,14 @@
 		<Head>
 			<Title>Add payment</Title>
 		</Head>
-		<admin-header title="Add payment" />
-		<payments-form @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add payment" />
+			</div>
+			<div class="formsectionitem">
+				<payments-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

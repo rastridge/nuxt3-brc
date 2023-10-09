@@ -8,7 +8,11 @@
 				<admin-header :title="app" />
 			</div>
 		</div>
-		<div v-if="pending" class="text-center text-2xl">Loading ...</div>
+		<div v-if="!users" class="text-center text-2xl">
+			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar
+			>Loading ...
+		</div>
+
 		<div v-else>
 			<render-list
 				:data="users"

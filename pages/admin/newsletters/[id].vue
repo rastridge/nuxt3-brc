@@ -42,8 +42,15 @@
 		<Head>
 			<Title>Edit Newsletter {{ id }}</Title>
 		</Head>
-		<common-header title="Edit Newsletter" />
-		<newsletters-form :id="id" @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit Newsletter" />
+			</div>
+			<div class="formsectionitem">
+				<newsletters-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>
 

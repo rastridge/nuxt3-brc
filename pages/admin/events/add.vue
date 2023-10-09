@@ -17,8 +17,14 @@
 		<Head>
 			<Title>Add events Item</Title>
 		</Head>
-		<admin-header title="Add event" />
-		<events-form @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add Events" />
+			</div>
+			<div class="formsectionitem">
+				<events-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>
 

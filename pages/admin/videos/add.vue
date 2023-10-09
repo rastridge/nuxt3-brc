@@ -14,7 +14,14 @@
 		<Head>
 			<Title> Add Video</Title>
 		</Head>
-		<common-header title="Add Video" />
-		<videos-form @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add Video" />
+			</div>
+			<div class="formsectionitem">
+				<videos-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

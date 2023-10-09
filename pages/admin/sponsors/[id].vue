@@ -21,6 +21,14 @@
 			<Title>Edit Sponsor {{ id }}</Title>
 		</Head>
 		<admin-header title="Sponsor" />
-		<sponsors-form :id="id" @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit sponsor" />
+			</div>
+			<div class="formsectionitem">
+				<sponsors-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

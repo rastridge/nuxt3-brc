@@ -20,7 +20,14 @@
 		<Head>
 			<Title>Edit Supporting Accounts {{ id }}</Title>
 		</Head>
-		<admin-header title="Supporting Accounts" />
-		<supportingaccounts-form :id="id" @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit Supporting Accounts" />
+			</div>
+			<div class="formsectionitem">
+				<supportingaccounts-form :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

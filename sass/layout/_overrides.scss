@@ -38,13 +38,15 @@ body {
 
 @import 'primeflex/primeflex.scss';
 
-.topsectionitem {
-	@include styleclass('flex w-20rem justify-content-center text-center');
-}
 .topsectioncenter {
-	@include styleclass('flex flex-column align-items-center gap-2');
+	@include styleclass('flex flex-column align-items-center');
 }
-
+.formsectionitem {
+	@include styleclass('p-3 border-1 border-round-lg bg-white');
+}
+.topsectionitem {
+	@include styleclass('w-20rem mt-2 text-center');
+}
 .mybutton {
 	@include styleclass(
 		'bg-blue-500 text-white hover:bg-blue-600 border-round transition-colors transition-duration-150 p-3 border-none'

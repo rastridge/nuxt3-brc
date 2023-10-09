@@ -7,8 +7,10 @@
 			<div class="topsectionitem">
 				<admin-header :title="app" />
 			</div>
-			<p v-if="pending" class="topsectionitem">
-				<ProgressSpinner /> Loading ...
+
+			<p v-if="!accounts" class="topsectionitem">
+				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+				Loading accounts ...
 			</p>
 			<div class="topsectionitem">
 				<Dropdown

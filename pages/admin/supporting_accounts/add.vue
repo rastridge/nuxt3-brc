@@ -14,7 +14,14 @@
 		<Head>
 			<Title> Add Supporting Acct</Title>
 		</Head>
-		<admin-header title="Add supporting account" />
-		<supportingaccounts-form @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add Supporting Accounts" />
+			</div>
+			<div class="formsectionitem">
+				<supportingaccounts-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

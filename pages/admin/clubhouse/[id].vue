@@ -23,8 +23,13 @@
 		<Head>
 			<Title>Edit clubhouse Item {{ id }}</Title>
 		</Head>
-		<admin-header title="Edit clubhouse Item" />
-		<!-- <clubhouse-form app="clubhouse" :id="id" @submitted="onSubmit" /> -->
-		<clubhouse-form app="clubhouse" :id="id" @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Edit clubhouse item" />
+			</div>
+			<div class="formsectionitem">
+				<clubhouse-form app="clubhouse" :id="id" @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

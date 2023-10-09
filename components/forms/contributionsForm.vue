@@ -1,5 +1,5 @@
 <template>
-	<div class="form-box">
+	<div class="">
 		<h5 v-if="props.id" class="text-left">
 			Contributor {{ state.contribution_name }}
 		</h5>

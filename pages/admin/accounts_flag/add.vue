@@ -20,7 +20,13 @@
 		<Head>
 			<Title>Add Flag Account</Title>
 		</Head>
-		<common-header title="Add Flag account" />
-		<accounts-flag-form @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add flag account" />
+			</div>
+			<div class="formsectionitem">
+				<accounts-flag-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

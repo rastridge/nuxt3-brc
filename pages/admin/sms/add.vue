@@ -34,8 +34,15 @@
 		<Head>
 			<Title>Add SMS</Title>
 		</Head>
-		<admin-header title="Add SMS" />
-		<sms-form @submitted="onSubmit" />
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add SMS" />
+			</div>
+			<div class="formsectionitem">
+				<sms-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>
 

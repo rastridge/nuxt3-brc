@@ -15,7 +15,13 @@
 		<Head>
 			<Title>Add Custom page</Title>
 		</Head>
-		<admin-header title="Add Custom page" />
-		<content-form @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add custom page" />
+			</div>
+			<div class="formsectionitem">
+				<content-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

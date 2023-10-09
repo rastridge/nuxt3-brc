@@ -14,7 +14,13 @@
 		<Head>
 			<Title> Add leaders</Title>
 		</Head>
-		<admin-header title="Add leaders" />
-		<leaders-form @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add leaders" />
+			</div>
+			<div class="formsectionitem">
+				<leaders-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>

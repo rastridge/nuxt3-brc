@@ -18,9 +18,15 @@
 <template>
 	<div>
 		<Head>
-			<Title>Add Contribution {{ id }}</Title>
+			<Title>Add Contribution</Title>
 		</Head>
-		<admin-header title="Add Contribution" />
-		<contributions-form :id="id" @submitted="onSubmit" />
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add Contributions" />
+			</div>
+			<div class="formsectionitem">
+				<contributions-form @submitted="onSubmit" />
+			</div>
+		</div>
 	</div>
 </template>
