@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<p v-if="!state"><ProgressSpinner /> Loading</p>
-
 		<div v-else>
 			<FormKit
 				type="form"
@@ -128,67 +127,78 @@
 			</div>
 
 			<!-- ------------ players table ------------------------- -->
-			<table
-				v-if="players"
-				style="white-space: nowrap; width: 100%; border-style: none"
-			>
-				<tr>
-					<th>Pos</th>
-					<th>Player</th>
-					<th>Tries</th>
-					<th>Assts</th>
-					<th>Conv</th>
-					<th>PenK</th>
-					<th>DrpG</th>
-					<th>Yel</th>
-					<th>Red</th>
-					<th>Replaced by</th>
-				</tr>
-				<tbody>
-					<tr v-for="(item, index) in players" :key="item.position_id">
-						<td>
-							{{ players[index].position_id }}
-						</td>
-						<td>
-							<AutoComplete
-								v-model="selectedPlayers[index]"
-								optionLabel="title"
-								:suggestions="filteredNames"
-								@complete="search"
-							/>
-						</td>
-						<td>
-							<input v-model="players[index].tries" size="1" type="text" />
-						</td>
-						<td>
-							<input v-model="players[index].assists" size="1" type="text" />
-						</td>
-						<td style="width: 1rem">
-							<input v-model="players[index].conv" size="1" type="text" />
-						</td>
-						<td>
-							<input v-model="players[index].penk" size="1" type="text" />
-						</td>
-						<td>
-							<input v-model="players[index].dgoal" size="1" type="text" />
-						</td>
-						<td>
-							<input v-model="players[index].yellow" size="1" type="text" />
-						</td>
-						<td>
-							<input v-model="players[index].red" size="1" type="text" />
-						</td>
-						<td>
-							<AutoComplete
-								v-model="selectedReplacements[index]"
-								optionLabel="title"
-								:suggestions="filteredNames"
-								@complete="search"
-							/>
-						</td>
+			<div class="w-full text-xs md:text-sm">
+				<table v-if="players" style="width: 100%; overflow-x: auto">
+					<tr>
+						<th>Pos</th>
+						<th>Player</th>
+						<th>Tries</th>
+						<th>Assts</th>
+						<th>Conv</th>
+						<th>PenK</th>
+						<th>DrpG</th>
+						<th>Yel</th>
+						<th>Red</th>
+						<th>Replaced by</th>
 					</tr>
-				</tbody>
-			</table>
+					<tbody>
+						<tr v-for="(item, index) in players" :key="item.position_id">
+							<td>
+								{{ players[index].position_id }}
+							</td>
+							<td>
+								<AutoComplete
+									v-model="selectedPlayers[index]"
+									:pt="{
+										input: {
+											class:
+												'w-6rem md:w-8rem lg:w-10rem text-xs md:text-sm h-1rem md:h-2rem',
+										},
+									}"
+									optionLabel="title"
+									:suggestions="filteredNames"
+									@complete="search"
+								/>
+							</td>
+							<td>
+								<input v-model="players[index].tries" size="1" type="text" />
+							</td>
+							<td>
+								<input v-model="players[index].assists" size="1" type="text" />
+							</td>
+							<td>
+								<input v-model="players[index].conv" size="1" type="text" />
+							</td>
+							<td>
+								<input v-model="players[index].penk" size="1" type="text" />
+							</td>
+							<td>
+								<input v-model="players[index].dgoal" size="1" type="text" />
+							</td>
+							<td>
+								<input v-model="players[index].yellow" size="1" type="text" />
+							</td>
+							<td>
+								<input v-model="players[index].red" size="1" type="text" />
+							</td>
+							<td>
+								<AutoComplete
+									v-model="selectedReplacements[index]"
+									optionLabel="title"
+									:pt="{
+										input: {
+											class:
+												'w-6rem md:w-8rem lg:w-10rem text-xs md:text-sm h-1rem md:h-2rem',
+										},
+									}"
+									:suggestions="filteredNames"
+									@complete="search"
+								/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			<!-- Confirm deletion -->
 			<Dialog
 				v-model:visible="showReplaceDialog"
@@ -581,9 +591,18 @@
 	}
 </script>
 
-<!-- <style>
-	.p-inputtext {
-		color: var(--text-color);
+<style scoped>
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		border-spacing: 0;
+		white-space: nowrap;
+		overflow-x: auto;
+	}
+
+	th,
+	td {
+		text-align: left;
+		padding: 2px;
 	}
 </style>
- -->

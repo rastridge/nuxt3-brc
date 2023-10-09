@@ -42,7 +42,7 @@ body {
 	@include styleclass('flex flex-column align-items-center');
 }
 .formsectionitem {
-	@include styleclass('p-3 border-1 border-round-lg bg-white');
+	@include styleclass('w-full md:w-10 p-3 border-1 border-round-lg bg-white');
 }
 .topsectionitem {
 	@include styleclass('w-20rem mt-2 text-center');
