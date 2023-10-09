@@ -93,10 +93,10 @@
 			<div v-if="props.id === 0 || $dayjs().isBefore(dayjs(state.date))">
 				<!-- Select previous game for autofill -->
 				<label for="reset"
-					><div>
+					><div class="p-2">
 						Do you want to select roster from a previous game? All current game
 						info will be replaced.
-						<p v-if="!state.date" style="color: red">
+						<p v-if="!state.date" style="color: red; padding: 1rem">
 							To do so you must first set a date for this game
 						</p>
 					</div>
@@ -110,7 +110,7 @@
 						type="checkbox"
 						@input="resetPlayers()"
 					/>
-					<p style="color: red">
+					<p style="color: red; padding: 2rem">
 						Selecting another roster will replace existing players on this
 						roster!
 					</p>
@@ -128,7 +128,15 @@
 
 			<!-- ------------ players table ------------------------- -->
 			<div class="w-full text-xs md:text-sm">
-				<table v-if="players" style="width: 100%; overflow-x: auto">
+				<table
+					v-if="players"
+					style="
+						border-collapse: collapse;
+						border-spacing: 0;
+						white-space: nowrap;
+						overflow-x: auto;
+					"
+				>
 					<tr>
 						<th>Pos</th>
 						<th>Player</th>
@@ -590,19 +598,3 @@
 		navigateTo('/admin/game_player_stats') // needs to be / for self register
 	}
 </script>
-
-<style scoped>
-	table {
-		width: 100%;
-		border-collapse: collapse;
-		border-spacing: 0;
-		white-space: nowrap;
-		overflow-x: auto;
-	}
-
-	th,
-	td {
-		text-align: left;
-		padding: 2px;
-	}
-</style>
