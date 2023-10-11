@@ -167,6 +167,11 @@
 					]"
 				/>
 			</FormKit>
+			<p v-if="saving">
+				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+				Saving ...
+			</p>
+
 			<p v-if="alert.message" class="alert-danger w-20rem">
 				ERROR: {{ alert.message }}
 			</p>
@@ -177,13 +182,13 @@
 
 <script setup>
 	import { getNode } from '@formkit/core'
-	// import ProgressSpinner from 'primevue/progressspinner'
 	import { useAuthStore } from '~/stores/authStore'
 	import { useAlertStore } from '~/stores/alertStore'
 	const auth = useAuthStore()
 	const alert = useAlertStore()
 	const { $dayjs } = useNuxtApp()
 	const { getCountries, setRegions } = useLocations()
+	const saving = ref(false)
 
 	//
 	// Outgoing
@@ -258,6 +263,8 @@
 	// form handlers
 	//
 	const submitForm = (state) => {
+		saving.value = true
+
 		emit('submitted', state)
 	}
 	const cancelForm = () => {

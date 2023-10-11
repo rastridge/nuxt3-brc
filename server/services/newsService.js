@@ -21,6 +21,7 @@ async function getAll() {
 									news_event_dt as dt,
 									news_expire_dt,
 									news_release_dt,
+									news_article,
 									news_synop,
 									status
                 FROM
@@ -30,7 +31,6 @@ async function getAll() {
                 ORDER BY dt DESC`
 
 	const news = await doDBQueryBuffalorugby(sql)
-
 	return news
 }
 

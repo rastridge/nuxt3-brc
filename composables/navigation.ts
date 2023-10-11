@@ -139,12 +139,12 @@ export function useNavigationMenu() {
 					{
 						label: 'News Archive',
 						icon: 'pi pi-fw pi-power-off',
-						to: '/sponsors',
+						to: '/archive/news',
 					},
 					{
 						label: 'Newsletters Archive',
 						icon: 'pi pi-fw pi-power-off',
-						to: '/sponsors',
+						to: '/archive/newsletters',
 					},
 					{
 						label: 'Opponents',

@@ -145,7 +145,10 @@
 				</table>
 			</div>
 			<div class="text-center">
-				<p v-if="saving" class="text-2xl"><ProgressSpinner /> Saving ...</p>
+				<p v-if="saving">
+					<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+					Saving ...
+				</p>
 				<Button
 					class="p-button mb-4 mr-4"
 					label="Submit user"
@@ -268,7 +271,6 @@
 		}
 		if (ok) {
 			saving.value = true
-
 			emit('submitted', form)
 		} else {
 			alert.error('Incomplete form')

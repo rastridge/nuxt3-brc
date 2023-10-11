@@ -95,6 +95,10 @@
 					validation-visibility="live"
 				/>
 			</FormKit>
+			<p v-if="saving">
+				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+				Saving ...
+			</p>
 			<p v-if="alert.message" class="alert-danger">
 				ERROR: {{ alert.message }}
 			</p>

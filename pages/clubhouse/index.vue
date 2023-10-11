@@ -6,85 +6,97 @@
 		<div class="bg">
 			<div class="flex flex-wrap align-self-start justify-content-center">
 				<div
-					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-12rem p-2 border-1"
+					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-8rem md:w-10rem p-2"
 				>
-					<div class="text-center mb-1">Team Photos Room</div>
 					<div>
 						<nuxt-link :to="`/clubhouse/room/photo`">
+							<div class="container">
+								<a>
+									<img
+										src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+										class="w-full"
+									/>
+								</a>
+								<div class="centered text-sm md:text-lg">Team Photos Room</div>
+							</div>
+						</nuxt-link>
+					</div>
+				</div>
+
+				<div
+					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-8rem md:w-10rem p-2"
+				>
+					<nuxt-link :to="`/clubhouse/wof`">
+						<div class="container">
 							<a>
 								<img
 									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
 									class="w-full"
 								/>
 							</a>
-						</nuxt-link>
-					</div>
-				</div>
-
-				<div
-					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-12rem p-2 border-1"
-				>
-					<div class="text-center mb-1">Wall of Fame</div>
-					<nuxt-link :to="`/clubhouse/wof`">
-						<a>
-							<img
-								src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
-								class="w-full"
-							/>
-						</a>
+							<div class="centered text-sm md:text-lg">Wall of Fame</div>
+						</div>
 					</nuxt-link>
 				</div>
 
 				<div
-					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-12rem p-2 border-1"
+					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-8rem md:w-10rem p-2"
 				>
-					<div class="text-center mb-1">Trophy Room</div>
 					<nuxt-link :to="`/clubhouse/room/trophy`">
-						<a>
-							<img
-								src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
-								class="w-full"
-							/>
-						</a>
+						<div class="container">
+							<a>
+								<img
+									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+									class="w-full"
+								/>
+							</a>
+							<div class="centered text-sm md:text-lg">Trophy Room</div>
+						</div>
 					</nuxt-link>
 				</div>
 
 				<div
-					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-12rem p-2 border-1"
+					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-8rem md:w-10rem p-2"
 				>
-					<div class="text-center mb-1">Plaques Room</div>
-					<nuxt-link :to="'/clubhouse/room/plaque'"
-						><a>
-							<img
-								src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
-								class="w-full"
-						/></a>
+					<nuxt-link :to="'/clubhouse/room/plaque'">
+						<div class="container">
+							<a>
+								<img
+									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+									class="w-full"
+							/></a>
+							<div class="centered text-sm md:text-lg">Plaques Room</div>
+						</div>
 					</nuxt-link>
 				</div>
 
 				<div
-					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-12rem p-2 border-1"
+					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-8rem md:w-10rem p-2"
 				>
-					<div class="text-center mb-1">Jerseys Room</div>
-					<nuxt-link :to="'/clubhouse/room/jersey'"
-						><a>
-							<img
-								src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
-								class="w-full"
-						/></a>
+					<nuxt-link :to="'/clubhouse/room/jersey'">
+						<div class="container">
+							<a>
+								<img
+									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+									class="w-full"
+							/></a>
+							<div class="centered text-sm md:text-lg">Jerseys Room</div>
+						</div>
 					</nuxt-link>
 				</div>
 
 				<div
-					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-12rem p-2 border-1"
+					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-8rem md:w-10rem p-2"
 				>
-					<div class="text-center mb-1">Balls Room</div>
-					<nuxt-link :to="'/clubhouse/room/ball'"
-						><a>
-							<img
-								src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
-								class="w-full"
-						/></a>
+					<nuxt-link :to="'/clubhouse/room/ball'">
+						<div class="container">
+							<a>
+								<img
+									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+									class="w-full"
+							/></a>
+							<div class="centered text-sm md:text-lg">Balls Room</div>
+						</div>
 					</nuxt-link>
 				</div>
 			</div>
@@ -92,9 +104,12 @@
 	</div>
 </template>
 
-<script setup></script>
-const door =
-ref("https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png")
+<script setup>
+	const door = ref(
+		'https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png'
+	)
+</script>
+
 <style scoped>
 	.bg {
 		background-image: url('https://media.buffalorugby.org/_img/_backgrounds/wood_clubhouse.jpg');
@@ -105,11 +120,18 @@ ref("https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/
 		padding: 2em;
 		padding-bottom: 5em;
 	}
-	.door {
-		width: 160px;
-		margin-right: 2rem;
-		font-size: 1em;
+
+	/* Container holding the image and the text */
+	.container {
+		position: relative;
 		text-align: center;
 		color: white;
+	}
+	/* Centered text */
+	.centered {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 </style>

@@ -52,8 +52,10 @@
 				validation="required"
 			/>
 		</FormKit>
-		<p v-if="saving" class="text-2xl"><ProgressSpinner /> Saving ...</p>
-
+		<p v-if="saving">
+			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+			Saving ...
+		</p>
 		<Button label="Cancel" @click="cancelForm()"> </Button>
 	</div>
 	<!-- </div> -->
@@ -105,7 +107,6 @@
 	//
 	const submitForm = (state) => {
 		saving.value = true
-
 		emit('submitted', state)
 	}
 

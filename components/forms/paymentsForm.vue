@@ -46,8 +46,10 @@
 				validation="required"
 			/>
 		</FormKit>
-		<p v-if="saving" class="text-2xl"><ProgressSpinner /> Saving ...</p>
-
+		<p v-if="saving">
+			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+			Saving ...
+		</p>
 		<Button label="Cancel" @click.prevent="cancelForm()"> </Button>
 	</div>
 </template>

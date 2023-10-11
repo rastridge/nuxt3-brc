@@ -1,7 +1,8 @@
 <template>
 	<div>
 		<p v-if="!memberTypeOptions || !memberAdminTypeOptions || !state">
-			<ProgressSpinner /> Loading
+			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar
+			>Loading
 		</p>
 		<p v-if="alert.message" class="alert-danger w-20rem">
 			ERROR: {{ alert.message }}
@@ -188,7 +189,10 @@
 				<Image :src="state.member_pic_path" alt="Image" width="72" />
 			</div>
 		</FormKit>
-		<!-- <p v-if="saving" class="text-2xl"><ProgressSpinner /> Saving ...</p> -->
+		<p v-if="saving">
+			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+			Saving ...
+		</p>
 		<p v-if="alert.message" class="alert-danger w-20rem">
 			ERROR: {{ alert.message }}
 		</p>
@@ -213,7 +217,7 @@
 
 <script setup>
 	import { getNode } from '@formkit/core'
-	// import ProgressSpinner from 'primevue/progressspinner'
+	import ProgressSpinner from 'primevue/progressspinner'
 	import { useAuthStore } from '~/stores/authStore'
 	import { useAlertStore } from '~/stores/alertStore'
 	const auth = useAuthStore()
@@ -221,7 +225,7 @@
 	const { $dayjs } = useNuxtApp()
 	const { getCountries, setRegions } = useLocations()
 	const { getMemberAdminTypeOptions, getMemberTypeOptions } = useMembertypes()
-	// const saving = ref(false)
+	const saving = ref(false)
 
 	//
 	// Outgoing
@@ -353,7 +357,7 @@
 	// form handlers
 	//
 	const submitForm = (state) => {
-		// saving.value = true
+		saving.value = true
 		emit('submitted', state)
 	}
 	const cancelForm = () => {

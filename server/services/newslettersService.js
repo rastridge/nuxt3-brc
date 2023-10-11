@@ -36,6 +36,7 @@ async function getAll() {
 								newsletter_recipient_type_id,
 								admin_user_id,
 								newsletter_subject,
+								newsletter_body_html,
 								newsletter_subject as title,
 								newsletter_sent as sent_dt,
 								status,

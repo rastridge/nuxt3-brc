@@ -84,8 +84,10 @@
 				<!-- points against input-->
 				<FormKit label="Pts against" name="ptsAgn" type="text" />
 			</FormKit>
-
-			<p v-if="saving" class="text-2xl"><ProgressSpinner /> Saving ...</p>
+			<p v-if="saving">
+				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+				Saving ...
+			</p>
 
 			<Button label="Cancel" @click.prevent="cancelForm()" style="margin: 1rem">
 			</Button>

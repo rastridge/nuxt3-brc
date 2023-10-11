@@ -16,43 +16,34 @@
 				/>
 			</div>
 		</div>
-		<div
-			v-if="archives.length"
-			class="surface-400 pt-3 pb-3 border-round-lg border-1"
-		>
-			<ul class="list-none text-xl">
+		<div v-if="archives" class="surface-400 p-2 border-round-lg border-1">
+			<ul class="list-none text-sm md:text-lg">
 				<li
 					v-for="itm in filteredData"
 					:key="itm.id"
-					class="cursor-pointer bg-white border-1 p-3 m-2"
+					class="cursor-pointer text-600 bg-white border-round-lg p-3 m-2"
 				>
 					<a :href="itm.archive_filepath" target="blank">
-						<span class="font-italic">
+						<span class="text-sm md:text-lg text-600">
 							{{ $dayjs(itm.archive_date).format('YYYY MMM') }}
 						</span>
 						-
-						<span class="font-semibold">
+						<span class="text-sm md:text-lg text-600 font-semibold">
 							{{ itm.archive_title }}
 						</span>
 						<br />
-						<span class="text-lg">
+						<span
+							class="text-xs md:text-sm text-600 cursor-pointer text-xs md:text-sm text-600"
+						>
 							{{ itm.archive_description }}
 						</span>
+						<span class="text-xs md:text-sm text-blue-600 cursor-pointer">
+							- Open</span
+						>
 					</a>
-					<!-- 					<button @click="openModal(itm.archive_filepath)">Display PDF</button>
-					<span>{{ itm.archive_filepath }}</span> -->
 				</li>
 			</ul>
 		</div>
-
-		<!-- Modal -->
-		<!-- 		<Dialog
-			v-model:visible="displayModal"
-			:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-			:style="{ width: '50vw' }"
-		>
-			<display-pdf :src="source" />
-		</Dialog> -->
 	</div>
 </template>
 
@@ -86,19 +77,4 @@
 			authorization: 'not-needed',
 		},
 	})
-
-	//
-	// progress modal
-	//
-	/* 	const displayModal = ref(false)
-	const openModal = (s) => {
-		console.log('IN openmodal s = ', s)
-		source.value = s
-		console.log('IN openmodal source.value = ', source.value)
-
-		displayModal.value = true
-	}
-	const closeModal = () => {
-		displayModal.value = false
-	} */
 </script>

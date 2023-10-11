@@ -80,7 +80,6 @@ async function getOne(id) {
 		where archive_id = ` + id
 
 	const archive = await doDBQueryBuffalorugby(sql)
-
 	return archive[0]
 }
 
