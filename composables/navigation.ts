@@ -302,6 +302,12 @@ export function useNavigationMenu() {
 						visible: () => checkPerm('videos') > 0,
 					},
 					{
+						label: 'Votes',
+						icon: 'pi pi-fw pi-user-edit',
+						to: '/admin/votes',
+						visible: () => checkPerm('votes') > 0,
+					},
+					{
 						label: 'Log out',
 						icon: 'pi pi-fw pi-sign-out',
 						to: '/logout',
