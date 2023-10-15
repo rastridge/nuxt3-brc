@@ -203,6 +203,11 @@ async function getHistory(id) {
 }
 
 async function getAll(sort = 'DESC') {
+	/* 
+// Needed for netlify build but not for localhost !!!!
+								CONVERT_TZ(g.date,'UTC','-04:00') as date,
+								CONVERT_TZ(g.date,'UTC','-04:00') as dt,
+ */
 	const sql =
 		`SELECT
 				game_id,
@@ -214,8 +219,7 @@ async function getAll(sort = 'DESC') {
 				venue,
 				comment,
 				g.date,
-				CONVERT_TZ(g.date,'UTC','-04:00') as date,
-				CONVERT_TZ(g.date,'UTC','-04:00') as dt,
+				g.date as dt,
 				t.game_type,
 				t.game_type_id,
 				game_level,
@@ -266,6 +270,11 @@ async function getPrevious(date) {
 }
 
 async function getYear(year) {
+	/* 
+// Needed for netlify build but not for localhost !!!!
+								CONVERT_TZ(g.date,'UTC','-04:00') as date,
+								CONVERT_TZ(g.date,'UTC','-04:00') as dt,
+ */
 	const YEAR2 = parseInt(year) + 1
 
 	const sql = `SELECT
@@ -276,8 +285,7 @@ async function getYear(year) {
 				venue,
 				comment,
 				g.date,
-				CONVERT_TZ(g.date,'UTC','-04:00') as date,
-				CONVERT_TZ(g.date,'UTC','-04:00') as dt,
+				g.date as dt,
 				t.game_type,
 				t.game_type_id,
 				game_level,
@@ -308,6 +316,11 @@ async function getYear(year) {
 
 async function getSeason(year) {
 	const YEAR2 = parseInt(year) + 1
+	/* 
+// Needed for netlify build but not for localhost !!!!
+								CONVERT_TZ(g.date,'UTC','-04:00') as date,
+								CONVERT_TZ(g.date,'UTC','-04:00') as dt,
+ */
 
 	const sql = `SELECT
 								game_id,
@@ -363,6 +376,12 @@ async function getGameTypes() {
 }
 
 async function getOne(id) {
+	/* 
+// Needed for netlify build but not for localhost !!!!
+								CONVERT_TZ(g.date,'UTC','-04:00') as date,
+								CONVERT_TZ(g.date,'UTC','-04:00') as dt,
+ */
+
 	const sql = `SELECT
 									g.game_id,
 									g.opponent_id,
@@ -371,8 +390,7 @@ async function getOne(id) {
 									g.venue,
 									g.comment,
 									g.date,
-									CONVERT_TZ(g.date,'UTC','-04:00') as date,
-									CONVERT_TZ(g.date,'UTC','-04:00') as dt,
+									g.date as dt,
 									g.game_type_id,
 									t.game_type,
 									g.game_level,
