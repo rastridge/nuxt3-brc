@@ -319,8 +319,8 @@ async function getSeason(year) {
 								venue,
 								comment,
 								g.date,
-								CONVERT_TZ(g.date,'UTC','-04:00') as date,
-								CONVERT_TZ(g.date,'UTC','-04:00') as dt,
+								g.date as dt,
+
 								t.game_type,
 								t.game_type_id,
 								game_level,
