@@ -21,7 +21,6 @@
 				/>
 			</div>
 		</div>
-
 		<DataView
 			:value="filteredData"
 			:pt="{
@@ -214,21 +213,25 @@
 				statusMessage: `Could not get data from ${url}`,
 			})
 		}
-		// const d = $dayjs(season.value.date)
-		// data.value.date = d.format('YYYY')
+		data.value.date = $dayjs(data.value.date)
 		return data.value
 	}
+
 	season.value = await getSeason(year.value)
-	const onSubmit = async (value) => {
-		year.value = value
-		season.value = await getSeason(year.value)
-	}
+
 	//
 	// set gametype after drop down choice
 	//
 	const gametype = ref(1)
 	const onSubmitGameType = (value) => {
 		gametype.value = value
+	}
+	//
+	// get season
+	//
+	const onSubmit = async (value) => {
+		year.value = value
+		season.value = await getSeason(year.value)
 	}
 
 	const filteredData = computed(() => {

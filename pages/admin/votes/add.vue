@@ -2,23 +2,23 @@
 	const { onSubmitAdd } = useSubmit()
 
 	const onSubmit = async function (state) {
-		await onSubmitAdd('videos', state)
-		navigateTo(`/admin/videos`)
+		await onSubmitAdd('votes', state)
+		navigateTo(`/admin/votes`)
 	}
 </script>
 
 <template>
 	<div>
 		<Head>
-			<Title> Add Video</Title>
+			<Title> Add Vote</Title>
 		</Head>
 
 		<div class="topsectioncenter">
 			<div class="topsectionitem">
-				<admin-header title="Add Video" />
+				<admin-header title="Add vote" />
 			</div>
 			<div class="formsectionitem">
-				<videos-form @submitted="onSubmit" />
+				<votes-form @submitted="onSubmit" />
 			</div>
 		</div>
 	</div>

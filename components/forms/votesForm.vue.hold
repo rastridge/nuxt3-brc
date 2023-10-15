@@ -20,7 +20,7 @@
 			/>
 		</FormKit>
 		<Button label="Cancel" @click.prevent="cancelForm()"> </Button>
-		<pre wrap>choice_values {{ choice_values }}</pre>
+
 		<FormKit type="list" v-model="choice_values">
 			<FormKit
 				v-for="key in items"
@@ -76,9 +76,6 @@
 	const choices = ref([
 		{ vote_choice_id: 0, vote_choice: '', vote_picked_cnt: 0 },
 	])
-	// const choices = ref([
-	// 	{ vote_choice_id: 0, vote_choice: '', vote_picked_cnt: 0 },
-	// ])
 	// formkit list items
 	const items = ref([])
 	// vote_choice vmodel values for formkit inputs
@@ -149,13 +146,13 @@
 	//
 	const submitForm = (question) => {
 		saving.value = true
+		// question.id = props.id
+
 		// insert values back into choice object
 		choice_values.value.forEach((item, index, array) => {
 			updated_choices.value.push({
 				vote_choice: item,
-				// mismatch i add many object to 1 new object
-				// vote_picked_cnt: choices.value[index].vote_picked_cnt,
-				vote_picked_cnt: 0,
+				vote_picked_cnt: choices.value[index].vote_picked_cnt,
 			})
 		})
 		// delete old choices and replace with new

@@ -591,7 +591,14 @@
 		})
 
 		state.players = players.value
-		state.date = state.date + 'T' + state.time + ':00.000Z'
+
+		let z = state.date + 'T' + state.time + '.000Z'
+		let t = dayjs.utc(state.date + 'T' + state.time + '.000Z').add(4, 'hour')
+		state.date = dayjs
+			.utc(state.date + 'T' + state.time + '.000Z')
+			.add(4, 'hour')
+
+		console.log(`t ${t} z ${z} state.date ${state.date}`)
 
 		saving.value = true
 		emit('submitted', state)

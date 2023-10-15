@@ -278,7 +278,6 @@ async function editOne(info) {
 		info
 
 	const conn = await getConnectionBuffalorugby()
-
 	try {
 		await conn.query('START TRANSACTION')
 		//
@@ -310,23 +309,20 @@ async function editOne(info) {
 
 			// new (add) or updated (edit) password
 			if (password.length > 0) {
-				const salt = bcrypt.genSaltSync(10)
+				//
+				// If user has reset password
 				const new_admin_user_pass = bcrypt.hashSync(password, salt)
 
 				sql = `UPDATE inbrc_admin_users
-							SET
-									admin_user_name = ?,
-									admin_user_email = ?,
-									admin_user_pass = ?,
-									modified_dt= NOW()
-							WHERE
-									admin_user_id = ?`
+								SET
+										admin_user_name = ?,
+										admin_user_email = ?,
+										admin_user_pass = ?,
+										modified_dt= NOW()
+								WHERE
+										admin_user_id = ?`
 
-				//
-				// If user has reset password
-				//
 				let inserts = []
-
 				inserts.push(
 					lc_admin_username,
 					lc_admin_user_email,
