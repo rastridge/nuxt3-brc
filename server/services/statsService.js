@@ -407,7 +407,7 @@ async function getOne(id) {
 								WHERE
 									g.game_id = ${id}
 									AND g.game_type_id = t.game_type_id`
-	console.log('sql in getone ', sql)
+	// console.log('sql in getone ', sql)
 
 	const games = await doDBQueryBuffalorugby(sql)
 	return games[0]
@@ -879,7 +879,7 @@ async function editOne({
 			game_id
 		)
 		sql = mysql.format(sql, inserts)
-		console.log('sql with combined ', sql)
+		// console.log('sql with combined ', sql)
 		await conn.execute(sql)
 
 		// update records for 23 players

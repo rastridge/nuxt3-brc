@@ -50,7 +50,7 @@ export default defineNuxtConfig({
 	dayjs: {
 		locales: ['en'],
 		defaultLocale: 'en',
-		defaultTimeZone: 'America/New_York',
+		// defaultTimeZone: 'America/New_York',
 	},
 
 	primevue: {
@@ -87,20 +87,4 @@ export default defineNuxtConfig({
 		// transpile: ['nuxt', 'primevue'],
 		transpile: ['primevue'],
 	},
-
-	/* 	vite: {
-		resolve: {
-			alias: {
-				process: 'process/browser',
-				stream: 'stream-browserify',
-				zlib: 'browserify-zlib',
-				util: 'util/',
-				'@': path.resolve(__dirname, './src'),
-			},
-		},
-	}, */
-	/* 	sourcemap: {
-		client: false,
-		server: true,
-	}, */
 })
