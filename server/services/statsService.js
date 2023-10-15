@@ -331,9 +331,8 @@ async function getSeason(year) {
 								referee,
 								venue,
 								comment,
-								g.date,
-								g.date as dt,
-
+								DATE_SUB(g.date, INTERVAL 4 HOUR) as date,
+								DATE_SUB(g.date, INTERVAL 4 HOUR) as dt,
 								t.game_type,
 								t.game_type_id,
 								game_level,
@@ -390,7 +389,8 @@ async function getOne(id) {
 									g.venue,
 									g.comment,
 									g.date,
-									g.date as dt,
+									DATE_SUB(g.date, INTERVAL 4 HOUR) as date,
+									DATE_SUB(g.date, INTERVAL 4 HOUR) as dt,
 									g.game_type_id,
 									t.game_type,
 									g.game_level,
@@ -407,6 +407,7 @@ async function getOne(id) {
 								WHERE
 									g.game_id = ${id}
 									AND g.game_type_id = t.game_type_id`
+	console.log('sql in getone ', sql)
 
 	const games = await doDBQueryBuffalorugby(sql)
 	return games[0]
@@ -826,6 +827,7 @@ async function editOne({
 	referee,
 	venue,
 	date,
+	time,
 	game_type_id,
 	game_level,
 	comment,
@@ -834,8 +836,17 @@ async function editOne({
 	ptsAgn,
 	players,
 }) {
+	const combined = date + 'T' + time + '.000Z'
+
+	const conn = await mysql.createConnection({
+		host: 'mysql.buffalorugby.org',
+		user: 'rastridge',
+		password: 'a1s2d3f4',
+		database: 'buffalorugby',
+	})
+
 	try {
-		const conn = await getConnectionBuffalorugby()
+		// const conn = await getConnectionBuffalorugby()
 		await conn.query('START TRANSACTION')
 
 		let sql = `UPDATE inbrc_stats_games SET
@@ -843,7 +854,7 @@ async function editOne({
 								referee = ?,
 								venue = ?,
 								comment = ?,
-								date = ?,
+								date = DATE_ADD(?, INTERVAL 4 HOUR),
 								game_type_id = ?,
 								game_level = ?,
 								occasion = ?,
@@ -859,7 +870,7 @@ async function editOne({
 			referee,
 			venue,
 			comment,
-			date,
+			combined,
 			game_type_id,
 			game_level,
 			occasion,
@@ -868,6 +879,7 @@ async function editOne({
 			game_id
 		)
 		sql = mysql.format(sql, inserts)
+		console.log('sql with combined ', sql)
 		await conn.execute(sql)
 
 		// update records for 23 players
