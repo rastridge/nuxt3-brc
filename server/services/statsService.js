@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise'
 const { SEASON_DIVIDE_DATE } = useRuntimeConfig()
-const { doDBQueryBuffalorugby } = useQuery()
-const { getConnectionBuffalorugby } = useDBConnection()
+const { doDBQuery } = useQuery()
+const { getConnection } = useDBConnection()
 
 export const statsService = {
 	getAll,
@@ -46,7 +46,7 @@ async function getHistoryTotals(id) {
 								AND deleted = 0
 								AND Status = 1`
 
-	const stats = await doDBQueryBuffalorugby(sql)
+	const stats = await doDBQuery(sql)
 	return stats[0]
 }
 
@@ -83,7 +83,7 @@ async function getHistoryStreaks(id) {
 								HAVING COUNT(*) > 1
 								ORDER BY Min(date)`
 
-	const stats = await doDBQueryBuffalorugby(sql)
+	const stats = await doDBQuery(sql)
 	return stats
 }
 async function getHistoryCurrentStreak(id) {
@@ -171,7 +171,7 @@ async function getHistoryCurrentStreak(id) {
 									AND
 									opponent_id = ${id}`
 
-	stats = await doDBQueryBuffalorugby(sql)
+	stats = await doDBQuery(sql)
 	return stats
 }
 
@@ -198,7 +198,7 @@ async function getHistory(id) {
 		ORDER BY
 			g.date ASC`
 
-	const games = await doDBQueryBuffalorugby(sql)
+	const games = await doDBQuery(sql)
 	return games
 }
 
@@ -243,7 +243,7 @@ async function getAll(sort = 'DESC') {
 			ORDER BY
 				dt ` + sort
 
-	const games = await doDBQueryBuffalorugby(sql)
+	const games = await doDBQuery(sql)
 	return games
 }
 
@@ -265,7 +265,7 @@ async function getPrevious(date) {
 					ORDER BY
 						date DESC
 					LIMIT 10`
-	const games = await doDBQueryBuffalorugby(sql)
+	const games = await doDBQuery(sql)
 	return games
 }
 
@@ -310,7 +310,7 @@ async function getYear(year) {
 			ORDER BY
 				dt DESC`
 
-	const games = await doDBQueryBuffalorugby(sql)
+	const games = await doDBQuery(sql)
 	return games
 }
 
@@ -331,8 +331,8 @@ async function getSeason(year) {
 								referee,
 								venue,
 								comment,
-								DATE_SUB(g.date, INTERVAL 4 HOUR) as date,
-								DATE_SUB(g.date, INTERVAL 4 HOUR) as dt,
+								g.date as date,
+								g.date as dt,
 								t.game_type,
 								t.game_type_id,
 								game_level,
@@ -358,7 +358,8 @@ async function getSeason(year) {
 								AND ( DATE(date) > DATE(CONCAT("${year}","${SEASON_DIVIDE_DATE}"))) AND ( DATE(date) <= DATE(CONCAT("${YEAR2}","${SEASON_DIVIDE_DATE}")) )
 							ORDER BY
 								dt ASC`
-	const games = await doDBQueryBuffalorugby(sql)
+	console.log('IN getSeason sql = ', sql)
+	const games = await doDBQuery(sql)
 	return games
 }
 
@@ -370,7 +371,7 @@ async function getGameTypes() {
 				inbrc_stats_game_types
 			WHERE 1`
 
-	const gametypes = await doDBQueryBuffalorugby(sql)
+	const gametypes = await doDBQuery(sql)
 	return gametypes
 }
 
@@ -389,8 +390,7 @@ async function getOne(id) {
 									g.venue,
 									g.comment,
 									g.date,
-									DATE_SUB(g.date, INTERVAL 4 HOUR) as date,
-									DATE_SUB(g.date, INTERVAL 4 HOUR) as dt,
+									g.date as dt,
 									g.game_type_id,
 									t.game_type,
 									g.game_level,
@@ -409,7 +409,7 @@ async function getOne(id) {
 									AND g.game_type_id = t.game_type_id`
 	// console.log('sql in getone ', sql)
 
-	const games = await doDBQueryBuffalorugby(sql)
+	const games = await doDBQuery(sql)
 	return games[0]
 }
 
@@ -449,7 +449,7 @@ async function getAdjacent(direction) {
 					date ${FILTER2}
 				LIMIT 2`
 
-	const stats = await doDBQueryBuffalorugby(sql)
+	const stats = await doDBQuery(sql)
 	return stats
 }
 
@@ -491,7 +491,7 @@ async function getRosterStats() {
 								yr
 							DESC`
 
-	const roster_count = await doDBQueryBuffalorugby(sql)
+	const roster_count = await doDBQuery(sql)
 	return roster_count
 }
 
@@ -522,7 +522,7 @@ async function getPlayers(id) {
 							ORDER BY
 								position_id asc`
 
-	const players = await doDBQueryBuffalorugby(sql)
+	const players = await doDBQuery(sql)
 	return players
 }
 
@@ -554,7 +554,7 @@ WHERE
 		AND g.Status = 1
 		AND g.deleted = 0`
 
-	const stats = await doDBQueryBuffalorugby(sql)
+	const stats = await doDBQuery(sql)
 	return stats[0].gamecount
 }
 
@@ -603,7 +603,7 @@ async function getPlayerStats(id) {
 							ORDER BY
 								games desc`
 
-	const stats = await doDBQueryBuffalorugby(sql)
+	const stats = await doDBQuery(sql)
 	return stats
 }
 
@@ -650,7 +650,7 @@ async function getTeamStats(gt) {
 							ORDER BY
 								season ASC`
 
-	const stats = await doDBQueryBuffalorugby(sql)
+	const stats = await doDBQuery(sql)
 	return stats
 }
 
@@ -676,7 +676,7 @@ async function getTeamStatsTotal(gt) {
 								AND Status = 1
 								AND deleted = 0`
 
-	const stats = await doDBQueryBuffalorugby(sql)
+	const stats = await doDBQuery(sql)
 	return stats[0]
 }
 
@@ -720,7 +720,7 @@ async function getPlayerGames(id) {
 				ORDER BY
 					g.date DESC`
 
-	const stats = await doDBQueryBuffalorugby(sql)
+	const stats = await doDBQuery(sql)
 
 	return stats
 }
@@ -828,6 +828,7 @@ async function editOne({
 	venue,
 	date,
 	time,
+	combined_date_time,
 	game_type_id,
 	game_level,
 	comment,
@@ -842,7 +843,7 @@ async function editOne({
 		host: 'mysql.buffalorugby.org',
 		user: 'rastridge',
 		password: 'a1s2d3f4',
-		database: 'buffalorugby',
+		database: 'buffalorugby_testing',
 	})
 
 	try {
@@ -854,7 +855,7 @@ async function editOne({
 								referee = ?,
 								venue = ?,
 								comment = ?,
-								date = DATE_ADD(?, INTERVAL 4 HOUR),
+								date = ?,
 								game_type_id = ?,
 								game_level = ?,
 								occasion = ?,
@@ -870,7 +871,7 @@ async function editOne({
 			referee,
 			venue,
 			comment,
-			combined,
+			combined_date_time,
 			game_type_id,
 			game_level,
 			occasion,
@@ -879,7 +880,7 @@ async function editOne({
 			game_id
 		)
 		sql = mysql.format(sql, inserts)
-		// console.log('sql with combined ', sql)
+		console.log('sql with combined ', sql)
 		await conn.execute(sql)
 
 		// update records for 23 players
@@ -954,7 +955,7 @@ async function changeStatus({ id, status }) {
 		`UPDATE inbrc_stats_games SET status = "` +
 		status +
 		`" WHERE game_id = ${id}`
-	const players = await doDBQueryBuffalorugby(sql)
+	const players = await doDBQuery(sql)
 
 	return players
 }

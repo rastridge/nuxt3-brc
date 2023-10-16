@@ -45,8 +45,35 @@
 				<!-- Date input-->
 				<FormKit type="date" label="Date" name="date" validation="required" />
 
+				<!-- $dayjs(state.date).toISOString() =
+				{{ $dayjs(state.date).toISOString() }} -->
+				<!--  -->
 				<!-- Time input-->
 				<FormKit type="time" label="Time" name="time" validation="required" />
+
+				state.time = {{ state.time }}<br />
+				state.date = {{ state.date }}<br />
+
+				combo = {{ state.date + 'T' + state.time + ':00.000Z' }}<br />
+				$dayjs(combo ).toISOString() =
+				{{ $dayjs(state.date + 'T' + state.time + ':00.000Z').toISOString()
+				}}<br />
+
+				$dayjs(state.date + 'T' + state.time + ':00.000Z' ).add(4,
+				'hours').toISOString() =
+				{{
+					$dayjs(state.date + 'T' + state.time + ':00.000Z')
+						.add(4, 'hours')
+						.toISOString()
+				}}<br />
+
+				adjustedISO =
+				{{ adjustedISO }}
+				<!-- {{
+					$dayjs(state.date + 'T' + state.time + ':00.000Z')
+						.add(4, 'hour')
+						.toISOString()
+				}} -->
 
 				<!-- Game Type input-->
 				<FormKit
@@ -247,6 +274,7 @@
 	const auth = useAuthStore()
 	const { $dayjs } = useNuxtApp()
 	const saving = ref(false)
+
 	//
 	// Outgoing
 	//
@@ -264,6 +292,13 @@
 	const players = ref([])
 	let state = ref({})
 	const reset = ref('')
+
+	const adjustedISO = ref(null)
+	/* 	adjustedISO.value = $dayjs(
+		state.value.date + 'T' + state.value.time + ':00.000Z'
+	)
+		.add(4, 'hour')
+		.toISOString() */
 
 	//
 	// Player name autocomplete
@@ -374,7 +409,7 @@
 		// why?
 		const d = $dayjs(g.value.date)
 		state.value.date = d.format('YYYY-MM-DD')
-		state.value.time = d.format('HH:mm:ss')
+		state.value.time = d.format('HH:mm')
 
 		// needs to be carried over because its not used in the form
 		state.value.opponent_id = g.value.opponent_id
@@ -591,8 +626,15 @@
 		})
 
 		state.players = players.value
+
+		const combined_date_time = $dayjs(
+			state.date + 'T' + state.time + ':00.000Z'
+		).toISOString()
+
 		// console.log(`state.date ${state.date} state.time ${state.time}`)
 
+		state.combined_date_time = combined_date_time
+		console.log(`state.combined_date_time ${state.combined_date_time}`)
 		saving.value = true
 		emit('submitted', state)
 	}

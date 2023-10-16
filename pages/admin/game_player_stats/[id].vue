@@ -11,7 +11,12 @@
 	// content form action
 	//
 	const { onSubmitEdit } = useSubmit()
+
 	const onSubmit = async function (form_state) {
+		console.log(
+			`form_state.combined_date_time ${form_state.combined_date_time}`
+		)
+
 		await onSubmitEdit('game_player_stats', form_state)
 		navigateTo(`/admin/game_player_stats`)
 	}
@@ -27,9 +32,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit Game" />
 			</div>
-			<div class="formsectionitem">
-				<game-form :id="id" @submitted="onSubmit" />
-			</div>
 		</div>
+		<game-form :id="id" @submitted="onSubmit" />
 	</div>
 </template>

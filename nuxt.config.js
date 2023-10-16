@@ -50,7 +50,7 @@ export default defineNuxtConfig({
 	dayjs: {
 		locales: ['en'],
 		defaultLocale: 'en',
-		// defaultTimeZone: 'America/New_York',
+		defaultTimeZone: 'America/New_York',
 	},
 
 	primevue: {

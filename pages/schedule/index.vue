@@ -136,7 +136,7 @@
 			maximizable
 			modal
 		>
-			<div class="m-1 p=1">
+			<div class="m-1 p-1 text-sm">
 				<display-game-info :item="info" />
 				<display-roster :players="players" />
 			</div>
@@ -145,7 +145,7 @@
 					<Button
 						label="Close"
 						@click="closeModal"
-						class="p-button-sm"
+						class="p-button-sm mt-2"
 						autofocus
 					/>
 				</div>
@@ -165,15 +165,17 @@
 				footer: { class: 'surface-300' },
 			}"
 		>
-			<display-history :opponent_id="opponent_id" />
-			<display-records :opponent_id="opponent_id" />
-			<display-streaks :opponent_id="opponent_id" />
+			<div class="m-1 p-1 text-sm">
+				<display-history :opponent_id="opponent_id" />
+				<display-records :opponent_id="opponent_id" />
+				<display-streaks :opponent_id="opponent_id" />
+			</div>
 			<template #footer>
 				<div>
 					<Button
 						label="Close"
 						@click="closeHistoryModal"
-						class="p-button-sm"
+						class="p-button-sm mt-2"
 						autofocus
 					/>
 				</div>
