@@ -1,1 +1,59 @@
-/news /schedule
+
+#
+/about-us /page/1
+#
+/join /page/55
+#
+/directions /page/2
+#
+/online-payments /payments
+#
+/community-service /communityservice
+#
+/admin-login /loginpage
+#
+/virtual-clubhouse /clubhouse
+#
+/schedule-and-results7s /schedule
+#
+/schedule-and-results /schedule
+#
+/flag-register /registerflag
+#
+/wall-of-fame /clubhouse/wof
+#
+/site/video /videos
+#
+/team-statistics /stats/team_stats
+#
+/player-statistics /stats/player_stats
+#
+#
+/player-games-history /stats/player_history
+##
+RewriteCond %{QUERY_STRING} ^id=([0-9]*)
+/site/stats/detail.php$ /schedule/page/%1?
+#
+/site/stats$ /schedule
+#
+/buffalogallery/v /photos
+#
+/v-web/gallery /photos
+#
+/gallery3/index.php /photos
+#
+/site/newsletters/newsletters_archive.php /archive/newsletters
+#
+RewriteCond %{QUERY_STRING} ^id=(\d*[^&])$
+/site/news/detail.php /archive/news/page/%1?
+#
+RewriteCond %{QUERY_STRING} ^index=(\d*[^&])
+/site/news/detail_for_FB.php /archive/news/page/%1?
+#
+/site/news/news_archive.php /archive/news 
+#
+/archive$ /archive/documents
+#
+/50th-anniversary /page/58
+#
+FallbackResource /
