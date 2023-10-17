@@ -393,26 +393,24 @@
 		//
 		// Initialize Edit form game area
 		//
-		const {
-			data: g,
-			error,
-			pending: pending_game,
-		} = await useFetch(`/game_player_stats/${props.id}`, {
-			method: 'get',
-			headers: {
-				authorization: auth.user.token,
-			},
-		})
-		state.value = g.value
+		const { data: game, error } = await useFetch(
+			`/game_player_stats/${props.id}`,
+			{
+				method: 'get',
+				headers: {
+					authorization: auth.user.token,
+				},
+			}
+		)
+		state.value = game.value
 
-		// Adjustments
-		// why?
-		const d = $dayjs(g.value.date)
+		// Incoming Adjustments for FormKIt date and time pickers
+		const d = $dayjs(game.value.date)
 		state.value.date = d.format('YYYY-MM-DD')
 		state.value.time = d.format('HH:mm')
 
 		// needs to be carried over because its not used in the form
-		state.value.opponent_id = g.value.opponent_id
+		state.value.opponent_id = game.value.opponent_id
 
 		//
 		// Initialize Edit form Players area
