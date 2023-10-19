@@ -203,11 +203,6 @@ async function getHistory(id) {
 }
 
 async function getAll(sort = 'DESC') {
-	/* 
-// Needed for netlify build but not for localhost !!!!
-								CONVERT_TZ(g.date,'UTC','-04:00') as date,
-								CONVERT_TZ(g.date,'UTC','-04:00') as dt,
- */
 	const sql =
 		`SELECT
 				game_id,
@@ -218,8 +213,11 @@ async function getAll(sort = 'DESC') {
 				referee,
 				venue,
 				comment,
+				g.datets,
 				g.date,
 				g.date as dt,
+				g.time,
+			combined_date_time,
 				t.game_type,
 				t.game_type_id,
 				game_level,
@@ -253,6 +251,8 @@ async function getPrevious(date) {
 						o.opponent_name,
 						g.date,
 						g.date dt,
+						g.datets,
+						g.time,
 						g.game_level
 					FROM
 						inbrc_stats_games g
@@ -286,6 +286,8 @@ async function getYear(year) {
 				comment,
 				g.date,
 				g.date as dt,
+				g.datets,
+				g.time,
 				t.game_type,
 				t.game_type_id,
 				game_level,
@@ -316,11 +318,6 @@ async function getYear(year) {
 
 async function getSeason(year) {
 	const YEAR2 = parseInt(year) + 1
-	/* 
-// Needed for netlify build but not for localhost !!!!
-								CONVERT_TZ(g.date,'UTC','-04:00') as date,
-								CONVERT_TZ(g.date,'UTC','-04:00') as dt,
- */
 
 	const sql = `SELECT
 								game_id,
@@ -331,8 +328,12 @@ async function getSeason(year) {
 								referee,
 								venue,
 								comment,
+								g.datets,
 								g.date as date,
 								g.date as dt,
+								g.date,
+								g.date as dt,
+								g.time,
 								t.game_type,
 								t.game_type_id,
 								game_level,
@@ -375,13 +376,7 @@ async function getGameTypes() {
 	return gametypes
 }
 
-async function getOne(id) {
-	/* 
-// Needed for netlify build but not for localhost !!!!
-								CONVERT_TZ(g.date,'UTC','-04:00') as date,
-								CONVERT_TZ(g.date,'UTC','-04:00') as dt,
- */
-
+/* async function getOne(id) {
 	const sql = `SELECT
 									g.game_id,
 									g.opponent_id,
@@ -389,8 +384,10 @@ async function getOne(id) {
 									g.referee,
 									g.venue,
 									g.comment,
+									g.datets,
 									g.date,
 									g.date as dt,
+									g.time,
 									g.game_type_id,
 									t.game_type,
 									g.game_level,
@@ -407,7 +404,38 @@ async function getOne(id) {
 								WHERE
 									g.game_id = ${id}
 									AND g.game_type_id = t.game_type_id`
-	// console.log('sql in getone ', sql)
+
+	const games = await doDBQuery(sql)
+	return games[0]
+}
+ */
+
+// unix time
+async function getOne(id) {
+	const sql = `SELECT
+									g.game_id,
+									g.opponent_id,
+									o.opponent_name,
+									g.referee,
+									g.venue,
+									g.comment,
+									g.datets,
+									g.game_type_id,
+									t.game_type,
+									g.game_level,
+									g.occasion,
+									g.ptsFor,
+									g.ptsAgn,
+									g.status,
+									g.created_dt,
+									g.modified_dt
+								FROM
+									inbrc_stats_game_types t,
+									inbrc_stats_games g
+									LEFT JOIN inbrc_opponents o ON o.opponent_id = g.opponent_id
+								WHERE
+									g.game_id = ${id}
+									AND g.game_type_id = t.game_type_id`
 
 	const games = await doDBQuery(sql)
 	return games[0]
@@ -430,8 +458,10 @@ async function getAdjacent(direction) {
 					o.opponent_name,
 					referee,
 					venue,
+					g.datets,
 					g.date,
 					g.date as dt,
+					g.time,
 					t.game_type,
 					game_level,
 					ptsFor,
@@ -729,7 +759,9 @@ async function addOne({
 	opponent_id,
 	referee,
 	venue,
+	datets,
 	date,
+	time,
 	game_type_id,
 	game_level,
 	comment,
@@ -748,7 +780,9 @@ async function addOne({
 								referee = ?,
 								venue = ?,
 								comment = ?,
+								datets = ?,
 								date = ?,
+								time = ?,
 								game_type_id = ?,
 								game_level = ?,
 								occasion = ?,
@@ -764,7 +798,9 @@ async function addOne({
 			referee,
 			venue,
 			comment,
+			datets,
 			date,
+			time,
 			game_type_id,
 			game_level,
 			occasion,
@@ -826,6 +862,7 @@ async function editOne({
 	opponent_id,
 	referee,
 	venue,
+	datets,
 	date,
 	time,
 	combined_date_time,
@@ -837,8 +874,6 @@ async function editOne({
 	ptsAgn,
 	players,
 }) {
-	const combined = date + 'T' + time + '.000Z'
-
 	const conn = await mysql.createConnection({
 		host: 'mysql.buffalorugby.org',
 		user: 'rastridge',
@@ -855,7 +890,10 @@ async function editOne({
 								referee = ?,
 								venue = ?,
 								comment = ?,
+								datets = ?,
 								date = ?,
+								time = ?,
+								combined_date_time = ?,
 								game_type_id = ?,
 								game_level = ?,
 								occasion = ?,
@@ -871,6 +909,9 @@ async function editOne({
 			referee,
 			venue,
 			comment,
+			datets,
+			date,
+			time,
 			combined_date_time,
 			game_type_id,
 			game_level,
@@ -880,7 +921,6 @@ async function editOne({
 			game_id
 		)
 		sql = mysql.format(sql, inserts)
-		console.log('sql with combined ', sql)
 		await conn.execute(sql)
 
 		// update records for 23 players

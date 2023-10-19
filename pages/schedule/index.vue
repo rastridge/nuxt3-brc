@@ -46,9 +46,9 @@
 							<div class="flex align-items-center border-soli">
 								<span class="lg:text-xl font-bold text-900">
 									{{
-										$dayjs(slotProps.data.date).format('MMMM D @ h:mm A')
-									}}</span
-								>
+										$dayjs(slotProps.data.combined).format('YYYY MM DD HH MM')
+									}}
+								</span>
 							</div>
 
 							<div class="flex align-items-center border-soli">
@@ -215,7 +215,9 @@
 				statusMessage: `Could not get data from ${url}`,
 			})
 		}
-		data.value.date = $dayjs(data.value.date)
+
+		// date and time from unix time
+		data.value.combined = $dayjs.unix(data.value.datets)
 		return data.value
 	}
 

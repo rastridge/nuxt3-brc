@@ -44,36 +44,19 @@
 
 				<!-- Date input-->
 				<FormKit type="date" label="Date" name="date" validation="required" />
-
-				<!-- $dayjs(state.date).toISOString() =
-				{{ $dayjs(state.date).toISOString() }} -->
-				<!--  -->
-				<!-- Time input-->
-				<FormKit type="time" label="Time" name="time" validation="required" />
-
-				state.time = {{ state.time }}<br />
 				state.date = {{ state.date }}<br />
 
-				combo = {{ state.date + 'T' + state.time + ':00.000Z' }}<br />
-				$dayjs(combo ).toISOString() =
-				{{ $dayjs(state.date + 'T' + state.time + ':00.000Z').toISOString()
-				}}<br />
+				<!-- 				{{ $dayjs.unix(state.datets).format('YYYY') }}<br />
+				{{ $dayjs.unix(state.datets).format('MM') }}<br />
+				{{ $dayjs.unix(state.datets).format('DD') }}<br />
+				{{ $dayjs.unix(state.datets).format('YYYY-MM-DD') }}<br />
+				{{ $dayjs.unix(state.datets).format('HH') }}<br />
+				{{ $dayjs.unix(state.datets).format('MM') }}<br />
+				{{ $dayjs.unix(state.datets).format('HH:MM') }}<br /> -->
 
-				$dayjs(state.date + 'T' + state.time + ':00.000Z' ).add(4,
-				'hours').toISOString() =
-				{{
-					$dayjs(state.date + 'T' + state.time + ':00.000Z')
-						.add(4, 'hours')
-						.toISOString()
-				}}<br />
-
-				adjustedISO =
-				{{ adjustedISO }}
-				<!-- {{
-					$dayjs(state.date + 'T' + state.time + ':00.000Z')
-						.add(4, 'hour')
-						.toISOString()
-				}} -->
+				<!-- Time input-->
+				<FormKit type="time" label="Time" name="time" validation="required" />
+				state.time = {{ state.time }}<br />
 
 				<!-- Game Type input-->
 				<FormKit
@@ -269,7 +252,6 @@
 
 <script setup>
 	import dayjs from 'dayjs'
-
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
 	const { $dayjs } = useNuxtApp()
@@ -404,10 +386,9 @@
 		)
 		state.value = game.value
 
-		// Incoming Adjustments for FormKIt date and time pickers
-		const d = $dayjs(game.value.date)
-		state.value.date = d.format('YYYY-MM-DD')
-		state.value.time = d.format('HH:mm')
+		// date and time from unix time
+		state.value.date = $dayjs.unix(state.value.datets).format('YYYY-MM-DD')
+		state.value.time = $dayjs.unix(state.value.datets).format('HH:MM')
 
 		// needs to be carried over because its not used in the form
 		state.value.opponent_id = game.value.opponent_id
@@ -625,14 +606,13 @@
 
 		state.players = players.value
 
-		const combined_date_time = $dayjs(
-			state.date + 'T' + state.time + ':00.000Z'
-		).toISOString()
-
-		// console.log(`state.date ${state.date} state.time ${state.time}`)
-
+		const combined_date_time = $dayjs(state.date + ' ' + state.time)
+			.utc()
+			.format()
 		state.combined_date_time = combined_date_time
-		console.log(`state.combined_date_time ${state.combined_date_time}`)
+
+		state.datets = $dayjs(state.date + ' ' + state.time).unix() //unix timestamp
+		// console.log(`state.combined_date_time ${state.combined_date_time}`)
 		saving.value = true
 		emit('submitted', state)
 	}

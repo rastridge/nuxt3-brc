@@ -45,6 +45,8 @@
 
 <script setup>
 	import { usePlacemarkStore } from '@/stores'
+	const { $dayjs } = useNuxtApp()
+
 	const placemark = usePlacemarkStore()
 	//
 	// initialize renderlist
@@ -92,6 +94,9 @@
 				statusMessage: `Could not get data from ${url}`,
 			})
 		} else {
+			// date and time from unix time
+			data.value.date = $dayjs.unix(data.value.datets).format('YYYY-MM-DD')
+			data.value.time = $dayjs.unix(data.value.datets).format('HH:MM')
 			stats.value = data.value
 		}
 	}
