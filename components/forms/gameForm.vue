@@ -44,7 +44,16 @@
 
 				<!-- Date input-->
 				<FormKit type="date" label="Date" name="date" validation="required" />
-				state.date = {{ state.date }}<br />
+				state.date + ' ' + state.time =
+				{{ state.date + ' ' + state.time + ':00' }}<br />
+
+				$dayjs(state.date + ' ' + state.time+ ':00').unix() =
+				{{ $dayjs(state.date + ' ' + state.time + ':00').unix() }}<br />
+				{{
+					$dayjs
+						.unix($dayjs(state.date + ' ' + state.time).unix())
+						.format('YYYY-MM-DD HH:MM:ss')
+				}}<br />
 
 				<!-- 				{{ $dayjs.unix(state.datets).format('YYYY') }}<br />
 				{{ $dayjs.unix(state.datets).format('MM') }}<br />
@@ -611,7 +620,9 @@
 			.format()
 		state.combined_date_time = combined_date_time
 
-		state.datets = $dayjs(state.date + ' ' + state.time).unix() //unix timestamp
+		$dayjs.unix($dayjs(state.date + ' ' + state.time + ':00').unix())
+
+		state.datets = $dayjs(state.date + ' ' + state.time + ':00').unix() //unix timestamp
 		// console.log(`state.combined_date_time ${state.combined_date_time}`)
 		saving.value = true
 		emit('submitted', state)
