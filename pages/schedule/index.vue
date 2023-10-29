@@ -68,7 +68,7 @@
 							</div>
 						</div>
 
-						<!-- centered stuff-->
+						<!-- center stuff-->
 						<div
 							class="flex flex-column align-items-center gap-1 border-soli w-full md:w-6"
 						>
