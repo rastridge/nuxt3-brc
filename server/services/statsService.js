@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise'
 const { SEASON_DIVIDE_DATE } = useRuntimeConfig()
-const { doDBQuery } = useQuery()
-const { getConnection } = useDBConnection()
+const { doDBQueryBuffalorugby } = useQuery()
+const { getConnectionBuffalorugby } = useDBConnection()
 
 export const statsService = {
 	getAll,
@@ -46,13 +46,13 @@ async function getHistoryTotals(id) {
 								AND deleted = 0
 								AND Status = 1`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats[0]
 }
 
 async function getHistoryStreaks(id) {
 	const sql1 = `SELECT
-									date,
+									date_ut,
 									result,
 									(
 									SELECT
@@ -60,9 +60,9 @@ async function getHistoryStreaks(id) {
 									FROM
 											inbrc_stats_games G
 									WHERE
-											G.result <> GR.result AND G.date <= GR.date AND G.opponent_id = ${id}
+											G.result <> GR.result AND G.date_ut <= GR.date_ut AND G.opponent_id = ${id}
 									ORDER BY
-											G.date ASC
+											G.date_ut ASC
 								) AS rungroup
 								FROM
 									inbrc_stats_games GR
@@ -71,24 +71,26 @@ async function getHistoryStreaks(id) {
 									AND GR.deleted = 0
 									AND GR.Status = 1
 								ORDER BY
-									date ASC`
+									date_ut ASC`
 
 	const sql = `SELECT
 								result,
-								MIN(date) as StartDate,
-								MAX(date) as EndDate,
+								MIN(date_ut) as StartDate,
+								MAX(date_ut) as EndDate,
 								COUNT(*) as Games
 								FROM (${sql1}) A
 								GROUP BY result, RunGroup
 								HAVING COUNT(*) > 1
-								ORDER BY Min(date)`
+								ORDER BY Min(date_ut)`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
+
 async function getHistoryCurrentStreak(id) {
 	const sql1 = `SELECT
 									date,
+									date_ut,
 									result,
 									(
 									SELECT
@@ -96,9 +98,9 @@ async function getHistoryCurrentStreak(id) {
 									FROM
 											inbrc_stats_games G
 									WHERE
-											G.result <> GR.result AND G.date <= GR.date AND G.opponent_id = ${id}
+											G.result <> GR.result AND G.date_ut <= GR.date_ut AND G.opponent_id = ${id}
 									ORDER BY
-											G.date ASC
+											G.date_ut ASC
 								) AS rungroup
 								FROM
 									inbrc_stats_games GR
@@ -107,14 +109,14 @@ async function getHistoryCurrentStreak(id) {
 									AND GR.deleted = 0
 									AND GR.Status = 1
 								ORDER BY
-									date ASC`
+									date_ut ASC`
 
 	const sql2 = `SELECT result,
-								MIN(date) as StartDate,
-								MAX(date) as EndDate,
+								MIN(date_ut) as StartDate,
+								MAX(date_ut) as EndDate,
 								COUNT(*) as Games
 								FROM (SELECT
-									date,
+									date_ut,
 									result,
 									(
 									SELECT
@@ -122,9 +124,9 @@ async function getHistoryCurrentStreak(id) {
 									FROM
 											inbrc_stats_games G
 									WHERE
-											G.result <> GR.result AND G.date <= GR.date AND G.opponent_id = ${id}
+											G.result <> GR.result AND G.date_ut <= GR.date_ut AND G.opponent_id = ${id}
 									ORDER BY
-											G.date ASC
+											G.date_ut ASC
 								) AS rungroup
 								FROM
 									inbrc_stats_games GR
@@ -135,15 +137,15 @@ async function getHistoryCurrentStreak(id) {
 								ORDER BY
 									date ASC) A
 								GROUP BY result, RunGroup
-								ORDER BY Min(date)`
+								ORDER BY Min(date_ut)`
 
 	const sql = `SELECT TOP 1 *
 								FROM (SELECT result,
-								MIN(date) as StartDate,
-								MAX(date) as EndDate,
+								MIN(date_ut) as StartDate,
+								MAX(date_ut) as EndDate,
 								COUNT(*) as Games
 								FROM (SELECT
-									date,
+									date_ut,
 									result,
 									(
 									SELECT
@@ -151,9 +153,9 @@ async function getHistoryCurrentStreak(id) {
 									FROM
 											inbrc_stats_games G
 									WHERE
-											G.result <> GR.result AND G.date <= GR.date AND G.opponent_id = ${id}
+											G.result <> GR.result AND G.date_ut <= GR.date_ut AND G.opponent_id = ${id}
 									ORDER BY
-											G.date ASC
+											G.date_ut ASC
 								) AS rungroup
 								FROM
 									inbrc_stats_games GR
@@ -164,21 +166,21 @@ async function getHistoryCurrentStreak(id) {
 								ORDER BY
 									date ASC) A
 								GROUP BY result, RunGroup
-								ORDER BY Min(date)) B
+								ORDER BY Min(date_ut)) B
 								ORDER BY Games DESC
 								WHERE
 									result = 'W'
 									AND
 									opponent_id = ${id}`
 
-	stats = await doDBQuery(sql)
+	stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
 
 async function getHistory(id) {
 	const sql = `SELECT
 			o.opponent_name,
-			g.date,
+			g.date_ut,
 			g.venue,
 			g.comment,
 			g.game_level,
@@ -196,9 +198,9 @@ async function getHistory(id) {
 			AND g.deleted = 0
 			AND g.Status = 1
 		ORDER BY
-			g.date ASC`
+			g.date_ut ASC`
 
-	const games = await doDBQuery(sql)
+	const games = await doDBQueryBuffalorugby(sql)
 	return games
 }
 
@@ -213,11 +215,7 @@ async function getAll(sort = 'DESC') {
 				referee,
 				venue,
 				comment,
-				g.datets,
-				g.date,
-				g.date as dt,
-				g.time,
-			combined_date_time,
+				g.date_ut,
 				t.game_type,
 				t.game_type_id,
 				game_level,
@@ -239,20 +237,17 @@ async function getAll(sort = 'DESC') {
 				AND g.Status = 1
 				AND t.game_type_id = g.game_type_id
 			ORDER BY
-				dt ` + sort
+				date_ut ` + sort
 
-	const games = await doDBQuery(sql)
+	const games = await doDBQueryBuffalorugby(sql)
 	return games
 }
 
-async function getPrevious(date) {
+async function getPrevious(date_ut) {
 	const sql = `SELECT
 						g.game_id,
 						o.opponent_name,
-						g.date,
-						g.date dt,
-						g.datets,
-						g.time,
+						g.date_ut,
 						g.game_level
 					FROM
 						inbrc_stats_games g
@@ -261,11 +256,11 @@ async function getPrevious(date) {
 						g.deleted = 0
 						AND
 						g.status = 1
-						AND date <= '${date}'
+						AND date_ut <= '${date_ut}'
 					ORDER BY
-						date DESC
+						date_ut DESC
 					LIMIT 10`
-	const games = await doDBQuery(sql)
+	const games = await doDBQueryBuffalorugby(sql)
 	return games
 }
 
@@ -286,7 +281,7 @@ async function getYear(year) {
 				comment,
 				g.date,
 				g.date as dt,
-				g.datets,
+				g.date_ut,
 				g.time,
 				t.game_type,
 				t.game_type_id,
@@ -312,14 +307,14 @@ async function getYear(year) {
 			ORDER BY
 				dt DESC`
 
-	const games = await doDBQuery(sql)
+	const games = await doDBQueryBuffalorugby(sql)
 	return games
 }
 
-async function getSeason(year) {
-	const YEAR2 = parseInt(year) + 1
-
-	const sql = `SELECT
+async function getSeason(year1) {
+	const YEAR2 = parseInt(year1) + 1
+	// Unix Epoch
+	let sql = `SELECT
 								game_id,
 								game_id as id,
 								o.opponent_name,
@@ -328,12 +323,10 @@ async function getSeason(year) {
 								referee,
 								venue,
 								comment,
-								g.datets,
+								g.date_ut,
 								g.date as date,
 								g.date as dt,
 								g.date,
-								g.date as dt,
-								g.time,
 								t.game_type,
 								t.game_type_id,
 								game_level,
@@ -354,13 +347,99 @@ async function getSeason(year) {
 								g.deleted = 0
 								AND
 								g.status = 1
+								AND g.date_ut > 0
 								AND t.game_type_id = g.game_type_id
-								AND ( YEAR(date) = ${year} OR YEAR(date) = ${YEAR2} )
-								AND ( DATE(date) > DATE(CONCAT("${year}","${SEASON_DIVIDE_DATE}"))) AND ( DATE(date) <= DATE(CONCAT("${YEAR2}","${SEASON_DIVIDE_DATE}")) )
+
+								AND ( FROM_UNIXTIME(g.date_ut,'%Y') = ${year1} OR FROM_UNIXTIME(g.date_ut,'%Y') = ${YEAR2} )
+								AND date_ut > UNIX_TIMESTAMP(CONCAT("${year1}","${SEASON_DIVIDE_DATE}")) AND  date_ut <= UNIX_TIMESTAMP(CONCAT("${YEAR2}","${SEASON_DIVIDE_DATE}"))
+			
 							ORDER BY
-								dt ASC`
-	console.log('IN getSeason sql = ', sql)
-	const games = await doDBQuery(sql)
+								dt DESC`
+	const games1 = await doDBQueryBuffalorugby(sql)
+
+	// Negative Unix Epoch Special case
+	sql = `SELECT
+						game_id,
+						game_id as id,
+						o.opponent_name,
+						g.opponent_id,
+						o.opponent_name as title,
+						referee,
+						venue,
+						comment,
+						g.date_ut,
+						g.date as date,
+						g.date as dt,
+						g.date,
+						t.game_type,
+						t.game_type_id,
+						game_level,
+						occasion,
+						ptsFor,
+						ptsAgn,
+						g.Status,
+						g.Status as status,
+						g.deleted,
+						g.deleted_dt,
+						g.created_dt,
+						g.modified_dt
+					FROM
+						inbrc_stats_game_types t,
+						inbrc_stats_games g
+						LEFT JOIN inbrc_opponents o ON o.opponent_id = g.opponent_id
+					WHERE
+						g.deleted = 0
+						AND
+						g.status = 1
+						AND g.date_ut < 0
+						AND t.game_type_id = g.game_type_id
+
+					AND
+					( YEAR(
+						DATE_ADD(
+								DATE_ADD(
+										FROM_UNIXTIME(0),
+										INTERVAL g.date_ut SECOND
+								),
+								INTERVAL 9 HOUR
+						)
+						) = ${year1}  
+						OR 
+						YEAR(
+								DATE_ADD(
+										DATE_ADD(
+												FROM_UNIXTIME(0),
+												INTERVAL g.date_ut SECOND
+										),
+										INTERVAL 9 HOUR
+								)
+						) = ${YEAR2}
+					) 
+							AND DATE_ADD(
+									DATE_ADD(
+											FROM_UNIXTIME(0),
+											INTERVAL g.date_ut SECOND
+									),
+									INTERVAL 9 HOUR
+							) > '${year1 + SEASON_DIVIDE_DATE}' 
+								AND DATE_ADD(
+									DATE_ADD(
+											FROM_UNIXTIME(0),
+											INTERVAL g.date_ut SECOND
+									),
+									INTERVAL 9 HOUR
+							) < '${YEAR2 + SEASON_DIVIDE_DATE}'
+
+					ORDER BY
+							g.date_ut ASC`
+	// console.log('sql= ', sql)
+	const games2 = await doDBQueryBuffalorugby(sql)
+
+	// console.log('games1 ', games1.length)
+	// console.log(' games2 ', games2.length)
+	const games = games1.concat(games2)
+	// console.log(' games ', games.length)
+
 	return games
 }
 
@@ -372,43 +451,9 @@ async function getGameTypes() {
 				inbrc_stats_game_types
 			WHERE 1`
 
-	const gametypes = await doDBQuery(sql)
+	const gametypes = await doDBQueryBuffalorugby(sql)
 	return gametypes
 }
-
-/* async function getOne(id) {
-	const sql = `SELECT
-									g.game_id,
-									g.opponent_id,
-									o.opponent_name,
-									g.referee,
-									g.venue,
-									g.comment,
-									g.datets,
-									g.date,
-									g.date as dt,
-									g.time,
-									g.game_type_id,
-									t.game_type,
-									g.game_level,
-									g.occasion,
-									g.ptsFor,
-									g.ptsAgn,
-									g.status,
-									g.created_dt,
-									g.modified_dt
-								FROM
-									inbrc_stats_game_types t,
-									inbrc_stats_games g
-									LEFT JOIN inbrc_opponents o ON o.opponent_id = g.opponent_id
-								WHERE
-									g.game_id = ${id}
-									AND g.game_type_id = t.game_type_id`
-
-	const games = await doDBQuery(sql)
-	return games[0]
-}
- */
 
 // unix time
 async function getOne(id) {
@@ -419,7 +464,7 @@ async function getOne(id) {
 									g.referee,
 									g.venue,
 									g.comment,
-									g.datets,
+									g.date_ut,
 									g.game_type_id,
 									t.game_type,
 									g.game_level,
@@ -437,7 +482,7 @@ async function getOne(id) {
 									g.game_id = ${id}
 									AND g.game_type_id = t.game_type_id`
 
-	const games = await doDBQuery(sql)
+	const games = await doDBQueryBuffalorugby(sql)
 	return games[0]
 }
 
@@ -458,10 +503,7 @@ async function getAdjacent(direction) {
 					o.opponent_name,
 					referee,
 					venue,
-					g.datets,
-					g.date,
-					g.date as dt,
-					g.time,
+					g.date_ut,
 					t.game_type,
 					game_level,
 					ptsFor,
@@ -472,17 +514,17 @@ async function getAdjacent(direction) {
 					LEFT JOIN inbrc_opponents o ON o.opponent_id = g.opponent_id
 				WHERE
 					t.game_type_id = g.game_type_id
-					AND DATE(date) ${FILTER} CURDATE()
+					AND date_ut ${FILTER} UNIX_TIMESTAMP()
 					AND g.Status = 1
 					AND g.deleted = 0
 				ORDER BY
-					date ${FILTER2}
+					date_ut ${FILTER2}
 				LIMIT 2`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
-
+// Needs work
 async function getRosterStats() {
 	const sql = `SELECT
 								IF(
@@ -521,7 +563,7 @@ async function getRosterStats() {
 								yr
 							DESC`
 
-	const roster_count = await doDBQuery(sql)
+	const roster_count = await doDBQueryBuffalorugby(sql)
 	return roster_count
 }
 
@@ -552,7 +594,7 @@ async function getPlayers(id) {
 							ORDER BY
 								position_id asc`
 
-	const players = await doDBQuery(sql)
+	const players = await doDBQueryBuffalorugby(sql)
 	return players
 }
 
@@ -584,7 +626,7 @@ WHERE
 		AND g.Status = 1
 		AND g.deleted = 0`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats[0].gamecount
 }
 
@@ -633,7 +675,7 @@ async function getPlayerStats(id) {
 							ORDER BY
 								games desc`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
 
@@ -680,7 +722,7 @@ async function getTeamStats(gt) {
 							ORDER BY
 								season ASC`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
 
@@ -706,7 +748,7 @@ async function getTeamStatsTotal(gt) {
 								AND Status = 1
 								AND deleted = 0`
 
-	const stats = await doDBQuery(sql)
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats[0]
 }
 
@@ -720,6 +762,7 @@ async function getPlayerGames(id) {
 					g.game_level,
 					g.occasion,
 					g.venue,
+					g.date_ut,
 					g.date,
 					g.ptsFor,
 					g.ptsAgn,
@@ -748,10 +791,9 @@ async function getPlayerGames(id) {
 					AND g.Status = 1
 					AND g.deleted = 0
 				ORDER BY
-					g.date DESC`
+					g.date_ut DESC`
 
-	const stats = await doDBQuery(sql)
-
+	const stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
 
@@ -759,19 +801,25 @@ async function addOne({
 	opponent_id,
 	referee,
 	venue,
-	datets,
-	date,
-	time,
+	comment,
+	date_ut,
 	game_type_id,
 	game_level,
-	comment,
 	occasion,
 	ptsFor,
 	ptsAgn,
 	players,
 }) {
+	const conn = await mysql.createConnection({
+		host: 'mysql.buffalorugby.org',
+		user: 'rastridge',
+		password: 'a1s2d3f4',
+		// database: 'buffalorugby_testing',
+		database: 'buffalorugby',
+	})
+
 	try {
-		const conn = await getConnectionBuffalorugby()
+		// const conn = await getConnectionBuffalorugby()
 		await conn.query('START TRANSACTION')
 
 		let sql = `INSERT INTO inbrc_stats_games 
@@ -780,9 +828,7 @@ async function addOne({
 								referee = ?,
 								venue = ?,
 								comment = ?,
-								datets = ?,
-								date = ?,
-								time = ?,
+								date_ut = ?,
 								game_type_id = ?,
 								game_level = ?,
 								occasion = ?,
@@ -798,9 +844,7 @@ async function addOne({
 			referee,
 			venue,
 			comment,
-			datets,
-			date,
-			time,
+			date_ut,
 			game_type_id,
 			game_level,
 			occasion,
@@ -862,10 +906,7 @@ async function editOne({
 	opponent_id,
 	referee,
 	venue,
-	datets,
-	date,
-	time,
-	combined_date_time,
+	date_ut,
 	game_type_id,
 	game_level,
 	comment,
@@ -878,11 +919,12 @@ async function editOne({
 		host: 'mysql.buffalorugby.org',
 		user: 'rastridge',
 		password: 'a1s2d3f4',
-		database: 'buffalorugby_testing',
+		// database: 'buffalorugby_testing',
+		database: 'buffalorugby',
 	})
-
 	try {
 		// const conn = await getConnectionBuffalorugby()
+
 		await conn.query('START TRANSACTION')
 
 		let sql = `UPDATE inbrc_stats_games SET
@@ -890,10 +932,7 @@ async function editOne({
 								referee = ?,
 								venue = ?,
 								comment = ?,
-								datets = ?,
-								date = ?,
-								time = ?,
-								combined_date_time = ?,
+								date_ut = ?,
 								game_type_id = ?,
 								game_level = ?,
 								occasion = ?,
@@ -909,10 +948,7 @@ async function editOne({
 			referee,
 			venue,
 			comment,
-			datets,
-			date,
-			time,
-			combined_date_time,
+			date_ut,
 			game_type_id,
 			game_level,
 			occasion,
@@ -995,7 +1031,7 @@ async function changeStatus({ id, status }) {
 		`UPDATE inbrc_stats_games SET status = "` +
 		status +
 		`" WHERE game_id = ${id}`
-	const players = await doDBQuery(sql)
+	const players = await doDBQueryBuffalorugby(sql)
 
 	return players
 }

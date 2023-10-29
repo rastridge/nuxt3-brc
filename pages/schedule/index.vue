@@ -45,10 +45,13 @@
 						>
 							<div class="flex align-items-center border-soli">
 								<span class="lg:text-xl font-bold text-900">
-									{{ $dayjs.unix(slotProps.data.datets).format('dddd MMMM D')
+									{{
+										$dayjs
+											.unix(slotProps.data.date_ut)
+											.format('ddd MMMM D YYYY')
 									}}<br />
-									{{ $dayjs.unix(slotProps.data.datets).format('h:mm A')
-									}}<br />
+									{{ $dayjs.unix(slotProps.data.date_ut).format('h:mm A') }} EDT
+									<br />
 								</span>
 							</div>
 
@@ -218,8 +221,8 @@
 		}
 
 		// date and time from unix time
-		// data.value.datets
-		data.value.combined = $dayjs.unix(data.value.datets)
+		// data.value.date_ut
+		data.value.combined = $dayjs.unix(data.value.date_ut)
 		return data.value
 	}
 

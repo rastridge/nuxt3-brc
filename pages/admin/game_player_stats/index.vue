@@ -26,6 +26,7 @@
 					/>
 				</div>
 			</div>
+			{{ filteredData[1] }}
 			<div class="renderlist-enclosure">
 				<render-list
 					:data="filteredData"
@@ -69,6 +70,11 @@
 
 	const filteredData = computed(() => {
 		return stats.value.filter((d) => {
+			console.log(
+				'$dayjs.unix(d.date_ut).format(YYYY-MM-DD)',
+				$dayjs.unix(d.date_ut).format('YYYY-MM-DD')
+			)
+			console.log('d.date_ut', d.date_ut)
 			if (gametype.value === 7) {
 				return d.game_type_id === 7
 			} else {
@@ -95,8 +101,7 @@
 			})
 		} else {
 			// date and time from unix time
-			data.value.date = $dayjs.unix(data.value.datets).format('YYYY-MM-DD')
-			data.value.time = $dayjs.unix(data.value.datets).format('HH:MM')
+			data.value.dt = '0000'
 			stats.value = data.value
 		}
 	}

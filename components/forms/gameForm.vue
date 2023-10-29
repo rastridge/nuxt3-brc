@@ -42,30 +42,33 @@
 				<!-- venue input-->
 				<FormKit label="Venue" name="venue" type="text" validation="required" />
 
+				<!-- Date dummy -->
+				<FormKit type="text" label="date_ut" name="date_ut" disabled />
+
 				<!-- Date input-->
-				<FormKit type="date" label="Date" name="date" validation="required" />
-				state.date + ' ' + state.time =
-				{{ state.date + ' ' + state.time + ':00' }}<br />
+				<FormKit
+					type="date"
+					label="Date"
+					name="date"
+					validation="required"
+					@input="setUnixTime()"
+				/>
 
-				$dayjs(state.date + ' ' + state.time+ ':00').unix() =
-				{{ $dayjs(state.date + ' ' + state.time + ':00').unix() }}<br />
-				{{
-					$dayjs
-						.unix($dayjs(state.date + ' ' + state.time).unix())
-						.format('YYYY-MM-DD HH:MM:ss')
-				}}<br />
+				state.date =
+				{{ state.date }} <br />
 
-				<!-- 				{{ $dayjs.unix(state.datets).format('YYYY') }}<br />
-				{{ $dayjs.unix(state.datets).format('MM') }}<br />
-				{{ $dayjs.unix(state.datets).format('DD') }}<br />
-				{{ $dayjs.unix(state.datets).format('YYYY-MM-DD') }}<br />
-				{{ $dayjs.unix(state.datets).format('HH') }}<br />
-				{{ $dayjs.unix(state.datets).format('MM') }}<br />
-				{{ $dayjs.unix(state.datets).format('HH:MM') }}<br /> -->
-
+				state.time =
+				{{ state.time }}<br />
+				state.date_ut =
+				{{ state.date_ut }}<br />
 				<!-- Time input-->
-				<FormKit type="time" label="Time" name="time" validation="required" />
-				state.time = {{ state.time }}<br />
+				<FormKit
+					type="time"
+					label="Time"
+					name="time"
+					validation="required"
+					@input="setUnixTime()"
+				/>
 
 				<!-- Game Type input-->
 				<FormKit
@@ -111,7 +114,7 @@
 			<Button label="Cancel" @click.prevent="cancelForm()" style="margin: 1rem">
 			</Button>
 
-			<div v-if="props.id === 0 || $dayjs().isBefore(dayjs(state.date))">
+			<div v-if="props.id === 0 || $dayjs().isBefore(dayjs(state.date_ut))">
 				<!-- Select previous game for autofill -->
 				<label for="reset"
 					><div class="p-2">
@@ -281,15 +284,8 @@
 	const showReplaceDialog = ref(false)
 	const gametypes = ref([])
 	const players = ref([])
-	let state = ref({})
+	const state = ref({})
 	const reset = ref('')
-
-	const adjustedISO = ref(null)
-	/* 	adjustedISO.value = $dayjs(
-		state.value.date + 'T' + state.value.time + ':00.000Z'
-	)
-		.add(4, 'hour')
-		.toISOString() */
 
 	//
 	// Player name autocomplete
@@ -341,7 +337,6 @@
 	//
 	// Get other options for form
 	//
-
 	// Game types
 	const {
 		data: gt,
@@ -375,7 +370,6 @@
 		},
 	})
 	suggestions.value = sug.value
-
 	//
 	//
 	// edit if there is an id
@@ -395,9 +389,9 @@
 		)
 		state.value = game.value
 
-		// date and time from unix time
-		state.value.date = $dayjs.unix(state.value.datets).format('YYYY-MM-DD')
-		state.value.time = $dayjs.unix(state.value.datets).format('HH:MM')
+		// convert date and time from unix time for FormKit inputs
+		state.value.date = $dayjs.unix(state.value.date_ut).format('YYYY-MM-DD')
+		state.value.time = $dayjs.unix(state.value.date_ut).format('HH:mm')
 
 		// needs to be carried over because its not used in the form
 		state.value.opponent_id = game.value.opponent_id
@@ -457,6 +451,9 @@
 		state.value.referee = ''
 		state.value.venue = ''
 		state.value.comment = ''
+		state.value.date_ut = $dayjs().unix()
+		state.value.date = $dayjs().format('YYYY-MM-DD')
+		state.value.time = $dayjs().format('00:00')
 		state.value.occasion = ''
 		state.value.ptsFor = ''
 		state.value.ptsAgn = ''
@@ -502,27 +499,28 @@
 	//
 	const previousgames = ref([])
 	const previous_game_id = ref(0)
-	const getPreviousGames = async (date) => {
+	const getPreviousGames = async (date_ut) => {
 		const {
 			data,
 			error: error6,
 			pending: pending6,
-		} = await useFetch(`/game_player_stats/getprevious/${date}`, {
+		} = await useFetch(`/game_player_stats/getprevious/${date_ut}`, {
 			method: 'get',
 			headers: {
 				authorization: auth.user.token,
 			},
 		})
-		// convert for formkit select
+		// convert for formkit select previous games
 		let result = []
 		data.value.map((old) => {
 			let n = {}
 			n.label =
+				$dayjs.unix(data.date_ut).format('YYYY-MM-DD') +
+				' - ' +
 				old.opponent_name +
 				' Game level ' +
-				old.game_level +
-				' Date ' +
-				$dayjs(old.date).format('MM-DD-YYYY')
+				old.game_level
+
 			n.value = old.game_id
 			result.push(n)
 		})
@@ -535,9 +533,19 @@
 	const resetPlayers = () => {
 		reset.value = !reset.value
 		if (reset.value) {
-			getPreviousGames($dayjs(state.value.date).format('YYYY-MM-DD'))
+			getPreviousGames(state.value.date_ut)
 		}
 	}
+
+	const setUnixTime = () => {
+		// make the transfer
+		alert(state.value.date_ut)
+		alert($dayjs(state.value.date + ' ' + state.value.time + ':00').unix())
+		state.value.date_ut = $dayjs(
+			state.value.date + ' ' + state.value.time + ':00'
+		).unix() //unix timestamp
+	}
+
 	const confirmedReplace = (newid) => {
 		showReplaceDialog.value = false
 		getReplacePlayers(newid)
@@ -612,18 +620,11 @@
 			players.value[index].rln = value.member_lastname
 			players.value[index].rname = value.title
 		})
-
 		state.players = players.value
 
-		const combined_date_time = $dayjs(state.date + ' ' + state.time)
-			.utc()
-			.format()
-		state.combined_date_time = combined_date_time
+		// state.date_ut =
+		//// new date_ut
 
-		$dayjs.unix($dayjs(state.date + ' ' + state.time + ':00').unix())
-
-		state.datets = $dayjs(state.date + ' ' + state.time + ':00').unix() //unix timestamp
-		// console.log(`state.combined_date_time ${state.combined_date_time}`)
 		saving.value = true
 		emit('submitted', state)
 	}

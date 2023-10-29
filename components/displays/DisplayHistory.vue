@@ -3,7 +3,9 @@
 		<div v-if="history">
 			<h6 class="m-2 text-xl">
 				{{ history[0].opponent_name }} -
-				{{ $dayjs(history[0].date).format('MMMM DD, YYYY @ ddd h:mm A') }}
+				{{
+					$dayjs.unix(history[0].date_ut).format('MMMM DD, YYYY @ ddd h:mm A')
+				}}
 			</h6>
 			<p class="text-lg">Games</p>
 
@@ -11,7 +13,7 @@
 				<tbody class="text-sm">
 					<tr v-for="item in history">
 						<td>
-							{{ $dayjs(item.date).format('ddd MMM D YYYY') }}
+							{{ $dayjs.unix(item.date_ut).format('ddd MMM D YYYY') }}
 						</td>
 						<td>
 							{{ getGameLevelCode(item) }}
