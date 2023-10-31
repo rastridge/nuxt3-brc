@@ -163,6 +163,16 @@
 				name="member_admin_type2_id"
 				:options="memberAdminTypeOptions"
 			/>
+			<!-- wall of fame year -->
+
+			<FormKit
+				type="number"
+				label="Year joined"
+				name="member_wall_of_fame_year"
+				min="1966"
+				step="1"
+			/>
+
 			<!-- ad image file upload 			-->
 			<p>Image must be 72w 72h 72dpi</p>
 			<label>Add or Replace WOF image file</label><br />
