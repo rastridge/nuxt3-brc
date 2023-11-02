@@ -11,8 +11,8 @@
 				<td>{{ item.result }}</td>
 				<td>{{ item.Games }}</td>
 				<td>
-					{{ $dayjs(item.StartDate).format('MMM D YYYY') }} ->
-					{{ $dayjs(item.EndDate).format('MMM D YYYY') }}
+					{{ $dayjs.unix(item.StartDate).format('MMM D YYYY') }} ->
+					{{ $dayjs.unix(item.EndDate).format('MMM D YYYY') }}
 				</td>
 			</tr>
 		</table>

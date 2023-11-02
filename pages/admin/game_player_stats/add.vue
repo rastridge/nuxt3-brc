@@ -1,6 +1,5 @@
 <script setup>
 	const { onSubmitAdd } = useSubmit()
-	const saving = ref(false)
 
 	//
 	// Content form action

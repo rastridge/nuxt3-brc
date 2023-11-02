@@ -42,32 +42,22 @@
 				<!-- venue input-->
 				<FormKit label="Venue" name="venue" type="text" validation="required" />
 
-				<!-- Date dummy -->
-				<FormKit type="text" label="date_ut" name="date_ut" disabled />
-
 				<!-- Date input-->
 				<FormKit
 					type="date"
 					label="Date"
 					name="date"
 					validation="required"
-					@input="setUnixTime()"
+					@input="setUnixDate($event)"
 				/>
 
-				state.date =
-				{{ state.date }} <br />
-
-				state.time =
-				{{ state.time }}<br />
-				state.date_ut =
-				{{ state.date_ut }}<br />
 				<!-- Time input-->
 				<FormKit
 					type="time"
 					label="Time"
 					name="time"
 					validation="required"
-					@input="setUnixTime()"
+					@input="setUnixTime($event)"
 				/>
 
 				<!-- Game Type input-->
@@ -114,20 +104,24 @@
 			<Button label="Cancel" @click.prevent="cancelForm()" style="margin: 1rem">
 			</Button>
 
-			<div v-if="props.id === 0 || $dayjs().isBefore(dayjs(state.date_ut))">
+			<!-- <div
+				v-if="props.id === 0 || $dayjs().unix().isBefore(dayjs(state.date_ut))"
+			> -->
+			<div v-if="props.id === 0">
 				<!-- Select previous game for autofill -->
 				<label for="reset"
 					><div class="p-2">
 						Do you want to select roster from a previous game? All current game
 						info will be replaced.
-						<p v-if="!state.date" style="color: red; padding: 1rem">
+						<p v-if="!state.date_ut" style="color: red; padding: 1rem">
 							To do so you must first set a date for this game
 						</p>
 					</div>
 				</label>
 
-				<div v-if="state.date">
-					Check here
+				<div v-if="state.date_ut">
+					Check here <br />
+					Uncheck to Cancel
 					<input
 						id="reset"
 						v-model="reset"
@@ -231,6 +225,7 @@
 					</tbody>
 				</table>
 			</div>
+
 			<!-- Confirm deletion -->
 			<Dialog
 				v-model:visible="showReplaceDialog"
@@ -286,6 +281,7 @@
 	const players = ref([])
 	const state = ref({})
 	const reset = ref('')
+	const ut = ref(0)
 
 	//
 	// Player name autocomplete
@@ -390,6 +386,7 @@
 		state.value = game.value
 
 		// convert date and time from unix time for FormKit inputs
+		// for a day when date / time fields are dropped from the DB
 		state.value.date = $dayjs.unix(state.value.date_ut).format('YYYY-MM-DD')
 		state.value.time = $dayjs.unix(state.value.date_ut).format('HH:mm')
 
@@ -449,11 +446,11 @@
 		// game
 		state.value.opponent_id = ''
 		state.value.referee = ''
-		state.value.venue = ''
+		state.value.venue = 'Delaware Park'
 		state.value.comment = ''
 		state.value.date_ut = $dayjs().unix()
 		state.value.date = $dayjs().format('YYYY-MM-DD')
-		state.value.time = $dayjs().format('00:00')
+		state.value.time = $dayjs().format('13:00')
 		state.value.occasion = ''
 		state.value.ptsFor = ''
 		state.value.ptsAgn = ''
@@ -515,7 +512,7 @@
 		data.value.map((old) => {
 			let n = {}
 			n.label =
-				$dayjs.unix(data.date_ut).format('YYYY-MM-DD') +
+				$dayjs.unix(old.date_ut).format('YYYY-MM-DD') +
 				' - ' +
 				old.opponent_name +
 				' Game level ' +
@@ -537,13 +534,12 @@
 		}
 	}
 
-	const setUnixTime = () => {
-		// make the transfer
-		alert(state.value.date_ut)
-		alert($dayjs(state.value.date + ' ' + state.value.time + ':00').unix())
-		state.value.date_ut = $dayjs(
-			state.value.date + ' ' + state.value.time + ':00'
-		).unix() //unix timestamp
+	const setUnixDate = (e) => {
+		ut.value = $dayjs(e + ' ' + state.value.time).unix()
+	}
+
+	const setUnixTime = (e) => {
+		ut.value = $dayjs(state.value.date + ' ' + e).unix()
 	}
 
 	const confirmedReplace = (newid) => {
@@ -566,6 +562,7 @@
 				authorization: auth.user.token,
 			},
 		})
+
 		// Needed to reset player stats
 		const replacementPlayers = rp.value.map((item) => {
 			const plr = {}
@@ -621,11 +618,9 @@
 			players.value[index].rname = value.title
 		})
 		state.players = players.value
-
-		// state.date_ut =
-		//// new date_ut
-
+		state.date_ut = ut.value
 		saving.value = true
+
 		emit('submitted', state)
 	}
 	const cancelForm = () => {

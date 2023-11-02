@@ -59,7 +59,7 @@
 	})
 
 	const handleDocumentRender = (args) => {
-		console.log('IN handleDocumentRender args =', args)
+		// console.log('IN handleDocumentRender args =', args)
 		isLoading.value = false
 		pageCount.value = $refs.pdfRef.pageCount
 	}

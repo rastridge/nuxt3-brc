@@ -40,11 +40,24 @@
 							></a> </template
 					></Column>
 					<Column field="title" header="Name"></Column>
-					<Column field="dt" header="Date">
-						<template #body="slotProps">
-							{{ $dayjs(slotProps.data.dt).format('YYYY-MM-DD') }}
-						</template></Column
+					<div
+						v-if="
+							datalocal.length && typeof datalocal[0].date_ut !== 'undefined'
+						"
 					>
+						<Column field="date_ut" header="Date">
+							<template #body="slotProps">
+								{{ $dayjs.unix(slotProps.data.date_ut).format('YYYY-MM-DD') }}
+							</template>
+						</Column>
+					</div>
+					<div v-else>
+						<Column field="dt" header="Date">
+							<template #body="slotProps">
+								{{ $dayjs(slotProps.data.dt).format('YYYY-MM-DD') }}
+							</template>
+						</Column>
+					</div>
 					<Column
 						v-if="editable || deleteable"
 						field="id"

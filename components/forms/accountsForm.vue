@@ -167,7 +167,7 @@
 
 			<FormKit
 				type="number"
-				label="Year joined"
+				label="WOF Year"
 				name="member_wall_of_fame_year"
 				min="1966"
 				step="1"
