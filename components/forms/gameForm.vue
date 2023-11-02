@@ -41,7 +41,6 @@
 				<FormKit label="Referee" name="referee" type="text" />
 				<!-- venue input-->
 				<FormKit label="Venue" name="venue" type="text" validation="required" />
-
 				<!-- Date input-->
 				<FormKit
 					type="date"
@@ -50,7 +49,6 @@
 					validation="required"
 					@input="setUnixDate($event)"
 				/>
-
 				<!-- Time input-->
 				<FormKit
 					type="time"
@@ -59,7 +57,6 @@
 					validation="required"
 					@input="setUnixTime($event)"
 				/>
-
 				<!-- Game Type input-->
 				<FormKit
 					type="select"
@@ -69,7 +66,6 @@
 					:options="gametypes"
 					validation="required"
 				/>
-
 				<!-- Game Level input-->
 				<FormKit
 					type="select"
@@ -86,16 +82,14 @@
 				/>
 				<!-- Comment input-->
 				<FormKit label="Comment" name="comment" type="text" />
-
 				<!-- occasion input-->
 				<FormKit label="Occasion" name="occasion" type="text" />
-
 				<!-- points for input-->
 				<FormKit label="Pts For" name="ptsFor" type="text" />
-
 				<!-- points against input-->
 				<FormKit label="Pts against" name="ptsAgn" type="text" />
 			</FormKit>
+
 			<p v-if="saving">
 				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 				Saving ...
@@ -104,10 +98,13 @@
 			<Button label="Cancel" @click.prevent="cancelForm()" style="margin: 1rem">
 			</Button>
 
-			<!-- <div
-				v-if="props.id === 0 || $dayjs().unix().isBefore(dayjs(state.date_ut))"
-			> -->
-			<div v-if="props.id === 0">
+			<!-- if add OR game current date is before game date -->
+			<div
+				v-if="
+					!props.id ||
+					(props.id && $dayjs().isBefore($dayjs.unix(state.date_ut)))
+				"
+			>
 				<!-- Select previous game for autofill -->
 				<label for="reset"
 					><div class="p-2">
