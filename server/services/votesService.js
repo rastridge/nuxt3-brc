@@ -1,14 +1,17 @@
 import mysql from 'mysql2/promise'
 const { doDBQueryBuffalorugby } = useQuery()
-const { getConnectionBuffalorugby } = useDBConnection()
+const { sendEmail } = useEmail()
 
 export const votesService = {
 	getAll,
 	getAllCurrent,
 	getChoices,
+	getUsedChoices,
+	getQuestions,
 	getOne,
 	editOne,
 	addOne,
+	sendBallot,
 	deleteOne,
 	changeStatus,
 }
@@ -71,6 +74,49 @@ async function getChoices(id) {
 
 	const choices = await doDBQueryBuffalorugby(sql)
 	return choices
+}
+
+async function getUsedChoices() {
+	// get all choices for all questions?
+	const sql = `SELECT
+									c.vote_question_id,
+									vote_choice,
+									vote_picked_cnt,
+									vote_choice_id
+								FROM
+									inbrc_votes_choices as c,
+									inbrc_votes as v
+								WHERE
+									c.vote_question_id = v.vote_question_id
+									AND
+									v.STATUS = 1`
+
+	const usedchoices = await doDBQueryBuffalorugby(sql)
+	return usedchoices
+}
+
+async function getQuestions(account_email) {
+	const sql = `SELECT
+								v.vote_question_id,
+								v.vote_question
+							FROM
+								inbrc_votes v
+							WHERE
+								v.deleted = 0 AND
+								v.STATUS = 1 AND
+							NOT EXISTS (
+								SELECT
+										*
+								FROM
+									inbrc_votes_voted vv
+								WHERE
+										vv.voted_email LIKE '${account_email}'
+								AND
+									vv.vote_question_id = v.vote_question_id
+							)`
+
+	const questions = await doDBQueryBuffalorugby(sql)
+	return questions
 }
 
 async function getOne(id) {
@@ -171,6 +217,25 @@ async function addOne({ vote_question, choices }) {
 		await doDBQueryBuffalorugby(sql, inserts)
 	})
 	return votes
+}
+
+async function sendBallot(email) {
+	const htmlBody =
+		'<h3>Heads up: <br>There may be more than one available question on which to vote. If so, the next question will come up when the current one is submitted.' +
+		'<br>' +
+		'<br>' +
+		'Your vote is final once you hit Submit' +
+		'<br>' +
+		'<br>' +
+		'You can read the choices, Cancel and come back later to finish' +
+		'<br>' +
+		'<br>' +
+		`<a href="http://localhost:3000/admin/votes/form?account_email=` +
+		email.email +
+		'">Start Voting Here</></h3>'
+
+	console.log(email.email, 'Vote', htmlBody)
+	sendEmail(email.email, 'Vote', htmlBody)
 }
 
 async function deleteOne(id) {
