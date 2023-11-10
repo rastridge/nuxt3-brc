@@ -1,12 +1,7 @@
 <template>
 	<div class="edit">
-		<!-- questions = {{ questions }}<br /><br /> -->
-		choices = {{ choices }}<br /><br />
-		options = {{ options }}<br /><br />
-		answers = {{ answers }}<br /><br />
 		<div v-if="haveQuestions">
 			<div v-for="(question, q_index) in questions" :key="q_index">
-				q_index = {{ q_index }}
 				<FormKit
 					v-model="answers[q_index].vote_choice_id"
 					type="radio"
@@ -14,6 +9,14 @@
 					:options="options[q_index]"
 				/>
 			</div>
+			<Button
+				label="Submit"
+				severity="info"
+				class="m-2"
+				@click="handleSubmit(account_email, answers)"
+			/>
+			<Button label="Cancel" class="m-2" @click.prevent="cancelForm()">
+			</Button>
 		</div>
 		<div v-else>
 			<h1 class="">You have no unanswered questions</h1>
@@ -27,18 +30,19 @@
 	const account_email = ref(route.params.email)
 	const questions = ref([])
 	const choices = ref([])
+	const usedChoices = ref([])
 	const answers = ref([])
 	const haveQuestions = ref(0)
 	const options = ref([])
 
 	// convert for formkit
-	const convertToFormkit = () => {
+	const convertChoicesToOptions = () => {
 		options.value = []
 		let temparray = []
-		let prev = choices.value[0].vote_question_id
+		let prev = usedChoices.value[0].vote_question_id
 
-		for (let i = 0; i < choices.value.length; i++) {
-			const element = choices.value[i]
+		for (let i = 0; i < usedChoices.value.length; i++) {
+			const element = usedChoices.value[i]
 
 			// set FormKit radio input label, value pair
 			let n = {}
@@ -54,8 +58,8 @@
 			} else {
 				temparray.push(n)
 			}
-			// no more choices - push to options
-			if (i === choices.value.length - 1) {
+			// no more usedChoices - push to options
+			if (i === usedChoices.value.length - 1) {
 				options.value.push(temparray)
 			}
 		}
@@ -106,19 +110,30 @@
 			choices.value.forEach((choice) => {
 				if (choice.vote_question_id === question.vote_question_id) {
 					question.choices.push(choice) // fill choices array
+					usedChoices.value.push(choice) // fill used choices array
 				}
 			})
 		})
-		convertToFormkit()
+
+		convertChoicesToOptions()
 		haveQuestions.value = questions.value.length
 		initAnswers()
 	}
 
 	getQuestions(account_email)
 
-	/* const handleSubmit = (e) => {
-			votesService
-				.registerBallot(account_email.value, answers.value)
-				.then((vote) => {})
-		} */
+	const handleSubmit = async (account_email, answers) => {
+		// const account_email = account_email.value
+		// const answers = answers.value
+
+		const { data, error: error1 } = await useFetch(`/votes/registerballot`, {
+			method: 'POST',
+			body: { account_email, answers },
+			headers: {
+				authorization: 'not-needed',
+			},
+		})
+		navigateTo('/admin/votes/thanks')
+	}
+	const cancelForm = () => navigateTo('/news')
 </script>

@@ -1,10 +1,23 @@
 <template>
 	<div>
-		<p class="font-semibold">Voted on {{ question.vote_vote_cnt }} times</p>
+		<div v-if="props.id !== 0">
+			<p class="font-semibold text-red-500">
+				Do not edit after voting has begun!
+			</p>
+			<p class="font-semibold text-red-500 mb-2">
+				To add new choices, delete this question and create new question and
+				choices
+			</p>
+			<p class="font-semibold">Voted on {{ question.vote_vote_cnt }} times</p>
+		</div>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
+		<!-- updated_choices = {{ updated_choices }}<br /><br />
+		choice_values = {{ choice_values }}<br /><br /> -->
+		<!-- choices = {{ choices }}<br /><br /> -->
+
 		<FormKit
 			type="form"
 			v-model="question"
@@ -20,32 +33,45 @@
 			/>
 		</FormKit>
 		<Button label="Cancel" @click.prevent="cancelForm()"> </Button>
-		<pre wrap>choice_values {{ choice_values }}</pre>
-		<FormKit type="list" v-model="choice_values">
+
+		<!-- FormKit list input Voodoo -->
+		<h6>Choices</h6>
+		<FormKit
+			v-model="choice_values"
+			type="list"
+			dynamic
+			#default="{ items, node, value }"
+		>
 			<FormKit
-				v-for="key in items"
-				:key="key"
-				:id="key"
-				type="text"
-				:label="`Choice picked ${key} times`"
+				v-for="(item, index) in items"
+				:key="item"
+				:index="index"
+				:label="'Picked ' + choices[index].vote_picked_cnt + ' times'"
+				suffix-icon="trash"
+				@suffix-icon-click="
+					() => node.input(value.filter((_, i) => i !== index))
+				"
 				:sections-schema="{
-					suffix: {
-						$el: 'a',
-						attrs: {
-							class: '$classes.remove',
-							'data-key': '$id',
-							href: '#',
-							onClick: removeItem,
-						},
-						children: 'Remove choice',
+					suffixIcon: {
+						// change wrapper to a button for accessibility
+						$el: 'button',
 					},
 				}"
 			/>
-			<hr />
+			<div v-if="!(props.id !== 0)">
+				<Button
+					type="button"
+					label="Add new choice"
+					@click="() => node.input(value.concat(''))"
+				>
+				</Button>
+			</div>
+			<!-- <pre wrap> In formkit value = {{ value }}</pre> -->
 		</FormKit>
-		<Button class="primary" size="small" raised @click.prevent="addItem"
-			>+ Add Choice</Button
-		>
+		<!-- 		<p class="font-semibold text-red-500">
+			Editing a choice will remove existing vote counts!
+		</p> -->
+		<!-- <Button label="Cancel" @click.prevent="cancelForm()"> </Button> -->
 	</div>
 </template>
 
@@ -56,67 +82,31 @@
 	// control Prgress Bar
 	const saving = ref(false)
 
-	//
 	// Outgoing
 	//
 	const emit = defineEmits(['submitted'])
-	//
+
 	// Incoming
 	//
 	const props = defineProps({
 		id: { Number, default: 0 },
 	})
 
-	//
-	// Initialize Add form
-	//
-	// quesstion object from DB
 	let question = ref({})
-	// choices objects from DB
 	const choices = ref([
 		{ vote_choice_id: 0, vote_choice: '', vote_picked_cnt: 0 },
 	])
-	// const choices = ref([
-	// 	{ vote_choice_id: 0, vote_choice: '', vote_picked_cnt: 0 },
-	// ])
-	// formkit list items
-	const items = ref([])
-	// vote_choice vmodel values for formkit inputs
 	const choice_values = ref([])
-	// reconstituted choice objects to pass to DB
 	const updated_choices = ref([])
+	const value = ref([])
 
-	// initial value of formkit list item
-	import { token } from '@formkit/utils'
-	//
-	// add blank to input value
-	// add token to list item
-	const addItem = () => {
-		choice_values.value.push('')
-		items.value.push(token())
-	}
-
-	// add vote_choice value to input value
-	// add token to list item
-	const editItem = (item) => {
-		choice_values.value.push(item)
-		items.value.push(token())
-	}
-
-	// remove list item
-	const removeItem = (e) => {
-		e.preventDefault()
-		const key = e.target.getAttribute('data-key')
-		items.value = items.value.filter((item) => item !== key)
-	}
 	//
 	// edit if there is an id - add if not
 	//
 	if (props.id !== 0) {
-		//
 		// Initialize Edit form
 		//
-		// get question
+		// get question by id
 		const { data: question_data } = await useFetch(`/votes/${props.id}`, {
 			method: 'get',
 			headers: {
@@ -125,37 +115,37 @@
 		})
 		question.value = question_data.value
 
-		//
 		// get choices
-		const url = `/votes/getchoices/${props.id}`
-		const { data: choices_data } = await useFetch(url, {
-			method: 'get',
-			headers: {
-				authorization: auth.user.token,
-			},
-		})
+		//
+		const { data: choices_data } = await useFetch(
+			`/votes/getchoices/${props.id}`,
+			{
+				method: 'get',
+				headers: {
+					authorization: auth.user.token,
+				},
+			}
+		)
 		choices.value = choices_data.value
 
-		// create list items for formkit
-		choices.value.forEach((item, index, array) => {
-			if (item.vote_choice !== '') {
-				editItem(item.vote_choice)
+		// create list of choices for Formkit
+		choices.value.forEach((choice, index, array) => {
+			if (choice.vote_choice !== '') {
+				choice_values.value.push(choice.vote_choice)
 			}
 		})
 	}
 
-	//
 	// form handlers
 	//
 	const submitForm = (question) => {
 		saving.value = true
-		// insert values back into choice object
+		// insert updated values back into choice object
 		choice_values.value.forEach((item, index, array) => {
 			updated_choices.value.push({
 				vote_choice: item,
-				// mismatch i add many object to 1 new object
-				// vote_picked_cnt: choices.value[index].vote_picked_cnt,
-				vote_picked_cnt: 0,
+				vote_picked_cnt: choices.value[index].vote_picked_cnt,
+				// vote_picked_cnt: 99,
 			})
 		})
 		// delete old choices and replace with new
@@ -171,13 +161,10 @@
 </script>
 
 <style>
-	.formkit-remove {
-		position: absolute;
-		left: calc(100% + 0.5em);
-		color: red;
-		font-size: 0.75em;
-	}
-	button {
-		align-self: flex-start;
+	.formkit-suffix-icon {
+		appearance: none;
+		background: none;
+		border: none;
+		font-size: 1em;
 	}
 </style>

@@ -11,6 +11,7 @@ export const votesService = {
 	getOne,
 	editOne,
 	addOne,
+	registerBallot,
 	sendBallot,
 	deleteOne,
 	changeStatus,
@@ -68,9 +69,13 @@ async function getChoices(id) {
 	const sql = `SELECT
 									vote_choice,
 									vote_picked_cnt,
+									vote_question_id,
 									vote_choice_id
 								FROM inbrc_votes_choices
-								WHERE vote_question_id= ${id}`
+								WHERE 
+									vote_question_id= ${id} 
+									AND
+									deleted = 0`
 
 	const choices = await doDBQueryBuffalorugby(sql)
 	return choices
@@ -219,6 +224,66 @@ async function addOne({ vote_question, choices }) {
 	return votes
 }
 
+async function registerBallot({ account_email, answers }) {
+	const conn = await mysql.createConnection({
+		host: 'mysql.buffalorugby.org',
+		user: 'rastridge',
+		password: 'a1s2d3f4',
+		database: 'buffalorugby',
+	})
+
+	try {
+		await conn.query('START TRANSACTION')
+
+		await answers.forEach((c) => {
+			if (c.vote_choice_id !== '0') {
+				let sql = `INSERT INTO inbrc_votes_voted
+										SET
+											voted_email = ?,
+											vote_date = NOW(),
+											vote_question_id = ?`
+
+				let inserts = []
+				inserts.push(account_email, c.vote_question_id)
+				sql = mysql.format(sql, inserts)
+				conn.execute(sql)
+
+				// increment vote answer count
+				sql = `UPDATE inbrc_votes_choices
+						SET
+							vote_picked_cnt = vote_picked_cnt + 1
+						WHERE
+							vote_choice_id = ?`
+
+				inserts = []
+				inserts.push(c.vote_choice_id)
+				sql = mysql.format(sql, inserts)
+				conn.execute(sql)
+
+				// increment vote count
+				sql = `UPDATE inbrc_votes
+						SET
+							vote_vote_cnt = vote_vote_cnt + 1
+						WHERE
+							vote_question_id = ?`
+
+				inserts = []
+				inserts.push(c.vote_question_id)
+				sql = mysql.format(sql, inserts)
+				conn.execute(sql)
+			}
+		})
+		await conn.commit()
+		await conn.end()
+		console.log('commit')
+		return 'commit'
+	} catch (e) {
+		await conn.query('ROLLBACK')
+		await conn.end()
+		return 'commit'
+	}
+}
+
 async function sendBallot(email) {
 	const htmlBody =
 		'<h3>Heads up: <br>There may be more than one available question on which to vote. If so, the next question will come up when the current one is submitted.' +
@@ -238,12 +303,45 @@ async function sendBallot(email) {
 	sendEmail(email.email, 'Vote', htmlBody)
 }
 
-async function deleteOne(id) {
+/* async function deleteOne(id) {
 	const sql =
 		`UPDATE inbrc_votes SET deleted = 1, deleted_dt= NOW() WHERE vote_question_id = ` +
 		id
 	const votes = await doDBQueryBuffalorugby(sql)
 	return votes
+}
+ */
+async function deleteOne(id) {
+	const conn = await mysql.createConnection({
+		host: 'mysql.buffalorugby.org',
+		user: 'rastridge',
+		password: 'a1s2d3f4',
+		database: 'buffalorugby',
+	})
+
+	try {
+		await conn.query('START TRANSACTION')
+
+		// delete question
+		let sql = `UPDATE inbrc_votes SET deleted = 1 WHERE vote_question_id = ${id}`
+		await conn.execute(sql)
+
+		// delete existing votes voted
+		sql = `UPDATE inbrc_votes_voted SET deleted = 1 WHERE vote_question_id = ${id}`
+		await conn.execute(sql)
+
+		// delete existing choices
+		sql = `UPDATE inbrc_votes_choices SET deleted = 1 WHERE vote_question_id = ${id}`
+		await conn.execute(sql)
+
+		await conn.commit()
+		await conn.end()
+		return 'COMMIT'
+	} catch (e) {
+		await conn.query('ROLLBACK')
+		await conn.end()
+		return 'ROLLBACK'
+	}
 }
 
 async function changeStatus({ id, status }) {
