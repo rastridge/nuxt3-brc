@@ -27,12 +27,12 @@
 		"@vueuse/nuxt": "^10.1.0",
 		"c8": "^7.13.0",
 		"nuxt": "^3.7.0",
+		"nuxt-simple-robots": "^3.1.9",
 		"sass": "^1.62.1",
 		"typescript": "^5.0.4"
 	},
 	"dependencies": {
 		"@formkit/nuxt": "^0.17.4",
-		"@nuxtjs/robots": "^3.0.0",
 		"@vueup/vue-quill": "^1.1.1",
 		"bcrypt": "^5.1.0",
 		"chart.js": "^4.3.3",

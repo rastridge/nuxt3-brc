@@ -43,15 +43,14 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 		'@nuxt/image',
 		'@vueuse/nuxt',
-		'@nuxtjs/robots',
+		'nuxt-simple-robots',
 	],
 	buildModules: ['@nuxtjs/google-fonts'],
 
 	robots: {
-		UserAgent: '*',
-		Disallow: '/',
+		// provide simple disallow rules for all robots `user-agent: *`
+		disallow: ['/'],
 	},
-
 	components: [
 		'~/components/app',
 		'~/components/forms',
