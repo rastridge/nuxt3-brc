@@ -29,7 +29,7 @@ export const newslettersService = {
 	getRecipientTypes,
 }
 
-async function getAll() {
+/* async function getAll() {
 	const sql = `SELECT
 								newsletter_id,
 								newsletter_id as id,
@@ -52,7 +52,30 @@ async function getAll() {
 							ORDER BY dt DESC`
 
 	const newsletter = await doDBQueryBuffalorugby(sql)
+	return newsletter
+}
+ */
+async function getAll() {
+	const sql = `SELECT
+								newsletter_id,
+								newsletter_id as id,
+								newsletter_recipient_type_id,
+								admin_user_id,
+								newsletter_subject as title,
+								newsletter_sent as sent_dt,
+								status,
+								deleted,
+								deleted_dt,
+								created_dt,
+								modified_dt,
+								modified_dt as dt
+							FROM
+								inbrc_newsletters
+							WHERE
+								deleted = 0
+							ORDER BY dt DESC`
 
+	const newsletter = await doDBQueryBuffalorugby(sql)
 	return newsletter
 }
 

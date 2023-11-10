@@ -25,6 +25,7 @@ async function getAll() {
                     vote_question as title,
                     status,
                     deleted,
+                    created_dt as dt,
                     created_dt,
                     modified_dt,
                     modified_dt
@@ -47,6 +48,7 @@ async function getAllCurrent() {
                     vote_question as title,
                     status,
                     deleted,
+                    created_dt as dt,
                     created_dt,
                     modified_dt,
                     modified_dt
