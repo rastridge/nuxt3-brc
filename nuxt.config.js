@@ -47,10 +47,11 @@ export default defineNuxtConfig({
 	],
 	buildModules: ['@nuxtjs/google-fonts'],
 
-	robots: {
+	/* 	robots: {
 		// provide simple disallow rules for all robots `user-agent: *`
 		disallow: ['/'],
-	},
+	}, */
+
 	components: [
 		'~/components/app',
 		'~/components/forms',

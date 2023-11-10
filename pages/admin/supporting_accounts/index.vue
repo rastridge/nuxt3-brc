@@ -8,6 +8,9 @@
 				<admin-header :title="app" />
 			</div>
 			<div v-if="pending" class="topsectionitem">Loading ...</div>
+			<div class="topsectionitem">
+				<p>Scroll down to manage supporting accounts</p>
+			</div>
 		</div>
 
 		<!-- supportingaccounts[0] = {{ supportingaccounts[0] }} -->
