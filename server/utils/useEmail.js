@@ -34,7 +34,7 @@ export default function useEmail() {
 												width: 90%;
 												padding: 25px;
 											}
-											.nl-banner, .nl-footer { 
+											.nl-banner, .nl-footer  { 
 												width: 100%;
 												padding: 0.5rem;
 												color: #FFF;
@@ -42,14 +42,19 @@ export default function useEmail() {
 												font-family: Verdana, Geneva, sans-serif;
 												font-weight: bold;
 												text-align: center;
+											}											
+											.nl-footer { 
+												text-align: left;
+												font-size: 1rem;
+
 											}
 											@media screen and (min-width: 576px) {
-												.nl-banner, .nl-footer { 
+												.nl-banner { 
 													font-size: 1.5rem;
-												}													
+												}												
 											}
 											@media screen and (min-width: 768px) {
-												.nl-banner, .nl-footer { 
+												.nl-banner { 
 													font-size: 2rem;
 												}													
 											}
@@ -89,9 +94,21 @@ export default function useEmail() {
 													<h3>Buffalo Rugby<br>Newsletter</h3>
 												</div>`
 
-			const NEWSLETTER_END_STYLES = `<div class="nl-footer">
-												&nbsp;
-												</div>
+			const NEWSLETTER_END_STYLES = `<div class="nl-footer"> 
+																			<p>This is Your Current Contact Info. Please <a href="https://thebuffalorugby.club/register/men/${recipient.account_id}" target="_blank"> click here update your info if necessary</a></p>
+																			<table>
+																				<tbody>
+																					<tr><td>${recipient.member_firstname} ${recipient.member_lastname}</td></tr>
+																					<tr><td>${recipient.account_addr_street}</td></tr>
+																					<tr><td>${recipient.account_addr_street_ext}</td></tr>
+																					<tr><td>${recipient.account_addr_city}, ${recipient.account_addr_state} ${recipient.account_addr_postal}</td></tr>
+																					<tr><td>${recipient.account_addr_country}</td></tr>
+																					<tr><td>${recipient.account_addr_phone}</td></tr>
+																					<tr><td>Year Joined the BRC ${recipient.member_year}</td></tr>
+																					<tr><td>Previous teams ${recipient.member_prev_club}</td></tr>
+																				</tbody>
+																			</table> 
+																		</div>
 											</div> <!-- container -->
 										</body>
 									</html>`
@@ -99,11 +116,6 @@ export default function useEmail() {
 			// const TRACKINGPIXEL = `<img src="/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}" height="1" width="1" alt="" />`
 			// const TRACKINGPIXEL = ''
 
-			// make image respond to width
-			/* 			newsletter_body_html = newsletter_body_html.replace(
-				/img/g,
-				'img width="100%"'
-			) */
 			const email = {
 				from: FROM,
 				fromName: FROM_NAME,
@@ -112,7 +124,7 @@ export default function useEmail() {
 				body_text: '',
 				body_html:
 					BEGIN_HTML +
-					`<img src="https://peaceful-tarsier-458ff9.netlify.app/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}" height="1" width="1" alt="" />` +
+					`<img src="https://thebuffalorugby.club/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}" height="1" width="1" alt="" />` +
 					newsletter_body_html +
 					NEWSLETTER_END_STYLES,
 			}

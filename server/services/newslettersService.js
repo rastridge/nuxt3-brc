@@ -29,33 +29,6 @@ export const newslettersService = {
 	getRecipientTypes,
 }
 
-/* async function getAll() {
-	const sql = `SELECT
-								newsletter_id,
-								newsletter_id as id,
-								newsletter_recipient_type_id,
-								admin_user_id,
-								newsletter_subject,
-								newsletter_body_html,
-								newsletter_subject as title,
-								newsletter_sent as sent_dt,
-								status,
-								deleted,
-								deleted_dt,
-								created_dt,
-								modified_dt,
-								modified_dt as dt
-							FROM
-								inbrc_newsletters
-							WHERE
-								deleted = 0
-							ORDER BY dt DESC`
-
-	const newsletter = await doDBQueryBuffalorugby(sql)
-	return newsletter
-}
- */
-
 async function getAll() {
 	const sql = `SELECT
 								newsletter_id,
@@ -107,7 +80,8 @@ async function getYear(year) {
 	const newsletters = await doDBQueryBuffalorugby(sql)
 	return newsletters
 }
-
+// Define function to add footer, compose and send newsletters
+//
 async function sendNewsletter({
 	newsletter_id,
 	newsletter_body_html,
@@ -124,6 +98,7 @@ async function sendNewsletter({
 						member_lastname,
 						CONCAT(member_firstname," ", member_lastname) as title,
 						member_year,
+						member_prev_club,
 						account_email,
 						account_email_opening,
 						account_textmsg_opening,
@@ -144,8 +119,8 @@ async function sendNewsletter({
 					WHERE deleted = 0
 					ORDER BY account_email ASC`
 	const accounts = await doDBQueryBuffalorugby(sql)
-	//
-	// filter match member types with recipient types
+
+	// define function to filter match member types with recipient types
 	//
 	function setNewsletterRecipients(accounts, recipient_type_id) {
 		function newsletterTypeMemberMatch(recipient_type_id, el) {
@@ -224,21 +199,20 @@ async function sendNewsletter({
 			return newsletterTypeMemberMatch(recipient_type_id, el)
 		})
 	}
-	//
-	// make recipients list
+	// Call function to make recipients list
 	//
 	const recipients = setNewsletterRecipients(
 		accounts,
 		newsletter_recipient_type_id
 	)
-
+	// Call composable to send newsletters
+	//
 	await sendNewsletters(
 		recipients,
 		newsletter_subject,
 		newsletter_body_html,
 		newsletter_id
 	)
-	//
 	// log the email send
 	//
 	const sql2 = `UPDATE inbrc_newsletters
@@ -253,7 +227,6 @@ async function sendNewsletter({
 									newsletter_id = ${newsletter_id}`
 
 	const newsletters = await doDBQueryBuffalorugby(sql2)
-
 	return 'all done'
 }
 //
