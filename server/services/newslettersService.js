@@ -55,6 +55,7 @@ export const newslettersService = {
 	return newsletter
 }
  */
+
 async function getAll() {
 	const sql = `SELECT
 								newsletter_id,
