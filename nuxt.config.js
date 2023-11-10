@@ -38,8 +38,20 @@ export default defineNuxtConfig({
 			APP_NAME: pkg.name,
 		},
 	},
-	modules: ['@formkit/nuxt', '@pinia/nuxt', '@nuxt/image', '@vueuse/nuxt'],
+	modules: [
+		'@formkit/nuxt',
+		'@pinia/nuxt',
+		'@nuxt/image',
+		'@vueuse/nuxt',
+		'@nuxtjs/robots',
+	],
 	buildModules: ['@nuxtjs/google-fonts'],
+
+	robots: {
+		UserAgent: '*',
+		Disallow: '/',
+	},
+
 	components: [
 		'~/components/app',
 		'~/components/forms',
