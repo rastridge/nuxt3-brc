@@ -176,7 +176,7 @@ export function useNavigationMenu() {
 				visible: () => !auth.isLoggedIn,
 			},
 			{
-				label: 'Admin',
+				label: 'Admin Menu',
 				icon: 'pi pi-fw pi-plus',
 				items: [
 					{

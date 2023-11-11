@@ -80,6 +80,7 @@ async function getYear(year) {
 	const newsletters = await doDBQueryBuffalorugby(sql)
 	return newsletters
 }
+
 // Define function to add footer, compose and send newsletters
 //
 async function sendNewsletter({
@@ -205,7 +206,7 @@ async function sendNewsletter({
 		accounts,
 		newsletter_recipient_type_id
 	)
-	// Call composable to send newsletters
+	// Call server/utils/ useEmail composable to send newsletters
 	//
 	await sendNewsletters(
 		recipients,
