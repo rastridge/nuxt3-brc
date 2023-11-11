@@ -11,6 +11,8 @@ export default function useEmail() {
 		newsletter_id
 	) {
 		function composeEmail(recipient, newsletter_body_html, newsletter_subject) {
+			const TRACKINGPIXEL = `<img src="${HOST}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}" height="1" width="1" alt="" />`
+
 			const BEGIN_HTML = `<!DOCTYPE html>
 											<html>
 											<head>
@@ -90,6 +92,7 @@ export default function useEmail() {
 										</head>
 										<body>
 											<div class='nl-container'>
+											${TRACKINGPIXEL}
 												<div class='nl-banner'>
 													<h3>Buffalo Rugby<br>Newsletter</h3>
 												</div>`
@@ -113,24 +116,18 @@ export default function useEmail() {
 										</body>
 									</html>`
 
-			// const TRACKINGPIXEL = `<img src="${HOST}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}" height="1" width="1" alt="" />`
-
 			const email = {
 				from: FROM,
 				fromName: FROM_NAME,
 				to: recipient.account_email,
 				subject: newsletter_subject,
 				body_text: '',
-				body_html:
-					BEGIN_HTML +
-					`<img src="${HOST}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}" height="1" width="1" alt="" />` +
-					newsletter_body_html +
-					NEWSLETTER_END_STYLES,
+				body_html: BEGIN_HTML + newsletter_body_html + NEWSLETTER_END_STYLES,
 			}
 			return email
 		}
 		const sendEmail = (email) => {
-			console.log('IN sendEmail email = ', email)
+			// console.log('IN sendEmail email = ', email)
 			const post_data = querystring.stringify({
 				api_key: EE_API_KEY,
 				subject: email.subject,

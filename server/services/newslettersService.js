@@ -240,6 +240,8 @@ async function getOne(id) {
 }
 
 async function trackNewsletter(query) {
+	console.log('IN newsletterService query = ', query)
+
 	try {
 		const conn = await getConnectionBuffalorugby()
 		await conn.query('START TRANSACTION')
@@ -302,7 +304,7 @@ async function trackNewsletter(query) {
 		return 'Error in sql'
 	}
 
-	return `header('Location: /trackingpixel.gif')`
+	return `query.newsletter_id = ${query.newsletter_id}`
 }
 
 async function addOne({

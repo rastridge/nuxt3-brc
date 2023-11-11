@@ -1,16 +1,6 @@
 <template>
-	<!-- randomize the background image -->
-
-	<!-- 	<div
-		class="bg-no-repeat bg-cover bg-center w-full pt-4"
-		style="min-height: 900px; background-image: url('/2019_nyrc.jpg')"
-	></div> -->
-
-	<!-- <carousel :settings="settings" autoplay="3000" transition="600" wrapAround>
-		<slide v-for="slide in images" :key="slide">
-			<div class="carousel__item"><img :src="slide.url" /></div>
-		</slide>
-	</carousel> -->
+	HOST = {{ HOST }} tracking = {{ tracking }}
+	<img :src="tracking" height="1" width="1" />
 
 	<div class="car">
 		<Carousel :value="images" :numVisible="1" circular :autoplayInterval="6000">
@@ -24,6 +14,11 @@
 </template>
 
 <script setup>
+	const { HOST } = useRuntimeConfig()
+	const tracking = ref(
+		`https://thebuffalorugby.club/newsletters/track?account_id=1&newsletter_id=1`
+	)
+	// const tracking = ref(`/newsletters/track?account_id=1&newsletter_id=1`)
 	const images = ref([
 		{ id: 1, url: '/carousel/2019_nyrc.jpg' },
 		{ id: 2, url: '/carousel/2021NYRCMike.png' },
