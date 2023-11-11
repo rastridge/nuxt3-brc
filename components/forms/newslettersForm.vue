@@ -2,6 +2,8 @@
 	<div>
 		<p v-if="id">
 			Current version of newsletter was opened {{ newsletter_opened_cnt }} times
+			<br />
+			Recipient count {{ newsletter_recp_cnt }} times
 		</p>
 		<FormKit
 			type="form"
