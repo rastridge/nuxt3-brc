@@ -31,6 +31,7 @@ export default defineNuxtConfig({
 		CLOUD_UPLOAD_PRESET: process.env.CLOUD_UPLOAD_PRESET,
 		MY_MEDIA_API: process.env.MY_MEDIA_API,
 		SEASON_DIVIDE_DATE: process.env.SEASON_DIVIDE_DATE,
+
 		HOST: process.env.HOST,
 		// Keys within public, will be also be
 		// exposed to the client-side
