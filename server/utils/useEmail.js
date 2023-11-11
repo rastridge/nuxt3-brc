@@ -11,7 +11,8 @@ export default function useEmail() {
 		newsletter_id
 	) {
 		function composeEmail(recipient, newsletter_body_html, newsletter_subject) {
-			const TRACKINGPIXEL = `<img src="${HOST}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}" height="1" width="1" alt="" />`
+			const TRACKING = `https://thebuffalorugby.club/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}`
+			const TRACKINGPIXEL = `<img src="${TRACKING}" height="1" width="1" alt="" />`
 
 			const BEGIN_HTML = `<!DOCTYPE html>
 											<html>
