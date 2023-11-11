@@ -372,5 +372,6 @@
 	}
 	const cancelForm = () => {
 		navigateTo('/admin/accounts/men') // needs to be / for self register
+		// navigateTo('http://localhost:3000/admin/accounts/men', { external: true }) // needs to be / for self register
 	}
 </script>

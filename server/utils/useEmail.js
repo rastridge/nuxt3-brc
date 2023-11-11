@@ -2,7 +2,7 @@ import querystring from 'querystring'
 import https from 'https'
 
 export default function useEmail() {
-	const { EE_API_KEY, FROM, FROM_NAME } = useRuntimeConfig()
+	const { EE_API_KEY, FROM, FROM_NAME, HOST } = useRuntimeConfig()
 
 	function sendNewsletters(
 		recipientss,
@@ -95,7 +95,7 @@ export default function useEmail() {
 												</div>`
 
 			const NEWSLETTER_END_STYLES = `<div class="nl-footer"> 
-																			<p>This is Your Current Contact Info. Please <a href="https://thebuffalorugby.club/register/men/${recipient.account_id}" target="_blank"> click here update your info if necessary</a></p>
+																			<p>This is Your Current Contact Info. Please <a href="${HOST}/update/${recipient.account_id}" target="_blank"> click here update your info if necessary</a></p>
 																			<table>
 																				<tbody>
 																					<tr><td>${recipient.member_firstname} ${recipient.member_lastname}</td></tr>
@@ -113,8 +113,7 @@ export default function useEmail() {
 										</body>
 									</html>`
 
-			// const TRACKINGPIXEL = `<img src="/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}" height="1" width="1" alt="" />`
-			// const TRACKINGPIXEL = ''
+			// const TRACKINGPIXEL = `<img src="${HOST}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}" height="1" width="1" alt="" />`
 
 			const email = {
 				from: FROM,
@@ -124,7 +123,7 @@ export default function useEmail() {
 				body_text: '',
 				body_html:
 					BEGIN_HTML +
-					`<img src="https://thebuffalorugby.club/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}" height="1" width="1" alt="" />` +
+					`<img src="${HOST}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}" height="1" width="1" alt="" />` +
 					newsletter_body_html +
 					NEWSLETTER_END_STYLES,
 			}
