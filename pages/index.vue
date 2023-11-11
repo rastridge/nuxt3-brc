@@ -16,7 +16,7 @@
 <script setup>
 	const { HOST } = useRuntimeConfig()
 	const tracking = ref(
-		`https://thebuffalorugby.club/newsletters/track?account_id=1&newsletter_id=1`
+		`https://thebuffalorugby.club/newsletters/track?account_id=1&newsletter_id=2635`
 	)
 	// const tracking = ref(`/newsletters/track?account_id=1&newsletter_id=1`)
 	const images = ref([
