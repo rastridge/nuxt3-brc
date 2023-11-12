@@ -14,8 +14,7 @@
 </template>
 
 <script setup>
-	/* 	const { HOST } = useRuntimeConfig()
-
+	/* 	Testing tracking
 	const TRACKING = ref(
 		`https://thebuffalorugby.club/newsletters/track?account_id=1&newsletter_id=2635`
 	)

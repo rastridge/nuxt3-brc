@@ -42,6 +42,6 @@
 			method: 'POST',
 			body: { email: e },
 		})
-		// navigateTo('/admin/votes/confirm')
+		navigateTo('/admin/votes/confirm')
 	}
 </script>

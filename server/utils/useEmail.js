@@ -2,7 +2,10 @@ import querystring from 'querystring'
 import https from 'https'
 
 export default function useEmail() {
-	const { EE_API_KEY, FROM, FROM_NAME, HOST } = useRuntimeConfig()
+	const { EE_API_KEY, FROM, FROM_NAME } = useRuntimeConfig()
+
+	// const HOST = 'https://thebuffalorugby.club'
+	const HOST = 'http://localhost:3000'
 
 	function sendNewsletters(
 		recipientss,
@@ -12,7 +15,7 @@ export default function useEmail() {
 	) {
 		function composeEmail(recipient, newsletter_body_html, newsletter_subject) {
 			// this should work if and when email works
-			const TRACKING = `https://thebuffalorugby.club/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}`
+			const TRACKING = `${HOST}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}`
 			const TRACKINGPIXEL = `<img src="${TRACKING}" height="1" width="1"  />`
 
 			const BEGIN_HTML = `<!DOCTYPE html>

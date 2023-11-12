@@ -5,8 +5,8 @@
 				Do not edit after voting has begun!
 			</p>
 			<p class="font-semibold text-red-500 mb-2">
-				To add new choices, delete this question and create new question and
-				choices
+				To change choices, Cancel, then Delete the question and Add a new
+				question with new choices
 			</p>
 			<p class="font-semibold">Voted on {{ question.vote_vote_cnt }} times</p>
 		</div>
@@ -42,23 +42,46 @@
 			dynamic
 			#default="{ items, node, value }"
 		>
-			<FormKit
-				v-for="(item, index) in items"
-				:key="item"
-				:index="index"
-				:label="'Picked ' + choices[index].vote_picked_cnt + ' times'"
-				suffix-icon="trash"
-				@suffix-icon-click="
-					() => node.input(value.filter((_, i) => i !== index))
-				"
-				:sections-schema="{
-					suffixIcon: {
-						// change wrapper to a button for accessibility
-						$el: 'button',
-					},
-				}"
-			/>
-			<div v-if="!(props.id !== 0)">
+			<div v-if="props.id !== 0">
+				<FormKit
+					v-for="(item, index) in items"
+					:key="item"
+					:index="index"
+					:label="
+						choices[index].vote_picked_cnt !== undefined
+							? 'Picked ' + choices[index].vote_picked_cnt + ' times'
+							: ''
+					"
+					suffix-icon="trash"
+					@suffix-icon-click="
+						() => node.input(value.filter((_, i) => i !== index))
+					"
+					:sections-schema="{
+						suffixIcon: {
+							// change wrapper to a button for accessibility
+							$el: 'button',
+						},
+					}"
+				/>
+			</div>
+			<div v-else>
+				<FormKit
+					v-for="(item, index) in items"
+					:key="item"
+					:index="index"
+					:label="`# ${index + 1}`"
+					suffix-icon="trash"
+					@suffix-icon-click="
+						() => node.input(value.filter((_, i) => i !== index))
+					"
+					:sections-schema="{
+						suffixIcon: {
+							// change wrapper to a button for accessibility
+							$el: 'button',
+						},
+					}"
+				/>
+
 				<Button
 					type="button"
 					label="Add new choice"
@@ -128,7 +151,7 @@
 		)
 		choices.value = choices_data.value
 
-		// create list of choices for Formkit
+		// create list of choice_values for Formkit (only contains choice value)
 		choices.value.forEach((choice, index, array) => {
 			if (choice.vote_choice !== '') {
 				choice_values.value.push(choice.vote_choice)
@@ -140,13 +163,21 @@
 	//
 	const submitForm = (question) => {
 		saving.value = true
-		// insert updated values back into choice object
+		// insert updated choice values back into choices
+
+		// problem in add
 		choice_values.value.forEach((item, index, array) => {
-			updated_choices.value.push({
-				vote_choice: item,
-				vote_picked_cnt: choices.value[index].vote_picked_cnt,
-				// vote_picked_cnt: 99,
-			})
+			if (props.id !== 0) {
+				updated_choices.value.push({
+					vote_choice: item,
+					vote_picked_cnt: choices.value[index].vote_picked_cnt,
+				})
+			} else {
+				updated_choices.value.push({
+					vote_choice: item,
+					vote_picked_cnt: 0,
+				})
+			}
 		})
 		// delete old choices and replace with new
 		question.choices = []

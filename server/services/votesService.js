@@ -297,22 +297,13 @@ async function sendBallot(email) {
 		'You can read the choices, Cancel and come back later to finish' +
 		'<br>' +
 		'<br>' +
-		`<a href="http://localhost:3000/admin/votes/form?account_email=` +
+		`<a href="http://localhost:3000/admin/votes/form/` +
 		email.email +
 		'">Start Voting Here</></h3>'
-
-	console.log(email.email, 'Vote', htmlBody)
+	// from composable
 	sendEmail(email.email, 'Vote', htmlBody)
 }
 
-/* async function deleteOne(id) {
-	const sql =
-		`UPDATE inbrc_votes SET deleted = 1, deleted_dt= NOW() WHERE vote_question_id = ` +
-		id
-	const votes = await doDBQueryBuffalorugby(sql)
-	return votes
-}
- */
 async function deleteOne(id) {
 	const conn = await mysql.createConnection({
 		host: 'mysql.buffalorugby.org',
