@@ -194,10 +194,10 @@ export default function useEmail() {
 	}
 
 	function sendEmail(to, subject, message) {
-		// console.log(
-		// 	'IN sendEmail ',
-		// 	`to = ${to}  subject = ${subject} message = ${message}`
-		// )
+		console.log(
+			'IN sendEmail ',
+			`to = ${to}  subject = ${subject} message = ${message}`
+		)
 		const post_data = querystring.stringify({
 			api_key: EE_API_KEY,
 			subject: subject,
