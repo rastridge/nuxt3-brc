@@ -122,54 +122,55 @@ export default function useEmail() {
 									</html>`
 
 			const email = {
-				from: FROM,
-				fromName: FROM_NAME,
+				// from: FROM,
+				// fromName: FROM_NAME,
 				to: recipient.account_email,
 				subject: newsletter_subject,
-				body_text: '',
-				body_html: BEGIN_HTML + newsletter_body_html + NEWSLETTER_END_STYLES,
+				// body_text: '',
+				// body_html: BEGIN_HTML + newsletter_body_html + NEWSLETTER_END_STYLES,
+				message: BEGIN_HTML + newsletter_body_html + NEWSLETTER_END_STYLES,
 			}
+			// return email
 			return email
 		}
-		const sendEmail = (email) => {
-			// console.log('IN sendEmail email = ', email)
-			const post_data = querystring.stringify({
-				api_key: EE_API_KEY,
-				subject: email.subject,
-				from: email.from,
-				from_name: email.from_name,
-				to: email.to,
-				// to: "rfa@me.com",
-				body_html: email.body_html,
-				body_text: email.body_text,
-				isTransactional: true,
-			})
-			const post_options = {
-				hostname: 'api.elasticemail.com',
-				path: '/v2/email/send',
-				port: '443',
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-					'Content-Length': post_data.length,
-				},
-			}
+		// sendEmail
+		// const sendEmail = (email) => {
+		// 	const post_data = querystring.stringify({
+		// 		api_key: EE_API_KEY,
+		// 		subject: email.subject,
+		// 		from: email.from,
+		// 		from_name: email.from_name,
+		// 		to: email.to,
+		// 		body_html: email.body_html,
+		// 		body_text: email.body_text,
+		// 		isTransactional: true,
+		// 	})
+		// 	const post_options = {
+		// 		hostname: 'api.elasticemail.com',
+		// 		path: '/v2/email/send',
+		// 		port: '443',
+		// 		method: 'POST',
+		// 		headers: {
+		// 			'Content-Type': 'application/x-www-form-urlencoded',
+		// 			'Content-Length': post_data.length,
+		// 		},
+		// 	}
 
-			let result = ''
-			const post_req = https.request(post_options, function (res) {
-				res.setEncoding('utf8')
-				res.on('data', function (chunk) {
-					result = chunk
-					const { statusCode, statusMessage, headers } = res
-				})
-				res.on('error', function (e) {
-					result = 'Error: ' + e.message
-				})
-			})
+		// 	let result = ''
+		// 	const post_req = https.request(post_options, function (res) {
+		// 		res.setEncoding('utf8')
+		// 		res.on('data', function (chunk) {
+		// 			result = chunk
+		// 			const { statusCode, statusMessage, headers } = res
+		// 		})
+		// 		res.on('error', function (e) {
+		// 			result = 'Error: ' + e.message
+		// 		})
+		// 	})
 
-			post_req.write(post_data)
-			post_req.end()
-		}
+		// 	post_req.write(post_data)
+		// 	post_req.end()
+		// }
 
 		//
 		// self invoking function, passing the number of iterations as an argument
@@ -186,13 +187,17 @@ export default function useEmail() {
 					newsletter_body_html,
 					newsletter_subject
 				)
-				sendEmail(email)
+				sendEmail(email.to, email.subject, email.message)
 				if (--i) myLoop(i) //  decrement i and call myLoop again if i > 0
 			}, 500) // delay 500ms
 		})(rec_cnt)
 	}
 
 	function sendEmail(to, subject, message) {
+		// console.log(
+		// 	'IN sendEmail ',
+		// 	`to = ${to}  subject = ${subject} message = ${message}`
+		// )
 		const post_data = querystring.stringify({
 			api_key: EE_API_KEY,
 			subject: subject,
