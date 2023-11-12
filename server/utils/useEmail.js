@@ -97,6 +97,7 @@ export default function useEmail() {
 										</head>
 										<body>
 											<div class='nl-container'>
+											https://thebuffalorugby.club/newsletters/track?account_id=1576&newsletter_id=2635
 											${TRACKINGPIXEL}
 												<div class='nl-banner'>
 													<h3>Buffalo Rugby<br>Newsletter</h3>
