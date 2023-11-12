@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<p v-if="id">
-			Current version of newsletter was opened {{ newsletter_opened_cnt }} times
+			Current version of newsletter opned count {{ newsletter_opened_cnt }}
 			<br />
-			Recipient count {{ newsletter_recp_cnt }} times
+			Sent count {{ newsletter_recp_cnt }}
 		</p>
 		<FormKit
 			type="form"
@@ -100,6 +100,7 @@
 	//
 	//
 	const newsletter_opened_cnt = ref(0)
+	const newsletter_recp_cnt = ref(0)
 	//
 	// Editing if there is an id - Adding if not
 	//
@@ -130,6 +131,7 @@
 		)
 
 		newsletter_opened_cnt.value = news_data.value.newsletter_opened_cnt
+		newsletter_recp_cnt.value = news_data.value.newsletter_recp_cnt
 	}
 	//
 	// form handlers

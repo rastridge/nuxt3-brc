@@ -3,8 +3,10 @@ import https from 'https'
 
 export default function useEmail() {
 	const { EE_API_KEY, FROM, FROM_NAME } = useRuntimeConfig()
+	const CONFIG = useRuntimeConfig()
+	const HOST = CONFIG.public.HOST
 
-	const HOST = 'https://thebuffalorugby.club'
+	// const HOST = 'https://thebuffalorugby.club'
 	// const HOST = 'http://localhost:3000'
 
 	function sendNewsletters(
@@ -17,7 +19,7 @@ export default function useEmail() {
 			// this should work if and when email works
 			const TRACKING = `${HOST}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}`
 			const TRACKINGPIXEL = `<img src="${TRACKING}" height="1" width="1"  />`
-
+			console.log('compoeemail TRACKINGPIXEL = ', TRACKINGPIXEL)
 			const BEGIN_HTML = `<!DOCTYPE html>
 											<html>
 											<head>

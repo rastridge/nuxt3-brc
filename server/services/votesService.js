@@ -1,7 +1,10 @@
 import mysql from 'mysql2/promise'
 const { doDBQueryBuffalorugby } = useQuery()
 const { sendEmail } = useEmail()
-const HOST = 'https://thebuffalorugby.club'
+
+const { HOST } = useRuntimeConfig()
+
+// const HOST = 'https://thebuffalorugby.club'
 // const HOST = 'http://localhost:3000'
 
 export const votesService = {

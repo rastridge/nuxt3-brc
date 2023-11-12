@@ -1,6 +1,7 @@
 <template>
-	<!-- const TRACKING = {{ TRACKING }} const TRACKINGPIXEL = {{ TRACKINGPIXEL }}
-	<img :src="TRACKING" height="1" width="1" /> -->
+	HOST = {{ HOST }} TRACKING = {{ TRACKING }} const TRACKINGPIXEL =
+	{{ TRACKINGPIXEL }}
+	<img :src="TRACKING" height="1" width="1" />
 
 	<div class="car">
 		<Carousel :value="images" :numVisible="1" circular :autoplayInterval="6000">
@@ -14,13 +15,19 @@
 </template>
 
 <script setup>
-	/* 	Testing tracking
-	const TRACKING = ref(
+	const CONFIG = useRuntimeConfig()
+	const HOST = CONFIG.public.HOST
+
+	// Testing tracking
+	/* const TRACKING = ref(
 		`https://thebuffalorugby.club/newsletters/track?account_id=1&newsletter_id=2635`
+	) */
+	const TRACKING = ref(
+		`${HOST}/newsletters/track?account_id=1&newsletter_id=2635`
 	)
 	const TRACKINGPIXEL = ref(
 		`<img src="${TRACKING.value}" height="1" width="1"  />`
-	) */
+	)
 
 	const images = ref([
 		{ id: 1, url: '/carousel/2019_nyrc.jpg' },

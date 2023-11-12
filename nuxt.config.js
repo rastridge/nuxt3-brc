@@ -37,6 +37,7 @@ export default defineNuxtConfig({
 		public: {
 			APP_VERSION: pkg.version,
 			APP_NAME: pkg.name,
+			HOST: process.env.HOST,
 		},
 	},
 	modules: [

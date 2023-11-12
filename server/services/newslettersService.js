@@ -223,12 +223,12 @@ async function sendNewsletter({
 									newsletter_send_complete = NOW(),
 									newsletter_send_status = 3,
 									newsletter_opened_cnt = 0,
-									newsletter_recp_cnt = 0
+									newsletter_recp_cnt = ${recipients.length}
 								WHERE
 									newsletter_id = ${newsletter_id}`
 
 	const newsletters = await doDBQueryBuffalorugby(sql2)
-	return 'all done'
+	return recipients.length
 }
 //
 //
