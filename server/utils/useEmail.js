@@ -3,10 +3,8 @@ import https from 'https'
 
 export default function useEmail() {
 	const { EE_API_KEY, FROM, FROM_NAME } = useRuntimeConfig()
-	const CONFIG = useRuntimeConfig()
-	const HOST = CONFIG.public.HOST
 
-	// const HOST = 'https://thebuffalorugby.club'
+	const HOST = 'https://thebuffalorugby.club'
 	// const HOST = 'http://localhost:3000'
 
 	function sendNewsletters(

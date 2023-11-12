@@ -1,5 +1,5 @@
 <template>
-	HOST = {{ HOST }} TRACKING = {{ TRACKING }} const TRACKINGPIXEL =
+	TRACKING = {{ TRACKING }} const TRACKINGPIXEL =
 	{{ TRACKINGPIXEL }}
 	<img :src="TRACKING" height="1" width="1" />
 
@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
-	const CONFIG = useRuntimeConfig()
-	const HOST = CONFIG.public.HOST
+	const HOST = 'https://thebuffalorugby.club'
+	// const HOST = 'http://localhost:3000'
 
 	// Testing tracking
 	/* const TRACKING = ref(
