@@ -102,7 +102,6 @@
 	const toggle = () => {
 		peek.value = !peek.value
 	}
-
 	//
 	// Initialize Add form
 	//
