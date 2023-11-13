@@ -143,7 +143,7 @@
 
 		// Adjust for local time and Format for Primevue calendar
 		state.value.news_event_dt = $dayjs(news_data.value.news_event_dt).format(
-			'YYYY-MM-DD HH:MM:ss'
+			'YYYY-MM-DD'
 		)
 		state.value.news_release_dt = $dayjs(
 			news_data.value.news_release_dt
