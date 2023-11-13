@@ -304,7 +304,7 @@ async function trackNewsletter(query) {
 		return 'Error in sql'
 	}
 
-	return `query.newsletter_id = ${query.newsletter_id}`
+	return `header('Location: ./trackingpixel.gif')`
 }
 
 async function addOne({

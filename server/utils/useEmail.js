@@ -4,8 +4,8 @@ import https from 'https'
 export default function useEmail() {
 	const { EE_API_KEY, FROM, FROM_NAME } = useRuntimeConfig()
 
-	const HOST = 'https://thebuffalorugby.club'
-	// const HOST = 'http://localhost:3000'
+	const HOSTING = 'https://thebuffalorugby.club'
+	// const HOSTING = 'http://localhost:3000'
 
 	function sendNewsletters(
 		recipientss,
@@ -15,7 +15,7 @@ export default function useEmail() {
 	) {
 		function composeEmail(recipient, newsletter_body_html, newsletter_subject) {
 			// this should work if and when email works
-			const TRACKING = `${HOST}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}`
+			const TRACKING = `${HOSTING}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}`
 			const TRACKINGPIXEL = `<img src="${TRACKING}" height="1" width="1"  />`
 			console.log('compoeemail TRACKINGPIXEL = ', TRACKINGPIXEL)
 			const BEGIN_HTML = `<!DOCTYPE html>
@@ -97,14 +97,16 @@ export default function useEmail() {
 										</head>
 										<body>
 											<div class='nl-container'>
-											https://thebuffalorugby.club/newsletters/track?account_id=1576&newsletter_id=2635
-											${TRACKINGPIXEL}
+
+											<p>${TRACKING}</p>
+
+											<img src="${TRACKING}" height="1" width="1"  />
 												<div class='nl-banner'>
 													<h3>Buffalo Rugby<br>Newsletter</h3>
 												</div>`
 
 			const NEWSLETTER_END_STYLES = `<div class="nl-footer"> 
-																			<p>This is Your Current Contact Info. Please <a href="${HOST}/update/${recipient.account_id}" target="_blank"> click here update your info if necessary</a></p>
+																			<p>This is Your Current Contact Info. Please <a href="${HOSTING}/update/${recipient.account_id}" target="_blank"> click here update your info if necessary</a></p>
 																			<table>
 																				<tbody>
 																					<tr><td>${recipient.member_firstname} ${recipient.member_lastname}</td></tr>

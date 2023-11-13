@@ -2,10 +2,10 @@ import mysql from 'mysql2/promise'
 const { doDBQueryBuffalorugby } = useQuery()
 const { sendEmail } = useEmail()
 
-const { HOST } = useRuntimeConfig()
+// const { HOST } = useRuntimeConfig()
 
-// const HOST = 'https://thebuffalorugby.club'
-// const HOST = 'http://localhost:3000'
+const HOSTING = 'https://thebuffalorugby.club'
+// const HOSTING = 'http://localhost:3000'
 
 export const votesService = {
 	getAll,
@@ -302,7 +302,7 @@ async function sendBallot(email) {
 		'You can read the choices, Cancel and come back later to finish' +
 		'<br>' +
 		'<br>' +
-		`<a href="${HOST}/admin/votes/form/` +
+		`<a href="${HOSTING}/admin/votes/form/` +
 		email.email +
 		'">Start Voting Here</></h3>'
 	// from composable

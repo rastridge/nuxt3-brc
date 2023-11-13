@@ -15,15 +15,15 @@
 </template>
 
 <script setup>
-	const HOST = 'https://thebuffalorugby.club'
-	// const HOST = 'http://localhost:3000'
+	const HOSTING = 'https://thebuffalorugby.club'
+	// const HOSTING = 'http://localhost:3000'
 
 	// Testing tracking
 	/* const TRACKING = ref(
 		`https://thebuffalorugby.club/newsletters/track?account_id=1&newsletter_id=2635`
 	) */
 	const TRACKING = ref(
-		`${HOST}/newsletters/track?account_id=1&newsletter_id=2635`
+		`${HOSTING}/newsletters/track?account_id=1&newsletter_id=2635`
 	)
 	const TRACKINGPIXEL = ref(
 		`<img src="${TRACKING.value}" height="1" width="1"  />`
