@@ -45,6 +45,7 @@
 				name="news_event_dt"
 				validation="required"
 			/>
+			state.news_event_dt = {{ state.news_event_dt }}
 			<FormKit
 				type="date"
 				label="Release Date"
@@ -142,7 +143,7 @@
 
 		// Adjust for local time and Format for Primevue calendar
 		state.value.news_event_dt = $dayjs(news_data.value.news_event_dt).format(
-			'YYYY-MM-DD'
+			'YYYY-MM-DD HH:MM:ss'
 		)
 		state.value.news_release_dt = $dayjs(
 			news_data.value.news_release_dt
@@ -154,13 +155,6 @@
 	//
 	// form handlers
 	//
-
-	/* const toUTC = (state) => {
-		state.news_event_dt = $dayjs(state.news_event_dt).utc().format()
-		state.news_release_dt = $dayjs(state.news_release_dt).utc().format()
-		state.news_expire_dt = $dayjs(state.news_expire_dt).utc().format()
-		return state
-	}	 */
 
 	const submitForm = async (state) => {
 		console.log(state)
