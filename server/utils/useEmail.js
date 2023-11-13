@@ -4,8 +4,8 @@ import https from 'https'
 export default function useEmail() {
 	const { EE_API_KEY, FROM, FROM_NAME } = useRuntimeConfig()
 
-	const HOSTING = 'https://thebuffalorugby.club'
-	// const HOSTING = 'http://localhost:3000'
+	// const HOSTING = 'https://thebuffalorugby.club'
+	const HOSTING = 'http://localhost:3000'
 
 	function sendNewsletters(
 		recipientss,
@@ -13,6 +13,7 @@ export default function useEmail() {
 		newsletter_body_html,
 		newsletter_id
 	) {
+		// local function
 		function composeEmail(recipient, newsletter_body_html, newsletter_subject) {
 			// this should work if and when email works
 			const TRACKING = `${HOSTING}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}`
@@ -136,6 +137,7 @@ export default function useEmail() {
 			// return email
 			return email
 		}
+
 		// sendEmail
 		// const sendEmail = (email) => {
 		// 	const post_data = querystring.stringify({
@@ -175,6 +177,7 @@ export default function useEmail() {
 		// 	post_req.end()
 		// }
 
+		// local function
 		function sendEmail(to, subject, message) {
 			console.log(
 				'IN sendEmail ',
@@ -287,6 +290,7 @@ export default function useEmail() {
 
 		return result
 	}
+
 	return {
 		sendEmail,
 		sendNewsletters,

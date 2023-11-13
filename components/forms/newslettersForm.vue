@@ -119,7 +119,6 @@
 				authorization: auth.user.token,
 			},
 		})
-
 		state.value = news_data.value
 
 		//
@@ -133,17 +132,7 @@
 		newsletter_opened_cnt.value = news_data.value.newsletter_opened_cnt
 		newsletter_recp_cnt.value = news_data.value.newsletter_recp_cnt
 	}
-	//
-	// form handlers
-	//
-	const submitForm = (state) => {
-		saving.value = true
-		emit('submitted', state)
-	}
 
-	const cancelForm = () => {
-		navigateTo('/admin/newsletters')
-	}
 	//
 	// get newletter recipient types for Dropdown
 	//
@@ -172,4 +161,16 @@
 	const newsletterRecipientTypeOptions = setNewsletterRecipientTypeOptions(
 		newsletterRecipientTypes.value
 	)
+
+	//
+	// form handlers
+	//
+	const submitForm = (state) => {
+		saving.value = true
+		emit('submitted', state)
+	}
+
+	const cancelForm = () => {
+		navigateTo('/admin/newsletters')
+	}
 </script>

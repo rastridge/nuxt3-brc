@@ -1,8 +1,8 @@
 <template>
-	TRACKING = {{ TRACKING }} const TRACKINGPIXEL =
+	<!-- 	TRACKING = {{ TRACKING }} const TRACKINGPIXEL =
 	{{ TRACKINGPIXEL }}
 	<img :src="TRACKING" height="1" width="1" />
-
+ -->
 	<div class="car">
 		<Carousel :value="images" :numVisible="1" circular :autoplayInterval="6000">
 			<template #item="slotProps">
@@ -15,19 +15,19 @@
 </template>
 
 <script setup>
-	const HOSTING = 'https://thebuffalorugby.club'
+	/* 	const HOSTING = 'https://thebuffalorugby.club'
 	// const HOSTING = 'http://localhost:3000'
 
 	// Testing tracking
-	/* const TRACKING = ref(
+	 const TRACKING = ref(
 		`https://thebuffalorugby.club/newsletters/track?account_id=1&newsletter_id=2635`
-	) */
+	) 
 	const TRACKING = ref(
 		`${HOSTING}/newsletters/track?account_id=1&newsletter_id=2635`
 	)
 	const TRACKINGPIXEL = ref(
 		`<img src="${TRACKING.value}" height="1" width="1"  />`
-	)
+	) */
 
 	const images = ref([
 		{ id: 1, url: '/carousel/2019_nyrc.jpg' },

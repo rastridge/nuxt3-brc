@@ -302,7 +302,7 @@ async function trackNewsletter(query) {
 		return 'Error in sql'
 	}
 
-	return `header('Location: ./trackingpixel.gif')`
+	return query
 }
 
 async function addOne({
