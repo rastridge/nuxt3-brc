@@ -4,6 +4,7 @@ const { $dayjs } = useNuxtApp()
 export default function useUTC() {
 	const toUTC = async (state, app) => {
 		if (app === 'news') {
+			console.log('IN utc app = ', app)
 			state.news_event_dt = $dayjs(state.news_event_dt).utc().format()
 			state.news_release_dt = $dayjs(state.news_release_dt).utc().format()
 			state.news_expire_dt = $dayjs(state.news_expire_dt).utc().format()
