@@ -4,8 +4,8 @@ import https from 'https'
 export default function useEmail() {
 	const { EE_API_KEY, FROM, FROM_NAME } = useRuntimeConfig()
 
-	// const HOSTING = 'https://thebuffalorugby.club'
-	const HOSTING = 'http://localhost:3000'
+	const HOSTING = 'https://thebuffalorugby.club'
+	// const HOSTING = 'http://localhost:3000'
 
 	function sendNewsletters(
 		recipientss,
