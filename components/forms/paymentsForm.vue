@@ -56,10 +56,14 @@
 
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
+	import 'dayjs/plugin/utc'
+
 	const auth = useAuthStore()
 	const saving = ref(false)
 
 	const { $dayjs } = useNuxtApp()
+	const { toUTC } = useUTC()
+
 	//
 	// Outgoing
 	//
@@ -111,8 +115,9 @@
 	//
 	// form handlers
 	//
-	const submitForm = (state) => {
+	const submitForm = async (state) => {
 		saving.value = true
+		state = await toUTC(state, 'payments')
 		emit('submitted', state)
 	}
 

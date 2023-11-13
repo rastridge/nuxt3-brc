@@ -32,7 +32,6 @@
 				name="event_dt"
 				validation="required"
 			/>
-			{{ state.event_dt }}
 			<FormKit
 				type="date"
 				label="Release Date"
@@ -58,8 +57,9 @@
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
-
+	import 'dayjs/plugin/utc'
 	const { $dayjs } = useNuxtApp()
+	const { toUTC } = useUTC()
 	const saving = ref(false)
 
 	//
@@ -117,8 +117,9 @@
 	//
 	// form handlers
 	//
-	const submitForm = (state) => {
+	const submitForm = async (state) => {
 		saving.value = true
+		state = await toUTC(state, 'events')
 		emit('submitted', state)
 	}
 

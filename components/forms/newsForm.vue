@@ -69,7 +69,10 @@
 
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
+	import 'dayjs/plugin/utc'
 	const auth = useAuthStore()
+	const { toUTC } = useUTC()
+
 	const saving = ref(false)
 
 	const { $dayjs } = useNuxtApp()
@@ -151,7 +154,17 @@
 	//
 	// form handlers
 	//
-	const submitForm = (state) => {
+
+	/* const toUTC = (state) => {
+		state.news_event_dt = $dayjs(state.news_event_dt).utc().format()
+		state.news_release_dt = $dayjs(state.news_release_dt).utc().format()
+		state.news_expire_dt = $dayjs(state.news_expire_dt).utc().format()
+		return state
+	}	 */
+
+	const submitForm = async (state) => {
+		console.log(state)
+		state = await toUTC(state, 'news')
 		saving.value = true
 		emit('submitted', state)
 	}

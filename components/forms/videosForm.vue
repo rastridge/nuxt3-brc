@@ -61,8 +61,11 @@
 
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
+	import 'dayjs/plugin/utc'
 	const auth = useAuthStore()
 	const { $dayjs } = useNuxtApp()
+	const { toUTC } = useUTC()
+
 	const saving = ref(false)
 
 	//
@@ -113,8 +116,10 @@
 	//
 	// form handlers
 	//
-	const submitForm = (state) => {
+	const submitForm = async (state) => {
 		saving.value = true
+		state = await toUTC(state, 'videos')
+
 		emit('submitted', state)
 	}
 
