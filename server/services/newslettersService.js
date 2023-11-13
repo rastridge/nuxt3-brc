@@ -1,6 +1,4 @@
 import mysql from 'mysql2/promise'
-// import querystring from 'querystring'
-// import https from 'https'
 
 const {
 	DB_DATABASE,
@@ -206,7 +204,7 @@ async function sendNewsletter({
 		accounts,
 		newsletter_recipient_type_id
 	)
-	// Call server/utils/ useEmail composable to send newsletters
+	// Calls server/utils/ useEmail composable to send newsletters
 	//
 	await sendNewsletters(
 		recipients,
