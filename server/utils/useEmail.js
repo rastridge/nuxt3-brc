@@ -98,8 +98,6 @@ export default function useEmail() {
 										<body>
 											<div class='nl-container'>
 
-											<p>${TRACKING}</p>
-
 											<img src="${TRACKING}" height="1" width="1"  />
 												<div class='nl-banner'>
 													<h3>Buffalo Rugby<br>Newsletter</h3>
@@ -139,10 +137,10 @@ export default function useEmail() {
 
 		// local function
 		function sendEmail(to, subject, message) {
-			console.log(
+			/* 			console.log(
 				'IN sendEmail ',
 				`to = ${to}  subject = ${subject} HOSTiNG = ${HOSTING}`
-			)
+			) */
 			const post_data = querystring.stringify({
 				api_key: EE_API_KEY,
 				subject: subject,
@@ -203,6 +201,7 @@ export default function useEmail() {
 				if (--i) myLoop(i) //  decrement i and call myLoop again if i > 0
 			}, 500) // delay 500ms
 		})(rec_cnt) */
+
 		let sentlist = []
 		let email = ''
 
@@ -222,10 +221,10 @@ export default function useEmail() {
 	}
 
 	function sendEmail(to, subject, message) {
-		console.log(
+		/* 		console.log(
 			'IN sendEmail ',
 			`to = ${to}  subject = ${subject} message = ${message}`
-		)
+		) */
 		const post_data = querystring.stringify({
 			api_key: EE_API_KEY,
 			subject: subject,
