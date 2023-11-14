@@ -204,9 +204,9 @@ async function sendNewsletter({
 		accounts,
 		newsletter_recipient_type_id
 	)
-	// Calls server/utils/ useEmail composable to send newsletters
+	// Calls server/utils/ useEmail composable sendNewsletters to send newsletters
 	//
-	await sendNewsletters(
+	const r = await sendNewsletters(
 		recipients,
 		newsletter_subject,
 		newsletter_body_html,
@@ -226,7 +226,7 @@ async function sendNewsletter({
 									newsletter_id = ${newsletter_id}`
 
 	const newsletters = await doDBQueryBuffalorugby(sql2)
-	return recipients.length
+	return r
 }
 //
 //

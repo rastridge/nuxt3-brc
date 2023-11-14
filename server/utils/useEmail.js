@@ -7,7 +7,7 @@ export default function useEmail() {
 	const HOSTING = 'https://thebuffalorugby.club'
 	// const HOSTING = 'http://localhost:3000'
 
-	function sendNewsletters(
+	async function sendNewsletters(
 		recipientss,
 		newsletter_subject,
 		newsletter_body_html,
@@ -137,45 +137,6 @@ export default function useEmail() {
 			return email
 		}
 
-		// sendEmail
-		// const sendEmail = (email) => {
-		// 	const post_data = querystring.stringify({
-		// 		api_key: EE_API_KEY,
-		// 		subject: email.subject,
-		// 		from: email.from,
-		// 		from_name: email.from_name,
-		// 		to: email.to,
-		// 		body_html: email.body_html,
-		// 		body_text: email.body_text,
-		// 		isTransactional: true,
-		// 	})
-		// 	const post_options = {
-		// 		hostname: 'api.elasticemail.com',
-		// 		path: '/v2/email/send',
-		// 		port: '443',
-		// 		method: 'POST',
-		// 		headers: {
-		// 			'Content-Type': 'application/x-www-form-urlencoded',
-		// 			'Content-Length': post_data.length,
-		// 		},
-		// 	}
-
-		// 	let result = ''
-		// 	const post_req = https.request(post_options, function (res) {
-		// 		res.setEncoding('utf8')
-		// 		res.on('data', function (chunk) {
-		// 			result = chunk
-		// 			const { statusCode, statusMessage, headers } = res
-		// 		})
-		// 		res.on('error', function (e) {
-		// 			result = 'Error: ' + e.message
-		// 		})
-		// 	})
-
-		// 	post_req.write(post_data)
-		// 	post_req.end()
-		// }
-
 		// local function
 		function sendEmail(to, subject, message) {
 			console.log(
@@ -220,7 +181,7 @@ export default function useEmail() {
 			post_req.write(post_data)
 			post_req.end()
 
-			return result
+			return post_data
 		}
 
 		//
@@ -231,7 +192,7 @@ export default function useEmail() {
 
 		const rec_cnt = recipientss.length
 
-		;(function myLoop(i) {
+		/* 		;(function myLoop(i) {
 			setTimeout(function () {
 				const email = composeEmail(
 					recipientss[i - 1],
@@ -241,7 +202,16 @@ export default function useEmail() {
 				sendEmail(email.to, email.subject, email.message)
 				if (--i) myLoop(i) //  decrement i and call myLoop again if i > 0
 			}, 500) // delay 500ms
-		})(rec_cnt)
+		})(rec_cnt) */
+
+		const email = composeEmail(
+			recipientss[0],
+			newsletter_body_html,
+			newsletter_subject
+		)
+		await sendEmail(email.to, email.subject, email.message)
+
+		return email.to
 	}
 
 	function sendEmail(to, subject, message) {
