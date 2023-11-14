@@ -18,7 +18,6 @@ export default function useEmail() {
 			// this should work if and when email works
 			const TRACKING = `${HOSTING}/newsletters/track?account_id=${recipient.account_id}&newsletter_id=${newsletter_id}`
 			const TRACKINGPIXEL = `<img src="${TRACKING}" height="1" width="1"  />`
-			console.log('compoeemail TRACKINGPIXEL = ', TRACKINGPIXEL)
 			const BEGIN_HTML = `<!DOCTYPE html>
 											<html>
 											<head>
@@ -181,7 +180,7 @@ export default function useEmail() {
 		function sendEmail(to, subject, message) {
 			console.log(
 				'IN sendEmail ',
-				`to = ${to}  subject = ${subject} message = ${message}`
+				`to = ${to}  subject = ${subject} HOSTiNG = ${HOSTING}`
 			)
 			const post_data = querystring.stringify({
 				api_key: EE_API_KEY,
