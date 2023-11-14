@@ -181,7 +181,7 @@ export default function useEmail() {
 			post_req.write(post_data)
 			post_req.end()
 
-			return post_data
+			return to
 		}
 
 		//
@@ -203,15 +203,22 @@ export default function useEmail() {
 				if (--i) myLoop(i) //  decrement i and call myLoop again if i > 0
 			}, 500) // delay 500ms
 		})(rec_cnt) */
+		let sentlist = []
+		let email = ''
 
-		const email = composeEmail(
-			recipientss[0],
-			newsletter_body_html,
-			newsletter_subject
-		)
-		await sendEmail(email.to, email.subject, email.message)
+		let i = 0
+		do {
+			email = await composeEmail(
+				recipientss[i],
+				newsletter_body_html,
+				newsletter_subject
+			)
+			await sendEmail(email.to, email.subject, email.message)
+			sentlist.push(email.to)
+			i++
+		} while (i < recipientss.length)
 
-		return email.to
+		return sentlist
 	}
 
 	function sendEmail(to, subject, message) {
