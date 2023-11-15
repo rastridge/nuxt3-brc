@@ -11,7 +11,7 @@ export default function useUTC() {
 		} else if (app === 'events') {
 			state.event_dt = $dayjs(state.event_dt).utc().format()
 			state.release_dt = $dayjs(state.release_dt).utc().format()
-			state.expire_dt = $dayjs(state.news_expire_dt).utc().format()
+			state.expire_dt = $dayjs(state.expire_dt).utc().format()
 		} else if (app === 'content') {
 			state.content_release_dt = $dayjs(state.content_release_dt).utc().format()
 			state.content_expire_dt = $dayjs(state.content_expire_dt).utc().format()
