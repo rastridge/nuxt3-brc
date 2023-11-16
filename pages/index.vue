@@ -35,7 +35,7 @@
 		{ id: 3, url: '/carousel/AST_1629.png' },
 		{ id: 4, url: '/carousel/AST_1945.png' },
 		{ id: 5, url: '/carousel/AST_6696.png' },
-		{ id: 6, url: '/carousel/bfo rugby.png' },
+		{ id: 6, url: '/carousel/madison.jpeg' },
 		{ id: 7, url: '/carousel/DSC_4148.png' },
 		{ id: 8, url: '/carousel/DSC_5371.png' },
 		{ id: 9, url: '/carousel/team.png' },

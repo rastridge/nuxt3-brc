@@ -113,16 +113,16 @@ async function editOne(item) {
 
 async function addOne(item) {
 	let sql = `INSERT INTO inbrc_content
-				SET
-				content_name = ?,
-				content_body = ?,
-				content_order = ?,
-				content_release_dt = ?,
-				content_expire_dt = ?,
-				status = 1,
-				deleted = 0,
-				created_dt = NOW(),
-				modified_dt = NOW()`
+								SET
+								content_name = ?,
+								content_body = ?,
+								content_order = ?,
+								content_release_dt = ?,
+								content_expire_dt = ?,
+								status = 1,
+								deleted = 0,
+								created_dt = NOW(),
+								modified_dt = NOW()`
 
 	let inserts = []
 	inserts.push(

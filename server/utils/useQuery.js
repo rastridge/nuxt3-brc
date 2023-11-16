@@ -25,10 +25,13 @@ export default function useQuery() {
 			password: CONFIG.DB_PASSWORD,
 			database: 'buffalorugby',
 		})
+
+		// await conn1.execute('SET time_zone="+00:00"')
 		if (inserts) {
 			sql = mysql.format(sql, inserts)
 		}
 		// console.log('IN dbQery sql = ', sql)
+
 		const [rows, fields] = await conn1.execute(sql)
 		await conn1.end()
 		return rows
