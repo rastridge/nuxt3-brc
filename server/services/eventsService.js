@@ -51,8 +51,9 @@ async function getAllCurrent() {
                 WHERE
                   deleted = 0
 									AND status = 1
-									AND DATEDIFF( CURDATE(), expire_dt)  <=  0
-									AND DATEDIFF( CURDATE(), release_dt)  >  0
+									CURDATE() < DATE(expire_dt)
+									AND
+									CURDATE() >= DATE(release_dt)
                 ORDER BY dt ASC`
 
 	const events = await doDBQueryDatestring(sql)
