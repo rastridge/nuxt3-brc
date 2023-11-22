@@ -25,7 +25,7 @@
 				>
 					<a :href="itm.archive_filepath" target="blank">
 						<span class="text-sm md:text-lg text-600">
-							{{ $dayjs(itm.archive_date).format('YYYY MMM') }}
+							{{ $dayjs(itm.archive_date).format('YYYY MMMM') }}
 						</span>
 						-
 						<span class="text-sm md:text-lg text-600 font-semibold">

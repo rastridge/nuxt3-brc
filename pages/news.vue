@@ -317,7 +317,7 @@
 				<template #title>
 					<!--  Format for Primevue calendar -->
 					<span class="text-sm">
-						{{ $dayjs(item.dt).format('MMM D, YYYY HH:mm a') }} </span
+						{{ $dayjs(item.dt).format('MMM D, YYYY') }} </span
 					><br />
 					{{ item.news_title }}
 				</template>

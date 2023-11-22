@@ -70,9 +70,7 @@
 
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
-	import 'dayjs/plugin/utc'
 	const auth = useAuthStore()
-	const { toUTC } = useUTC()
 
 	const saving = ref(false)
 
@@ -140,7 +138,7 @@
 			'<img width="100%"'
 		)
 		//
-		// Adjust for local time and Format for Primevue calendar
+		// Format for Primevue calendar
 		//
 		state.value.news_event_dt = $dayjs(news_data.value.news_event_dt).format(
 			'YYYY-MM-DD'
@@ -157,9 +155,10 @@
 	//
 
 	const submitForm = async (state) => {
-		console.log(state)
-		state = await toUTC(state, 'news')
 		saving.value = true
+		state.news_event_dt = $dayjs(state.news_event_dt).format('YYYY-MM-DD')
+		state.news_release_dt = $dayjs(state.news_release_dt).format('YYYY-MM-DD')
+		state.news_expire_dt = $dayjs(state.news_expire_dt).format('YYYY-MM-DD')
 		emit('submitted', state)
 	}
 

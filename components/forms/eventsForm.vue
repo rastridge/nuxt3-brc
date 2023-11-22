@@ -32,6 +32,7 @@
 				name="event_dt"
 				validation="required"
 			/>
+
 			<FormKit
 				type="date"
 				label="Release Date"
@@ -57,9 +58,7 @@
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
-	import 'dayjs/plugin/utc'
 	const { $dayjs } = useNuxtApp()
-	const { toUTC } = useUTC()
 	const saving = ref(false)
 
 	//
@@ -103,8 +102,8 @@
 		})
 		state.value = events_data.value
 
-		// Adjust for local time and Format for Primevue calendar
-		state.value.event_dt = $dayjs(events_data.value.event_dt).format(
+		// Format for Primevue calendar
+		/* 		state.value.event_dt = $dayjs(events_data.value.event_dt).format(
 			'YYYY-MM-DD'
 		)
 		state.value.release_dt = $dayjs(events_data.value.release_dt).format(
@@ -112,14 +111,13 @@
 		)
 		state.value.expire_dt = $dayjs(events_data.value.expire_dt).format(
 			'YYYY-MM-DD'
-		)
+		) */
 	}
 	//
 	// form handlers
 	//
-	const submitForm = async (state) => {
+	const submitForm = (state) => {
 		saving.value = true
-		state = await toUTC(state, 'events')
 		emit('submitted', state)
 	}
 

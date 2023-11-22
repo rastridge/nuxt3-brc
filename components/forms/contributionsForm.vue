@@ -82,7 +82,6 @@
 </template>
 
 <script setup>
-	// import { getNode } from '@formkit/core'
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
 	const { $dayjs } = useNuxtApp()
@@ -176,10 +175,10 @@
 			}
 		)
 		state.value = data.value
-		// Adjust for local time and Format for Formkit calendar? ??
-		state.value.contribution_date = $dayjs(data.value.contribution_date).format(
+		// Format for Formkit calendar? ??
+		/* 		state.value.contribution_date = $dayjs(data.value.contribution_date).format(
 			'YYYY-MM-DD'
-		)
+		) */
 		state.value.contribution_showName = data.value.contribution_showName
 			? true
 			: false
@@ -191,7 +190,7 @@
 	//
 	// form handlers
 	//
-	const submitForm = (state) => {
+	const submitForm = async (state) => {
 		state.account_id = selectedItem.value.account_id
 		saving.value = true
 		emit('submitted', state)

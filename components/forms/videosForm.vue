@@ -61,10 +61,8 @@
 
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
-	import 'dayjs/plugin/utc'
 	const auth = useAuthStore()
 	const { $dayjs } = useNuxtApp()
-	const { toUTC } = useUTC()
 
 	const saving = ref(false)
 
@@ -101,7 +99,7 @@
 		)
 		state.value = data.value
 
-		// Adjust for local time and Format for Primevue calendar
+		// Format for Primevue calendar
 		state.value.video_event_dt = $dayjs(data.value.video_event_dt).format(
 			'YYYY-MM-DD'
 		)
@@ -118,8 +116,6 @@
 	//
 	const submitForm = async (state) => {
 		saving.value = true
-		state = await toUTC(state, 'videos')
-
 		emit('submitted', state)
 	}
 

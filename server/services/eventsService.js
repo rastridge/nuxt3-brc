@@ -1,9 +1,8 @@
 const CONFIG = useRuntimeConfig()
-const { doDBQueryBuffalorugby } = useQuery()
+const { doDBQueryDatestring } = useQuery()
 
 export const eventsService = {
 	getAll,
-	// getPage,
 	getAllCurrent,
 	getOne,
 	editOne,
@@ -20,6 +19,7 @@ async function getAll() {
 									event_title as title,
 									event_description,
 									event_location,
+									event_dt,
 									event_dt as dt,
 									expire_dt,
 									release_dt,
@@ -30,7 +30,7 @@ async function getAll() {
 									deleted = 0
                 ORDER BY dt DESC`
 
-	const events = await doDBQueryBuffalorugby(sql)
+	const events = await doDBQueryDatestring(sql)
 
 	return events
 }
@@ -43,6 +43,7 @@ async function getAllCurrent() {
 									event_title as title,
 									event_description,
 									event_location,
+									event_dt,
 									event_dt as dt,
 									status
                 FROM
@@ -54,38 +55,29 @@ async function getAllCurrent() {
 									AND DATEDIFF( CURDATE(), release_dt)  >  0
                 ORDER BY dt ASC`
 
-	const events = await doDBQueryBuffalorugby(sql)
+	const events = await doDBQueryDatestring(sql)
 	return events
 }
-
-/* function getPage(id) {
-	const requestOptions = {
-		url: `${API}/events/page/` + id,
-		method: 'GET',
-	}
-	return Axios(requestOptions).then(handleSuccess).catch(handleError)
-} */
 
 async function getOne(id) {
 	const sql =
 		`SELECT
-								event_id,
-								event_id as id,
-								event_title,
-								event_title as title,
-								event_description,
-								event_location,
-								event_dt,
-								event_dt as dt,
-								expire_dt,
-								release_dt
-							FROM
-									inbrc_events
-							WHERE
-								event_id = ` + id
+				event_id,
+				event_id as id,
+				event_title,
+				event_title as title,
+				event_description,
+				event_location,
+				event_dt,
+				event_dt as dt,
+				expire_dt,
+				release_dt
+			FROM
+					inbrc_events
+			WHERE
+				event_id = ` + id
 
-	const events = await doDBQueryBuffalorugby(sql)
-
+	const events = await doDBQueryDatestring(sql)
 	return events[0]
 }
 
@@ -119,7 +111,7 @@ async function addOne({
 		expire_dt
 	)
 
-	const events = await doDBQueryBuffalorugby(sql, inserts)
+	const events = await doDBQueryDatestring(sql, inserts)
 	return events
 }
 
@@ -154,20 +146,20 @@ async function editOne({
 		id
 	)
 
-	const events = await doDBQueryBuffalorugby(sql, inserts)
+	const events = await doDBQueryDatestring(sql, inserts)
 	return events
 }
 
 async function deleteOne(id) {
 	const sql = `UPDATE inbrc_events SET deleted = 1, deleted_dt = NOW() WHERE event_id = ${id}`
-	const events = await doDBQueryBuffalorugby(sql)
+	const events = await doDBQueryDatestring(sql)
 
 	return events
 }
 
 async function changeStatus({ id, status }) {
 	const sql = `UPDATE inbrc_events SET status = ${status} WHERE event_id = ${id}`
-	const events = await doDBQueryBuffalorugby(sql)
+	const events = await doDBQueryDatestring(sql)
 
 	return events
 }

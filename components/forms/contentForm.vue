@@ -50,7 +50,6 @@
 				name="content_release_dt"
 				validation="required"
 			/>
-
 			<FormKit
 				type="date"
 				label="Expire Date"
@@ -58,6 +57,7 @@
 				validation="required"
 			/>
 		</FormKit>
+
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
@@ -69,11 +69,9 @@
 
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
-	import 'dayjs/plugin/utc'
 	const auth = useAuthStore()
 	const saving = ref(false)
 	const { $dayjs } = useNuxtApp()
-	const { toUTC } = useUTC() //
 	// Outgoing
 	//
 
@@ -136,21 +134,21 @@
 			'<img width="100%"'
 		)
 
-		// Adjust for local time and Format for Primevue calendar
-		state.value.content_release_dt = $dayjs(
+		// Format for Primevue calendar
+		/* 		state.value.content_release_dt = $dayjs(
 			content_data.value.content_release_dt
 		).format('YYYY-MM-DD')
+
 		state.value.content_expire_dt = $dayjs(
 			content_data.value.content_expire_dt
-		).format('YYYY-MM-DD')
+		).format('YYYY-MM-DD') */
 	}
 
 	//
 	// form handlers
 	//
-	const submitForm = async (state) => {
+	const submitForm = (state) => {
 		saving.value = true
-		state = await toUTC(state, 'content')
 		emit('submitted', state)
 	}
 

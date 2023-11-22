@@ -26,12 +26,6 @@
 				validation="required"
 			/>
 
-			<!-- 	<FormKit
-				type="date"
-				label="Event Date"
-				name="payment_dt"
-				validation="required"
-			/> -->
 			<FormKit
 				type="date"
 				label="Release Date"
@@ -56,13 +50,11 @@
 
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
-	import 'dayjs/plugin/utc'
 
 	const auth = useAuthStore()
 	const saving = ref(false)
 
 	const { $dayjs } = useNuxtApp()
-	const { toUTC } = useUTC()
 
 	//
 	// Outgoing
@@ -117,7 +109,8 @@
 	//
 	const submitForm = async (state) => {
 		saving.value = true
-		state = await toUTC(state, 'payments')
+		state.release_dt = $dayjs(state.release_dt).format('YYYY-MM-DD')
+		state.expire_dt = $dayjs(state.expire_dt).format('YYYY-MM-DD')
 		emit('submitted', state)
 	}
 

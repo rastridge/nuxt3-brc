@@ -1,5 +1,5 @@
 const CONFIG = useRuntimeConfig()
-const { doDBQueryBuffalorugby } = useQuery()
+const { doDBQueryDatestring } = useQuery()
 
 export const paymentsService = {
 	getAll,
@@ -32,7 +32,7 @@ async function getAll() {
 								deleted = 0
 							ORDER BY
 								id DESC`
-	const payments = await doDBQueryBuffalorugby(sql)
+	const payments = await doDBQueryDatestring(sql)
 	return payments
 }
 
@@ -62,7 +62,7 @@ async function getAllCurrent() {
 							ORDER BY
 								id DESC`
 
-	const payments = await doDBQueryBuffalorugby(sql)
+	const payments = await doDBQueryDatestring(sql)
 	return payments
 }
 
@@ -87,7 +87,7 @@ async function getOne(id) {
 								AND
 								payment_id = ${id}`
 
-	const payments = await doDBQueryBuffalorugby(sql)
+	const payments = await doDBQueryDatestring(sql)
 	return payments[0]
 }
 
@@ -116,7 +116,7 @@ async function editOne({
 		expire_dt,
 		id
 	)
-	const payments = await doDBQueryBuffalorugby(sql, inserts)
+	const payments = await doDBQueryDatestring(sql, inserts)
 
 	return payments
 }
@@ -147,7 +147,7 @@ async function addOne({
 		release_dt,
 		expire_dt
 	)
-	const payments = await doDBQueryBuffalorugby(sql, inserts)
+	const payments = await doDBQueryDatestring(sql, inserts)
 
 	return payments
 }
@@ -156,7 +156,7 @@ async function deleteOne(id) {
 	const sql =
 		`UPDATE inbrc_payments SET deleted = 1, deleted_dt= NOW() WHERE payment_id = ` +
 		id
-	const payments = await doDBQueryBuffalorugby(sql)
+	const payments = await doDBQueryDatestring(sql)
 
 	return payments
 }
@@ -167,7 +167,7 @@ async function changeStatus({ id, status }) {
 		status +
 		`" WHERE payment_id = ` +
 		id
-	const payments = await doDBQueryBuffalorugby(sql)
+	const payments = await doDBQueryDatestring(sql)
 
 	return payments
 }

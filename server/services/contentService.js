@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise'
 
 const CONFIG = useRuntimeConfig()
-const { doDBQueryBuffalorugby } = useQuery()
+const { doDBQueryDatestring } = useQuery()
 
 export const contentService = {
 	getAll,
@@ -37,7 +37,7 @@ async function getAll() {
 			ORDER BY
 				dt DESC`
 
-	const content = await doDBQueryBuffalorugby(sql)
+	const content = await doDBQueryDatestring(sql)
 	return content
 }
 
@@ -59,7 +59,7 @@ async function getCustomMenuItems() {
                   DATEDIFF( CURDATE(), content_expire_dt)  <=  0
 							ORDER BY
 									content_order ASC`
-	const content = await doDBQueryBuffalorugby(sql)
+	const content = await doDBQueryDatestring(sql)
 	return content
 }
 
@@ -83,7 +83,7 @@ async function getOne(id) {
                     AND
                     content_id = ${id}`
 
-	const content = await doDBQueryBuffalorugby(sql)
+	const content = await doDBQueryDatestring(sql)
 	return content[0]
 }
 
@@ -107,7 +107,7 @@ async function editOne(item) {
 		item.content_expire_dt,
 		item.id
 	)
-	const content = await doDBQueryBuffalorugby(sql, inserts)
+	const content = await doDBQueryDatestring(sql, inserts)
 	return content
 }
 
@@ -133,7 +133,7 @@ async function addOne(item) {
 		item.content_expire_dt
 	)
 
-	const content = await doDBQueryBuffalorugby(sql, inserts)
+	const content = await doDBQueryDatestring(sql, inserts)
 	return content
 }
 
@@ -141,7 +141,7 @@ async function deleteOne(id) {
 	const sql =
 		`UPDATE inbrc_content SET deleted = 1, deleted_dt= NOW() WHERE content_id = ` +
 		id
-	const content = await doDBQueryBuffalorugby(sql)
+	const content = await doDBQueryDatestring(sql)
 	return content
 }
 
@@ -151,6 +151,6 @@ async function changeStatus({ id, status }) {
 		status +
 		`" WHERE content_id = ` +
 		id
-	const content = await doDBQueryBuffalorugby(sql)
+	const content = await doDBQueryDatestring(sql)
 	return content
 }

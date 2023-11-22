@@ -1,4 +1,4 @@
-const { doDBQueryBuffalorugby } = useQuery()
+const { doDBQueryDatestring } = useQuery()
 export const videosService = {
 	getAll,
 	getAllCurrent,
@@ -32,7 +32,7 @@ async function getAll() {
                 ORDER BY
                     dt DESC`
 
-	const videos = await doDBQueryBuffalorugby(sql)
+	const videos = await doDBQueryDatestring(sql)
 	return videos
 }
 
@@ -63,7 +63,7 @@ async function getAllCurrent() {
                 ORDER BY
                     dt DESC`
 
-	const videos = await doDBQueryBuffalorugby(sql)
+	const videos = await doDBQueryDatestring(sql)
 	return videos
 }
 
@@ -88,7 +88,7 @@ async function getOne(id) {
 									AND
 									video_id = ${id}`
 
-	const video = await doDBQueryBuffalorugby(sql)
+	const video = await doDBQueryDatestring(sql)
 	return video[0]
 }
 
@@ -120,7 +120,7 @@ async function editOne({
 		video_expire_dt,
 		id
 	)
-	const video = await doDBQueryBuffalorugby(sql, inserts)
+	const video = await doDBQueryDatestring(sql, inserts)
 	return video
 }
 
@@ -153,7 +153,7 @@ async function addOne({
 		video_event_dt,
 		video_expire_dt
 	)
-	const video = await doDBQueryBuffalorugby(sql, inserts)
+	const video = await doDBQueryDatestring(sql, inserts)
 	return video
 }
 
@@ -161,13 +161,13 @@ async function deleteOne(id) {
 	const sql =
 		`UPDATE inbrc_video SET deleted = 1, deleted_dt= NOW() WHERE video_id = ` +
 		id
-	const video = await doDBQueryBuffalorugby(sql)
+	const video = await doDBQueryDatestring(sql)
 	return video
 }
 
 async function changeStatus({ id, status }) {
 	const sql =
 		`UPDATE inbrc_video SET status = "` + status + `" WHERE video_id = ` + id
-	const video = await doDBQueryBuffalorugby(sql)
+	const video = await doDBQueryDatestring(sql)
 	return video
 }

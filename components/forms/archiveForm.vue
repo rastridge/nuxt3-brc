@@ -63,6 +63,7 @@
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
+
 	const saving = ref(false)
 
 	const { $dayjs } = useNuxtApp()
@@ -102,7 +103,7 @@
 		})
 		state.value = archive_data.value
 
-		// Adjust for local time and Format for Primevue calendar
+		// Format for Primevue calendar / neessary?
 		state.value.archive_date = $dayjs(archive_data.value.archive_date).format(
 			'YYYY-MM-DD'
 		)
@@ -142,8 +143,9 @@
 	//
 	// form handlers
 	//
-	const submitForm = (state) => {
+	const submitForm = async (state) => {
 		saving.value = true
+
 		emit('submitted', state)
 	}
 

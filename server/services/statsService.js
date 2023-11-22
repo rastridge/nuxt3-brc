@@ -265,11 +265,6 @@ async function getPrevious(date_ut) {
 }
 
 async function getYear(year) {
-	/* 
-// Needed for netlify build but not for localhost !!!!
-								CONVERT_TZ(g.date,'UTC','-04:00') as date,
-								CONVERT_TZ(g.date,'UTC','-04:00') as dt,
- */
 	const YEAR2 = parseInt(year) + 1
 
 	const sql = `SELECT

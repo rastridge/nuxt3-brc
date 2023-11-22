@@ -1,5 +1,5 @@
 const CONFIG = useRuntimeConfig()
-const { doDBQueryBuffalorugby } = useQuery()
+const { doDBQueryDatestring } = useQuery()
 
 export const archivesService = {
 	getAll,
@@ -33,7 +33,7 @@ async function getAll() {
 									deleted = 0
                 ORDER BY dt DESC`
 
-	const archive = await doDBQueryBuffalorugby(sql)
+	const archive = await doDBQueryDatestring(sql)
 
 	return archive
 }
@@ -61,7 +61,7 @@ async function getAllCurrent() {
                     AND
                     status = 1
                 ORDER BY dt DESC`
-	const archive = await doDBQueryBuffalorugby(sql)
+	const archive = await doDBQueryDatestring(sql)
 	return archive
 }
 
@@ -79,7 +79,7 @@ async function getOne(id) {
 		from inbrc_archive
 		where archive_id = ` + id
 
-	const archive = await doDBQueryBuffalorugby(sql)
+	const archive = await doDBQueryDatestring(sql)
 	return archive[0]
 }
 
@@ -106,7 +106,7 @@ async function addOne({
 		archive_filepath,
 		archive_category
 	)
-	const archive = await doDBQueryBuffalorugby(sql, inserts)
+	const archive = await doDBQueryDatestring(sql, inserts)
 	return archive
 }
 
@@ -135,20 +135,20 @@ async function editOne({
 		archive_category,
 		id
 	)
-	const archive = await doDBQueryBuffalorugby(sql, inserts)
+	const archive = await doDBQueryDatestring(sql, inserts)
 	return archive
 }
 
 async function deleteOne(id) {
 	const sql = `UPDATE inbrc_archive SET deleted = 1, deleted_dt = NOW() WHERE archive_id = ${id}`
-	const archive = await doDBQueryBuffalorugby(sql)
+	const archive = await doDBQueryDatestring(sql)
 
 	return archive
 }
 
 async function changeStatus({ id, status }) {
 	const sql = `UPDATE inbrc_archive SET status = ${status} WHERE archive_id = ${id}`
-	const archive = await doDBQueryBuffalorugby(sql)
+	const archive = await doDBQueryDatestring(sql)
 
 	return archive
 }

@@ -1,5 +1,5 @@
 const CONFIG = useRuntimeConfig()
-const { doDBQueryBuffalorugby } = useQuery()
+const { doDBQueryDatestring } = useQuery()
 
 export const newsService = {
 	getAll,
@@ -30,7 +30,7 @@ async function getAll() {
 									deleted = 0
                 ORDER BY dt DESC`
 
-	const news = await doDBQueryBuffalorugby(sql)
+	const news = await doDBQueryDatestring(sql)
 	return news
 }
 
@@ -57,7 +57,7 @@ async function getAllCurrent() {
                     DATEDIFF( CURDATE(), news_expire_dt)  <=  0
 
                 ORDER BY dt DESC`
-	const news = await doDBQueryBuffalorugby(sql)
+	const news = await doDBQueryDatestring(sql)
 	return news
 }
 
@@ -77,7 +77,7 @@ async function getOne(id) {
 		from inbrc_news
 		where news_id = ` + id
 
-	const news = await doDBQueryBuffalorugby(sql)
+	const news = await doDBQueryDatestring(sql)
 
 	return news[0]
 }
@@ -109,7 +109,7 @@ async function addOne({
 		news_release_dt,
 		news_expire_dt
 	)
-	const news = await doDBQueryBuffalorugby(sql, inserts)
+	const news = await doDBQueryDatestring(sql, inserts)
 	return news
 }
 
@@ -141,21 +141,21 @@ async function editOne({
 		news_expire_dt,
 		id
 	)
-	const news = await doDBQueryBuffalorugby(sql, inserts)
+	const news = await doDBQueryDatestring(sql, inserts)
 
 	return news
 }
 
 async function deleteOne(id) {
 	const sql = `UPDATE inbrc_news SET deleted = 1, deleted_dt = NOW() WHERE news_id = ${id}`
-	const news = await doDBQueryBuffalorugby(sql)
+	const news = await doDBQueryDatestring(sql)
 
 	return news
 }
 
 async function changeStatus({ id, status }) {
 	const sql = `UPDATE inbrc_news SET status = ${status} WHERE news_id = ${id}`
-	const news = await doDBQueryBuffalorugby(sql)
+	const news = await doDBQueryDatestring(sql)
 
 	return news
 }
