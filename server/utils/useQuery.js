@@ -43,7 +43,23 @@ export default function useQuery() {
 			password: CONFIG.DB_PASSWORD,
 			database: 'buffalorugby',
 			dateStrings: '["DATETIME", "DATE"]',
-			// timezone: '+00:00',
+		})
+
+		await conn1.execute("SET time_zone = '+00:00'")
+		if (inserts) {
+			sql = mysql.format(sql, inserts)
+		}
+		const [rows, fields] = await conn1.execute(sql)
+		await conn1.end()
+		return rows
+	}
+
+	async function doDBQueryTZ0(sql, inserts) {
+		const conn1 = await mysql.createPool({
+			host: CONFIG.DB_HOST,
+			user: CONFIG.DB_USER,
+			password: CONFIG.DB_PASSWORD,
+			database: 'buffalorugby',
 		})
 
 		await conn1.execute("SET time_zone = '+00:00'")
@@ -59,5 +75,6 @@ export default function useQuery() {
 		doDBQuery,
 		doDBQueryBuffalorugby,
 		doDBQueryDatestring,
+		doDBQueryTZ0,
 	}
 }

@@ -6,6 +6,7 @@ const { doDBQueryBuffalorugby } = useQuery()
 const { getConnectionBuffalorugby } = useDBConnection()
 
 export const accountsService = {
+	getRecentUpdates,
 	getAll,
 	getOne,
 	addOne,
@@ -25,6 +26,26 @@ export const accountsService = {
 	addFlagByRegister,
 	getAllFlag,
 	editOneFlag,
+}
+async function getRecentUpdates() {
+	const sql = `SELECT
+							account_id,
+							CONCAT(member_firstname," ", member_lastname) as name,
+							modified_dt
+						FROM
+							${DB_PREFIX}accounts
+						WHERE
+							deleted = 0
+							AND
+							STATUS = 1
+							AND
+							member_type_id != 13
+						ORDER BY
+							modified_dt DESC
+						LIMIT 20`
+
+	recent = await doDBQueryBuffalorugby(sql)
+	return recent
 }
 
 async function getAll() {

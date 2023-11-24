@@ -1,5 +1,5 @@
 const CONFIG = useRuntimeConfig()
-const { doDBQueryDatestring } = useQuery()
+const { doDBQueryTZ0 } = useQuery()
 
 export const atestingService = {
 	getAll,
@@ -15,7 +15,7 @@ async function getAll() {
 									atesting
                 WHERE
 									1`
-	const results = await doDBQueryDatestring(sql)
+	const results = await doDBQueryTZ0(sql)
 	return results
 }
 
@@ -28,36 +28,34 @@ async function getOne(id) {
 			WHERE
 				id = ` + id
 
-	const results = await doDBQueryDatestring(sql)
+	const results = await doDBQueryTZ0(sql)
 	return results[0]
 }
 
 /* async function addOne() {
 	const sql = `INSERT INTO atesting () value ()`
 
-	const results = await doDBQueryDatestring(sql)
+	const results = await doDBQueryTZ0(sql)
 	return results
 } */
 
-async function addOne({ datetime_type, timestamp_type }) {
+async function addOne({ datetime_type }) {
 	const sql = `INSERT INTO atesting SET
-								datetime_type = ?,
-								timestamp_type = ?`
+								datetime_type = ?`
 	let inserts = []
-	inserts.push(datetime_type, timestamp_type)
-	const results = await doDBQueryDatestring(sql, inserts)
+	inserts.push(datetime_type)
+	const results = await doDBQueryTZ0(sql, inserts)
 	return results
 }
 
-async function editOne({ id, datetime_type, timestamp_type }) {
+async function editOne({ id, datetime_type }) {
 	const sql = `UPDATE atesting SET
-								datetime_type = ?,
-								timestamp_type = ?
+								datetime_type = ?
 							WHERE event_id = ?`
 
 	let inserts = []
-	inserts.push(datetime_type, timestamp_type, id)
+	inserts.push(datetime_type, id)
 
-	const results = await doDBQueryDatestring(sql, inserts)
+	const results = await doDBQueryTZ0(sql, inserts)
 	return results
 }

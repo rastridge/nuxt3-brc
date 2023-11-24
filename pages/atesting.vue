@@ -1,23 +1,23 @@
 <template>
 	<table>
 		<tr>
-			<th>datetime</th>
-			<!-- <th>datetime dayjs</th>
-			<th>datetime dayjs format</th>
-			<th>timestamp</th>
-			<th>timestamp dayjs</th>
-			<th>timestamp dayjs format</th> -->
+			<th>format()</th>
+			<th>format('YYYY-MM-DD HH:mm:ss')</th>
 		</tr>
-		<tr v-for="date in dates">
-			<td>literal {{ date.datetime_type }} /</td>
-			<td>dayjs {{ $dayjs(date.datetime_type).format('YYYY-MM-DD') }} /</td>
-			<!-- <td>local {{ $dayjs(date.datetime_type).format('LLL') }}</td>
-			<td>literal {{ date.timestamp }} /</td>
-			<td>iso {{ $dayjs(date.timestamp) }} /</td>
-			<td>local {{ $dayjs(date.timestamp).format('LLL') }}</td> -->
+		<tr>
+			<td>
+				{{ $dayjs(dates[dates.length - 1].datetime_type).format() }}
+			</td>
+			<td>
+				{{
+					$dayjs(dates[dates.length - 1].datetime_type).format(
+						'YYYY-MM-DD HH:mm:ss'
+					)
+				}}
+			</td>
 		</tr>
 	</table>
-	Form contains last value
+	<p>Form contains last value</p>
 	<FormKit
 		type="form"
 		:config="{ validationVisibility: 'live' }"
@@ -26,12 +26,25 @@
 		@submit="submitForm(state)"
 	>
 		<FormKit type="date" label="datetime_type" name="datetime_type" />
-		dates[dates.length - 1].datetime_type
-		{{ dates[dates.length - 1].datetime_type }}
-		<FormKit type="date" label="timestamp_type" name="timestamp_type" />
+		state.datetime_type
+		{{ state.datetime_type }}
+		<FormKit type="time" label="time" name="time" />
+		state.time
+		{{ state.time }}
+		{{ $dayjs(dates[dates.length - 1].datetime_type).format('HH:mm') }}
 	</FormKit>
 </template>
+
 <script setup>
+	/* 
+WORKING
+
+IN DB connection - set timezone = +00:00
+SUBMIT AS UTC - state.datetime_type = $dayjs.utc(state.datetime_type + state.time).format()
+RETRIEVE AS LOCAL - 	state.value.datetime_type = $dayjs(dates.value[dates.value.length - 1].datetime_type).format(
+		'YYYY-MM-DD'
+	)
+*/
 	const { $dayjs } = useNuxtApp()
 
 	//
@@ -55,14 +68,20 @@
 	// db set timezone = +00:00
 	//// wORKING ? ///////////////////////////////////////
 	//
-	state.value.datetime_type = dates.value[dates.value.length - 1].datetime_type
-	state.value.timestamp_type =
-		dates.value[dates.value.length - 1].timestamp_type
+	state.value.datetime_type = $dayjs(
+		dates.value[dates.value.length - 1].datetime_type
+	).format('YYYY-MM-DD')
+
+	state.value.time = $dayjs(
+		dates.value[dates.value.length - 1].datetime_type
+	).format('HH:mm')
 
 	// Outgoing
 	//
 	const submitForm = async (state) => {
 		// datetime_type is created by formkit date in 'YYYY-MM-DD'
+
+		state.datetime_type = $dayjs.utc(state.datetime_type + state.time).format()
 
 		const { data, pending, error } = await useFetch('/atesting/addone', {
 			method: 'post',
