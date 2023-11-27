@@ -8,7 +8,6 @@ export default function useFetchAll() {
 			method: 'get',
 			headers: {
 				authorization: auth.user.token,
-				// authorization: 'not-needed',
 			},
 		})
 		if (error.value) {

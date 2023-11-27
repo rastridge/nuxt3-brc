@@ -3,8 +3,8 @@ import { useAlertStore } from '~/stores/alertStore'
 export default defineNuxtRouteMiddleware((to, from) => {
 	const appto = to.path.split('/')[2]
 	const appfrom = from.path.split('/')[2]
-	console.log('appto= ', appto, ' appfrom= ', appfrom)
-	console.log('to= ', to.path, ' from= ', from.path)
+	// console.log('appto= ', appto, ' appfrom= ', appfrom)
+	// console.log('to= ', to.path, ' from= ', from.path)
 
 	const placemark = usePlacemarkStore()
 

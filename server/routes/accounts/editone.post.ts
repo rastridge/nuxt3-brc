@@ -1,6 +1,8 @@
 import { accountsService } from '~/server/services/accountsService'
 
 export default defineEventHandler(async (event) => {
+	protectEndpoint(event)
+
 	const body = await readBody(event)
 	return accountsService.editOne(body)
 })
