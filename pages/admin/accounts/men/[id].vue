@@ -1,6 +1,8 @@
 <script setup>
 	import { useAlertStore } from '~/stores/alertStore'
-
+	definePageMeta({
+		middleware: ['auth'],
+	})
 	const alert = useAlertStore()
 	const { onSubmitEdit } = useSubmit()
 

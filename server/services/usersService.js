@@ -6,8 +6,6 @@ const { sendEmail } = useEmail()
 const { doDBQueryBuffalorugby } = useQuery()
 const { getConnectionBuffalorugby } = useDBConnection()
 
-// import querystring from 'querystring'
-// import https from 'https'
 const config = useRuntimeConfig()
 
 export const usersService = {

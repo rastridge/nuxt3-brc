@@ -255,7 +255,6 @@
 </template>
 
 <script setup>
-	import dayjs from 'dayjs'
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
 	const { $dayjs } = useNuxtApp()

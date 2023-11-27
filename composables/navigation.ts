@@ -48,7 +48,7 @@ export function useNavigationMenu() {
 			},
 			{
 				label: 'About',
-				icon: 'pi pi-fw pi-file',
+				icon: 'pi pi-fw pi-info-circle',
 				visible: () => !auth.isLoggedIn,
 				items: menu,
 			},

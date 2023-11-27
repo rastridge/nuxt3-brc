@@ -91,6 +91,9 @@
 </template>
 
 <script setup>
+	definePageMeta({
+		middleware: ['auth'],
+	})
 	const app = ref('member_info')
 	const error = ref('')
 	const member_type_id = ref(3)

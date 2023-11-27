@@ -54,10 +54,11 @@
 	const { getMemberTypeOptions } = useMembertypes()
 
 	//
-	// initial testing values
+	// get initial values
 	//
 	const alpha = ref(placemark.getAlpha)
 	const member_type_id = ref(placemark.getMemberTypeId)
+
 	// const member_type_id = ref(9)
 	//
 	// Initialize values for Renderlist
@@ -92,6 +93,7 @@
 		return temp
 	})
 
+	// Save current after changes
 	watch(member_type_id, (newid) => {
 		placemark.setMemberTypeId(newid)
 	})

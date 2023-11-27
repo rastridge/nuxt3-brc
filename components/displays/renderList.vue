@@ -73,6 +73,9 @@
 								><i class="pi pi-pencil"></i>
 							</nuxt-link>
 							&nbsp;
+							<!-- <a v-if="editable" href="#" @click="editItem(slotProps.data.id)"
+								><i class="pi pi-pencil"></i
+							></a> -->
 							<a
 								v-if="deleteable"
 								href="#"
@@ -145,7 +148,7 @@
 	//
 	const first = ref(placemark.getPage)
 	//
-	// Save paginator page number
+	// Watch = Save paginator page number
 	const onPaginate = (e) => {
 		first.value = e.rows * e.page
 		placemark.setPage(first.value)
@@ -164,6 +167,11 @@
 		datalocal.value = props.data
 	})
 
+	//
+	/* 	const editItem = (id) => {
+		placemark.setPage(first.value)
+		navigateTo('`/admin/${app}/${slotProps.data.id}`')
+	} */
 	//
 	// Change status in local data and database
 	//

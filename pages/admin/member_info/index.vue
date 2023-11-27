@@ -203,6 +203,9 @@
 </template>
 
 <script setup>
+	definePageMeta({
+		middleware: ['auth'],
+	})
 	const { $dayjs } = useNuxtApp()
 
 	const { getAll } = useFetchAll()

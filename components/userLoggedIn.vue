@@ -7,5 +7,6 @@
 <script setup>
 	// import { useAuthStore } from '~/stores/authStore'
 	// const auth = useAuthStore()
+	// use store or session??
 	const sess = JSON.parse(sessionStorage.getItem('auth'))
 </script>

@@ -1,4 +1,7 @@
 <script setup>
+	definePageMeta({
+		middleware: ['auth'],
+	})
 	const { onSubmitAdd } = useSubmit()
 
 	// Sponsors form action

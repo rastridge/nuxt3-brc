@@ -5,25 +5,26 @@
 		</Head>
 		<div class="topsectioncenter">
 			<div class="topsectionitem">
-				<Common-header title="Other EGU Results and Standings" />
+				<Common-header title="Empire Geographical Union" />
 			</div>
 
 			<div class="topsectionitem m-2 p-2">
-				<a
+				<Button
 					href="https://xplorer.rugby/empire/fixtures-results?comp=F55b2bWvN7CKLA6cE&team=All&tab=Results"
-					class="text-3xl text-700 font-bold"
+					class="text-2xl text-white font-bold p-2"
 					target="_blank"
-					>Open EGU window for Other Results
-				</a>
+				>
+					League Results
+				</Button>
 			</div>
 			<div class="topsectionitem m-2 p-2">
-				<a
+				<Button
 					href="https://xplorer.rugby/empire/fixtures-results?comp=F55b2bWvN7CKLA6cE&team=All&tab=Ladder"
-					class="text-3xl text-700 font-bold"
+					class="text-2xl text-white font-bold p-2"
 					target="_blank"
 				>
-					Open EGU window for Standings</a
-				>
+					League Standings
+				</Button>
 			</div>
 		</div>
 	</div>

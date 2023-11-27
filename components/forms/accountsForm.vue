@@ -227,7 +227,6 @@
 
 <script setup>
 	import { getNode } from '@formkit/core'
-	import ProgressSpinner from 'primevue/progressspinner'
 	import { useAuthStore } from '~/stores/authStore'
 	import { useAlertStore } from '~/stores/alertStore'
 	const auth = useAuthStore()

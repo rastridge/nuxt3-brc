@@ -26,7 +26,7 @@
 		</li>
 		<li>
 			<button class="p-link layout-topbar-button" @click="redirectToRegister">
-				<i class="pi pi-instagram" />
+				<i class="pi pi-user-plus" />
 				<span>Register to Join Men</span>
 			</button>
 		</li>
@@ -35,7 +35,7 @@
 				class="p-link layout-topbar-button"
 				@click="redirectToFlagRegister"
 			>
-				<i class="pi pi-instagram" />
+				<i class="pi pi-user-plus" />
 				<span>Register to Join Flag Youth</span>
 			</button>
 		</li>
