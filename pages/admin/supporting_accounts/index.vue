@@ -132,6 +132,9 @@
 </template>
 
 <script setup>
+	definePageMeta({
+		middleware: ['auth'],
+	})
 	import { FilterMatchMode } from 'primevue/api'
 	//
 	// Initialize values for Renderlist

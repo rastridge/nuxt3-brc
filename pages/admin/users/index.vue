@@ -30,7 +30,9 @@
 </template>
 
 <script setup>
-	// definePageMeta({ layout: 'admin' })
+	definePageMeta({
+		middleware: ['auth'],
+	})
 	import { useAlertStore } from '~/stores/alertStore'
 	const alert = useAlertStore()
 	const { getAll, deleteOne, changeStatusOne } = useFetchAll()

@@ -37,6 +37,9 @@
 </template>
 
 <script setup>
+	definePageMeta({
+		middleware: ['auth'],
+	})
 	import { usePlacemarkStore } from '@/stores'
 	const placemark = usePlacemarkStore()
 	//

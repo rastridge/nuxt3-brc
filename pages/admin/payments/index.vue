@@ -26,6 +26,9 @@
 </template>
 
 <script setup>
+	definePageMeta({
+		middleware: ['auth'],
+	})
 	const { getAll, deleteOne, changeStatusOne } = useFetchAll()
 	//
 	// Initialize values for Renderlist

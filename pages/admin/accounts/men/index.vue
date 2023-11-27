@@ -46,6 +46,9 @@
 </template>
 
 <script setup>
+	definePageMeta({
+		middleware: ['auth'],
+	})
 	import { usePlacemarkStore } from '~/stores'
 	import { useAlertStore } from '~/stores/alertStore'
 	const alert = useAlertStore()

@@ -26,6 +26,9 @@
 </template>
 
 <script setup>
+	definePageMeta({
+		middleware: ['auth'],
+	})
 	//
 	// Initialize values for Renderlist
 	//
