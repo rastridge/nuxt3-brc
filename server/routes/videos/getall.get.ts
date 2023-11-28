@@ -1,6 +1,9 @@
 import { videosService } from '~/server/services/videosService'
 
 export default defineEventHandler((event) => {
-	protectEndpoint(event)
-	return videosService.getAll()
+	if (okProtectedEndpoint(event)) {
+		return videosService.getAll()
+	} else {
+		return 'restricted'
+	}
 })

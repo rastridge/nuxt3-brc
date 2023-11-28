@@ -1,6 +1,9 @@
 import { sponsorsService } from '~/server/services/sponsorsService'
 
 export default defineEventHandler((event) => {
-	protectEndpoint(event)
-	return sponsorsService.getAll()
+	if (okProtectedEndpoint(event)) {
+		return sponsorsService.getAll()
+	} else {
+		return 'restricted'
+	}
 })

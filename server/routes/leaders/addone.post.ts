@@ -1,7 +1,10 @@
 import { leadersService } from '~/server/services/leadersService'
 
 export default defineEventHandler(async (event) => {
-	protectEndpoint(event)
-	const body = await readBody(event)
-	return leadersService.addOne(body)
+	if (okProtectedEndpoint(event)) {
+		const body = await readBody(event)
+		return leadersService.addOne(body)
+	} else {
+		return 'restricted'
+	}
 })

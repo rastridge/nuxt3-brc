@@ -1,6 +1,9 @@
 import { archivesService } from '~/server/services/archivesService'
 
 export default defineEventHandler((event) => {
-	protectEndpoint(event)
-	return archivesService.getAll()
+	if (okProtectedEndpoint(event)) {
+		return archivesService.getAll()
+	} else {
+		return 'restricted'
+	}
 })

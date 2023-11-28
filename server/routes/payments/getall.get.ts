@@ -1,6 +1,9 @@
 import { paymentsService } from '~/server/services/paymentsService'
 
 export default defineEventHandler((event) => {
-	protectEndpoint(event)
-	return paymentsService.getAll()
+	if (okProtectedEndpoint(event)) {
+		return paymentsService.getAll()
+	} else {
+		return 'restricted'
+	}
 })

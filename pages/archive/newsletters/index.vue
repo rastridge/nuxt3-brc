@@ -89,9 +89,9 @@
 	//
 	const selectedItem = ref({})
 	const displayModal = ref(false)
-	const openModal = (item) => {
+	const openModal = async (item) => {
+		await getOne(item.id)
 		displayModal.value = true
-		selectedItem.value = item
 	}
 	const closeModal = () => {
 		displayModal.value = false
@@ -113,6 +113,15 @@
 		})
 	})
 
+	const getOne = async (id) => {
+		const { data, pending, error, refresh } = await useFetch(
+			`/newsletters/${id}`,
+			{
+				method: 'get',
+			}
+		)
+		selectedItem.value = data.value
+	}
 	//
 	// Get newsletters
 	//
@@ -121,7 +130,7 @@
 		pending,
 		error,
 		refresh,
-	} = await useFetch('/newsletters/getall', {
+	} = await useFetch('/newsletters/getallcurrent', {
 		method: 'get',
 	})
 </script>

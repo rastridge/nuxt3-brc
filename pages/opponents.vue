@@ -109,7 +109,7 @@
 		pending,
 		error,
 		refresh,
-	} = await useFetch('/opponents/getall', {
+	} = await useFetch('/opponents/getallcurrent', {
 		method: 'get',
 	})
 

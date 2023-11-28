@@ -121,7 +121,7 @@
 		pending,
 		error,
 		refresh,
-	} = await useFetch('/news/getall', {
+	} = await useFetch('/news/getallcurrent', {
 		method: 'get',
 	})
 </script>

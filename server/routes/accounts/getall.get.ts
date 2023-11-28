@@ -1,7 +1,9 @@
 import { accountsService } from '~/server/services/accountsService'
 
 export default defineEventHandler((event) => {
-	protectEndpoint(event)
-
-	return accountsService.getAll()
+	if (okProtectedEndpoint(event)) {
+		return accountsService.getAll()
+	} else {
+		return 'restricted'
+	}
 })

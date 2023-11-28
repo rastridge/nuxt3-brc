@@ -1,8 +1,11 @@
 import { accountsService } from '~/server/services/accountsService'
-import protectEndpoint from '~/server/utils/protectEndpoint'
+import okProtectedEndpoint from '~/server/utils/okProtectedEndpoint'
 
 export default defineEventHandler(async (event) => {
-	protectEndpoint(event)
-	const id = event.context.params.id
-	return accountsService.getOne(id)
+	if (okProtectedEndpoint(event)) {
+		const id = event.context.params.id
+		return accountsService.getOne(id)
+	} else {
+		return 'restricted'
+	}
 })

@@ -1,6 +1,9 @@
 import { newsService } from '~/server/services/newsService'
 
 export default defineEventHandler((event) => {
-	protectEndpoint(event)
-	return newsService.getAll()
+	if (okProtectedEndpoint(event)) {
+		return newsService.getAll()
+	} else {
+		return 'restricted'
+	}
 })

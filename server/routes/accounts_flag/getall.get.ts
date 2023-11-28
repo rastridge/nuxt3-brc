@@ -1,5 +1,9 @@
 import { accountsFlagService } from '~/server/services/accountsFlagService'
 
 export default defineEventHandler((event) => {
-	return accountsFlagService.getAll()
+	if (okProtectedEndpoint(event)) {
+		return accountsFlagService.getAll()
+	} else {
+		return 'restricted'
+	}
 })

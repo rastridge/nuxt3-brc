@@ -1,7 +1,10 @@
 import { paymentsService } from '~/server/services/paymentsService'
 
 export default defineEventHandler(async (event) => {
-	protectEndpoint(event)
-	const id = event.context.params.id
-	return paymentsService.deleteOne(id)
+	if (okProtectedEndpoint(event)) {
+		const id = event.context.params.id
+		return paymentsService.deleteOne(id)
+	} else {
+		return 'restricted'
+	}
 })

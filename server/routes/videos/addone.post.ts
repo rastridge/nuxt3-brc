@@ -1,7 +1,10 @@
 import { videosService } from '~/server/services/videosService'
 
 export default defineEventHandler(async (event) => {
-	protectEndpoint(event)
-	const body = await readBody(event)
-	return videosService.addOne(body)
+	if (okProtectedEndpoint(event)) {
+		const body = await readBody(event)
+		return videosService.addOne(body)
+	} else {
+		return 'restricted'
+	}
 })

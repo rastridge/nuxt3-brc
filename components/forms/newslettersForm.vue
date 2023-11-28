@@ -115,9 +115,6 @@
 			refresh,
 		} = await useFetch(`/newsletters/${props.id}`, {
 			method: 'get',
-			headers: {
-				authorization: auth.user.token,
-			},
 		})
 		state.value = news_data.value
 

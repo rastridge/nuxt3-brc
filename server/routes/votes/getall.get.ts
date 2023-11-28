@@ -1,6 +1,9 @@
 import { votesService } from '~/server/services/votesService'
 
 export default defineEventHandler((event) => {
-	protectEndpoint(event)
-	return votesService.getAll()
+	if (okProtectedEndpoint(event)) {
+		return votesService.getAll()
+	} else {
+		return 'restricted'
+	}
 })

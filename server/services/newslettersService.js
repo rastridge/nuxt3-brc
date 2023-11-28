@@ -16,6 +16,7 @@ const { sendNewsletters } = useEmail()
 
 export const newslettersService = {
 	getAll,
+	getAllCurrent,
 	// getYear,
 	sendNewsletter,
 	trackNewsletter,
@@ -51,7 +52,34 @@ async function getAll() {
 	return newsletter
 }
 
-async function getYear(year) {
+async function getAllCurrent() {
+	const sql = `SELECT
+								newsletter_id,
+								newsletter_id as id,
+								newsletter_recipient_type_id,
+								admin_user_id,
+								newsletter_subject as title,
+								newsletter_sent as sent_dt,
+								newsletter_body_html,
+								status,
+								deleted,
+								deleted_dt,
+								created_dt,
+								modified_dt,
+								modified_dt as dt
+							FROM
+								inbrc_newsletters
+							WHERE
+								deleted = 0
+								AND
+								status = 1
+							ORDER BY dt DESC`
+
+	const newsletter = await doDBQueryBuffalorugby(sql)
+	return newsletter
+}
+
+/* async function getYear(year) {
 	sql = `SELECT
 					newsletter_id,
 					newsletter_id as id,
@@ -78,7 +106,7 @@ async function getYear(year) {
 	const newsletters = await doDBQueryBuffalorugby(sql)
 	return newsletters
 }
-
+ */
 // Define function to add footer, compose and send newsletters
 //
 async function sendNewsletter({

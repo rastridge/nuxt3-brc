@@ -1,6 +1,9 @@
 import { leadersService } from '~/server/services/leadersService'
 
 export default defineEventHandler((event) => {
-	protectEndpoint(event)
-	return leadersService.getAll()
+	if (okProtectedEndpoint(event)) {
+		return leadersService.getAll()
+	} else {
+		return 'restricted'
+	}
 })

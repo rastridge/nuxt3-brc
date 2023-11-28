@@ -3,6 +3,7 @@ const { doDBQueryBuffalorugby } = useQuery()
 
 export const opponentsService = {
 	getAll,
+	getAllCurrent,
 	getSuggestions,
 	getOne,
 	editOne,
@@ -30,10 +31,35 @@ async function getAll() {
 					inbrc_opponents
 			WHERE
 					deleted = 0
-					AND
-					status = 1
 			ORDER BY
 				opponent_name ASC`
+
+	const opponents = await doDBQueryBuffalorugby(sql)
+	return opponents
+}
+async function getAllCurrent() {
+	const sql = `SELECT
+									opponent_id,
+									opponent_id as id,
+									opponent_name,
+									opponent_name as title,
+									opponent_location,
+									opponent_type,
+									opponent_level,
+									opponent_description,
+									status,
+									deleted,
+									created_dt,
+									modified_dt,
+									modified_dt as dt
+							FROM
+									inbrc_opponents
+							WHERE
+									deleted = 0
+									AND
+									status = 1
+							ORDER BY
+								opponent_name ASC`
 
 	const opponents = await doDBQueryBuffalorugby(sql)
 	return opponents
