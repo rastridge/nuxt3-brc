@@ -205,9 +205,6 @@
 			`/contributions/year/${year}`,
 			{
 				method: 'get',
-				headers: {
-					authorization: 'not-needed',
-				},
 			}
 		)
 		contributions.value = data.value
@@ -218,9 +215,6 @@
 			`/contributions/top`,
 			{
 				method: 'get',
-				headers: {
-					authorization: 'not-needed',
-				},
 			}
 		)
 		topcontributors.value = data.value

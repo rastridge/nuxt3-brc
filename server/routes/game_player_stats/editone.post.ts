@@ -1,7 +1,7 @@
 import { statsService } from '~/server/services/statsService'
 
 export default defineEventHandler(async (event) => {
+	protectEndpoint(event)
 	const body = await readBody(event)
-	// console.log('body', body)
 	return statsService.editOne(body)
 })

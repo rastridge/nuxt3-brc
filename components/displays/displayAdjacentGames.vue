@@ -84,9 +84,6 @@
 		refresh,
 	} = await useFetch(url, {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 	stats1.value = stats.value[0]
 	stats2.value = stats.value[1]

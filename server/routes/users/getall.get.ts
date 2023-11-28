@@ -1,6 +1,6 @@
 import { usersService } from '~/server/services/usersService'
-import jwt from 'jsonwebtoken'
 
 export default defineEventHandler((event) => {
+	protectEndpoint(event)
 	return usersService.getAll()
 })

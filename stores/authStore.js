@@ -31,9 +31,6 @@ export const useAuthStore = defineStore('auth', {
 			this.status = { loggedIn: false }
 			alert.attempt('Logging in . . .')
 			const user = await $fetch('/users/authenticate', {
-				headers: {
-					authorization: 'not-needed',
-				},
 				method: 'POST',
 				body: { username, password },
 			})

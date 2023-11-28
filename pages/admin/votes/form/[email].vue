@@ -82,9 +82,6 @@
 			`/votes/questions/${account_email_lc}`,
 			{
 				method: 'GET',
-				headers: {
-					authorization: 'not-needed',
-				},
 			}
 		)
 		questions.value = data.value
@@ -94,9 +91,6 @@
 			`/votes/getusedchoices`,
 			{
 				method: 'GET',
-				headers: {
-					authorization: 'not-needed',
-				},
 			}
 		)
 		choices.value = ch.value

@@ -148,9 +148,6 @@
 			{
 				key: props.id,
 				method: 'get',
-				headers: {
-					authorization: 'not-needed',
-				},
 			}
 		)
 		suggestions.value = data.value

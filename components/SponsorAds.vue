@@ -51,9 +51,6 @@
 			'/sponsors/getids',
 			{
 				method: 'get',
-				headers: {
-					authorization: 'not-needed',
-				},
 			}
 		)
 		return data.value
@@ -67,9 +64,6 @@
 			`/sponsors/${id}`,
 			{
 				method: 'get',
-				headers: {
-					authorization: 'not-needed',
-				},
 			}
 		)
 		item.value = data.value

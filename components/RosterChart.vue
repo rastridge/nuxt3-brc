@@ -25,9 +25,6 @@
 			'/game_player_stats/getrosterstats',
 			{
 				method: 'get',
-				headers: {
-					authorization: 'not-needed',
-				},
 			}
 		)
 		return data.value

@@ -267,9 +267,6 @@
 			`/game_player_stats/getplayergames/${selectedItem.value.account_id}`,
 			{
 				method: 'get',
-				headers: {
-					authorization: 'not-needed',
-				},
 			}
 		)
 		history.value = data.value

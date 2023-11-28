@@ -52,10 +52,6 @@
 	const url = `/game_player_stats/totals/${props.opponent_id}`
 	const { data, error } = await useFetch(url, {
 		method: 'get',
-		headers: {
-			// authorization: auth.user.token,
-			authorization: 'not-needed',
-		},
 	})
 	if (error.value) {
 		throw createError({

@@ -51,6 +51,7 @@ async function getAllCurrent() {
                 WHERE
                   deleted = 0
 									AND status = 1
+									AND
 									CURDATE() < DATE(expire_dt)
 									AND
 									CURDATE() >= DATE(release_dt)
