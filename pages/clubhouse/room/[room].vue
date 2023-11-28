@@ -43,9 +43,6 @@
 		`/clubhouse/room/${room.value}`,
 		{
 			method: 'get',
-			headers: {
-				authorization: 'not-needed',
-			},
 		}
 	)
 	otherdata.value = data.value

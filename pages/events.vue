@@ -39,9 +39,6 @@
 		refresh,
 	} = await useFetch('/events/getallcurrent', {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 </script>
 

@@ -390,8 +390,5 @@
 		refresh,
 	} = await useFetch('/news/getallcurrent', {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 </script>

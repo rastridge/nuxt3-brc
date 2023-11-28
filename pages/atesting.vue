@@ -55,9 +55,6 @@ RETRIEVE AS LOCAL - 	state.value.datetime_type = $dayjs(dates.value[dates.value.
 
 	const { data, pending, error, refresh } = await useFetch('/atesting/getall', {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 	dates.value = data.value
 
@@ -86,9 +83,6 @@ RETRIEVE AS LOCAL - 	state.value.datetime_type = $dayjs(dates.value[dates.value.
 		const { data, pending, error } = await useFetch('/atesting/addone', {
 			method: 'post',
 			body: state,
-			headers: {
-				authorization: 'not-needed',
-			},
 		})
 		navigateTo('/atesting')
 	}

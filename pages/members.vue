@@ -139,9 +139,6 @@
 		refresh,
 	} = await useFetch('/accounts/getshow', {
 		method: 'get',
-		// headers: {
-		// 	authorization: 'not-needed',
-		// },
 	})
 
 	// const  checkAccountId = (id) => id === 1

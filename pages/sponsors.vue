@@ -43,9 +43,6 @@
 		refresh,
 	} = await useFetch('/sponsors/getallcurrent', {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 </script>
 

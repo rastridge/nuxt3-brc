@@ -123,9 +123,6 @@
 		const { data, error: error1 } = await useFetch(`/votes/registerballot`, {
 			method: 'POST',
 			body: { account_email, answers },
-			headers: {
-				authorization: 'not-needed',
-			},
 		})
 		navigateTo('/admin/votes/thanks')
 	}

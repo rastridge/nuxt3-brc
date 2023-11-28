@@ -73,8 +73,5 @@
 		refresh,
 	} = await useFetch('/archive/getallcurrent', {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 </script>

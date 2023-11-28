@@ -47,9 +47,6 @@
 		refresh,
 	} = await useFetch('/accounts/getofficers', {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 </script>
 

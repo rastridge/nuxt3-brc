@@ -201,10 +201,6 @@
 		const url = `/game_player_stats/players/${game_id}`
 		const { data, error } = await useFetch(url, {
 			method: 'get',
-			headers: {
-				// authorization: auth.user.token,
-				authorization: 'not-needed',
-			},
 		})
 		if (error.value) {
 			throw createError({
@@ -219,10 +215,6 @@
 		const url = `/game_player_stats/${id}`
 		const { data, error } = await useFetch(url, {
 			method: 'get',
-			headers: {
-				// authorization: auth.user.token,
-				authorization: 'not-needed',
-			},
 		})
 		if (error.value) {
 			throw createError({
@@ -240,9 +232,6 @@
 	const filteredNames = ref([])
 	const { data: suggestions } = await useFetch(`/accounts/suggestions`, {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 	const search = (event) => {
 		if (!event.query.trim().length) {

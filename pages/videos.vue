@@ -94,9 +94,6 @@
 		refresh,
 	} = await useFetch('/videos/getallcurrent', {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 
 	const selectItem = (item) => getOne(item.id)
@@ -104,9 +101,6 @@
 	const getOne = async (id) => {
 		const { data, pending, error, refresh } = await useFetch('/videos/' + id, {
 			method: 'get',
-			headers: {
-				authorization: 'not-needed',
-			},
 		})
 
 		item.value = data.value

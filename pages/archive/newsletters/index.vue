@@ -123,8 +123,5 @@
 		refresh,
 	} = await useFetch('/newsletters/getall', {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 </script>

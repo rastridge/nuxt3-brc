@@ -37,8 +37,5 @@
 		refresh,
 	} = await useFetch('/payments/getallcurrent', {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 </script>

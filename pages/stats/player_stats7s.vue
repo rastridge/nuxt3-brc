@@ -190,9 +190,6 @@
 		{
 			// 1 = sevens
 			method: 'get',
-			headers: {
-				authorization: 'not-needed',
-			},
 		}
 	)
 

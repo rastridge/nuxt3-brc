@@ -45,9 +45,6 @@
 		const { data, error } = await useFetch('/users/resetpassword', {
 			method: 'POST',
 			body: { username, password },
-			headers: {
-				authorization: 'not-needed',
-			},
 		})
 
 		navigateTo('/loginpage')

@@ -139,9 +139,6 @@
 	} = await useFetch(`/accounts/${props.id}`, {
 		key: props.id,
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 	state.value = formdata.value
 	//

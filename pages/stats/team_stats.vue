@@ -105,10 +105,6 @@
 		const url = `/game_player_stats/getteamstats/${gt}`
 		const { data, pending, error } = await useFetch(url, {
 			method: 'get',
-			headers: {
-				// authorization: auth.user.token,
-				authorization: 'not-needed',
-			},
 		})
 		return data.value
 	}
@@ -117,10 +113,6 @@
 		const url = `/game_player_stats/getteamstatstotal/${gt}`
 		const { data, error: error2 } = await useFetch(url, {
 			method: 'get',
-			headers: {
-				// authorization: auth.user.token,
-				authorization: 'not-needed',
-			},
 		})
 		return data.value
 	}

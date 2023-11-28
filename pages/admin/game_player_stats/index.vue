@@ -91,10 +91,6 @@
 		const url = `/game_player_stats/getseason/${year.value}`
 		const { data, error } = await useFetch(url, {
 			method: 'get',
-			headers: {
-				// authorization: auth.user.token,
-				authorization: 'not-needed',
-			},
 		})
 		if (error.value) {
 			throw createError({

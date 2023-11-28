@@ -112,9 +112,6 @@
 	const makeLabels = async (labelType, member_type_id) => {
 		const { data } = await useFetch('/member_info/makelabels', {
 			method: 'POST',
-			headers: {
-				authorization: 'not-needed',
-			},
 			body: {
 				labelType,
 				member_type_id,
@@ -133,9 +130,6 @@
 	const makeReturnLabels = async (e) => {
 		const { data, error } = await useFetch('/member_info/makereturnlabels', {
 			method: 'POST',
-			headers: {
-				authorization: 'not-needed',
-			},
 		})
 
 		const decoded = atob(data.value)

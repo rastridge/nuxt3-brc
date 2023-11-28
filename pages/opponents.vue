@@ -111,9 +111,6 @@
 		refresh,
 	} = await useFetch('/opponents/getall', {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 
 	const onRowExpand = async (event) => {}

@@ -39,9 +39,6 @@
 
 	const { data, pending, error, refresh } = await useFetch(`/accounts/getwof`, {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 	wofdata.value = data.value
 </script>

@@ -26,9 +26,6 @@
 	} = await useFetch(`/content/${content_id.value}`, {
 		initialCache: false,
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 	//
 	// make any images expand to width of container

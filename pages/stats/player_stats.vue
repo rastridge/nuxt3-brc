@@ -190,9 +190,6 @@
 		{
 			// 1 = fifteens
 			method: 'get',
-			headers: {
-				authorization: 'not-needed',
-			},
 		}
 	)
 

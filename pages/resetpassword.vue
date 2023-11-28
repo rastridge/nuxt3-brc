@@ -57,9 +57,6 @@
 		const { data, error } = await useFetch('/users/resetrequest', {
 			method: 'POST',
 			body: { username },
-			headers: {
-				authorization: 'not-needed',
-			},
 		})
 		navigateTo('/loginpage')
 	}

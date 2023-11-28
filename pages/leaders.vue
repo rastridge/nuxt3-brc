@@ -51,8 +51,5 @@
 		refresh,
 	} = await useFetch('/leaders/getallcurrent', {
 		method: 'get',
-		headers: {
-			authorization: 'not-needed',
-		},
 	})
 </script>
