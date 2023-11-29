@@ -19,19 +19,18 @@
 				/>
 			</div>
 		</div>
-
 		<div v-if="newsletters" class="surface-400 p-2 border-round-lg border-1">
 			<ul class="list-none text-sm md:text-lg">
 				<li
-					v-for="itm in filteredData"
+					v-for="itm in year_data"
 					:key="itm.id"
 					class="cursor-pointer text-500 bg-white border-round-lg p-3 m-2"
 				>
 					<a href="#" @click="openModal(itm)">
 						<span class="text-sm md:text-lg text-600">{{
-							$dayjs(itm.sent_dt).format('YYYY MMM DD')
+							$dayjs(itm.sent_dt).format('LL')
 						}}</span>
-						- -
+						-
 						<span class="text-sm md:text-lg text-500 font-semibold">{{
 							itm.title
 						}}</span>
@@ -60,9 +59,9 @@
 			modal
 		>
 			<template #header>
-				<div>
-					{{ $dayjs(selectedItem.sent_dt).format('MMM DD YYYY') }} ---
-					{{ selectedItem.title }}
+				<div class="font-semibold text-md lg:text-lg">
+					{{ $dayjs(selectedItem.newsletter_sent).format('LL') }} -
+					{{ selectedItem.newsletter_subject }}
 				</div></template
 			>
 			<div class="text-sm" v-html="selectedItem.newsletter_body_html"></div>
@@ -98,21 +97,29 @@
 	}
 
 	//
-	// Filter by year
+	// Get by year
 	//
 	const year = ref(parseInt($dayjs().format('YYYY')))
 	const startyear = 2004
+	const year_data = ref([])
 
 	const onSubmit = (value) => {
 		year.value = value
 	}
 
-	const filteredData = computed(() => {
-		return newsletters.value.filter((d) => {
-			return parseInt($dayjs(d.dt).format('YYYY')) === year.value
-		})
-	})
+	const getYear = async (year) => {
+		const { data, pending, error, refresh } = await useFetch(
+			`/newsletters/year/${year}`,
+			{
+				method: 'get',
+			}
+		)
+		year_data.value = data.value
+	}
 
+	watchEffect(() => getYear(year.value))
+
+	// get one for Modal
 	const getOne = async (id) => {
 		const { data, pending, error, refresh } = await useFetch(
 			`/newsletters/${id}`,

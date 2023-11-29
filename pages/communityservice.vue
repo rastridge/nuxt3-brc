@@ -191,7 +191,22 @@
 				>
 				<template #content
 					><nuxt-img
-						src="https://buffalorugby.org/_img/_news_newsletters/1684069054325-AST_7104_640.jpeg"
+						src="https://media.buffalorugby.org/_img/_news_newsletters/1684069054325-AST_7104_640.jpeg"
+						style="width: 100%"
+						loading="lazy"
+				/></template>
+			</Card>
+			<Card
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+			>
+				<template #title
+					><div class="text-sm md:text-xl text-center">
+						2023 - Turkey Drive - 60 Turkeys for FeedMoreWNY
+					</div></template
+				>
+				<template #content
+					><nuxt-img
+						src="https://media.buffalorugby.org/_img/_news_newsletters/1701282308391-now-turkeys.jpeg"
 						style="width: 100%"
 						loading="lazy"
 				/></template>

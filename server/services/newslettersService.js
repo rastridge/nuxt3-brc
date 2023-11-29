@@ -17,7 +17,7 @@ const { sendNewsletters } = useEmail()
 export const newslettersService = {
 	getAll,
 	getAllCurrent,
-	// getYear,
+	getYear,
 	sendNewsletter,
 	trackNewsletter,
 	getOne,
@@ -79,8 +79,8 @@ async function getAllCurrent() {
 	return newsletter
 }
 
-/* async function getYear(year) {
-	sql = `SELECT
+async function getYear(year) {
+	const sql = `SELECT
 					newsletter_id,
 					newsletter_id as id,
 					newsletter_recipient_type_id,
@@ -102,11 +102,11 @@ async function getAllCurrent() {
 					YEAR(created_dt) = ${year}
 				ORDER BY
           dt DESC`
-
+	console.log('getyoear sql = ', sql)
 	const newsletters = await doDBQueryBuffalorugby(sql)
 	return newsletters
 }
- */
+
 // Define function to add footer, compose and send newsletters
 //
 async function sendNewsletter({

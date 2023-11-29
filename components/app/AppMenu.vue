@@ -1,7 +1,5 @@
 <template>
-	<div class="mx-auto w-10">
-		<Menubar :model="model" />
-	</div>
+	<Menubar :model="model" />
 </template>
 
 <script setup lang="ts">

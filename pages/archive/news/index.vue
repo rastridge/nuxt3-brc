@@ -29,7 +29,7 @@
 				>
 					<a href="#" @click="openModal(itm)">
 						<span class="text-sm md:text-lg text-600">{{
-							$dayjs(itm.dt).format('YYYY MMM DD')
+							$dayjs(itm.dt).format('LL')
 						}}</span>
 						-
 						<span class="text-sm md:text-lg text-600 font-semibold">{{
@@ -60,8 +60,8 @@
 			modal
 		>
 			<template #header>
-				<div>
-					{{ $dayjs(selectedItem.news_event_dt).format('MMM DD YYYY') }}
+				<div class="font-semibold text-md lg:text-lg">
+					{{ $dayjs(selectedItem.news_event_dt).format('LL') }} -
 					{{ selectedItem.news_title }}
 				</div></template
 			>
