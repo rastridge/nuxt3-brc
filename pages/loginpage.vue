@@ -40,7 +40,7 @@
 
 					<div class="flex align-items-center justify-content-between mb-6">
 						<div class="flex align-items-center">
-							Keep me logged in&nbsp;
+							<span class="text-sm">Keep me logged in&nbsp;</span>
 							<Checkbox
 								:binary="true"
 								v-model="keeploggedin"
@@ -50,7 +50,7 @@
 
 						<nuxt-link
 							to="/resetpassword"
-							class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer"
+							class="text-sm no-underline ml-2 text-blue-500 text-right cursor-pointer"
 							active-class="active"
 							><a>Forgot password?</a></nuxt-link
 						>

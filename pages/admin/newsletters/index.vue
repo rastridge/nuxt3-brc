@@ -7,21 +7,20 @@
 			<div class="topsectionitem">
 				<admin-header :title="app" />
 			</div>
-			<div v-if="pending" class="topsectionitem">Loading ...</div>
-			<div v-else>
-				<div class="topsectionitem">
-					<select-year
-						:startyear="startyear"
-						:currentyear="year"
-						@submitted="onSubmit"
-						class="mb-3"
-					/>
-				</div>
+			<!-- <div v-if="!year_data" class="topsectionitem">Loading ...</div>
+			<div v-else> -->
+			<div class="topsectionitem">
+				<select-year
+					:startyear="startyear"
+					:currentyear="year"
+					@submitted="onSubmit"
+					class="mb-3"
+				/>
 			</div>
 		</div>
-		<div class="renderlist-enclosure">
+		<div v-if="year_data" class="renderlist-enclosure">
 			<render-list
-				:data="filteredData"
+				:data="year_data"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"
@@ -41,7 +40,7 @@
 	})
 	import { usePlacemarkStore } from '@/stores'
 	const placemark = usePlacemarkStore()
-	const { getAll, deleteOne, changeStatusOne } = useFetchAll()
+	const { deleteOne, changeStatusOne } = useFetchAll()
 	//
 	// Initialize values for Renderlist and Select Year
 	//
@@ -49,15 +48,10 @@
 	const app = 'newsletters'
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
 
-	const startyear = ref(2004)
-	const { $dayjs } = useNuxtApp()
 	const year = ref(placemark.getYear)
+	const startyear = ref(2004)
 
-	//
-	// Get all news
-	//
-	const { data: newsletters, pending } = await getAll('newsletters')
-
+	const year_data = ref(null)
 	//
 	// Select year action
 	//
@@ -65,14 +59,22 @@
 		year.value = value
 		placemark.setYear(year.value)
 	}
+
 	//
-	// Select news by year
+	// Get a year
 	//
-	const filteredData = computed(() => {
-		return newsletters.value.filter((d) => {
-			return parseInt($dayjs(d.dt).format('YYYY')) === year.value
-		})
-	})
+	const getYearOfNewsletters = async (year) => {
+		const { data, pending, error, refresh } = await useFetch(
+			`/newsletters/year/${year}`,
+			{
+				method: 'get',
+			}
+		)
+		year_data.value = data.value
+	}
+
+	watchEffect(() => getYearOfNewsletters(year.value))
+
 	//
 	// Renderlist actions
 	//

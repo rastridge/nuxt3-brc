@@ -3,8 +3,8 @@ import { useAlertStore } from '~/stores/alertStore'
 export default defineNuxtRouteMiddleware((to, from) => {
 	const appto = to.path.split('/')[2]
 	const appfrom = from.path.split('/')[2]
-	// console.log('appto= ', appto, ' appfrom= ', appfrom)
-	// console.log('to= ', to.path, ' from= ', from.path)
+	console.log('appto= ', appto, ' appfrom= ', appfrom)
+	console.log('to= ', to.path, ' from= ', from.path)
 
 	const placemark = usePlacemarkStore()
 
@@ -14,21 +14,21 @@ export default defineNuxtRouteMiddleware((to, from) => {
 		placemark.initYear()
 		placemark.setMemberTypeId(2)
 		placemark.setGameTypeId(1)
-	}
-
-	// Handle pages outside of admin
-	//
-	// return from games and stats
-	if (
-		(from.path.slice(0, 6) !== '/games' &&
-			from.path.slice(0, 5) !== '/stats') ||
-		(to.path.slice(0, 17) === '/games/schedule/0' &&
-			from.path.slice(0, 6) !== '/games' &&
-			from.path.slice(0, 5) !== '/stats')
-	) {
-		// placemark.setPage(0)// Problem Zeroes the page when edit is picked
-		placemark.initYear()
-		placemark.setGameTypeId(1)
+	} else {
+		// Handle pages outside of admin
+		//
+		// return from games and stats // STILL NEEDED ?
+		if (
+			(from.path.slice(0, 6) !== '/games' &&
+				from.path.slice(0, 5) !== '/stats') ||
+			(to.path.slice(0, 17) === '/games/schedule/0' &&
+				from.path.slice(0, 6) !== '/games' &&
+				from.path.slice(0, 5) !== '/stats')
+		) {
+			// placemark.setPage(0)// Problem Zeroes the page when edit is picked
+			// placemark.initYear()
+			// placemark.setGameTypeId(1)
+		}
 	}
 	//
 	// clear previous alerts on any page change

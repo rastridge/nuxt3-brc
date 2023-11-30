@@ -19,7 +19,7 @@
 				/>
 			</div>
 		</div>
-		<div v-if="newsletters" class="surface-400 p-2 border-round-lg border-1">
+		<div class="surface-400 p-2 border-round-lg border-1">
 			<ul class="list-none text-sm md:text-lg">
 				<li
 					v-for="itm in year_data"
@@ -49,11 +49,11 @@
 			:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
 			:pt="{
 				root: { class: 'border-round-3xl border-3' },
-				header: { class: 'surface-300' },
+				// header: { class: 'surface-300' },
 				content: {
 					class: 'text-xs md:text-lg border-1 p-6',
 				},
-				footer: { class: 'surface-300' },
+				// footer: { class: 'surface-300' },
 			}"
 			maximizable
 			modal
@@ -81,10 +81,39 @@
 </template>
 
 <script setup>
+	const error = ref('')
+	//
+	// Select year
+	//
 	const { $dayjs } = useNuxtApp()
+	const year = ref(parseInt($dayjs().format('YYYY')))
+	const startyear = 2004
+
+	const onSubmit = (value) => {
+		year.value = value
+	}
 
 	//
-	// Dialog initialization - display newsletters item
+	// get year data for list
+	//
+	const year_data = ref([])
+
+	const getYearOfNewsletters = async (year) => {
+		const { data, pending, error, refresh } = await useFetch(
+			`/newsletters/year/${year}`,
+			{
+				method: 'get',
+			}
+		)
+		year_data.value = data.value
+		error.value = error
+	}
+	// getYearOfNewsletters(year.value)
+	// get newsletters when  year changes
+	watchEffect(() => getYearOfNewsletters(year.value))
+
+	//
+	// Dialog to display newsletters item
 	//
 	const selectedItem = ref({})
 	const displayModal = ref(false)
@@ -95,49 +124,11 @@
 	const closeModal = () => {
 		displayModal.value = false
 	}
-
-	//
-	// Get by year
-	//
-	const year = ref(parseInt($dayjs().format('YYYY')))
-	const startyear = 2004
-	const year_data = ref([])
-
-	const onSubmit = (value) => {
-		year.value = value
-	}
-
-	const getYear = async (year) => {
-		const { data, pending, error, refresh } = await useFetch(
-			`/newsletters/year/${year}`,
-			{
-				method: 'get',
-			}
-		)
-		year_data.value = data.value
-	}
-
-	watchEffect(() => getYear(year.value))
-
 	// get one for Modal
 	const getOne = async (id) => {
-		const { data, pending, error, refresh } = await useFetch(
-			`/newsletters/${id}`,
-			{
-				method: 'get',
-			}
-		)
+		const { data } = await useFetch(`/newsletters/${id}`, {
+			method: 'get',
+		})
 		selectedItem.value = data.value
 	}
-	//
-	// Get newsletters
-	//
-	const {
-		data: newsletters,
-		pending,
-		error,
-		refresh,
-	} = await useFetch('/newsletters/getallcurrent', {
-		method: 'get',
-	})
 </script>

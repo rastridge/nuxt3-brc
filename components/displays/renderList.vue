@@ -73,9 +73,6 @@
 								><i class="pi pi-pencil"></i>
 							</nuxt-link>
 							&nbsp;
-							<!-- <a v-if="editable" href="#" @click="editItem(slotProps.data.id)"
-								><i class="pi pi-pencil"></i
-							></a> -->
 							<a
 								v-if="deleteable"
 								href="#"

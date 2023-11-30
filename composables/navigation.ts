@@ -22,19 +22,23 @@ export function useNavigationMenu() {
 		menu.push(
 			{
 				label: 'Officers',
+				icon: 'pi pi-fw pi-users',
 				to: '/officers',
 			},
 			{
 				label: 'Members',
+				icon: 'pi pi-fw pi-users',
 				to: '/members',
 			},
 
 			{
 				label: 'Sponsors',
+				icon: 'pi pi-fw pi-dollar',
 				to: '/sponsors',
 			},
 			{
 				label: 'Payments',
+				icon: 'pi pi-fw pi-dollar',
 				to: '/payments',
 			}
 		)
@@ -54,63 +58,67 @@ export function useNavigationMenu() {
 			},
 			{
 				label: 'News',
-				icon: 'pi pi-fw pi-pencil',
+				icon: 'pi pi-fw pi-book',
 				visible: () => !auth.isLoggedIn,
 
 				items: [
 					{
 						label: 'News',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/news',
 					},
 					{
 						label: 'Events',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/events',
 					},
 					{
 						label: 'Contributions',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/contributions',
 					},
 					{
 						label: 'Community Service',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/communityservice',
 					},
 				],
 			},
 			{
 				label: 'Competition',
-				icon: 'pi pi-fw pi-user',
+				icon: 'pi pi-fw pi-calendar',
 				visible: () => !auth.isLoggedIn,
 
 				items: [
 					{
 						label: 'Schedule',
-						icon: 'pi pi-fw pi-user-plus',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/schedule',
 					},
 					{
 						label: 'League Results',
-						icon: 'pi pi-fw pi-user-minus',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/otherresults',
 					},
 
 					{
 						label: 'Player Stats 15s',
-						icon: 'pi pi-fw pi-user-minus',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/stats/player_stats',
 					},
 					{
 						label: 'Player Stats 7s',
-						icon: 'pi pi-fw pi-user-minus',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/stats/player_stats7s',
 					},
 					{
 						label: 'Player Games',
-						icon: 'pi pi-fw pi-user-minus',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/stats/player_history',
 					},
 					{
 						label: 'Team Record',
-						icon: 'pi pi-fw pi-user-minus',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/stats/team_stats',
 					},
 				],
@@ -123,48 +131,48 @@ export function useNavigationMenu() {
 				items: [
 					{
 						label: 'Clubhouse',
-						icon: 'pi pi-fw pi-pencil',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/clubhouse',
 					},
 					{
 						label: 'Document Archive',
-						icon: 'pi pi-fw pi-pencil',
-						to: '/archive/documents',
+						icon: 'pi pi-fw pi-folder-open',
+						to: '/archives/documents',
 					},
 					{
 						label: 'Leaders',
-						icon: 'pi pi-fw pi-power-off',
+						icon: 'pi pi-fw pi-users',
 						to: '/leaders',
 					},
 					{
 						label: 'News Archive',
-						icon: 'pi pi-fw pi-power-off',
-						to: '/archive/news',
+						icon: 'pi pi-fw pi-folder-open',
+						to: '/archives/news',
 					},
 					{
 						label: 'Newsletters Archive',
-						icon: 'pi pi-fw pi-power-off',
-						to: '/archive/newsletters',
+						icon: 'pi pi-fw pi-folder-open',
+						to: '/archives/newsletters',
 					},
 					{
 						label: 'Opponents',
-						icon: 'pi pi-fw pi-power-off',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/opponents',
 					},
 					{
 						label: 'Photo Album',
-						icon: 'pi pi-fw pi-power-off',
+						icon: 'pi pi-fw pi-images',
 						to: '/photos',
 					},
 					{
 						label: 'Videos',
-						icon: 'pi pi-fw pi-power-off',
+						icon: 'pi pi-fw pi-video',
 						to: '/videos',
 					},
 
 					{
 						label: '50th Anniversary',
-						icon: 'pi pi-fw pi-power-off',
+						icon: 'pi pi-fw pi-folder-open',
 						to: '/sponsors',
 					},
 				],
