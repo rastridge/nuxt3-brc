@@ -102,7 +102,6 @@ async function getYear(year) {
 					YEAR(created_dt) = ${year}
 				ORDER BY
           dt DESC`
-	console.log('getyoear sql = ', sql)
 	const newsletters = await doDBQueryBuffalorugby(sql)
 	return newsletters
 }

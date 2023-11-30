@@ -10,7 +10,7 @@
 
 			<!-- make labels -->
 			<div class="topsectionitem">
-				<Button class="" @click="makeLabels"> Make labels </Button>
+				<Button class="mb-3" @click="makeLabels"> Make labels </Button>
 			</div>
 
 			<!-- slect member_type -->
@@ -25,99 +25,105 @@
 			/>
 
 			<div class="topsectionitem">
-				<table class="text-sm md:text-lg">
-					<tr>
-						<th>Select filters</th>
-						<th>Yes</th>
-						<th>No</th>
-						<th>NA</th>
-					</tr>
-					<tr>
-						<td class="text-right">Good Email</td>
-						<td>
-							<input type="radio" v-model="email" value="1" />
-						</td>
-						<td>
-							<input type="radio" v-model="email" value="0" />
-						</td>
-						<td>
-							<input type="radio" v-model="email" value="2" />
-						</td>
-					</tr>
+				<Card class="w-20rem border-round m-2">
+					<template #content>
+						<table class="text-sm md:text-lg">
+							<tr>
+								<th>Select filters</th>
+								<th>Yes</th>
+								<th>No</th>
+								<th>NA</th>
+							</tr>
+							<tr>
+								<td class="text-right">Good Email</td>
+								<td>
+									<input type="radio" v-model="email" value="1" />
+								</td>
+								<td>
+									<input type="radio" v-model="email" value="0" />
+								</td>
+								<td>
+									<input type="radio" v-model="email" value="2" />
+								</td>
+							</tr>
 
-					<tr>
-						<td class="text-right">Marked for emailing</td>
-						<td>
-							<input type="radio" v-model="marked_for_email" value="1" />
-						</td>
-						<td>
-							<input type="radio" v-model="marked_for_email" value="0" />
-						</td>
-						<td>
-							<input type="radio" v-model="marked_for_email" value="2" />
-						</td>
-					</tr>
+							<tr>
+								<td class="text-right">Marked for emailing</td>
+								<td>
+									<input type="radio" v-model="marked_for_email" value="1" />
+								</td>
+								<td>
+									<input type="radio" v-model="marked_for_email" value="0" />
+								</td>
+								<td>
+									<input type="radio" v-model="marked_for_email" value="2" />
+								</td>
+							</tr>
 
-					<tr>
-						<td class="text-right">Email Opened in last 90 days</td>
-						<td>
-							<!-- Yes -->
-							<input type="radio" v-model="email_opened" value="1" />
-						</td>
-						<td>
-							<!-- No  -->
-							<input type="radio" v-model="email_opened" value="0" />
-						</td>
-						<td>
-							<!-- Does not apply  -->
-							<input type="radio" v-model="email_opened" value="2" />
-						</td>
-					</tr>
+							<tr>
+								<td class="text-right">Email Opened in last 90 days</td>
+								<td>
+									<!-- Yes -->
+									<input type="radio" v-model="email_opened" value="1" />
+								</td>
+								<td>
+									<!-- No  -->
+									<input type="radio" v-model="email_opened" value="0" />
+								</td>
+								<td>
+									<!-- Does not apply  -->
+									<input type="radio" v-model="email_opened" value="2" />
+								</td>
+							</tr>
 
-					<tr>
-						<td class="text-right">Good Address</td>
-						<td>
-							<input type="radio" v-model="address" value="1" />
-						</td>
-						<td>
-							<input type="radio" v-model="address" value="0" />
-						</td>
-						<td>
-							<input type="radio" v-model="address" value="2" />
-						</td>
-					</tr>
-					<tr>
-						<td class="text-right">Marked for mailing (calendar)</td>
-						<td>
-							<input type="radio" v-model="marked_for_mail" value="1" />
-						</td>
-						<td>
-							<input type="radio" v-model="marked_for_mail" value="0" />
-						</td>
-						<td>
-							<input type="radio" v-model="marked_for_mail" value="2" />
-						</td>
-					</tr>
+							<tr>
+								<td class="text-right">Good Address</td>
+								<td>
+									<input type="radio" v-model="address" value="1" />
+								</td>
+								<td>
+									<input type="radio" v-model="address" value="0" />
+								</td>
+								<td>
+									<input type="radio" v-model="address" value="2" />
+								</td>
+							</tr>
+							<tr>
+								<td class="text-right">Marked for mailing (calendar)</td>
+								<td>
+									<input type="radio" v-model="marked_for_mail" value="1" />
+								</td>
+								<td>
+									<input type="radio" v-model="marked_for_mail" value="0" />
+								</td>
+								<td>
+									<input type="radio" v-model="marked_for_mail" value="2" />
+								</td>
+							</tr>
 
-					<tr>
-						<td class="text-right">Donated</td>
-						<td>
-							<input type="radio" v-model="donated" value="1" />
-						</td>
-						<td>
-							<input type="radio" v-model="donated" value="0" />
-						</td>
-						<td>
-							<input type="radio" v-model="donated" value="2" />
-						</td>
-					</tr>
-				</table>
+							<tr>
+								<td class="text-right">Donated</td>
+								<td>
+									<input type="radio" v-model="donated" value="1" />
+								</td>
+								<td>
+									<input type="radio" v-model="donated" value="0" />
+								</td>
+								<td>
+									<input type="radio" v-model="donated" value="2" />
+								</td>
+							</tr>
+						</table>
+					</template>
+				</Card>
 			</div>
 
 			<!-- filteredData[0] === {{ filteredData[0] }} -->
 			<div class="topsectionitem">
 				<!-- Total records -->
-				<p class="text-center">Total Records count = {{ rows }}</p>
+				<p class="text-center font-semibold md:text-lg mb-2">
+					Total Records count = {{ rows }}
+				</p>
 			</div>
 		</div>
 

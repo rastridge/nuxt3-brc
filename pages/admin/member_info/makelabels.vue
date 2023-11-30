@@ -94,6 +94,9 @@
 	definePageMeta({
 		middleware: ['auth'],
 	})
+	import { useAuthStore } from '~/stores/authStore'
+	const auth = useAuthStore()
+
 	const app = ref('member_info')
 	const error = ref('')
 	const member_type_id = ref(3)
@@ -116,6 +119,9 @@
 				labelType,
 				member_type_id,
 			},
+			headers: {
+				authorization: auth.user.token,
+			},
 		})
 		const decoded = atob(data.value)
 		const blob = new Blob([decoded], { type: 'application/pdf' })
@@ -130,6 +136,9 @@
 	const makeReturnLabels = async (e) => {
 		const { data, error } = await useFetch('/member_info/makereturnlabels', {
 			method: 'POST',
+			headers: {
+				authorization: auth.user.token,
+			},
 		})
 
 		const decoded = atob(data.value)
