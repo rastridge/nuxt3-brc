@@ -5,6 +5,7 @@ export const newsService = {
 	getAll,
 	getAllCurrent,
 	getOne,
+	getYear,
 	addOne,
 	editOne,
 	deleteOne,
@@ -80,6 +81,36 @@ async function getOne(id) {
 	const news = await doDBQueryDatestring(sql)
 
 	return news[0]
+}
+
+async function getYear(year) {
+	const sql = `SELECT
+					news_id,
+					news_id as id,
+					news_title,
+					news_title as title,
+					news_event_dt,
+					news_expire_dt,
+					news_release_dt,
+					status,
+					news_synop,
+					news_article
+					status,
+					deleted,
+					deleted_dt,
+					created_dt,
+					modified_dt,
+					modified_dt as dt
+				FROM
+					inbrc_news
+				WHERE
+					deleted = 0
+					AND
+					YEAR(created_dt) = ${year}
+				ORDER BY
+          dt DESC`
+	const news = await doDBQueryDatestring(sql)
+	return news
 }
 
 async function addOne({

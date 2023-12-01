@@ -20,16 +20,16 @@
 			</div>
 		</div>
 
-		<div v-if="news" class="surface-400 p-2 border-round-lg border-1">
+		<div class="surface-400 p-2 border-round-lg border-1">
 			<ul class="list-none text-sm md:text-lg">
 				<li
-					v-for="itm in filteredData"
+					v-for="itm in year_data"
 					:key="itm.id"
 					class="cursor-pointer text-500 bg-white border-round-lg p-3 m-2"
 				>
 					<a href="#" @click="openModal(itm)">
 						<span class="text-sm md:text-lg text-600">{{
-							$dayjs(itm.dt).format('LL')
+							$dayjs(itm.news_event_dt).format('LL')
 						}}</span>
 						-
 						<span class="text-sm md:text-lg text-600 font-semibold">{{
@@ -82,24 +82,10 @@
 </template>
 
 <script setup>
-	const { $dayjs } = useNuxtApp()
-
-	//
-	// Dialog initialization - display news item
-	//
-	const selectedItem = ref({})
-	const displayModal = ref(false)
-	const openModal = (item) => {
-		displayModal.value = true
-		selectedItem.value = item
-	}
-	const closeModal = () => {
-		displayModal.value = false
-	}
-
 	//
 	// Filter by year
 	//
+	const { $dayjs } = useNuxtApp()
 	const year = ref(parseInt($dayjs().format('YYYY')))
 	const startyear = 2004
 
@@ -107,21 +93,45 @@
 		year.value = value
 	}
 
-	const filteredData = computed(() => {
-		return news.value.filter((d) => {
-			return parseInt($dayjs(d.dt).format('YYYY')) === year.value
-		})
-	})
+	//
+	// get year data for list
+	//
+	const year_data = ref([])
 
+	const getYearOfNews = async (year) => {
+		const { data, pending, error, refresh } = await useFetch(
+			`/news/year/${year}`,
+			{
+				method: 'get',
+			}
+		)
+		year_data.value = data.value
+		error.value = error
+	}
+	// getYearOfNewsletters(year.value)
+	// get newsletters when  year changes
+	watchEffect(() => getYearOfNews(year.value))
+
+	//
+	// Dialog initialization - display news item
+	//
+	const selectedItem = ref({})
+	const displayModal = ref(false)
+	const openModal = async (item) => {
+		await getOne(item.id)
+
+		displayModal.value = true
+	}
+	const closeModal = () => {
+		displayModal.value = false
+	}
 	//
 	// Get news
 	//
-	const {
-		data: news,
-		pending,
-		error,
-		refresh,
-	} = await useFetch('/news/getallcurrent', {
-		method: 'get',
-	})
+	const getOne = async (id) => {
+		const { data, pending, error, refresh } = await useFetch(`/news/${id}`, {
+			method: 'get',
+		})
+		selectedItem.value = data.value
+	}
 </script>
