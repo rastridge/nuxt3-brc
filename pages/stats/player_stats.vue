@@ -15,9 +15,11 @@
 							minWidth: '10rem',
 							border: '2px #00C solid',
 							'border-radius': '10px',
+							'font-size': '12px',
 						},
 					},
 				}"
+				rowHover
 				stripedRows
 				filterDisplay="row"
 				paginator
@@ -30,12 +32,7 @@
 				<template #empty> No players found. </template>
 				<template #loading> Loading player data. Please wait. </template>
 
-				<Column
-					header="Name"
-					field="name"
-					:showFilterMenu="false"
-					style="width: 20rem"
-				>
+				<Column header="Name" field="name" :showFilterMenu="false">
 					<template #body="{ data }">
 						{{ data.name }}
 					</template>
@@ -44,23 +41,19 @@
 							v-model="filterModel.value"
 							type="text"
 							@input="filterCallback()"
+							style="width: 8rem"
 							class="p-column-filter"
 							placeholder="Search by name"
 						/>
 					</template>
 				</Column>
-				<Column
-					field="year"
-					header="Joined"
-					:showFilterMenu="false"
-					sortable
-					style="width: 10rem"
-				>
+				<Column field="year" header="Joined" :showFilterMenu="false" sortable>
 					<template #filter="{ filterModel, filterCallback }">
 						<InputText
 							v-model="filterModel.value"
 							type="text"
 							@input="filterCallback()"
+							style="width: 6rem"
 							class="p-column-filter"
 							placeholder="Search by year"
 						/>
@@ -79,100 +72,43 @@
 							:options="member_types"
 							placeholder="Search by member type"
 							:showClear="true"
-							style="width: 10rem"
 						>
 						</Dropdown>
 					</template>
 				</Column>
-				<Column
-					field="games"
-					header="Games"
-					:showFilterMenu="false"
-					sortable
-					style="width: 10rem"
-				>
+				<Column field="games" header="Games" :showFilterMenu="false" sortable>
 				</Column>
-				<Column
-					field="tries"
-					header="Tries"
-					:showFilterMenu="false"
-					sortable
-					style="width: 10rem"
-				>
+				<Column field="tries" header="Tries" :showFilterMenu="false" sortable>
 				</Column>
 				<Column
 					field="maxtries"
 					header="Most/g"
 					:showFilterMenu="false"
 					sortable
-					style="width: 10rem"
 				>
 				</Column>
-				<Column
-					field="tpg"
-					header="Tries/g"
-					:showFilterMenu="false"
-					sortable
-					style="width: 10rem"
-				>
+				<Column field="tpg" header="Tries/g" :showFilterMenu="false" sortable>
 				</Column>
-				<Column
-					field="conv"
-					header="Convs"
-					:showFilterMenu="false"
-					sortable
-					style="width: 10rem"
-				>
+				<Column field="conv" header="Convs" :showFilterMenu="false" sortable>
 				</Column>
 				<Column
 					field="maxconv"
 					header="Most/g"
 					:showFilterMenu="false"
 					sortable
-					style="width: 10rem"
 				>
 				</Column>
-				<Column
-					field="pk"
-					header="PenKicks"
-					:showFilterMenu="false"
-					sortable
-					style="width: 10rem"
-				>
+				<Column field="pk" header="PenKicks" :showFilterMenu="false" sortable>
 				</Column>
-				<Column
-					field="maxpk"
-					header="Most/g"
-					:showFilterMenu="false"
-					sortable
-					style="width: 10rem"
-				>
+				<Column field="maxpk" header="Most/g" :showFilterMenu="false" sortable>
 				</Column>
 
-				<Column
-					field="yellow"
-					header="Yellow"
-					:showFilterMenu="false"
-					sortable
-					style="width: 10rem"
-				>
+				<Column field="yellow" header="Yellow" :showFilterMenu="false" sortable>
 				</Column>
-				<Column
-					field="red"
-					header="Red"
-					:showFilterMenu="false"
-					sortable
-					style="width: 10rem"
-				>
+				<Column field="red" header="Red" :showFilterMenu="false" sortable>
 				</Column>
 
-				<Column
-					field="pts"
-					header="Pts"
-					:showFilterMenu="false"
-					sortable
-					style="width: 10rem"
-				>
+				<Column field="pts" header="Pts" :showFilterMenu="false" sortable>
 				</Column>
 			</DataTable>
 		</div>

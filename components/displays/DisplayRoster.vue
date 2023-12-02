@@ -1,7 +1,7 @@
 <template>
 	<div class="roster">
 		<div v-if="players">
-			<table>
+			<table class="text-sm lg:text-lg">
 				<thead>
 					<tr>
 						<th>Pos</th>
@@ -46,5 +46,6 @@
 	td {
 		border-bottom: 1px solid #ddd;
 		border-left: 1px solid #ddd;
+		white-space: nowrap;
 	}
 </style>

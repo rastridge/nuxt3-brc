@@ -1,6 +1,6 @@
 <template>
 	<div id="community">
-		<Card class="w-full shadow-6 m-2 p-3 bg-blue-600 text-white font-semibold">
+		<Card class="w-full my-card-style">
 			<template #title
 				><div class="text-sm md:text-2xl text-center">
 					Community Service - Habitat for Humanity
@@ -26,7 +26,7 @@
 
 			<!-- <Card class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"> -->
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">Before</div></template
@@ -40,7 +40,7 @@
 			</Card>
 
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">After</div></template
@@ -54,7 +54,7 @@
 			</Card>
 
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">
@@ -70,7 +70,7 @@
 			</Card>
 
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">
@@ -86,7 +86,7 @@
 			</Card>
 
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">
@@ -102,7 +102,7 @@
 			</Card>
 
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">
@@ -118,7 +118,7 @@
 			</Card>
 
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">
@@ -134,7 +134,7 @@
 			</Card>
 
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">
@@ -150,7 +150,7 @@
 			</Card>
 
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">
@@ -166,7 +166,7 @@
 			</Card>
 
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">
@@ -182,7 +182,7 @@
 			</Card>
 
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">
@@ -197,7 +197,7 @@
 				/></template>
 			</Card>
 			<Card
-				class="w-30rem lg:w-40rem flex align-items-start justify-content-center border-round m-2"
+				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
 					><div class="text-sm md:text-xl text-center">

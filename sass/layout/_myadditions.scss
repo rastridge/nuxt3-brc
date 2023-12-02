@@ -74,3 +74,29 @@
 .ql-size-small {
 	font-size: small;
 }
+
+@import 'primeflex/primeflex.scss';
+
+.topsectioncenter {
+	@include styleclass('flex flex-column align-items-center');
+}
+.formsectionitem {
+	@include styleclass('w-full md:w-10 p-3 border-1 border-round-lg bg-white');
+}
+.topsectionitem {
+	@include styleclass('w-20rem mt-2 text-center');
+}
+.renderlist-enclosure {
+	@include styleclass('p-1 border-1 border-round-lg bg-white min-w-min');
+}
+.mybutton {
+	@include styleclass(
+		'bg-blue-500 text-white hover:bg-blue-600 border-round transition-colors transition-duration-150 p-3 border-none'
+	);
+}
+
+.my-card-style {
+	@include styleclass(
+		'border-round-sm md:border-round-lg shadow-6 m-2 p-2 bg-blue-600 text-white font-semibold'
+	);
+}

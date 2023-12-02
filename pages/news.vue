@@ -312,7 +312,7 @@
 				v-for="item in news"
 				:key="item.news_id"
 				style="width: 320px"
-				class="flex justify-content-center shadow-6 m-2 p-3 bg-blue-600 text-white font-semibold"
+				class="flex justify-content-center my-card-style"
 			>
 				<template #title>
 					<!--  Format for Primevue calendar -->

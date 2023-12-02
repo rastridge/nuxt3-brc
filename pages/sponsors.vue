@@ -4,11 +4,7 @@
 			<common-header title="Sponsors" />
 		</div>
 		<div>
-			<Card
-				v-for="item in sponsors"
-				:key="item.id"
-				class="shadow-6 m-2 p-3 bg-blue-600 text-white font-semibold"
-			>
+			<Card v-for="item in sponsors" :key="item.id" class="my-card-style">
 				<template #header>
 					<span class="text-xl">{{ item.ad_client_name }}</span></template
 				>

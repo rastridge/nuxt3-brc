@@ -51,6 +51,7 @@
 
 		<DataTable
 			:value="record"
+			:class="'p-datatable-sm'"
 			:pt="{
 				wrapper: {
 					style: {
@@ -58,9 +59,11 @@
 						minWidth: '10rem',
 						border: '2px #00C solid',
 						'border-radius': '10px',
+						'font-size': '14px',
 					},
 				},
 			}"
+			rowHover
 		>
 			<!-- <DataTable :value="filteredData" paginator :rows="20"> -->
 			<Column field="season" header="Season">
@@ -131,6 +134,7 @@
 		border-collapse: collapse;
 		border: 1px solid;
 		padding: 1rem;
+		background-color: white;
 	}
 
 	th,

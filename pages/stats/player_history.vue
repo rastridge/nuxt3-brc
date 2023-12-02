@@ -8,7 +8,7 @@
 				<CommonHeader title="Player game history" />
 			</div>
 			<div class="topsectionitem">
-				<Card style="width: 20em; margin-bottom: 1rem">
+				<Card class="my-card-style h-3 mb-2">
 					<template #title> Player name</template>
 					<template #content>
 						<AutoComplete
@@ -36,6 +36,7 @@
 						minWidth: '10rem',
 						border: '2px #00C solid',
 						'border-radius': '10px',
+						'font-size': '12px',
 					},
 				},
 			}"
@@ -50,16 +51,9 @@
 		>
 			<template #empty> No members found. </template>
 			<template #loading> Loading Membership data. Please wait. </template>
-			<Column
-				header="Date"
-				field="date"
-				:showFilterMenu="true"
-				style="width: 10rem"
-			>
+			<Column header="Date" field="date" :showFilterMenu="true">
 				<template #body="{ data }">
-					<span class="text-sm md:text-lg">{{
-						$dayjs(data.date).format('MMM DD YYYY')
-					}}</span>
+					{{ $dayjs(data.date).format('MMM D YYYY') }}
 				</template>
 				<template #filter="{ filterModel, filterCallback }">
 					<InputText
@@ -67,19 +61,15 @@
 						type="text"
 						@input="filterCallback()"
 						class="p-column-filter"
+						style="width: 6rem"
 						placeholder="Search by date"
 					/>
 				</template>
 			</Column>
-			<Column
-				header="Opponent"
-				field="opponent_name"
-				:showFilterMenu="true"
-				style="width: 25rem"
-			>
+			<Column header="Opponent" field="opponent_name" :showFilterMenu="true">
 				<template #body="{ data }">
 					<Button link @click="openGameModal(data.game_id)">
-						<span class="text-sm md:text-lg">{{ data.opponent_name }}</span>
+						{{ data.opponent_name }}
 					</Button>
 				</template>
 				<template #filter="{ filterModel, filterCallback }">
@@ -88,57 +78,39 @@
 						type="text"
 						@input="filterCallback()"
 						class="p-column-filter"
+						style="width: 8rem"
 						placeholder="Search by opponent"
 					/>
 				</template>
 			</Column>
-			<Column
-				header="Venue"
-				field="venue"
-				:showFilterMenu="true"
-				style="width: 20rem"
-			>
+			<Column header="Venue" field="venue" :showFilterMenu="true">
 				<template #body="{ data }">
-					<span class="text-sm md:text-lg">{{ data.venue }}</span>
+					{{ data.venue }}
 				</template>
 				<template #filter="{ filterModel, filterCallback }">
 					<InputText
 						v-model="filterModel.value"
 						type="text"
 						@input="filterCallback()"
+						style="width: 6rem"
 						class="p-column-filter"
 						placeholder="Search by venue"
 					/>
 				</template>
 			</Column>
-			<Column
-				header="Occasion"
-				field="occasion"
-				:showFilterMenu="true"
-				style="width: 20rem"
-			>
+			<Column header="Occasion" field="occasion" :showFilterMenu="true">
 				<template #body="{ data }">
-					<span class="text-sm md:text-lg">{{ data.occasion }}</span>
+					{{ data.occasion }}
 				</template>
 			</Column>
-			<Column
-				header="Level"
-				field="game_level"
-				:showFilterMenu="true"
-				style="width: 10rem"
-			>
+			<Column header="Level" field="game_level" :showFilterMenu="true">
 				<template #body="{ data }">
-					<span class="text-sm md:text-lg">{{ data.game_level }}</span>
+					{{ data.game_level }}
 				</template>
 			</Column>
-			<Column
-				header="Type"
-				field="game_type"
-				:showFilterMenu="true"
-				style="width: 10rem"
-			>
+			<Column header="Type" field="game_type" :showFilterMenu="true">
 				<template #body="{ data }">
-					<span class="text-sm md:text-lg">{{ data.game_type }}</span>
+					{{ data.game_type }}
 				</template>
 			</Column>
 		</DataTable>

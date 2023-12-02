@@ -10,7 +10,7 @@
 				v-for="item in payments"
 				:key="item.id"
 				style="width: 320px"
-				class="flex justify-content-center shadow-6 m-2 p-3 bg-blue-600 text-white font-semibold"
+				class="flex justify-content-center my-card-style"
 			>
 				<!-- <template #header> {{ item.title }}</template> -->
 				<template #subtitle>

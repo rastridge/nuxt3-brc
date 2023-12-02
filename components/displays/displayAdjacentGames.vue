@@ -3,10 +3,7 @@
 		<div class="text-center">
 			<span class="uppercase font-semibold">{{ direction }} Matches</span>
 		</div>
-		<Card
-			style="width: 320px"
-			class="shadow-3 m-2 p-2 bg-blue-600 text-white font-semibold"
-		>
+		<Card style="width: 320px" class="my-card-style">
 			<!-- <template #header> </template> -->
 			<template #content>
 				<table class="nowrap">

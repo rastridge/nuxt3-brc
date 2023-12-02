@@ -1,6 +1,6 @@
 <template>
 	<div id="gameInfo">
-		<table class="nowrap">
+		<table class="text-sm lg:text-lg">
 			<tbody>
 				<tr>
 					<td>
@@ -54,3 +54,10 @@
 		return getResultCode(s)
 	}
 </script>
+
+<style scoped>
+	th,
+	td {
+		white-space: nowrap;
+	}
+</style>

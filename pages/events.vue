@@ -7,7 +7,7 @@
 			<Card
 				v-for="item in events"
 				:key="item.id"
-				class="flex justify-content-left shadow-6 m-2 p-3 bg-blue-600 text-white font-semibold"
+				class="flex justify-content-left my-card-style"
 			>
 				<template #header>
 					{{ $dayjs(item.event_dt).format('LL') }}
