@@ -1,7 +1,7 @@
 <template>
 	<div class="roster">
 		<div v-if="players">
-			<table class="text-sm lg:text-lg">
+			<table class="text-xs lg:sm">
 				<thead>
 					<tr>
 						<th>Pos</th>

@@ -101,7 +101,13 @@ async function getRoom(room) {
 								FROM 
 									inbrc_clubhouse
 								WHERE
-									clubhouse_category = "${room}"`
+									status = 1
+									AND
+									deleted = 0
+									AND
+									clubhouse_category = "${room}"
+								ORDER BY
+									clubhouse_date ASC`
 
 	const rm = await doDBQueryBuffalorugby(sql)
 	return rm

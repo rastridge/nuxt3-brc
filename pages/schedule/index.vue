@@ -138,16 +138,6 @@
 			v-model:visible="displayGameModal"
 			:breakpoints="{ '900px': '75vw', '640px': '90vw' }"
 			:style="{ width: '60vw' }"
-			:pt="{
-				root: { class: 'border-round-3xl border-3' },
-				header: { class: 'surface-300' },
-				content: {
-					class: 'text-xs md:text-lg border-1 p-2',
-				},
-				footer: { class: 'surface-300' },
-			}"
-			maximizable
-			modal
 		>
 			<template #header>
 				<div>
@@ -167,7 +157,7 @@
 			<template #footer>
 				<div>
 					<Button
-						label="Close"
+						label="Return"
 						@click="closeModal"
 						class="p-button-sm mt-2"
 						autofocus
@@ -180,23 +170,10 @@
 		<Dialog
 			v-model:visible="displayHistoryModal"
 			:breakpoints="{ '900px': '75vw', '640px': '90vw' }"
-			:pt="{
-				root: { class: 'w-12 sm:w-10 md:w-8' },
-				header: { class: 'surface-300' },
-				content: {
-					class: 'text-xs md:text-lg border-1 p-2',
-				},
-				footer: { class: 'surface-300' },
-			}"
+			:style="{ width: '60vw' }"
 		>
 			<template #header>
 				<div>
-					<Button
-						label="Close"
-						@click="closeHistoryModal"
-						class="p-button-sm mt-2"
-						autofocus
-					/>
 					<span class="text-lg font-semibold ml-5">History</span>
 				</div>
 			</template>

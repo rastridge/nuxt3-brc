@@ -46,8 +46,13 @@
 		<Dialog
 			v-model:visible="displayModal"
 			:breakpoints="{ '900px': '75vw', '640px': '90vw' }"
-			:style="{ width: '50vw' }"
+			:style="{ width: '60vw' }"
 		>
+			<template #header>
+				<div>
+					<h6>{{ item.video_title }}</h6>
+				</div></template
+			>
 			<div>
 				<!-- <div class="embed-responsive embed-responsive-16by9"> -->
 				<iframe
@@ -61,6 +66,16 @@
 				></iframe>
 				<!-- </div> -->
 			</div>
+			<template #footer>
+				<div>
+					<Button
+						label="Return"
+						@click="closeModal"
+						class="p-button-sm"
+						autofocus
+					/>
+				</div>
+			</template>
 		</Dialog>
 	</div>
 </template>

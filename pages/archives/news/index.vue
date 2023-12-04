@@ -48,16 +48,7 @@
 		<Dialog
 			v-model:visible="displayModal"
 			:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-			:pt="{
-				root: { class: 'border-round-3xl border-3' },
-				header: { class: 'surface-300' },
-				content: {
-					class: 'text-xs md:text-lg border-1 p-6',
-				},
-				footer: { class: 'surface-300' },
-			}"
-			maximizable
-			modal
+			:style="{ width: '60vw' }"
 		>
 			<template #header>
 				<div class="font-semibold text-md lg:text-lg">
@@ -70,7 +61,7 @@
 			<template #footer>
 				<div>
 					<Button
-						label="Close"
+						label="Return"
 						@click="closeModal"
 						class="p-button-sm m-2"
 						autofocus

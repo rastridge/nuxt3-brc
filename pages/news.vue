@@ -315,7 +315,6 @@
 				class="flex justify-content-center my-card-style"
 			>
 				<template #title>
-					<!--  Format for Primevue calendar -->
 					<span class="text-sm">
 						{{ $dayjs(item.dt).format('MMM D, YYYY') }} </span
 					><br />
