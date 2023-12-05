@@ -72,7 +72,9 @@
 				<Image :src="state.ad_image_path" alt="Image" width="320" />
 			</div>
 		</FormKit>
-
+		<p v-if="alert.message" class="alert-danger w-20rem">
+			ERROR: {{ alert.message }}
+		</p>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
@@ -98,11 +100,13 @@
 
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
-
+	import { useAlertStore } from '~/stores/alertStore'
+	const alert = useAlertStore()
 	const auth = useAuthStore()
 	const saving = ref(false)
 	const fileInput = ref(null)
 	const image = ref('')
+
 	//
 	// Outgoing
 	//
@@ -192,12 +196,12 @@
 			// console.log('IN handle image.value = ', image.value)
 			state.value.ad_image_path = data.imageUrl
 		} else {
-			alert(
+			alert.error(
 				'Illegal dimensons ' +
 					imageDimensions.height +
-					' ' +
+					'px ' +
 					imageDimensions.width +
-					'Image must be 125h 750w'
+					'px - Image must be 750w 125h'
 			)
 		}
 	}

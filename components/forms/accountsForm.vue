@@ -352,12 +352,12 @@
 			// console.log('IN handle image.value = ', image.value)
 			state.value.member_pic_path = data.imageUrl
 		} else {
-			alert(
+			alert.error(
 				'Illegal dimensons ' +
 					imageDimensions.height +
-					' ' +
+					'px ' +
 					imageDimensions.width +
-					'Image must be 72h 72w'
+					'px - Image must be 72h 72w'
 			)
 		}
 	}
