@@ -21,7 +21,7 @@
 				}"
 				tableStyle="min-width: 50rem"
 				paginator
-				:rows="10"
+				:rows="20"
 			>
 				<Column field="title" header=""></Column>
 				<Column field="president" header="President"></Column>
