@@ -4,14 +4,14 @@
 			<div class="topsectionitem">
 				<img :src="asleepatdesk" style="width: 320px" />
 			</div>
-<!-- 			<div class="formsectionitem">
+			<!-- 			<div class="formsectionitem">
 				<h6 class="text-center">debugging info</h6>
 				<p>Admin user name is {{ auth.user.admin_user_name }}</p>
-				<!-- <p>Admin user token is {{ auth.user.token }}</p> -->
+				<p>Admin user token is {{ auth.user.token }}</p>
 				<p>Admin user is logged in {{ auth.isLoggedIn }}</p>
 
 				<p>session Admin user name is {{ sess.admin_user_name }}</p>
-				<!-- <p>session Admin user token is {{ sess.token }}</p> -->
+				<p>session Admin user token is {{ sess.token }}
 				<p>auth Admin user is logged in {{ auth.isLoggedIn }}</p>
 				<p>Keep me logged in is {{ auth.isKeeped }}</p>
 				<p>placemark page is {{ placemark.getPage }}</p>
@@ -21,7 +21,8 @@
 				<p>placemark gametypeid is {{ placemark.getGameTypeId }}</p>
 				<p>placemark year is {{ placemark.year }}</p>
 			</div>
- -->		</div>
+ -->
+		</div>
 	</div>
 </template>
 
