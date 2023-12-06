@@ -4,7 +4,7 @@
 			<div class="topsectionitem">
 				<img :src="asleepatdesk" style="width: 320px" />
 			</div>
-			<div class="formsectionitem">
+<!-- 			<div class="formsectionitem">
 				<h6 class="text-center">debugging info</h6>
 				<p>Admin user name is {{ auth.user.admin_user_name }}</p>
 				<!-- <p>Admin user token is {{ auth.user.token }}</p> -->
@@ -21,7 +21,7 @@
 				<p>placemark gametypeid is {{ placemark.getGameTypeId }}</p>
 				<p>placemark year is {{ placemark.year }}</p>
 			</div>
-		</div>
+ -->		</div>
 	</div>
 </template>
 
