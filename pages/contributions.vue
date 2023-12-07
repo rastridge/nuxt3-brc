@@ -50,8 +50,10 @@
 				/>
 			</div>
 		</div>
-		<!-- <div v-if="contributions.length < 1"> -->
 		<div class="card">
+			<h6 class="font-semibold text-center">
+				Number {{ number }} Total ${{ total }}
+			</h6>
 			<DataTable
 				:value="contributions"
 				class="p-datatable-sm"
@@ -204,7 +206,8 @@
 
 <script setup>
 	const { $dayjs } = useNuxtApp()
-
+	const number = ref(0)
+	const total = ref(0)
 	//
 	// Get year contributions
 	//
@@ -215,9 +218,15 @@
 				method: 'get',
 			}
 		)
+		let sum = 0
+
+		for (let i = 0; i < data.value.length; i++) {
+			sum += data.value[i].contribution_amount
+		}
+		number.value = data.value.length
+		total.value = sum
 		contributions.value = data.value
 	}
-
 	const getTopContributors = async () => {
 		const { data, pending, error, refresh } = await useFetch(
 			`/contributions/top`,
@@ -230,20 +239,20 @@
 
 	// topcontributors values
 	const topcontributors = ref([])
-	topcontributors.value = getTopContributors()
+	getTopContributors()
 
 	// initial values
 	const year = ref(parseInt($dayjs().format('YYYY')))
 	const contributions = ref([])
-	contributions.value = getYearContributiions(year.value)
+	getYearContributiions(year.value)
 
 	//
 	// Select year action
 	//
-	const startyear = 2010
+	const startyear = 2012
 	// get year contributions
 	const onSubmit = (value) => {
 		year.value = value
-		contributions.value = getYearContributiions(year.value)
+		getYearContributiions(year.value)
 	}
 </script>
