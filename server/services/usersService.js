@@ -291,7 +291,7 @@ async function editOne(info) {
 		const lc_admin_username = admin_user_name.toLowerCase()
 		const lc_admin_user_email = admin_user_email.toLowerCase()
 
-		const existing_user = users.find((u) => {
+		const user_exists = users.find((u) => {
 			return (
 				u.admin_user_name === lc_admin_username ||
 				u.admin_user_email === lc_admin_user_email
@@ -301,8 +301,10 @@ async function editOne(info) {
 		//
 		// if no other users with proposed username or email
 		//
-		let msg = null
-		if (!existing_user) {
+		let msg = ''
+		console.log('IN userservice 1 ', 'password = ', password)
+
+		if (!user_exists) {
 			// new (add)
 
 			// new (add) or updated (edit) password
@@ -339,14 +341,13 @@ async function editOne(info) {
 									modified_dt= NOW()
 							WHERE
 									admin_user_id = ?`
-
 				let inserts = []
 				inserts.push(lc_admin_username, lc_admin_user_email, admin_user_id)
 				sql = mysql.format(sql, inserts)
-
 				await conn.execute(sql)
 			}
-
+			msg = ''
+			console.log('IN userservice 2a ', 'msg = ', msg)
 			//
 			// update user perms by deleting records - creating new
 			//
@@ -355,9 +356,9 @@ async function editOne(info) {
 							inbrc_admin_perms
 						WHERE
 							admin_user_id = ${admin_user_id}`
-
 			await conn.execute(sql)
-
+			msg = ''
+			console.log('IN userservice 2b ', 'msg = ', msg)
 			// update perms
 			// loop through existing perms array
 			for (let p of perms) {
@@ -374,7 +375,8 @@ async function editOne(info) {
 								)`
 				await conn.execute(sql)
 			}
-
+			msg = ''
+			console.log('IN userservice 2c ', 'msg = ', msg)
 			// send email notification
 			//
 			// sendEmail(
@@ -384,6 +386,8 @@ async function editOne(info) {
 			// 		lc_admin_username +
 			// 		'  has been modified'
 			// )
+			msg = ''
+			console.log('IN userservice 2 ', 'msg = ', msg)
 		} else {
 			msg =
 				'An admin with this username ' +
@@ -391,11 +395,13 @@ async function editOne(info) {
 				' or email ' +
 				lc_admin_user_email +
 				' already exists'
-			// sendEmail('ron.astridge@me.com', 'BRC Member Account Modification', msg)
+			console.log('IN userservice 3 ', 'msg = ', msg)
 		}
+		console.log('IN userservice 4 ', 'msg = ', msg)
 
 		await conn.query('COMMIT')
 		await conn.end()
+
 		return { message: msg }
 	} catch (e) {
 		await conn.query('ROLLBACK')

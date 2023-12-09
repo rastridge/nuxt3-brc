@@ -17,7 +17,7 @@ export default function useSubmit() {
 				authorization: auth.user.token,
 			},
 		})
-
+		console.log('IN onsubmitedit ', 'data.value.message = ', data.value.message)
 		if (error.value) {
 			throw createError({
 				...error.value,
@@ -26,7 +26,6 @@ export default function useSubmit() {
 		} else {
 			if (data.value.message) {
 				// message if email exists
-
 				alert.error(data.value.message)
 			}
 		}
