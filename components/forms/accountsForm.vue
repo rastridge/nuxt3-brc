@@ -89,6 +89,13 @@
 				validation-visibility="live"
 			/>
 			<FormKit
+				type="text"
+				label="Previous Club(s)"
+				name="member_prev_club"
+				v-model="state.member_prev_club"
+			/>
+
+			<FormKit
 				type="select"
 				label="Show phone?"
 				name="member_show_phone"
@@ -258,6 +265,7 @@
 	state.value.account_addr_street_ext = ''
 	state.value.account_addr_country = 'US'
 	state.value.member_show_addr = '1'
+	state.value.member_prev_club = 'None'
 	state.value.newsletter_recipient = '1'
 	state.value.mail_recipient = '0'
 	state.value.sms_recipient = '1'

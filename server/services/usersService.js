@@ -278,9 +278,9 @@ async function editOne(info) {
 	const conn = await getConnectionBuffalorugby()
 	try {
 		await conn.query('START TRANSACTION')
-		//
+		/*
 		// check for existing admin_user_name or admin_user_email
-		//
+		*/
 		let sql = `SELECT *
 							FROM inbrc_admin_users
 							WHERE
@@ -291,28 +291,26 @@ async function editOne(info) {
 		const lc_admin_username = admin_user_name.toLowerCase()
 		const lc_admin_user_email = admin_user_email.toLowerCase()
 
-		const user_exists = users.find((u) => {
+		const user_conflict = users.find((u) => {
 			return (
 				u.admin_user_name === lc_admin_username ||
 				u.admin_user_email === lc_admin_user_email
 			)
 		})
 
-		//
-		// if no other users with proposed username or email
-		//
-		let msg = ''
-		console.log('IN userservice 1 ', 'password = ', password)
-
-		if (!user_exists) {
-			// new (add)
-
-			// new (add) or updated (edit) password
+		/*
+			// if new info is not in conflict with existing admin users
+		*/
+		let msg = null
+		if (!user_conflict) {
+			/*
+			// if updated (edit) password
+			*/
 			if (password.length > 0) {
-				//
-				// If user has reset password
+				// Change password
+				const saltRounds = 10
+				const salt = bcrypt.genSaltSync(saltRounds)
 				const new_admin_user_pass = bcrypt.hashSync(password, salt)
-
 				sql = `UPDATE inbrc_admin_users
 								SET
 										admin_user_name = ?,
@@ -334,6 +332,7 @@ async function editOne(info) {
 				await conn.execute(sql)
 			} else {
 				// no new password
+				// just update other info
 				sql = `UPDATE inbrc_admin_users
 							SET
 									admin_user_name = ?,
@@ -346,21 +345,20 @@ async function editOne(info) {
 				sql = mysql.format(sql, inserts)
 				await conn.execute(sql)
 			}
-			msg = ''
-			console.log('IN userservice 2a ', 'msg = ', msg)
-			//
-			// update user perms by deleting records - creating new
-			//
+			/*
+				// updates done
+				//
+				// update user perms by deleting records - creating new
+				//
+			*/
+
 			sql = `DELETE
 						FROM
 							inbrc_admin_perms
 						WHERE
 							admin_user_id = ${admin_user_id}`
 			await conn.execute(sql)
-			msg = ''
-			console.log('IN userservice 2b ', 'msg = ', msg)
-			// update perms
-			// loop through existing perms array
+
 			for (let p of perms) {
 				sql = `INSERT
 							INTO inbrc_admin_perms
@@ -375,8 +373,7 @@ async function editOne(info) {
 								)`
 				await conn.execute(sql)
 			}
-			msg = ''
-			console.log('IN userservice 2c ', 'msg = ', msg)
+
 			// send email notification
 			//
 			// sendEmail(
@@ -386,8 +383,6 @@ async function editOne(info) {
 			// 		lc_admin_username +
 			// 		'  has been modified'
 			// )
-			msg = ''
-			console.log('IN userservice 2 ', 'msg = ', msg)
 		} else {
 			msg =
 				'An admin with this username ' +
@@ -395,14 +390,20 @@ async function editOne(info) {
 				' or email ' +
 				lc_admin_user_email +
 				' already exists'
-			console.log('IN userservice 3 ', 'msg = ', msg)
 		}
-		console.log('IN userservice 4 ', 'msg = ', msg)
+		/* 		msg =
+			'An admin with this username ' +
+			lc_admin_username +
+			' or email ' +
+			lc_admin_user_email +
+			' already exists'
+		console.log('IN userservice 4 ', 'msg = ', msg) */
 
 		await conn.query('COMMIT')
 		await conn.end()
 
 		return { message: msg }
+		// return 'msg'
 	} catch (e) {
 		await conn.query('ROLLBACK')
 		await conn.end()

@@ -37,6 +37,8 @@
 	const onSubmit = async function (form_state) {
 		alert.clear()
 		await onSubmitEdit('users', form_state)
-		navigateTo('/admin/users')
+		if (alert.message === null) {
+			navigateTo('/admin/users')
+		}
 	}
 </script>

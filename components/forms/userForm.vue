@@ -54,7 +54,7 @@
 				>
 				<Checkbox id="reset" v-model="reset" :binary="true" />
 			</div>
-
+			<!-- new password if reset or new user -->
 			<div v-if="reset || addForm">
 				<label for="password" class="block text-900 font-medium mb-2"
 					>New Password:</label
@@ -80,6 +80,8 @@
 				/>
 				<p v-if="!match" class="alert-danger">No match</p>
 			</div>
+
+			<!-- conflict - existing email or username  -->
 			<p v-if="alert.message" class="alert-danger">
 				ERROR: {{ alert.message }}
 			</p>
@@ -250,7 +252,7 @@
 		state.value.password = ''
 	}
 
-	const submitForm = (form) => {
+	const submitForm = (state) => {
 		let ok = false
 		if (
 			!reset.value &&
@@ -271,7 +273,7 @@
 		}
 		if (ok) {
 			saving.value = true
-			emit('submitted', form)
+			emit('submitted', state)
 		} else {
 			alert.error('Incomplete form')
 		}

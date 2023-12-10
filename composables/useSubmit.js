@@ -17,7 +17,8 @@ export default function useSubmit() {
 				authorization: auth.user.token,
 			},
 		})
-		console.log('IN onsubmitedit ', 'data.value.message = ', data.value.message)
+		// console.log('IN onsubmitedit ', 'form_state = ', form_state)
+		// console.log('IN onsubmitedit ', 'data.value.message = ', data.value.message)
 		if (error.value) {
 			throw createError({
 				...error.value,
@@ -52,5 +53,25 @@ export default function useSubmit() {
 			}
 		}
 	}
-	return { onSubmitEdit, onSubmitAdd }
+
+	const onSubmitAddByGuest = async function (app, form_state) {
+		const { data, error } = await useFetch(`/${app}/addonebyguest`, {
+			method: 'post',
+			body: form_state,
+		})
+
+		if (error.value) {
+			throw createError({
+				...error.value,
+				statusMessage: `Error submitting data to /${app}/addonebyguest`,
+			})
+		} else {
+			if (data.value.message) {
+				// message if email exists
+				alert.error(data.value.message)
+			}
+		}
+	}
+
+	return { onSubmitEdit, onSubmitAdd, onSubmitAddByGuest }
 }
