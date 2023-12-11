@@ -22,9 +22,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add sponsor" />
 			</div>
-			<div class="formsectionitem">
-				<sponsors-form @submitted="onSubmit" />
-			</div>
+			<sponsors-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

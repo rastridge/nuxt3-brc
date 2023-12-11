@@ -32,9 +32,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit payment" />
 			</div>
-			<div class="formsectionitem">
-				<payments-form :id="id" @submitted="onSubmit" />
-			</div>
+			<payments-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

@@ -11,9 +11,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit User" />
 			</div>
-			<div class="formsectionitem">
-				<user-form :id="id" @submitted="onSubmit" />
-			</div>
+			<user-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

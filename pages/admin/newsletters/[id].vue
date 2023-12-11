@@ -50,9 +50,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit Newsletter" />
 			</div>
-			<div class="formsectionitem">
-				<newsletters-form :id="id" @submitted="onSubmit" />
-			</div>
+			<newsletters-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

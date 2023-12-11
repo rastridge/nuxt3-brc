@@ -48,9 +48,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit SMS" />
 			</div>
-			<div class="formsectionitem">
-				<sms-form :id="id" @submitted="onSubmit" />
-			</div>
+			<sms-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

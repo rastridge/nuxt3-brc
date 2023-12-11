@@ -28,9 +28,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit Contributions" />
 			</div>
-			<div class="formsectionitem">
-				<contributions-form :id="id" @submitted="onSubmit" />
-			</div>
+			<contributions-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

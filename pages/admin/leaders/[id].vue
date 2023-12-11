@@ -28,9 +28,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit leaders" />
 			</div>
-			<div class="formsectionitem">
-				<leaders-form :id="id" @submitted="onSubmit" />
-			</div>
+			<leaders-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

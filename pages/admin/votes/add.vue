@@ -20,9 +20,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add vote" />
 			</div>
-			<div class="formsectionitem">
-				<votes-form @submitted="onSubmit" />
-			</div>
+			<votes-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

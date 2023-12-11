@@ -34,9 +34,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit flag account" />
 			</div>
-			<div class="formsectionitem">
-				<accounts-flag-form :id="id" @submitted="onSubmit" />
-			</div>
+			<accounts-flag-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

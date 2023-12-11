@@ -45,9 +45,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add Newsletter" />
 			</div>
-			<div class="formsectionitem">
-				<newsletters-form @submitted="onSubmit" />
-			</div>
+			<newsletters-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

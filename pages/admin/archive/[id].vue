@@ -30,9 +30,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit archive Item" />
 			</div>
-			<div class="formsectionitem">
-				<archive-form :id="id" @submitted="onSubmit" />
-			</div>
+			<archive-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

@@ -22,7 +22,6 @@
 			<div class="topsectionitem">
 				<admin-header title="Add custom page" />
 			</div>
-			<div class="formsectionitem">
 				<content-form @submitted="onSubmit" />
 			</div>
 		</div>

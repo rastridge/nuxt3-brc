@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="my-form-style">
 		<p v-if="!memberTypeOptions || !memberAdminTypeOptions || !state">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar
 			>Loading

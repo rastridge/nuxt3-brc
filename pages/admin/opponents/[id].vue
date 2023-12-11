@@ -28,9 +28,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit opponent" />
 			</div>
-			<div class="formsectionitem">
-				<opponents-form :id="id" @submitted="onSubmit" />
-			</div>
+			<opponents-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

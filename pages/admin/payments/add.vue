@@ -25,9 +25,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add payment" />
 			</div>
-			<div class="formsectionitem">
-				<payments-form @submitted="onSubmit" />
-			</div>
+			<payments-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

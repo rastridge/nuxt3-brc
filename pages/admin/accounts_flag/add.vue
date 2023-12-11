@@ -27,9 +27,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add flag account" />
 			</div>
-			<div class="formsectionitem">
-				<accounts-flag-form @submitted="onSubmit" />
-			</div>
+			<accounts-flag-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

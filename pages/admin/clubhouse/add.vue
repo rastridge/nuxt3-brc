@@ -24,9 +24,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add clubhouse item" />
 			</div>
-			<div class="formsectionitem">
-				<clubhouse-form app="clubhouse" @submitted="onSubmit" />
-			</div>
+			<clubhouse-form app="clubhouse" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

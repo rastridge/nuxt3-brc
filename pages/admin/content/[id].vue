@@ -28,9 +28,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit custom page" />
 			</div>
-			<div class="formsectionitem">
-				<content-form :id="id" @submitted="onSubmit" />
-			</div>
+			<content-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

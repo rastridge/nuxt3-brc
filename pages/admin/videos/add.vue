@@ -20,9 +20,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add Video" />
 			</div>
-			<div class="formsectionitem">
-				<videos-form @submitted="onSubmit" />
-			</div>
+			<videos-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

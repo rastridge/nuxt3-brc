@@ -27,9 +27,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add account" />
 			</div>
-			<div class="formsectionitem">
-				<accounts-form @submitted="onSubmit" />
-			</div>
+			<accounts-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

@@ -28,9 +28,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit Supporting Accounts" />
 			</div>
-			<div class="formsectionitem">
-				<supportingaccounts-form :id="id" @submitted="onSubmit" />
-			</div>
+			<supportingaccounts-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

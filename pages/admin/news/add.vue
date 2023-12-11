@@ -25,9 +25,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add News Item" />
 			</div>
-			<div class="formsectionitem">
-				<news-form @submitted="onSubmit" />
-			</div>
+			<news-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

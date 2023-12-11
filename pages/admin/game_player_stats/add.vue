@@ -23,9 +23,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add Game" />
 			</div>
-			<div class="formsectionitem">
-				<game-form @submitted="onSubmit" />
-			</div>
+			<game-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

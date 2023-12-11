@@ -27,9 +27,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add Contributions" />
 			</div>
-			<div class="formsectionitem">
-				<contributions-form @submitted="onSubmit" />
-			</div>
+			<contributions-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

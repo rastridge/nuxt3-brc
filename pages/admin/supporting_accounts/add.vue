@@ -22,9 +22,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add Supporting Accounts" />
 			</div>
-			<div class="formsectionitem">
-				<supportingaccounts-form @submitted="onSubmit" />
-			</div>
+			<supportingaccounts-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

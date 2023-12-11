@@ -22,9 +22,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add opponent" />
 			</div>
-			<div class="formsectionitem">
-				<opponents-form @submitted="onSubmit" />
-			</div>
+			<opponents-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

@@ -33,9 +33,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit account" />
 			</div>
-			<div class="formsectionitem">
-				<accounts-form :id="id" @submitted="onSubmit" />
-			</div>
+			<accounts-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

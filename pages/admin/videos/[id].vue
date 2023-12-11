@@ -27,9 +27,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit Video" />
 			</div>
-			<div class="formsectionitem">
-				<videos-form :id="id" @submitted="onSubmit" />
-			</div>
+			<videos-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

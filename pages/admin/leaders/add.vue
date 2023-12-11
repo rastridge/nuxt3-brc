@@ -21,9 +21,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add leaders" />
 			</div>
-			<div class="formsectionitem">
-				<leaders-form @submitted="onSubmit" />
-			</div>
+			<leaders-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

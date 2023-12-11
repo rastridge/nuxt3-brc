@@ -24,9 +24,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Add archive Item" />
 			</div>
-			<div class="formsectionitem">
-				<archive-form @submitted="onSubmit" />
-			</div>
+			<archive-form @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

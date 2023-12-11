@@ -29,9 +29,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit sponsor" />
 			</div>
-			<div class="formsectionitem">
-				<sponsors-form :id="id" @submitted="onSubmit" />
-			</div>
+			<sponsors-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

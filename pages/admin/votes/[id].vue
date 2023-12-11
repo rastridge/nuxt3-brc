@@ -27,9 +27,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit Votes" />
 			</div>
-			<div class="formsectionitem">
-				<votes-form :id="id" @submitted="onSubmit" />
-			</div>
+			<votes-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>

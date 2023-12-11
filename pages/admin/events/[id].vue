@@ -31,9 +31,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit Events" />
 			</div>
-			<div class="formsectionitem">
-				<events-form :id="id" @submitted="onSubmit" />
-			</div>
+			<events-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>
