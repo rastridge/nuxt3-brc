@@ -138,88 +138,88 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- ------------ players table ------------------------- -- -->
-		<div class="w-full text-xs md:text-sm">
-			<table
-				v-if="players"
-				style="
-					border-collapse: collapse;
-					border-spacing: 0;
-					white-space: nowrap;
-					overflow-x: auto;
-				"
-			>
-				<tr>
-					<th>Pos</th>
-					<th>Player</th>
-					<th>Tries</th>
-					<th>Assts</th>
-					<th>Conv</th>
-					<th>PenK</th>
-					<th>DrpG</th>
-					<th>Yello</th>
-					<th>Red</th>
-					<th>Replaced by</th>
+	<!-- ------------ players table ------------------------- -- -->
+	<div class="xs:w-full md:w-8 lg:w-6 mx-auto mt-4 text-xs md:text-sm">
+		<table
+			v-if="players"
+			style="
+				border-collapse: collapse;
+				border-spacing: 0;
+				white-space: nowrap;
+				overflow-x: auto;
+			"
+		>
+			<tr>
+				<th>Pos</th>
+				<th>Player</th>
+				<th>Tries</th>
+				<th>Assts</th>
+				<th>Conv</th>
+				<th>PenK</th>
+				<th>DrpG</th>
+				<th>Yello</th>
+				<th>Red</th>
+				<th>Replaced by</th>
+			</tr>
+			<tbody>
+				<tr v-for="(item, index) in players" :key="item.position_id">
+					<td>
+						{{ players[index].position_id }}
+					</td>
+					<td>
+						<AutoComplete
+							v-model="selectedPlayers[index]"
+							:pt="{
+								input: {
+									class:
+										'w-6rem md:w-8rem lg:w-10rem text-xs md:text-sm h-1rem md:h-2rem',
+								},
+							}"
+							optionLabel="title"
+							:suggestions="filteredNames"
+							@complete="search"
+						/>
+					</td>
+					<td>
+						<input v-model="players[index].tries" size="1" type="text" />
+					</td>
+					<td>
+						<input v-model="players[index].assists" size="1" type="text" />
+					</td>
+					<td>
+						<input v-model="players[index].conv" size="1" type="text" />
+					</td>
+					<td>
+						<input v-model="players[index].penk" size="1" type="text" />
+					</td>
+					<td>
+						<input v-model="players[index].dgoal" size="1" type="text" />
+					</td>
+					<td>
+						<input v-model="players[index].yellow" size="1" type="text" />
+					</td>
+					<td>
+						<input v-model="players[index].red" size="1" type="text" />
+					</td>
+					<td>
+						<AutoComplete
+							v-model="selectedReplacements[index]"
+							optionLabel="title"
+							:pt="{
+								input: {
+									class:
+										'w-6rem md:w-8rem lg:w-10rem text-xs md:text-sm h-1rem md:h-2rem',
+								},
+							}"
+							:suggestions="filteredNames"
+							@complete="search"
+						/>
+					</td>
 				</tr>
-				<tbody>
-					<tr v-for="(item, index) in players" :key="item.position_id">
-						<td>
-							{{ players[index].position_id }}
-						</td>
-						<td>
-							<AutoComplete
-								v-model="selectedPlayers[index]"
-								:pt="{
-									input: {
-										class:
-											'w-6rem md:w-8rem lg:w-10rem text-xs md:text-sm h-1rem md:h-2rem',
-									},
-								}"
-								optionLabel="title"
-								:suggestions="filteredNames"
-								@complete="search"
-							/>
-						</td>
-						<td>
-							<input v-model="players[index].tries" size="1" type="text" />
-						</td>
-						<td>
-							<input v-model="players[index].assists" size="1" type="text" />
-						</td>
-						<td>
-							<input v-model="players[index].conv" size="1" type="text" />
-						</td>
-						<td>
-							<input v-model="players[index].penk" size="1" type="text" />
-						</td>
-						<td>
-							<input v-model="players[index].dgoal" size="1" type="text" />
-						</td>
-						<td>
-							<input v-model="players[index].yellow" size="1" type="text" />
-						</td>
-						<td>
-							<input v-model="players[index].red" size="1" type="text" />
-						</td>
-						<td>
-							<AutoComplete
-								v-model="selectedReplacements[index]"
-								optionLabel="title"
-								:pt="{
-									input: {
-										class:
-											'w-6rem md:w-8rem lg:w-10rem text-xs md:text-sm h-1rem md:h-2rem',
-									},
-								}"
-								:suggestions="filteredNames"
-								@complete="search"
-							/>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+			</tbody>
+		</table>
 	</div>
 
 	<!-- Confirm deletion -->
