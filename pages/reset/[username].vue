@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="my-form-style">
 		<FormKit
 			type="form"
 			id="password_reset"

@@ -22,7 +22,6 @@
 			</tr>
 		</table>
 
-		<!-- <FormKit type="form" :config="{ validationVisibility: 'live' }"> -->
 		<FormKit
 			type="email"
 			name="email"

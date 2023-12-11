@@ -5,7 +5,7 @@
 			<br />
 			Sent count {{ newsletter_recp_cnt }}
 		</p>
-		<FormKit
+		<div class="my-form-style"> <FormKit
 			type="form"
 			:config="{ validationVisibility: 'live' }"
 			v-model="state"

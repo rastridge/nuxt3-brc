@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<FormKit
+		<div class="my-form-style"> <FormKit
 			type="form"
 			:config="{ validationVisibility: 'live' }"
 			v-model="state"

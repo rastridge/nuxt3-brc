@@ -18,7 +18,7 @@
 		choice_values = {{ choice_values }}<br /><br /> -->
 		<!-- choices = {{ choices }}<br /><br /> -->
 
-		<FormKit
+		<div class="my-form-style"> <FormKit
 			type="form"
 			v-model="question"
 			:config="{ validationVisibility: 'live' }"

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<p v-if="alert.message" class="alert-danger">ERROR: {{ alert.message }}</p>
-		<FormKit
+		<div class="my-form-style"> <FormKit
 			type="form"
 			:config="{ validationVisibility: 'live' }"
 			v-model="state"

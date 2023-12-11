@@ -2,94 +2,100 @@
 	<div>
 		<p v-if="!state"><ProgressSpinner /> Loading</p>
 		<div v-else>
-			<FormKit
-				type="form"
-				:config="{ validationVisibility: 'live' }"
-				v-model="state"
-				submit-label="Submit Game"
-				@submit="submitForm(state)"
-			>
-				<!-- opponent input-->
-				<div v-if="!props.id">
-					<Card style="width: 30em; margin-bottom: 1rem">
-						<template #title> Find opponent</template>
-						<template #content>
-							<AutoComplete
-								v-model="selectedOpponent"
-								optionLabel="opponent_name"
-								:suggestions="filteredOpponents"
-								@complete="search_opponents"
-								@item-select="setOpponent"
-							/>
-							<br />
-							<p>
-								If the opponent for this game can not be found in the existing
-								opponents list, you must first create the opponent<br />
-								<Button
-									class="p-button-sm"
-									label="Create Opponent"
-									@click="navigateTo('/admin/opponents/add')"
-								>
-								</Button>
-							</p>
-						</template>
-					</Card>
-				</div>
-				<FormKit label="Opponent" name="opponent_name" type="text" disabled />
+			<div class="my-form-style">
+				<FormKit
+					type="form"
+					:config="{ validationVisibility: 'live' }"
+					v-model="state"
+					submit-label="Submit Game"
+					@submit="submitForm(state)"
+				>
+					<!-- opponent input-->
+					<div v-if="!props.id">
+						<Card style="width: 30em; margin-bottom: 1rem">
+							<template #title> Find opponent</template>
+							<template #content>
+								<AutoComplete
+									v-model="selectedOpponent"
+									optionLabel="opponent_name"
+									:suggestions="filteredOpponents"
+									@complete="search_opponents"
+									@item-select="setOpponent"
+								/>
+								<br />
+								<p>
+									If the opponent for this game can not be found in the existing
+									opponents list, you must first create the opponent<br />
+									<Button
+										class="p-button-sm"
+										label="Create Opponent"
+										@click="navigateTo('/admin/opponents/add')"
+									>
+									</Button>
+								</p>
+							</template>
+						</Card>
+					</div>
+					<FormKit label="Opponent" name="opponent_name" type="text" disabled />
 
-				<!-- referee input-->
-				<FormKit label="Referee" name="referee" type="text" />
-				<!-- venue input-->
-				<FormKit label="Venue" name="venue" type="text" validation="required" />
-				<!-- Date input-->
-				<FormKit
-					type="date"
-					label="Date"
-					name="date"
-					validation="required"
-					@input="setUnixDate($event)"
-				/>
-				<!-- Time input-->
-				<FormKit
-					type="time"
-					label="Time"
-					name="time"
-					validation="required"
-					@input="setUnixTime($event)"
-				/>
-				<!-- Game Type input-->
-				<FormKit
-					type="select"
-					label="Game type"
-					placeholder="Select game type"
-					name="game_type_id"
-					:options="gametypes"
-					validation="required"
-				/>
-				<!-- Game Level input-->
-				<FormKit
-					type="select"
-					label="Game level"
-					placeholder="Select game level"
-					name="game_level"
-					:options="[
-						{ label: 'A', value: 'A' },
-						{ label: 'B', value: 'B' },
-						{ label: 'C', value: 'C' },
-						{ label: 'D', value: 'D' },
-					]"
-					validation="required"
-				/>
-				<!-- Comment input-->
-				<FormKit label="Comment" name="comment" type="text" />
-				<!-- occasion input-->
-				<FormKit label="Occasion" name="occasion" type="text" />
-				<!-- points for input-->
-				<FormKit label="Pts For" name="ptsFor" type="text" />
-				<!-- points against input-->
-				<FormKit label="Pts against" name="ptsAgn" type="text" />
-			</FormKit>
-
+					<!-- referee input-->
+					<FormKit label="Referee" name="referee" type="text" />
+					<!-- venue input-->
+					<FormKit
+						label="Venue"
+						name="venue"
+						type="text"
+						validation="required"
+					/>
+					<!-- Date input-->
+					<FormKit
+						type="date"
+						label="Date"
+						name="date"
+						validation="required"
+						@input="setUnixDate($event)"
+					/>
+					<!-- Time input-->
+					<FormKit
+						type="time"
+						label="Time"
+						name="time"
+						validation="required"
+						@input="setUnixTime($event)"
+					/>
+					<!-- Game Type input-->
+					<FormKit
+						type="select"
+						label="Game type"
+						placeholder="Select game type"
+						name="game_type_id"
+						:options="gametypes"
+						validation="required"
+					/>
+					<!-- Game Level input-->
+					<FormKit
+						type="select"
+						label="Game level"
+						placeholder="Select game level"
+						name="game_level"
+						:options="[
+							{ label: 'A', value: 'A' },
+							{ label: 'B', value: 'B' },
+							{ label: 'C', value: 'C' },
+							{ label: 'D', value: 'D' },
+						]"
+						validation="required"
+					/>
+					<!-- Comment input-->
+					<FormKit label="Comment" name="comment" type="text" />
+					<!-- occasion input-->
+					<FormKit label="Occasion" name="occasion" type="text" />
+					<!-- points for input-->
+					<FormKit label="Pts For" name="ptsFor" type="text" />
+					<!-- points against input-->
+					<FormKit label="Pts against" name="ptsAgn" type="text" />
+				</FormKit>
+			</div>
 			<p v-if="saving">
 				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 				Saving ...
