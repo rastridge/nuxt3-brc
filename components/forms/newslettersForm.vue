@@ -1,11 +1,11 @@
 <template>
-	<div>
-		<p v-if="id">
-			Current version of newsletter opned count {{ newsletter_opened_cnt }}
-			<br />
-			Sent count {{ newsletter_recp_cnt }}
-		</p>
-		<div class="my-form-style"> <FormKit
+	<p v-if="id">
+		Current version of newsletter opned count {{ newsletter_opened_cnt }}
+		<br />
+		Sent count {{ newsletter_recp_cnt }}
+	</p>
+	<div class="my-form-style">
+		<FormKit
 			type="form"
 			:config="{ validationVisibility: 'live' }"
 			v-model="state"

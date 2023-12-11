@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<div class="my-form-style"> <FormKit
+	<div class="my-form-style">
+		<FormKit
 			type="form"
 			v-model="state"
 			submit-label="Submit"

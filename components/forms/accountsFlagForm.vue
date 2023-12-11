@@ -1,184 +1,176 @@
 <template>
-	<div>
-		<div>
-			<p v-if="alert.message" class="alert-danger w-20rem">
-				ERROR: {{ alert.message }}
-			</p>
-			<p v-if="!state">
-				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar
-				>Loading
-			</p>
-			<div class="my-form-style">
-				<FormKit
-					type="form"
-					:config="{ validationVisibility: 'live' }"
-					v-model="state"
-					submit-label="Submit member"
-					@submit="submitForm"
-				>
-					<FormKit
-						label="First Name"
-						name="member_firstname"
-						type="text"
-						validation="required"
-					/>
-					<FormKit
-						label="Last Name"
-						name="member_lastname"
-						type="text"
-						validation="required"
-					/>
-					<FormKit
-						type="email"
-						label="Email address"
-						name="account_email"
-						validation="required|email"
-						:errors="errors"
-					/>
-					<FormKit
-						type="date"
-						label="DOB"
-						name="member_dob"
-						validation="required"
-					/>
-					<FormKit
-						type="select"
-						label="Gender"
-						name="member_gender"
-						:options="[
-							{ label: 'Male', value: 1 },
-							{ label: 'Female', value: 0 },
-						]"
-						validation="required"
-					/>
-					<FormKit
-						type="text"
-						label="Guardian"
-						name="member_guardian"
-						validation="required"
-					/>
-					<FormKit
-						type="select"
-						label="Permission to participate"
-						name="flag_legal"
-						:options="[
-							{ label: 'Yes', value: 1 },
-							{ label: 'No', value: 0 },
-						]"
-						validation="required"
-					/>
-					<FormKit
-						type="select"
-						label="Photo permission"
-						name="flag_photo"
-						:options="[
-							{ label: 'Yes', value: 1 },
-							{ label: 'No', value: 0 },
-						]"
-						validation="required"
-					/>
-					<FormKit
-						type="text"
-						label="Street"
-						name="account_addr_street"
-						validation="required"
-					/>
-					<FormKit
-						type="text"
-						label="Street Ext"
-						name="account_addr_street_ext"
-					/>
-					<FormKit
-						type="text"
-						label="City"
-						name="account_addr_city"
-						validation="required"
-					/>
-					<FormKit
-						type="select"
-						label="Country"
-						name="account_addr_country"
-						id="account_addr_country"
-						:options="justCountries"
-						validation="required"
-					/>
-					<FormKit
-						type="select"
-						label="Region"
-						name="account_addr_state"
-						id="account_addr_state"
-						:options="justRegions"
-						validation="required"
-					/>
-					<FormKit
-						type="text"
-						label="Postal Code"
-						name="account_addr_postal"
-						validation="required"
-					/>
-					<FormKit
-						type="tel"
-						label="Phone number"
-						name="account_addr_phone"
-						placeholder="+1##########"
-						v-model="state.account_addr_phone"
-						validation="required | matches:/^\+[1]{1}[0-9]{3}[0-9]{3}[0-9]{4}$/"
-						:validation-messages="{
-							matches: 'US/CA only. Must be in the format +1#########',
-						}"
-						validation-visibility="live"
-					/>
-					<FormKit
-						type="select"
-						label="Member type"
-						placeholder="Select member type"
-						name="member_type_id"
-						:options="[
-							{ label: 'Active', value: 11 },
-							{ label: 'Alumni', value: 15 },
-							{ label: 'Pending', value: 12 },
-						]"
-						validation="required"
-					/>
-					<FormKit
-						type="select"
-						label="Receive newsletter?"
-						name="newsletter_recipient"
-						:options="[
-							{ label: 'Yes', value: 1 },
-							{ label: 'No', value: 0 },
-						]"
-					/>
-					<FormKit
-						type="select"
-						label="Receive US Mail?"
-						name="mail_recipient"
-						:options="[
-							{ label: 'Yes', value: 1 },
-							{ label: 'No', value: 0 },
-						]"
-					/>
-					<FormKit
-						type="select"
-						label="Receive SMS messages?"
-						name="sms_recipient"
-						:options="[
-							{ label: 'Yes', value: 1 },
-							{ label: 'No', value: 0 },
-						]"
-					/>
-				</FormKit>
-			</div>
-			<p v-if="saving">
-				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
-				Saving ...
-			</p>
+	<p v-if="alert.message" class="alert-danger w-20rem">
+		ERROR: {{ alert.message }}
+	</p>
+	<p v-if="!state">
+		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>Loading
+	</p>
+	<div class="my-form-style">
+		<FormKit
+			type="form"
+			:config="{ validationVisibility: 'live' }"
+			v-model="state"
+			submit-label="Submit member"
+			@submit="submitForm"
+		>
+			<FormKit
+				label="First Name"
+				name="member_firstname"
+				type="text"
+				validation="required"
+			/>
+			<FormKit
+				label="Last Name"
+				name="member_lastname"
+				type="text"
+				validation="required"
+			/>
+			<FormKit
+				type="email"
+				label="Email address"
+				name="account_email"
+				validation="required|email"
+				:errors="errors"
+			/>
+			<FormKit
+				type="date"
+				label="DOB"
+				name="member_dob"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="Gender"
+				name="member_gender"
+				:options="[
+					{ label: 'Male', value: 1 },
+					{ label: 'Female', value: 0 },
+				]"
+				validation="required"
+			/>
+			<FormKit
+				type="text"
+				label="Guardian"
+				name="member_guardian"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="Permission to participate"
+				name="flag_legal"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="Photo permission"
+				name="flag_photo"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+				validation="required"
+			/>
+			<FormKit
+				type="text"
+				label="Street"
+				name="account_addr_street"
+				validation="required"
+			/>
+			<FormKit type="text" label="Street Ext" name="account_addr_street_ext" />
+			<FormKit
+				type="text"
+				label="City"
+				name="account_addr_city"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="Country"
+				name="account_addr_country"
+				id="account_addr_country"
+				:options="justCountries"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="Region"
+				name="account_addr_state"
+				id="account_addr_state"
+				:options="justRegions"
+				validation="required"
+			/>
+			<FormKit
+				type="text"
+				label="Postal Code"
+				name="account_addr_postal"
+				validation="required"
+			/>
+			<FormKit
+				type="tel"
+				label="Phone number"
+				name="account_addr_phone"
+				placeholder="+1##########"
+				v-model="state.account_addr_phone"
+				validation="required | matches:/^\+[1]{1}[0-9]{3}[0-9]{3}[0-9]{4}$/"
+				:validation-messages="{
+					matches: 'US/CA only. Must be in the format +1#########',
+				}"
+				validation-visibility="live"
+			/>
+			<FormKit
+				type="select"
+				label="Member type"
+				placeholder="Select member type"
+				name="member_type_id"
+				:options="[
+					{ label: 'Active', value: 11 },
+					{ label: 'Alumni', value: 15 },
+					{ label: 'Pending', value: 12 },
+				]"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="Receive newsletter?"
+				name="newsletter_recipient"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Receive US Mail?"
+				name="mail_recipient"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Receive SMS messages?"
+				name="sms_recipient"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+		</FormKit>
 
-			<p v-if="alert.message" class="alert-danger w-20rem">
-				ERROR: {{ alert.message }}
-			</p>
-			<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
-		</div>
+		<p v-if="saving">
+			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+			Saving ...
+		</p>
+
+		<p v-if="alert.message" class="alert-danger w-20rem">
+			ERROR: {{ alert.message }}
+		</p>
+		<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 	</div>
 </template>
 

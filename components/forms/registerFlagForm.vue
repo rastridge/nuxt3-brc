@@ -4,11 +4,12 @@
 			<p v-if="alert.message" class="alert-danger w-20rem">
 				ERROR: {{ alert.message }}
 			</p>
-			<p class="alert-danger w-20rem">
-				Form must be completed by legal guardian or parent of the player being
-				registered
-			</p>
+
 			<div class="my-form-style">
+				<p class="alert-danger w-20rem">
+					Form must be completed by legal guardian or parent of the player being
+					registered
+				</p>
 				<FormKit
 					type="form"
 					:config="{ validationVisibility: 'live' }"
@@ -161,15 +162,17 @@
 						]"
 					/>
 				</FormKit>
+
+				<p v-if="saving">
+					<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+					Saving ...
+				</p>
+				<p v-if="alert.message" class="alert-danger w-20rem">
+					ERROR: {{ alert.message }}
+				</p>
+				<Button class="mb-3 center" label="Cancel" @click="cancelForm">
+				</Button>
 			</div>
-			<p v-if="saving">
-				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
-				Saving ...
-			</p>
-			<p v-if="alert.message" class="alert-danger w-20rem">
-				ERROR: {{ alert.message }}
-			</p>
-			<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 		</div>
 	</div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<div class="my-form-style"> <FormKit
+	<div class="my-form-style">
+		<FormKit
 			type="form"
 			v-model="state"
 			:config="{ validationVisibility: 'live' }"
@@ -61,7 +61,6 @@
 		</p>
 		<Button label="Cancel" @click="cancelForm()"> </Button>
 	</div>
-	<!-- </div> -->
 </template>
 
 <script setup>

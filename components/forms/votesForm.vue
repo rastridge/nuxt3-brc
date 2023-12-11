@@ -1,24 +1,24 @@
 <template>
-	<div>
-		<div v-if="props.id !== 0">
-			<p class="font-semibold text-red-500">
-				Do not edit after voting has begun!
-			</p>
-			<p class="font-semibold text-red-500 mb-2">
-				To change choices, Cancel, then Delete the question and Add a new
-				question with new choices
-			</p>
-			<p class="font-semibold">Voted on {{ question.vote_vote_cnt }} times</p>
-		</div>
-		<p v-if="saving">
-			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
-			Saving ...
+	<div v-if="props.id !== 0">
+		<p class="font-semibold text-red-500">
+			Do not edit after voting has begun!
 		</p>
-		<!-- updated_choices = {{ updated_choices }}<br /><br />
+		<p class="font-semibold text-red-500 mb-2">
+			To change choices, Cancel, then Delete the question and Add a new question
+			with new choices
+		</p>
+		<p class="font-semibold">Voted on {{ question.vote_vote_cnt }} times</p>
+	</div>
+	<p v-if="saving">
+		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+		Saving ...
+	</p>
+	<!-- updated_choices = {{ updated_choices }}<br /><br />
 		choice_values = {{ choice_values }}<br /><br /> -->
-		<!-- choices = {{ choices }}<br /><br /> -->
+	<!-- choices = {{ choices }}<br /><br /> -->
 
-		<div class="my-form-style"> <FormKit
+	<div class="my-form-style">
+		<FormKit
 			type="form"
 			v-model="question"
 			:config="{ validationVisibility: 'live' }"
@@ -84,7 +84,7 @@
 
 				<Button
 					type="button"
-					label="Add new choice"
+					label="Add choice"
 					@click="() => node.input(value.concat(''))"
 				>
 				</Button>

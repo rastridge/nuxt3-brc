@@ -1,23 +1,23 @@
 <template>
-	<div class="">
-		<h5 v-if="props.id" class="text-left">
-			Contributor {{ state.contribution_name }}
-		</h5>
-		<div v-else>
-			<Card style="width: 20em; margin-bottom: 1rem">
-				<template #title> Contributor</template>
-				<template #content>
-					<AutoComplete
-						v-model="selectedItem"
-						optionLabel="title"
-						:suggestions="filteredNames"
-						@complete="search"
-						@item-select="getPrevious"
-					/>
-				</template>
-			</Card>
-		</div>
-		<div class="my-form-style"> <FormKit
+	<h5 v-if="props.id" class="text-left">
+		Contributor {{ state.contribution_name }}
+	</h5>
+	<div v-else>
+		<Card style="width: 20em; margin-bottom: 1rem">
+			<template #title> Contributor</template>
+			<template #content>
+				<AutoComplete
+					v-model="selectedItem"
+					optionLabel="title"
+					:suggestions="filteredNames"
+					@complete="search"
+					@item-select="getPrevious"
+				/>
+			</template>
+		</Card>
+	</div>
+	<div class="my-form-style">
+		<FormKit
 			type="form"
 			:config="{ validationVisibility: 'live' }"
 			v-model="state"
@@ -78,7 +78,6 @@
 		</p>
 		<Button label="Cancel" @click="cancelForm()"> </Button>
 	</div>
-	<!-- </div> -->
 </template>
 
 <script setup>

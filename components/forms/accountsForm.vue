@@ -1,240 +1,233 @@
 <template>
+	<p v-if="!memberTypeOptions || !memberAdminTypeOptions || !state">
+		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>Loading
+	</p>
+	<p v-if="alert.message" class="alert-danger w-20rem">
+		ERROR: {{ alert.message }}
+	</p>
 	<div class="my-form-style">
-		<p v-if="!memberTypeOptions || !memberAdminTypeOptions || !state">
-			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar
-			>Loading
+		<FormKit
+			type="form"
+			:config="{ validationVisibility: 'live' }"
+			v-model="state"
+			submit-label="Submit member"
+			@submit="submitForm"
+		>
+			<FormKit
+				label="First Name"
+				name="member_firstname"
+				type="text"
+				validation="required"
+			/>
+			<FormKit
+				label="Last Name"
+				name="member_lastname"
+				type="text"
+				validation="required"
+			/>
+			<FormKit
+				type="email"
+				label="Email address"
+				name="account_email"
+				validation="required|email"
+				:errors="errors"
+			/>
+
+			<FormKit
+				type="number"
+				label="Year joined"
+				name="member_year"
+				min="1966"
+				step="1"
+			/>
+			<FormKit
+				type="text"
+				label="Street"
+				name="account_addr_street"
+				validation="required"
+			/>
+			<FormKit type="text" label="Street Ext" name="account_addr_street_ext" />
+			<FormKit
+				type="text"
+				label="City"
+				name="account_addr_city"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="Country"
+				name="account_addr_country"
+				id="account_addr_country"
+				:options="justCountries"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="Region"
+				name="account_addr_state"
+				id="account_addr_state"
+				:options="justRegions"
+				validation="required"
+			/>
+			<FormKit
+				type="text"
+				label="Postal Code"
+				name="account_addr_postal"
+				validation="required"
+			/>
+			<FormKit
+				type="tel"
+				label="Phone number"
+				name="account_addr_phone"
+				placeholder="+1##########"
+				v-model="state.account_addr_phone"
+				validation="required | matches:/^\+[1]{1}[0-9]{3}[0-9]{3}[0-9]{4}$/"
+				:validation-messages="{
+					matches: 'US/CA only. Must be in the format +1#########',
+				}"
+				validation-visibility="live"
+			/>
+			<FormKit
+				type="text"
+				label="Previous Club(s)"
+				name="member_prev_club"
+				v-model="state.member_prev_club"
+			/>
+
+			<FormKit
+				type="select"
+				label="Show phone?"
+				name="member_show_phone"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Show address?"
+				name="member_show_addr"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Receive newsletter?"
+				name="newsletter_recipient"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Receive US Mail?"
+				name="mail_recipient"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Receive SMS messages?"
+				name="sms_recipient"
+				:options="[
+					{ label: 'Yes', value: 1 },
+					{ label: 'No', value: 0 },
+				]"
+			/>
+			<FormKit
+				type="select"
+				label="Member type"
+				placeholder="Select member type"
+				name="member_type_id"
+				:options="memberTypeOptions"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="2nd Member type"
+				placeholder="Select member type"
+				name="member_type2_id"
+				:options="memberTypeOptions"
+			/>
+			<FormKit
+				type="select"
+				label="Member Administrator role"
+				placeholder="Select admin type"
+				name="member_admin_type_id"
+				:options="memberAdminTypeOptions"
+				validation="required"
+			/>
+			<FormKit
+				type="select"
+				label="2nd Member Administrator role"
+				placeholder="Select admin type"
+				name="member_admin_type2_id"
+				:options="memberAdminTypeOptions"
+			/>
+			<!-- wall of fame year -->
+
+			<FormKit
+				type="number"
+				label="WOF Year"
+				name="member_wall_of_fame_year"
+				min="1966"
+				step="1"
+			/>
+
+			<!-- ad image file upload 			-->
+			<p>Image must be 72w 72h 72dpi</p>
+			<label>Add or Replace WOF image file</label><br />
+
+			<FileUpload
+				mode="basic"
+				name="fileInput"
+				:auto="true"
+				accept="image/*"
+				customUpload
+				@uploader="customUploader"
+			/>
+			<br />
+			<br />
+			<!-- show image file  -->
+			<div
+				v-if="state.member_pic_path"
+				class="card flex justify-content-start mb-2"
+			>
+				<label
+					>Current image filepath is<br />
+					{{ state.member_pic_path }}</label
+				>
+				<Image :src="state.member_pic_path" alt="Image" width="72" />
+			</div>
+		</FormKit>
+		<p v-if="saving">
+			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+			Saving ...
 		</p>
 		<p v-if="alert.message" class="alert-danger w-20rem">
 			ERROR: {{ alert.message }}
 		</p>
-		<div class="my-form-style">
-			<FormKit
-				type="form"
-				:config="{ validationVisibility: 'live' }"
-				v-model="state"
-				submit-label="Submit member"
-				@submit="submitForm"
-			>
-				<FormKit
-					label="First Name"
-					name="member_firstname"
-					type="text"
-					validation="required"
-				/>
-				<FormKit
-					label="Last Name"
-					name="member_lastname"
-					type="text"
-					validation="required"
-				/>
-				<FormKit
-					type="email"
-					label="Email address"
-					name="account_email"
-					validation="required|email"
-					:errors="errors"
-				/>
 
-				<FormKit
-					type="number"
-					label="Year joined"
-					name="member_year"
-					min="1966"
-					step="1"
-				/>
-				<FormKit
-					type="text"
-					label="Street"
-					name="account_addr_street"
-					validation="required"
-				/>
-				<FormKit
-					type="text"
-					label="Street Ext"
-					name="account_addr_street_ext"
-				/>
-				<FormKit
-					type="text"
-					label="City"
-					name="account_addr_city"
-					validation="required"
-				/>
-				<FormKit
-					type="select"
-					label="Country"
-					name="account_addr_country"
-					id="account_addr_country"
-					:options="justCountries"
-					validation="required"
-				/>
-				<FormKit
-					type="select"
-					label="Region"
-					name="account_addr_state"
-					id="account_addr_state"
-					:options="justRegions"
-					validation="required"
-				/>
-				<FormKit
-					type="text"
-					label="Postal Code"
-					name="account_addr_postal"
-					validation="required"
-				/>
-				<FormKit
-					type="tel"
-					label="Phone number"
-					name="account_addr_phone"
-					placeholder="+1##########"
-					v-model="state.account_addr_phone"
-					validation="required | matches:/^\+[1]{1}[0-9]{3}[0-9]{3}[0-9]{4}$/"
-					:validation-messages="{
-						matches: 'US/CA only. Must be in the format +1#########',
-					}"
-					validation-visibility="live"
-				/>
-				<FormKit
-					type="text"
-					label="Previous Club(s)"
-					name="member_prev_club"
-					v-model="state.member_prev_club"
-				/>
-
-				<FormKit
-					type="select"
-					label="Show phone?"
-					name="member_show_phone"
-					:options="[
-						{ label: 'Yes', value: 1 },
-						{ label: 'No', value: 0 },
-					]"
-				/>
-				<FormKit
-					type="select"
-					label="Show address?"
-					name="member_show_addr"
-					:options="[
-						{ label: 'Yes', value: 1 },
-						{ label: 'No', value: 0 },
-					]"
-				/>
-				<FormKit
-					type="select"
-					label="Receive newsletter?"
-					name="newsletter_recipient"
-					:options="[
-						{ label: 'Yes', value: 1 },
-						{ label: 'No', value: 0 },
-					]"
-				/>
-				<FormKit
-					type="select"
-					label="Receive US Mail?"
-					name="mail_recipient"
-					:options="[
-						{ label: 'Yes', value: 1 },
-						{ label: 'No', value: 0 },
-					]"
-				/>
-				<FormKit
-					type="select"
-					label="Receive SMS messages?"
-					name="sms_recipient"
-					:options="[
-						{ label: 'Yes', value: 1 },
-						{ label: 'No', value: 0 },
-					]"
-				/>
-				<FormKit
-					type="select"
-					label="Member type"
-					placeholder="Select member type"
-					name="member_type_id"
-					:options="memberTypeOptions"
-					validation="required"
-				/>
-				<FormKit
-					type="select"
-					label="2nd Member type"
-					placeholder="Select member type"
-					name="member_type2_id"
-					:options="memberTypeOptions"
-				/>
-				<FormKit
-					type="select"
-					label="Member Administrator role"
-					placeholder="Select admin type"
-					name="member_admin_type_id"
-					:options="memberAdminTypeOptions"
-					validation="required"
-				/>
-				<FormKit
-					type="select"
-					label="2nd Member Administrator role"
-					placeholder="Select admin type"
-					name="member_admin_type2_id"
-					:options="memberAdminTypeOptions"
-				/>
-				<!-- wall of fame year -->
-
-				<FormKit
-					type="number"
-					label="WOF Year"
-					name="member_wall_of_fame_year"
-					min="1966"
-					step="1"
-				/>
-
-				<!-- ad image file upload 			-->
-				<p>Image must be 72w 72h 72dpi</p>
-				<label>Add or Replace WOF image file</label><br />
-
-				<FileUpload
-					mode="basic"
-					name="fileInput"
-					:auto="true"
-					accept="image/*"
-					customUpload
-					@uploader="customUploader"
-				/>
-				<br />
-				<br />
-				<!-- show image file  -->
-				<div
-					v-if="state.member_pic_path"
-					class="card flex justify-content-start mb-2"
-				>
-					<label
-						>Current image filepath is<br />
-						{{ state.member_pic_path }}</label
-					>
-					<Image :src="state.member_pic_path" alt="Image" width="72" />
-				</div>
-			</FormKit>
-			<p v-if="saving">
-				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
-				Saving ...
-			</p>
-			<p v-if="alert.message" class="alert-danger w-20rem">
-				ERROR: {{ alert.message }}
-			</p>
-
-			<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
-		</div>
-		<!-- Modal -->
-		<Dialog
-			v-model:visible="displayModal"
-			:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-			:style="{ width: '50vw' }"
-		>
-			<template #header>
-				<div class="my-dialog-header">
-					<h3>Processing file</h3>
-				</div></template
-			>
-			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
-		</Dialog>
+		<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 	</div>
+	<!-- Modal -->
+	<Dialog
+		v-model:visible="displayModal"
+		:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
+		:style="{ width: '50vw' }"
+	>
+		<template #header>
+			<div class="my-dialog-header">
+				<h3>Processing file</h3>
+			</div></template
+		>
+		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+	</Dialog>
 </template>
 
 <script setup>

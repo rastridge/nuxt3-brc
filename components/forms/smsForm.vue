@@ -1,9 +1,9 @@
 <template>
-	<div>
-		<p v-if="id">
-			Current version of this SMS was sent {{ sms_opened_cnt }} times
-		</p>
-		<div class="my-form-style"> <FormKit
+	<p v-if="id">
+		Current version of this SMS was sent {{ sms_opened_cnt }} times
+	</p>
+	<div class="my-form-style">
+		<FormKit
 			type="form"
 			v-model="state"
 			:config="{ validationVisibility: 'live' }"

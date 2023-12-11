@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<div class="my-form-style"> <FormKit
+	<div class="my-form-style">
+		<FormKit
 			type="form"
 			:config="{ validationVisibility: 'live' }"
 			v-model="state"
@@ -55,21 +55,20 @@
 			Saving ...
 		</p>
 		<Button label="Cancel" @click.prevent="cancelForm()"> </Button>
-
-		<!-- Modal -->
-		<Dialog
-			v-model:visible="displayModal"
-			:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-			:style="{ width: '50vw' }"
-		>
-			<template #header>
-				<div class="my-dialog-header">
-					<h3>Processing file</h3>
-				</div></template
-			>
-			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
-		</Dialog>
 	</div>
+	<!-- Modal -->
+	<Dialog
+		v-model:visible="displayModal"
+		:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
+		:style="{ width: '50vw' }"
+	>
+		<template #header>
+			<div class="my-dialog-header">
+				<h3>Processing file</h3>
+			</div></template
+		>
+		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+	</Dialog>
 </template>
 
 <script setup>

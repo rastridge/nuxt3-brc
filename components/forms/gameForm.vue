@@ -1,263 +1,254 @@
 <template>
-	<div>
-		<p v-if="!state"><ProgressSpinner /> Loading</p>
-		<div v-else>
-			<div class="my-form-style">
-				<FormKit
-					type="form"
-					:config="{ validationVisibility: 'live' }"
-					v-model="state"
-					submit-label="Submit Game"
-					@submit="submitForm(state)"
-				>
-					<!-- opponent input-->
-					<div v-if="!props.id">
-						<Card style="width: 30em; margin-bottom: 1rem">
-							<template #title> Find opponent</template>
-							<template #content>
-								<AutoComplete
-									v-model="selectedOpponent"
-									optionLabel="opponent_name"
-									:suggestions="filteredOpponents"
-									@complete="search_opponents"
-									@item-select="setOpponent"
-								/>
-								<br />
-								<p>
-									If the opponent for this game can not be found in the existing
-									opponents list, you must first create the opponent<br />
-									<Button
-										class="p-button-sm"
-										label="Create Opponent"
-										@click="navigateTo('/admin/opponents/add')"
-									>
-									</Button>
-								</p>
-							</template>
-						</Card>
-					</div>
-					<FormKit label="Opponent" name="opponent_name" type="text" disabled />
-
-					<!-- referee input-->
-					<FormKit label="Referee" name="referee" type="text" />
-					<!-- venue input-->
-					<FormKit
-						label="Venue"
-						name="venue"
-						type="text"
-						validation="required"
-					/>
-					<!-- Date input-->
-					<FormKit
-						type="date"
-						label="Date"
-						name="date"
-						validation="required"
-						@input="setUnixDate($event)"
-					/>
-					<!-- Time input-->
-					<FormKit
-						type="time"
-						label="Time"
-						name="time"
-						validation="required"
-						@input="setUnixTime($event)"
-					/>
-					<!-- Game Type input-->
-					<FormKit
-						type="select"
-						label="Game type"
-						placeholder="Select game type"
-						name="game_type_id"
-						:options="gametypes"
-						validation="required"
-					/>
-					<!-- Game Level input-->
-					<FormKit
-						type="select"
-						label="Game level"
-						placeholder="Select game level"
-						name="game_level"
-						:options="[
-							{ label: 'A', value: 'A' },
-							{ label: 'B', value: 'B' },
-							{ label: 'C', value: 'C' },
-							{ label: 'D', value: 'D' },
-						]"
-						validation="required"
-					/>
-					<!-- Comment input-->
-					<FormKit label="Comment" name="comment" type="text" />
-					<!-- occasion input-->
-					<FormKit label="Occasion" name="occasion" type="text" />
-					<!-- points for input-->
-					<FormKit label="Pts For" name="ptsFor" type="text" />
-					<!-- points against input-->
-					<FormKit label="Pts against" name="ptsAgn" type="text" />
-				</FormKit>
+	<p v-if="!state"><ProgressSpinner /> Loading</p>
+	<div class="my-form-style">
+		<FormKit
+			type="form"
+			:config="{ validationVisibility: 'live' }"
+			v-model="state"
+			submit-label="Submit Game"
+			@submit="submitForm(state)"
+		>
+			<!-- opponent input-->
+			<div v-if="!props.id">
+				<Card style="width: 30em; margin-bottom: 1rem">
+					<template #title> Find opponent</template>
+					<template #content>
+						<AutoComplete
+							v-model="selectedOpponent"
+							optionLabel="opponent_name"
+							:suggestions="filteredOpponents"
+							@complete="search_opponents"
+							@item-select="setOpponent"
+						/>
+						<br />
+						<p>
+							If the opponent for this game can not be found in the existing
+							opponents list, you must first create the opponent<br />
+							<Button
+								class="p-button-sm"
+								label="Create Opponent"
+								@click="navigateTo('/admin/opponents/add')"
+							>
+							</Button>
+						</p>
+					</template>
+				</Card>
 			</div>
-			<p v-if="saving">
-				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
-				Saving ...
-			</p>
+			<FormKit label="Opponent" name="opponent_name" type="text" disabled />
 
-			<Button label="Cancel" @click.prevent="cancelForm()" style="margin: 1rem">
-			</Button>
+			<!-- referee input-->
+			<FormKit label="Referee" name="referee" type="text" />
+			<!-- venue input-->
+			<FormKit label="Venue" name="venue" type="text" validation="required" />
+			<!-- Date input-->
+			<FormKit
+				type="date"
+				label="Date"
+				name="date"
+				validation="required"
+				@input="setUnixDate($event)"
+			/>
+			<!-- Time input-->
+			<FormKit
+				type="time"
+				label="Time"
+				name="time"
+				validation="required"
+				@input="setUnixTime($event)"
+			/>
+			<!-- Game Type input-->
+			<FormKit
+				type="select"
+				label="Game type"
+				placeholder="Select game type"
+				name="game_type_id"
+				:options="gametypes"
+				validation="required"
+			/>
+			<!-- Game Level input-->
+			<FormKit
+				type="select"
+				label="Game level"
+				placeholder="Select game level"
+				name="game_level"
+				:options="[
+					{ label: 'A', value: 'A' },
+					{ label: 'B', value: 'B' },
+					{ label: 'C', value: 'C' },
+					{ label: 'D', value: 'D' },
+				]"
+				validation="required"
+			/>
+			<!-- Comment input-->
+			<FormKit label="Comment" name="comment" type="text" />
+			<!-- occasion input-->
+			<FormKit label="Occasion" name="occasion" type="text" />
+			<!-- points for input-->
+			<FormKit label="Pts For" name="ptsFor" type="text" />
+			<!-- points against input-->
+			<FormKit label="Pts against" name="ptsAgn" type="text" />
+		</FormKit>
 
-			<!-- if add OR game current date is before game date -->
-			<div
-				v-if="
-					!props.id ||
-					(props.id && $dayjs().isBefore($dayjs.unix(state.date_ut)))
+		<p v-if="saving">
+			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+			Saving ...
+		</p>
+
+		<Button label="Cancel" @click.prevent="cancelForm()" style="margin: 1rem">
+		</Button>
+	</div>
+
+	<!-- if add OR game current date is before game date -->
+	<div
+		v-if="
+			!props.id || (props.id && $dayjs().isBefore($dayjs.unix(state.date_ut)))
+		"
+	>
+		<!-- Select previous game for autofill -->
+		<div class="my-form-style">
+			<label for="reset">
+				<div class="p-2">
+					Do you want to select roster from a previous game? All current game
+					info will be replaced.
+					<p v-if="!state.date_ut" style="color: red; padding: 1rem">
+						To do so you must first set a date for this game
+					</p>
+				</div>
+			</label>
+			<div v-if="state.date_ut">
+				Check here <br />
+				Uncheck to Cancel
+				<input
+					id="reset"
+					v-model="reset"
+					type="checkbox"
+					@input="resetPlayers()"
+				/>
+				<p style="color: red; padding: 2rem">
+					Selecting another roster will replace existing players on this roster!
+				</p>
+				<div v-if="reset">
+					<FormKit
+						type="select"
+						label="Select another roster"
+						v-model="previous_game_id"
+						placeholder="Select another roster"
+						:options="previousgames"
+					/>
+				</div>
+			</div>
+		</div>
+
+		<!-- ------------ players table ------------------------- -- -->
+		<div class="w-full text-xs md:text-sm">
+			<table
+				v-if="players"
+				style="
+					border-collapse: collapse;
+					border-spacing: 0;
+					white-space: nowrap;
+					overflow-x: auto;
 				"
 			>
-				<!-- Select previous game for autofill -->
-				<label for="reset"
-					><div class="p-2">
-						Do you want to select roster from a previous game? All current game
-						info will be replaced.
-						<p v-if="!state.date_ut" style="color: red; padding: 1rem">
-							To do so you must first set a date for this game
-						</p>
-					</div>
-				</label>
-
-				<div v-if="state.date_ut">
-					Check here <br />
-					Uncheck to Cancel
-					<input
-						id="reset"
-						v-model="reset"
-						type="checkbox"
-						@input="resetPlayers()"
-					/>
-					<p style="color: red; padding: 2rem">
-						Selecting another roster will replace existing players on this
-						roster!
-					</p>
-					<div v-if="reset">
-						<FormKit
-							type="select"
-							label="Select another roster"
-							v-model="previous_game_id"
-							placeholder="Select another roster"
-							:options="previousgames"
-						/>
-					</div>
-				</div>
-			</div>
-
-			<!-- ------------ players table ------------------------- -->
-			<div class="w-full text-xs md:text-sm">
-				<table
-					v-if="players"
-					style="
-						border-collapse: collapse;
-						border-spacing: 0;
-						white-space: nowrap;
-						overflow-x: auto;
-					"
-				>
-					<tr>
-						<th>Pos</th>
-						<th>Player</th>
-						<th>Tries</th>
-						<th>Assts</th>
-						<th>Conv</th>
-						<th>PenK</th>
-						<th>DrpG</th>
-						<th>Yello</th>
-						<th>Red</th>
-						<th>Replaced by</th>
+				<tr>
+					<th>Pos</th>
+					<th>Player</th>
+					<th>Tries</th>
+					<th>Assts</th>
+					<th>Conv</th>
+					<th>PenK</th>
+					<th>DrpG</th>
+					<th>Yello</th>
+					<th>Red</th>
+					<th>Replaced by</th>
+				</tr>
+				<tbody>
+					<tr v-for="(item, index) in players" :key="item.position_id">
+						<td>
+							{{ players[index].position_id }}
+						</td>
+						<td>
+							<AutoComplete
+								v-model="selectedPlayers[index]"
+								:pt="{
+									input: {
+										class:
+											'w-6rem md:w-8rem lg:w-10rem text-xs md:text-sm h-1rem md:h-2rem',
+									},
+								}"
+								optionLabel="title"
+								:suggestions="filteredNames"
+								@complete="search"
+							/>
+						</td>
+						<td>
+							<input v-model="players[index].tries" size="1" type="text" />
+						</td>
+						<td>
+							<input v-model="players[index].assists" size="1" type="text" />
+						</td>
+						<td>
+							<input v-model="players[index].conv" size="1" type="text" />
+						</td>
+						<td>
+							<input v-model="players[index].penk" size="1" type="text" />
+						</td>
+						<td>
+							<input v-model="players[index].dgoal" size="1" type="text" />
+						</td>
+						<td>
+							<input v-model="players[index].yellow" size="1" type="text" />
+						</td>
+						<td>
+							<input v-model="players[index].red" size="1" type="text" />
+						</td>
+						<td>
+							<AutoComplete
+								v-model="selectedReplacements[index]"
+								optionLabel="title"
+								:pt="{
+									input: {
+										class:
+											'w-6rem md:w-8rem lg:w-10rem text-xs md:text-sm h-1rem md:h-2rem',
+									},
+								}"
+								:suggestions="filteredNames"
+								@complete="search"
+							/>
+						</td>
 					</tr>
-					<tbody>
-						<tr v-for="(item, index) in players" :key="item.position_id">
-							<td>
-								{{ players[index].position_id }}
-							</td>
-							<td>
-								<AutoComplete
-									v-model="selectedPlayers[index]"
-									:pt="{
-										input: {
-											class:
-												'w-6rem md:w-8rem lg:w-10rem text-xs md:text-sm h-1rem md:h-2rem',
-										},
-									}"
-									optionLabel="title"
-									:suggestions="filteredNames"
-									@complete="search"
-								/>
-							</td>
-							<td>
-								<input v-model="players[index].tries" size="1" type="text" />
-							</td>
-							<td>
-								<input v-model="players[index].assists" size="1" type="text" />
-							</td>
-							<td>
-								<input v-model="players[index].conv" size="1" type="text" />
-							</td>
-							<td>
-								<input v-model="players[index].penk" size="1" type="text" />
-							</td>
-							<td>
-								<input v-model="players[index].dgoal" size="1" type="text" />
-							</td>
-							<td>
-								<input v-model="players[index].yellow" size="1" type="text" />
-							</td>
-							<td>
-								<input v-model="players[index].red" size="1" type="text" />
-							</td>
-							<td>
-								<AutoComplete
-									v-model="selectedReplacements[index]"
-									optionLabel="title"
-									:pt="{
-										input: {
-											class:
-												'w-6rem md:w-8rem lg:w-10rem text-xs md:text-sm h-1rem md:h-2rem',
-										},
-									}"
-									:suggestions="filteredNames"
-									@complete="search"
-								/>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-			<!-- Confirm deletion -->
-			<Dialog
-				v-model:visible="showReplaceDialog"
-				:style="{ width: '450px' }"
-				header="Confirm replacement"
-				:modal="true"
-			>
-				<div class="confirmation-content">
-					<i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-					<span>Are you sure you want to replace this roster?</span>
-				</div>
-
-				<template #footer>
-					<Button
-						label="No"
-						icon="pi pi-times"
-						class="p-button-text"
-						@click="showReplaceDialog = false"
-					/>
-					<Button
-						label="Yes"
-						icon="pi pi-check"
-						class="p-button-text"
-						@click="confirmedReplace(previous_game_id)"
-					/>
-				</template>
-			</Dialog>
+				</tbody>
+			</table>
 		</div>
 	</div>
+
+	<!-- Confirm deletion -->
+	<Dialog
+		v-model:visible="showReplaceDialog"
+		:style="{ width: '450px' }"
+		header="Confirm replacement"
+		:modal="true"
+	>
+		<div class="confirmation-content">
+			<i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
+			<span>Are you sure you want to replace this roster?</span>
+		</div>
+
+		<template #footer>
+			<Button
+				label="No"
+				icon="pi pi-times"
+				class="p-button-text"
+				@click="showReplaceDialog = false"
+			/>
+			<Button
+				label="Yes"
+				icon="pi pi-check"
+				class="p-button-text"
+				@click="confirmedReplace(previous_game_id)"
+			/>
+		</template>
+	</Dialog>
 </template>
 
 <script setup>
