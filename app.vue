@@ -2,6 +2,7 @@
 	import { useMenuStore, useAuthStore } from '@/stores'
 	// import { useAuthStore } from '~/stores/authStore'
 	import '@formkit/themes/genesis'
+	// import '~/sass/layout/genesis/theme.css'
 	const auth = useAuthStore()
 	const menuStore = useMenuStore()
 

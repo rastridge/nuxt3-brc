@@ -30,7 +30,7 @@
 			<div class="topsectionitem">
 				<admin-header title="Edit clubhouse item" />
 			</div>
-			<clubhouse-form app="clubhouse" :id="id" @submitted="onSubmit" />
+			<clubhouse-form :id="id" @submitted="onSubmit" />
 		</div>
 	</div>
 </template>
