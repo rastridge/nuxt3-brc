@@ -14,6 +14,8 @@
 
 <template>
 	<div>
+		<NuxtLoadingIndicator />
+
 		<!-- default start up blue primary  theme? -->
 		<!-- <Link
 			rel="stylesheet"
