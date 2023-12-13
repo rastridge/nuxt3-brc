@@ -1,9 +1,11 @@
 <template>
 	<div id="loginpage">
-		<div v-if="alert.message" :class="`alert ${alert.type}`">
-			{{ alert.message }}
-		</div>
 		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<div v-if="alert.message" :class="`alert ${alert.type}`">
+					{{ alert.message }}
+				</div>
+			</div>
 			<div
 				v-if="!auth.isLoggedIn"
 				class="topsectionitem surface-card p-4 shadow-2 border-round w-full lg:w-5"

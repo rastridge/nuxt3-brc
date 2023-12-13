@@ -1,5 +1,22 @@
 <template>
-	<p v-if="!state"><ProgressSpinner /> Loading</p>
+	<!-- 	<p
+		v-if="
+			pending_players &&
+			pending_gametypes &&
+			pending_suggestions &&
+			pending_players
+		"
+	>
+		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar> Loading
+		...
+	</p>
+	pending_players =
+	{{
+		pending_players &&
+		pending_gametypes &&
+		pending_suggestions &&
+		pending_players
+	}} -->
 	<div class="my-form-style">
 		<FormKit
 			type="form"
@@ -275,6 +292,7 @@
 	const state = ref({})
 	const reset = ref('')
 	const ut = ref(0)
+	const pending_players = ref('')
 
 	//
 	// Player name autocomplete
@@ -330,13 +348,15 @@
 	const {
 		data: gt,
 		error: error3,
-		pending: pending3,
+		pending: pending_gametypes,
 	} = await useFetch(`/game_player_stats/getgametypes`, {
 		method: 'get',
 		headers: {
 			authorization: auth.user.token,
 		},
+		// lazy: true,
 	})
+	// if (!pending_gametypes) {
 	// convert for formkit
 	let result = []
 	gt.value.map((old) => {
@@ -346,19 +366,23 @@
 		result.push(n)
 	})
 	gametypes.value = result
-
+	// }
 	// player names suggestions
 	const {
 		data: sug,
 		error: error4,
-		pending: pending4,
+		pending: pending_suggestions,
 	} = await useFetch(`/accounts/suggestions`, {
 		method: 'get',
 		headers: {
 			authorization: auth.user.token,
 		},
+		// lazy: true,
 	})
+
+	// if (!pending_suggestions) {
 	suggestions.value = sug.value
+	// }
 	//
 	//
 	// edit if there is an id
@@ -367,17 +391,20 @@
 		//
 		// Initialize Edit form game area
 		//
-		const { data: game, error } = await useFetch(
-			`/game_player_stats/${props.id}`,
-			{
-				method: 'get',
-				headers: {
-					authorization: auth.user.token,
-				},
-			}
-		)
-		state.value = game.value
+		const {
+			data: game,
+			pending: pending_game,
+			error,
+		} = await useFetch(`/game_player_stats/${props.id}`, {
+			method: 'get',
+			headers: {
+				authorization: auth.user.token,
+			},
+			// lazy: true,
+		})
 
+		// if (!pending_game) {
+		state.value = game.value
 		// convert date and time from unix time for FormKit inputs
 		// for a day when date / time fields are dropped from the DB
 		state.value.date = $dayjs.unix(state.value.date_ut).format('YYYY-MM-DD')
@@ -385,7 +412,7 @@
 
 		// needs to be carried over because its not used in the form
 		state.value.opponent_id = game.value.opponent_id
-
+		// }
 		//
 		// Initialize Edit form Players area
 		//
@@ -398,9 +425,11 @@
 			headers: {
 				authorization: auth.user.token,
 			},
+			// lazy: true,
 		})
 		players.value = p.value
 
+		// if (!pending_players.value) {
 		// Special for Primevue AutoComplete
 		players.value.forEach((value, index) => {
 			selectedPlayers.value.push({
@@ -416,6 +445,7 @@
 				title: value.rname ? value.rname : '',
 			})
 		})
+		// }
 	} else {
 		// add
 		//
@@ -424,12 +454,13 @@
 		const {
 			data: opps_sug,
 			error: error5,
-			pending: pending5,
+			pending: pending_suggestions,
 		} = await useFetch(`/opponents/suggestions`, {
 			method: 'get',
 			headers: {
 				authorization: auth.user.token,
 			},
+			// lazy: true,
 		})
 		suggestions_opponents.value = opps_sug.value
 
