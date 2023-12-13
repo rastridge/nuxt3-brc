@@ -47,6 +47,27 @@
 			v-model:visible="displayModal"
 			:breakpoints="{ '900px': '75vw', '640px': '90vw' }"
 			:style="{ width: '60vw' }"
+			:pt="{
+				root: {
+					style: {
+						padding: '0.5rem',
+						minWidth: '10rem',
+						border: '2px #00C solid',
+						'border-radius': '10px',
+						'background-color': 'white',
+					},
+				},
+				header: {
+					style: {
+						'border-bottom': 'solid 1px black',
+					},
+				},
+				footer: {
+					style: {
+						'border-top': 'solid 1px black',
+					},
+				},
+			}"
 		>
 			<template #header>
 				<div>

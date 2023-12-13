@@ -248,7 +248,9 @@
 	>
 		<div class="confirmation-content">
 			<i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-			<span>Are you sure you want to replace this roster?</span>
+			<span class="text-red-600"
+				>Are you sure you want to replace this roster?</span
+			>
 		</div>
 
 		<template #footer>

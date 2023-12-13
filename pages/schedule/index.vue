@@ -3,12 +3,7 @@
 		<Head>
 			<Title>Schedule ad Results</Title>
 		</Head>
-
-		<div v-if="data" class="text-center">
-			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
-			Loading
-		</div>
-		<div v-else>
+		<div>
 			<div class="topsectioncenter">
 				<div class="topsectionitem">
 					<common-header title="Game Schedule and Results" />
@@ -138,6 +133,27 @@
 			v-model:visible="displayGameModal"
 			:breakpoints="{ '900px': '75vw', '640px': '90vw' }"
 			:style="{ width: '60vw' }"
+			:pt="{
+				root: {
+					style: {
+						padding: '0.5rem',
+						minWidth: '10rem',
+						border: '2px #00C solid',
+						'border-radius': '10px',
+						'background-color': 'white',
+					},
+				},
+				header: {
+					style: {
+						'border-bottom': 'solid 1px black',
+					},
+				},
+				footer: {
+					style: {
+						'border-top': 'solid 1px black',
+					},
+				},
+			}"
 		>
 			<template #header>
 				<div>

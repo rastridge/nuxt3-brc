@@ -91,10 +91,33 @@
 			:style="{ width: '450px' }"
 			header="Confirm deletion"
 			:modal="true"
+			:pt="{
+				root: {
+					style: {
+						padding: '0.5rem',
+						minWidth: '10rem',
+						border: '2px #00C solid',
+						'border-radius': '10px',
+						'background-color': 'white',
+					},
+				},
+				header: {
+					style: {
+						'border-bottom': 'solid 1px black',
+					},
+				},
+				footer: {
+					style: {
+						'border-top': 'solid 1px black',
+					},
+				},
+			}"
 		>
 			<div class="confirmation-content">
 				<i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-				<span>Are you sure you want to delete this record? >?</span>
+				<span class="text-red-600"
+					>Are you sure you want to delete this record?</span
+				>
 			</div>
 
 			<template #footer>
