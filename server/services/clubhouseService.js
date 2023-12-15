@@ -19,7 +19,6 @@ async function getAll() {
 									clubhouse_title,
 									clubhouse_title as title,
 									clubhouse_date,
-									clubhouse_date as dt,
 									clubhouse_description,
 									clubhouse_filepath,
 									clubhouse_category,									
@@ -28,7 +27,7 @@ async function getAll() {
 									deleted,
 									deleted_dt,
 									created_dt,
-									modified_dt
+									modified_dt as dt
                 FROM
 									inbrc_clubhouse
                 WHERE
@@ -47,7 +46,6 @@ async function getAllCurrent() {
 										clubhouse_title,
 										clubhouse_title as title,
                     clubhouse_date,
-                    clubhouse_date as dt,
                     clubhouse_description,
 										clubhouse_filepath,
 										clubhouse_category,
@@ -56,7 +54,7 @@ async function getAllCurrent() {
 										deleted,
 										deleted_dt,
 										created_dt,
-										modified_dt
+										modified_dt as dt
                 FROM
                     inbrc_clubhouse
                 WHERE

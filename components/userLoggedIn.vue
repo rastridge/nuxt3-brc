@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p class="text-sm">Admin user: {{ sess.admin_user_name }}</p>
+		<p class="my-text-style">Admin user: {{ sess.admin_user_name }}</p>
 	</div>
 </template>
 

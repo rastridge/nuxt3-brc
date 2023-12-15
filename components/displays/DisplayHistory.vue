@@ -10,7 +10,7 @@
 			<p class="text-lg">Games</p>
 
 			<table>
-				<tbody class="text-xs lg:sm">
+				<tbody class="my-text-style">
 					<tr v-for="item in history">
 						<td>
 							{{ $dayjs.unix(item.date_ut).format('ddd MMM D YYYY') }}

@@ -85,7 +85,11 @@
 	@include styleclass('w-20rem mt-2 text-center');
 }
 .renderlist-enclosure {
-	@include styleclass('p-1 border-1 border-round-lg bg-white min-w-min');
+	@include styleclass('border-1 border-round-lg bg-white min-w-min');
+}
+
+.my-renderlist-styles {
+	@include styleclass('p-1 border-top-1');
 }
 .mybutton {
 	@include styleclass(
@@ -101,6 +105,10 @@
 
 .my-form-style {
 	@include styleclass(
-		'mx-auto border-round-md md:border-round-lg shadow-6 m-2 p-4 w-full md:w-6'
+		'text-xs sm:text-sm md:text-md lg:text-lg mx-auto border-round-md md:border-round-lg shadow-6 m-2 p-4 w-full md:w-6'
 	);
+}
+
+.my-text-style {
+	@include styleclass('text-xs sm:text-sm md:text-md lg:text-lg');
 }

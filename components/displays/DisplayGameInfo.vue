@@ -1,6 +1,6 @@
 <template>
 	<div id="gameInfo">
-		<table class="text-sm lg:text-lg">
+		<table class="my-text-style">
 			<tbody>
 				<tr>
 					<td>

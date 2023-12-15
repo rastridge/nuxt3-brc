@@ -38,10 +38,9 @@
 				validation-visibility="live"
 			/>
 		</FormKit>
-		<h5>Image file</h5>
-		<h6>File {{ state.clubhouse_filepath }}</h6>
+		<p>Image file {{ state.clubhouse_filepath }}</p>
 		<FileUpload
-			class="mb-4"
+			class="mb-4 my-text-style"
 			mode="basic"
 			name="fileInput"
 			:auto="true"
@@ -54,7 +53,8 @@
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button label="Cancel" @click.prevent="cancelForm()"> </Button>
+		<Button class="my-text-style" label="Cancel" @click.prevent="cancelForm()">
+		</Button>
 	</div>
 	<!-- Modal -->
 	<Dialog

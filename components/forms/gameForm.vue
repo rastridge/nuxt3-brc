@@ -158,7 +158,7 @@
 	</div>
 
 	<!-- ------------ players table ------------------------- -- -->
-	<div class="xs:w-full md:w-8 lg:w-6 mx-auto mt-4 text-xs md:text-sm">
+	<div class="xs:w-full md:w-8 lg:w-6 mx-auto mt-4 my-text-style">
 		<table
 			v-if="players"
 			style="
@@ -191,7 +191,7 @@
 							:pt="{
 								input: {
 									class:
-										'w-6rem md:w-8rem lg:w-10rem text-xs md:text-sm h-1rem md:h-2rem',
+										'w-6rem md:w-8rem lg:w-10rem my-text-style h-1rem md:h-2rem',
 								},
 							}"
 							optionLabel="title"

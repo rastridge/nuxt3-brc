@@ -92,7 +92,7 @@
 			<div class="mb-3">
 				<table
 					style="margin-left: auto; margin-right: auto"
-					class="text-xs md:text-sm"
+					class="my-text-style"
 				>
 					<thead>
 						<tr>

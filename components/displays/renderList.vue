@@ -9,7 +9,7 @@
 			</Button>
 		</div>
 		<div v-if="viewable">
-			<div>
+			<div class="my-renderlist-styles">
 				<DataTable
 					ref="dataTableRef"
 					:value="datalocal"
@@ -47,14 +47,14 @@
 					>
 						<Column field="date_ut" header="Date">
 							<template #body="slotProps">
-								{{ $dayjs.unix(slotProps.data.date_ut).format('YYYY-MM-DD') }}
+								{{ $dayjs.unix(slotProps.data.date_ut).format('M-D-YYYY') }}
 							</template>
 						</Column>
 					</div>
 					<div v-else>
 						<Column field="dt" header="Date">
 							<template #body="slotProps">
-								{{ $dayjs(slotProps.data.dt).format('YYYY-MM-DD') }}
+								{{ $dayjs(slotProps.data.dt).format('M-D-YYYY') }}
 							</template>
 						</Column>
 					</div>

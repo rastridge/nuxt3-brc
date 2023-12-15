@@ -1,6 +1,6 @@
 <template>
 	<div class="historyrecords">
-		<p class="text-lg mt-1">Totals</p>
+		<p class="my-text-style mt-1">Totals</p>
 
 		<table class="nowrap">
 			<tr>

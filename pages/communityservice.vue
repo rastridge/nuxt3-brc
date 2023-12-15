@@ -2,12 +2,12 @@
 	<div id="community">
 		<Card class="w-full my-card-style">
 			<template #title
-				><div class="text-sm md:text-2xl text-center">
+				><div class="my-text-style text-center">
 					Community Service - Habitat for Humanity
 				</div></template
 			>
 			<template #content>
-				<div class="text-xs md:text-xl">
+				<div class="my-text-style">
 					Since 2011 the Buffalo Rugby Club has volunteered one day each year
 					for Habitat for Humanity. Our specialty is tear out. That means taking
 					out the walls, ceilings, door and window frames, old wiring and pipes
@@ -29,7 +29,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">Before</div></template
+					><div class="my-text-style text-center">Before</div></template
 				>
 				<template #content
 					><nuxt-img
@@ -43,7 +43,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">After</div></template
+					><div class="my-text-style text-center">After</div></template
 				>
 				<template #content
 					><nuxt-img
@@ -57,7 +57,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">
+					><div class="my-text-style text-center">
 						2011 - 214 Northland Ave
 					</div></template
 				>
@@ -73,7 +73,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">
+					><div class="my-text-style text-center">
 						2012 - 38 Sherwood
 					</div></template
 				>
@@ -89,7 +89,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">
+					><div class="my-text-style text-center">
 						2012 - in East Aurora
 					</div></template
 				>
@@ -105,7 +105,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">
+					><div class="my-text-style text-center">
 						2013 - Fourteenth St
 					</div></template
 				>
@@ -121,7 +121,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">
+					><div class="my-text-style text-center">
 						2015 - Niagara Street
 					</div></template
 				>
@@ -137,7 +137,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">
+					><div class="my-text-style text-center">
 						2016 - Sussex Street
 					</div></template
 				>
@@ -153,7 +153,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">
+					><div class="my-text-style text-center">
 						2018 - 41 Kerns
 					</div></template
 				>
@@ -169,7 +169,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">
+					><div class="my-text-style text-center">
 						2020 - 217 Hastings
 					</div></template
 				>
@@ -185,7 +185,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">
+					><div class="my-text-style text-center">
 						2023 - 52 Olcott Place
 					</div></template
 				>
@@ -200,7 +200,7 @@
 				class="w-30rem lg:w-40rem flex align-items-start justify-content-center my-card-style"
 			>
 				<template #title
-					><div class="text-sm md:text-xl text-center">
+					><div class="my-text-style text-center">
 						2023 - Turkey Drive - 60 Turkeys for FeedMoreWNY
 					</div></template
 				>
