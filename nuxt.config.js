@@ -44,7 +44,7 @@ export default defineNuxtConfig({
 		'@formkit/nuxt',
 		'@pinia/nuxt',
 		'@nuxt/image',
-		'@vueuse/nuxt',
+		// '@vueuse/nuxt',
 		'nuxt-simple-robots',
 	],
 	buildModules: ['@nuxtjs/google-fonts'],

@@ -1,10 +1,11 @@
 <template>
 	<div>
 		<div class="topsectioncenter">
-			<div class="topsectionitem">
-				<img :src="asleepatdesk" style="width: 320px" />
+			<div class="w-full md:w-8">
+				<img :src="asleepatdesk" style="width: 100%" />
 			</div>
-			<!-- 				<h6 class="text-center">debugging info</h6>
+			<!-- 
+				<h6 class="text-center">debugging info</h6>
 				<p>Admin user name is {{ auth.user.admin_user_name }}</p>
 				<p>Admin user token is {{ auth.user.token }}</p>
 				<p>Admin user is logged in {{ auth.isLoggedIn }}</p>

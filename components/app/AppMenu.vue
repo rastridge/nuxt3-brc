@@ -9,9 +9,14 @@
 
 <style>
 	.p-menuitem-text {
-		font-size: medium;
+		font-size: small;
 	}
-
+	/* clumsy attempt to bring menu items closer together */
+	@media (max-width: 960px) {
+		.p-menuitem-content {
+			margin: -10px;
+		}
+	}
 	@media (min-width: 992px) {
 		.p-menuitem-text {
 			font-size: large;

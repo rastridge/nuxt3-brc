@@ -5,8 +5,7 @@
 	import AppFooter from '../components/app/AppFooter.vue'
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
-	import { useWindowSize } from '@vueuse/core'
-	const { width, height } = useWindowSize()
+
 	import { useMenuStore } from '@/stores'
 	const menuStore = useMenuStore()
 	// const customMenuItems = menuStore.getCustomMenuItems
