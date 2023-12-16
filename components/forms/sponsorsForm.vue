@@ -62,6 +62,7 @@
 					<Image :src="state.ad_image_path" alt="Image" width="320" />
 				</div>
 				<FileUpload
+					class="mb-4 my-text-style"
 					mode="basic"
 					name="fileInput"
 					:auto="true"

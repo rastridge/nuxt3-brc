@@ -24,7 +24,7 @@
 			<div class="w-7 border-1 p-2 m-2">
 				<p>PDF file {{ state.archive_filepath }}</p>
 				<FileUpload
-					class="mb-4 my-test-styles"
+					class="mb-4 my-test-style"
 					mode="basic"
 					name="fileInput"
 					:auto="true"

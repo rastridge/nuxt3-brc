@@ -40,7 +40,7 @@
 			<div class="w-7 border-1 p-2 m-2">
 				<p>Clubhouse Image file {{ state.clubhouse_filepath }}</p>
 				<FileUpload
-					class="mb-4 my-text-styles"
+					class="mb-4 my-text-style"
 					mode="basic"
 					name="fileInput"
 					:auto="true"
