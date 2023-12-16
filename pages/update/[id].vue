@@ -23,7 +23,7 @@
 		<Head>
 			<Title>Update</Title>
 		</Head>
-		<common-header title="Update Membership" />
-		<register-update-form :id="account_id" @submitted="onSubmit" />
+		<!-- <common-header title="Update Membership" /> -->
+		<!-- <register-update-form :id="account_id" @submitted="onSubmit" /> -->
 	</div>
 </template>

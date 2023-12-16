@@ -37,25 +37,31 @@
 				validation="required|number|between:1965,2050"
 				validation-visibility="live"
 			/>
+			<div class="w-7 border-1 p-2 m-2">
+				<p>Clubhouse Image file {{ state.clubhouse_filepath }}</p>
+				<FileUpload
+					class="mb-4 my-text-styles"
+					mode="basic"
+					name="fileInput"
+					:auto="true"
+					accept="image/*"
+					customUpload
+					@uploader="submitFileUpload"
+				/>
+				<p v-if="error" class="alert-danger w-full">
+					Error: Must submit image file
+				</p>
+			</div>
 		</FormKit>
-		<p>Image file {{ state.clubhouse_filepath }}</p>
-		<FileUpload
-			class="mb-4 my-text-style"
-			mode="basic"
-			name="fileInput"
-			:auto="true"
-			accept="image/*"
-			customUpload
-			@uploader="submitFileUpload"
-		/>
+		<Button class="my-text-style" label="Cancel" @click.prevent="cancelForm()">
+		</Button>
 
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button class="my-text-style" label="Cancel" @click.prevent="cancelForm()">
-		</Button>
 	</div>
+
 	<!-- Modal -->
 	<Dialog
 		v-model:visible="displayModal"
@@ -75,6 +81,7 @@
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
 	const saving = ref(false)
+	const error = ref(false)
 
 	const { $dayjs } = useNuxtApp()
 	//
@@ -126,6 +133,7 @@
 	}
 
 	const submitFileUpload = async (event) => {
+		state.value.clubhouse_filepath = null
 		const file = event.files[0]
 
 		const formData = new FormData()
@@ -149,8 +157,13 @@
 	// form handlers
 	//
 	const submitForm = (state) => {
-		saving.value = true
-		emit('submitted', state)
+		if (state.clubhouse_filepath) {
+			saving.value = true
+			error.value = false
+			emit('submitted', state)
+		} else {
+			error.value = true
+		}
 	}
 
 	const cancelForm = () => {

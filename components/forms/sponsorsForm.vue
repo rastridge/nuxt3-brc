@@ -46,56 +46,60 @@
 				validation="required"
 			/>
 
-			<!-- ad image file upload 			-->
-			<p>Image must be 750w 125h 72dpi</p>
-			<label for="ad_image">Add or Replace Sponsor image file</label><br />
-
-			<FileUpload
-				mode="basic"
-				name="fileInput"
-				:auto="true"
-				accept="image/*"
-				customUpload
-				@uploader="customUploader"
-			/>
-			<br />
-			<br />
-			<!-- show image file  -->
-			<div
-				v-if="state.ad_image_path"
-				class="card flex justify-content-start mb-2"
-			>
-				<label
-					>Current image filepath is<br />
-					{{ state.ad_image_path }}</label
+			<div class="w-7 border-1 p-2 m-2">
+				<!-- ad image file upload 			-->
+				<p>Image must be 750w 125h 72dpi</p>
+				<label for="ad_image">Add or Replace Sponsor image file</label><br />
+				<!-- show image file  -->
+				<div
+					v-if="state.ad_image_path"
+					class="card flex justify-content-start mb-2"
 				>
-				<Image :src="state.ad_image_path" alt="Image" width="320" />
+					<label
+						>Current image filepath is<br />
+						{{ state.ad_image_path }}</label
+					>
+					<Image :src="state.ad_image_path" alt="Image" width="320" />
+				</div>
+				<FileUpload
+					mode="basic"
+					name="fileInput"
+					:auto="true"
+					accept="image/*"
+					customUpload
+					@uploader="customUploader"
+				/>
+				<p v-if="error" class="alert-danger w-full">
+					Error: Must submit image file
+				</p>
 			</div>
 		</FormKit>
+
+		<Button class="my-text-style" label="Cancel" @click="cancelForm()">
+		</Button>
 		<p v-if="alert.message" class="alert-danger w-20rem">
 			ERROR: {{ alert.message }}
 		</p>
+
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button label="Cancel" @click="cancelForm()"> </Button>
-
-		<!-- Modal -->
-		<Dialog
-			v-model:visible="displayModal"
-			:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-			:style="{ width: '50vw' }"
-		>
-			<template #header>
-				<div class="my-dialog-header">
-					<h3>Processing file</h3>
-				</div></template
-			>
-			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
-		</Dialog>
 	</div>
-	<!-- </div> -->
+
+	<!-- Modal -->
+	<Dialog
+		v-model:visible="displayModal"
+		:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
+		:style="{ width: '50vw' }"
+	>
+		<template #header>
+			<div class="my-dialog-header">
+				<h3>Processing file</h3>
+			</div></template
+		>
+		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
+	</Dialog>
 </template>
 
 <script setup>
@@ -104,8 +108,9 @@
 	const alert = useAlertStore()
 	const auth = useAuthStore()
 	const saving = ref(false)
+	const error = ref(false)
 	const fileInput = ref(null)
-	const image = ref('')
+	const image = ref(null)
 
 	//
 	// Outgoing
@@ -159,6 +164,8 @@
 	}
 
 	const customUploader = async (event) => {
+		state.value.ad_image_path = null
+
 		const file = event.files[0]
 
 		// voodoo
@@ -210,8 +217,13 @@
 	// form handlers
 	//
 	const submitForm = (state) => {
-		saving.value = true
-		emit('submitted', state)
+		if (state.ad_image_path) {
+			saving.value = true
+			error.value = false
+			emit('submitted', state)
+		} else {
+			error.value = true
+		}
 	}
 
 	const cancelForm = () => {

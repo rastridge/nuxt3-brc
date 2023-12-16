@@ -20,17 +20,20 @@
 				validation="required"
 			/>
 			<FormKit label="Category" name="archive_category" type="text" />
-			<h5>PDF file</h5>
-			<h6>File {{ state.archive_filepath }}</h6>
-			<FileUpload
-				class="mb-4"
-				mode="basic"
-				name="fileInput"
-				:auto="true"
-				accept="application/pdf"
-				customUpload
-				@uploader="submitFileUpload"
-			/>
+
+			<div class="w-7 border-1 p-2 m-2">
+				<p>PDF file {{ state.archive_filepath }}</p>
+				<FileUpload
+					class="mb-4 my-test-styles"
+					mode="basic"
+					name="fileInput"
+					:auto="true"
+					accept="application/pdf"
+					customUpload
+					@uploader="submitFileUpload"
+				/>
+				<p v-if="error" class="alert-danger w-full">Error: Must submit file</p>
+			</div>
 			<FormKit
 				type="date"
 				label="Document Date"
@@ -42,7 +45,8 @@
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button label="Cancel" @click.prevent="cancelForm()"> </Button>
+		<Button class="my-text-style" label="Cancel" @click.prevent="cancelForm()">
+		</Button>
 	</div>
 
 	<!-- Modal -->
@@ -63,8 +67,8 @@
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
-
 	const saving = ref(false)
+	const error = ref(false)
 
 	const { $dayjs } = useNuxtApp()
 	//
@@ -121,6 +125,7 @@
 	}
 
 	const submitFileUpload = async (event) => {
+		state.value.archive_filepath = null
 		const file = event.files[0]
 
 		const formData = new FormData()
@@ -144,9 +149,13 @@
 	// form handlers
 	//
 	const submitForm = async (state) => {
-		saving.value = true
-
-		emit('submitted', state)
+		if (state.archive_filepath) {
+			saving.value = true
+			error.value = false
+			emit('submitted', state)
+		} else {
+			error.value = true
+		}
 	}
 
 	const cancelForm = () => {
