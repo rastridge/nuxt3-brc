@@ -7,7 +7,7 @@
 	const menuStore = useMenuStore()
 
 	useHead({
-		title: 'Nuxt 3 Buffalo Rugby',
+		title: 'The Buffalo Rugby Club',
 	})
 
 	//
