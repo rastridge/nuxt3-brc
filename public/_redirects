@@ -1,8 +1,20 @@
+/register/men /register
+
+#
+
+/register/flag /registerflag
+
+#
+
 /members/officers /officers
 
 #
 
-/content/1 /page/1
+/archive/newsletters/ /archives/newsletters
+
+#
+
+# /content/1 /page/1
 
 #
 
@@ -41,6 +53,8 @@
 /schedule-and-results7s /schedule
 
 #
+
+/schedule/2020 /schedule
 
 /schedule-and-results /schedule
 
