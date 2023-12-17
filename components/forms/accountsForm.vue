@@ -178,42 +178,45 @@
 				min="1966"
 				step="1"
 			/>
-
-			<!-- ad image file upload 			-->
-			<p>Image must be 72w 72h 72dpi</p>
-			<label>Add or Replace WOF image file</label><br />
-
-			<FileUpload
-				mode="basic"
-				name="fileInput"
-				:auto="true"
-				accept="image/*"
-				customUpload
-				@uploader="customUploader"
-			/>
-			<br />
-			<br />
-			<!-- show image file  -->
-			<div
-				v-if="state.member_pic_path"
-				class="card flex justify-content-start mb-2"
-			>
+			<div class="w-8 md:w-10 border-1 p-2 m-2">
+				<!-- ad image file upload 			-->
 				<label
-					>Current image filepath is<br />
-					{{ state.member_pic_path }}</label
+					><span class="font-semibold"
+						>Add or Replace WOF image file</span
+					></label
 				>
-				<Image :src="state.member_pic_path" alt="Image" width="72" />
+				<p>Image must be 72w 72h 72dpi</p>
+				<FileUpload
+					class="mb-2 my-test-style"
+					mode="basic"
+					name="fileInput"
+					:auto="true"
+					accept="image/*"
+					customUpload
+					@uploader="customUploader"
+				/>
+				<!-- show image file  -->
+				<div
+					v-if="state.member_pic_path"
+					class="card flex justify-content-start mb-2"
+				>
+					<label
+						>Current image filepath is<br />
+						{{ state.member_pic_path }}</label
+					>
+					<Image :src="state.member_pic_path" alt="Image" width="72" />
+				</div>
+				<p v-if="alert.message" class="alert-danger w-full">
+					ERROR: {{ alert.message }}
+				</p>
 			</div>
+			<Button class="mb-2 my-text-style" label="Cancel" @click="cancelForm">
+			</Button>
 		</FormKit>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<p v-if="alert.message" class="alert-danger w-20rem">
-			ERROR: {{ alert.message }}
-		</p>
-
-		<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 	</div>
 	<!-- Modal -->
 	<Dialog

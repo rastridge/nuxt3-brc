@@ -5,7 +5,9 @@
 	//
 	//
 	const route = useRoute()
-	const account_id = ref(route.params.id)
+	const id = route.params.id
+	// account_id follows the digit 4
+	const account_id = ref(id.substring(id.lastIndexOf('4') + 1, id.length))
 	//
 	// Update Account form action
 	//
@@ -24,6 +26,7 @@
 			<Title>Update</Title>
 		</Head>
 		<common-header title="Update Membership" />
+		id = {{ id }} - --- account_id = {{ account_id }}
 		<register-update-form :id="account_id" @submitted="onSubmit" />
 	</div>
 </template>
