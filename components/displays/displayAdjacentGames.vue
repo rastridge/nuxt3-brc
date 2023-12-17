@@ -1,8 +1,6 @@
 <template>
 	<div>
-		<div class="text-center">
-			<span class="uppercase font-semibold">{{ direction }} Matches</span>
-		</div>
+		<div class="my-header-style">{{ direction }} Matches</div>
 		<Card style="width: 320px" class="my-card-style">
 			<!-- <template #header> </template> -->
 			<template #content>
@@ -14,7 +12,7 @@
 								&nbsp;&nbsp;&nbsp;{{ stats1.venue }}
 							</td>
 
-							<td v-if="direction !== 'last'">
+							<td v-if="direction !== 'Last'">
 								{{ $dayjs.unix(stats1.date_ut).format('h:mm a') }}
 							</td>
 						</tr>
@@ -26,7 +24,7 @@
 									{{ stats1.game_level }}</strong
 								>
 							</td>
-							<td v-if="direction === 'last'">
+							<td v-if="direction === 'Last'">
 								{{ stats1.ptsFor }} - {{ stats1.ptsAgn }}
 							</td>
 						</tr>
@@ -37,7 +35,7 @@
 								&nbsp;&nbsp;&nbsp;{{ stats2.venue }}
 							</td>
 
-							<td v-if="direction !== 'last'">
+							<td v-if="direction !== 'Last'">
 								{{ $dayjs.unix(stats2.date_ut).format('h:mm a') }}
 							</td>
 						</tr>
@@ -49,7 +47,7 @@
 									{{ stats2.game_level }}</strong
 								>
 							</td>
-							<td v-if="direction === 'last'">
+							<td v-if="direction === 'Last'">
 								{{ stats2.ptsFor }} - {{ stats2.ptsAgn }}
 							</td>
 						</tr>

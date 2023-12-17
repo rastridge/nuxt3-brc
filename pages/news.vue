@@ -1,16 +1,15 @@
 <template>
 	<div>
-		<!-- <div class="card"> -->
 		<Common-header title="Current News" />
 
 		<div
 			class="flex flex-column md:flex-row flex-wrap align-items-center md:align-items-start justify-content-center gap-2"
 		>
 			<div class="flex justify-content-center">
-				<display-adjacent-games direction="last" />
+				<display-adjacent-games direction="Last" />
 			</div>
 			<div class="flex justify-content-center">
-				<display-adjacent-games direction="next" />
+				<display-adjacent-games direction="Next" />
 			</div>
 		</div>
 
@@ -19,9 +18,7 @@
 		>
 			<div class="flex justify-content-center">
 				<div>
-					<div class="text-center uppercase font-semibold md:text-lg">
-						Latest on Facebook
-					</div>
+					<div class="my-header-style">Latest on Facebook</div>
 					<iframe
 						src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBuffaloRugbyClub%2F&tabs=timeline&width=340&height=400&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId"
 						width="340"
@@ -36,9 +33,7 @@
 			</div>
 			<div class="flex justify-content-center">
 				<div>
-					<div class="text-center uppercase font-semibold md:text-lg">
-						Latest on Instagram
-					</div>
+					<div class="my-header-style">Latest on Instagram</div>
 					<!--  -->
 					<blockquote
 						class="instagram-media"
@@ -302,9 +297,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="text-center">
-			<span class="uppercase font-semibold">News Items</span>
-		</div>
+		<div class="my-header-style">News Items</div>
 		<div
 			class="flex flex-column md:flex-row flex-wrap align-items-center md:align-items-start justify-content-center"
 		>

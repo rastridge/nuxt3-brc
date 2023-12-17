@@ -269,6 +269,9 @@ async function editOne(info) {
 									mail_recipient = ?,
 									sms_recipient = ?,
 
+									member_wall_of_fame_year = ?,
+									member_pic_path = ?,
+
 									member_type_id = ?,
 									member_type2_id = ?,
 									member_admin_type_id = ?,
@@ -293,6 +296,9 @@ async function editOne(info) {
 				newsletter_recipient,
 				mail_recipient,
 				sms_recipient,
+
+				member_wall_of_fame_year,
+				member_pic_path,
 
 				member_type_id,
 				member_type2_id,
@@ -322,6 +328,9 @@ async function editOne(info) {
 				newsletter_recipient,
 				mail_recipient,
 				sms_recipient,
+
+				member_wall_of_fame_year,
+				member_pic_path,
 
 				member_type_id,
 				member_type2_id,

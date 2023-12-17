@@ -8,7 +8,7 @@
 				dataKey="opponent_id"
 				v-model:filters="filters"
 				:globalFilterFields="['opponent_type']"
-				:class="'p-datatable-sm'"
+				class="p-datatable-sm my-text-style"
 				:pt="{
 					wrapper: {
 						style: {

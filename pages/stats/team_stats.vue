@@ -8,7 +8,7 @@
 				<common-header title="Team Record" />
 			</div>
 			<div class="topsectionitem">
-				<h6 class="text-xl">All Time</h6>
+				<p class="my-header-style">All Time</p>
 				<select-game-type
 					:currenttype="gametype"
 					@submitted="onSubmitGameType"
@@ -16,79 +16,71 @@
 			</div>
 			<div v-if="!record || !total" class="topsectionitem">Loading ...</div>
 		</div>
-		<div v-if="total" class="mb-2" style="overflow-x: auto">
-			<table class="nowrap">
-				<thead>
-					<tr>
-						<th class="text-center">Games</th>
-						<th class="text-center">Wins</th>
-						<th class="text-center">Losses</th>
-						<th class="text-center">Ties</th>
-						<th class="text-center">Unknown</th>
-						<th class="text-center">Win%</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="text-center">{{ total.game_count }}</td>
-						<td class="text-center">{{ total.wins }}</td>
-						<td class="text-center">{{ total.losses }}</td>
-						<td class="text-center">{{ total.ties }}</td>
-						<td class="text-center">{{ total.unknown }}</td>
-						<td class="text-center">
+		<div class="card">
+			<div v-if="total" style="overflow-x: auto">
+				<table class="nowrap">
+					<thead>
+						<tr>
+							<th class="text-center">Games</th>
+							<th class="text-center">Wins</th>
+							<th class="text-center">Losses</th>
+							<th class="text-center">Ties</th>
+							<th class="text-center">Unknown</th>
+							<th class="text-center">Win%</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="text-center">{{ total.game_count }}</td>
+							<td class="text-center">{{ total.wins }}</td>
+							<td class="text-center">{{ total.losses }}</td>
+							<td class="text-center">{{ total.ties }}</td>
+							<td class="text-center">{{ total.unknown }}</td>
+							<td class="text-center">
+								{{
+									(
+										(total.wins / (total.game_count - total.unknown)) *
+										100
+									).toFixed(0)
+								}}
+								%
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="my-datatable-wrapper-style">
+				<DataTable
+					:value="record"
+					class="p-datatable-sm my-text-style"
+					rowHover
+				>
+					<!-- <DataTable :value="filteredData" paginator :rows="20"> -->
+					<Column field="season" header="Season">
+						<template #body="slotProps">
+							{{ slotProps.data.season }}
+						</template>
+					</Column>
+					<Column field="game_count" header="Games"></Column>
+					<Column field="wins" header="Wins"></Column>
+					<Column field="losses" header="Losses"></Column>
+					<Column field="ties" header="Ties"></Column>
+					<Column field="unknown" header="Unknown"></Column>
+					<Column header="Win%">
+						<template #body="slotProps">
 							{{
 								(
-									(total.wins / (total.game_count - total.unknown)) *
+									(slotProps.data.wins /
+										(slotProps.data.game_count - slotProps.data.unknown)) *
 									100
 								).toFixed(0)
 							}}
 							%
-						</td>
-					</tr>
-				</tbody>
-			</table>
+						</template></Column
+					>
+				</DataTable>
+			</div>
 		</div>
-
-		<DataTable
-			:value="record"
-			:class="'p-datatable-sm'"
-			:pt="{
-				wrapper: {
-					style: {
-						padding: '0.5rem',
-						minWidth: '10rem',
-						border: '2px #00C solid',
-						'border-radius': '10px',
-						'font-size': '14px',
-					},
-				},
-			}"
-			rowHover
-		>
-			<!-- <DataTable :value="filteredData" paginator :rows="20"> -->
-			<Column field="season" header="Season">
-				<template #body="slotProps">
-					{{ slotProps.data.season }}
-				</template>
-			</Column>
-			<Column field="game_count" header="Games"></Column>
-			<Column field="wins" header="Wins"></Column>
-			<Column field="losses" header="Losses"></Column>
-			<Column field="ties" header="Ties"></Column>
-			<Column field="unknown" header="Unknown"></Column>
-			<Column header="Win%">
-				<template #body="slotProps">
-					{{
-						(
-							(slotProps.data.wins /
-								(slotProps.data.game_count - slotProps.data.unknown)) *
-							100
-						).toFixed(0)
-					}}
-					%
-				</template></Column
-			>
-		</DataTable>
 	</div>
 </template>
 

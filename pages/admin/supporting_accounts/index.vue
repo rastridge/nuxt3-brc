@@ -20,7 +20,7 @@
 			dataKey="supportingApp_id"
 			v-model:filters="filters"
 			:globalFilterFields="['supportingApp_name']"
-			:class="'p-datatable-sm'"
+			class="p-datatable-sm my-text-style"
 			:pt="{
 				wrapper: {
 					style: {

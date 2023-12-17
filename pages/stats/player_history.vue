@@ -22,104 +22,100 @@
 				</Card>
 			</div>
 		</div>
-
-		<DataTable
-			:value="history"
-			dataKey="account_id"
-			v-model:filters="filters"
-			:globalFilterFields="['opponent_name']"
-			:class="'p-datatable-sm'"
-			:pt="{
-				wrapper: {
-					style: {
-						padding: '0.5rem',
-						minWidth: '10rem',
-						border: '2px #00C solid',
-						'border-radius': '10px',
-						'font-size': '12px',
-					},
-				},
-			}"
-			stripedRows
-			filterDisplay="row"
-			paginator
-			:rows="20"
-			:rowsPerPageOptions="[5, 10, 20, 50]"
-			paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-			currentPageReportTemplate="{first} to {last} of {totalRecords}"
-			selectionMode="single"
-		>
-			<template #empty> No members found. </template>
-			<template #loading> Loading Membership data. Please wait. </template>
-			<Column header="Date" field="date" :showFilterMenu="true">
-				<template #body="{ data }">
-					{{ $dayjs(data.date).format('MMM D YYYY') }}
-				</template>
-				<template #filter="{ filterModel, filterCallback }">
-					<InputText
-						v-model="filterModel.value"
-						type="text"
-						@input="filterCallback()"
-						class="p-column-filter"
-						style="width: 6rem"
-						placeholder="Search by date"
-					/>
-				</template>
-			</Column>
-			<Column header="Opponent" field="opponent_name" :showFilterMenu="true">
-				<template #body="{ data }">
-					<Button link @click="openGameModal(data.game_id)">
-						{{ data.opponent_name }}
-					</Button>
-				</template>
-				<template #filter="{ filterModel, filterCallback }">
-					<InputText
-						v-model="filterModel.value"
-						type="text"
-						@input="filterCallback()"
-						class="p-column-filter"
-						style="width: 8rem"
-						placeholder="Search by opponent"
-					/>
-				</template>
-			</Column>
-			<Column header="Venue" field="venue" :showFilterMenu="true">
-				<template #body="{ data }">
-					{{ data.venue }}
-				</template>
-				<template #filter="{ filterModel, filterCallback }">
-					<InputText
-						v-model="filterModel.value"
-						type="text"
-						@input="filterCallback()"
-						style="width: 6rem"
-						class="p-column-filter"
-						placeholder="Search by venue"
-					/>
-				</template>
-			</Column>
-			<Column header="Occasion" field="occasion" :showFilterMenu="true">
-				<template #body="{ data }">
-					{{ data.occasion }}
-				</template>
-			</Column>
-			<Column header="Level" field="game_level" :showFilterMenu="true">
-				<template #body="{ data }">
-					{{ data.game_level }}
-				</template>
-			</Column>
-			<Column header="Type" field="game_type" :showFilterMenu="true">
-				<template #body="{ data }">
-					{{ data.game_type }}
-				</template>
-			</Column>
-		</DataTable>
-
+		<div class="card">
+			<div class="my-datatable-wrapper-style">
+				<DataTable
+					:value="history"
+					dataKey="account_id"
+					v-model:filters="filters"
+					:globalFilterFields="['opponent_name']"
+					class="p-datatable-sm my-text-style"
+					stripedRows
+					filterDisplay="row"
+					paginator
+					:rows="20"
+					:rowsPerPageOptions="[5, 10, 20, 50]"
+					paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+					currentPageReportTemplate="{first} to {last} of {totalRecords}"
+					selectionMode="single"
+				>
+					<template #empty> No members found. </template>
+					<template #loading> Loading Membership data. Please wait. </template>
+					<Column header="Date" field="date" :showFilterMenu="true">
+						<template #body="{ data }">
+							{{ $dayjs(data.date).format('MMM D YYYY') }}
+						</template>
+						<template #filter="{ filterModel, filterCallback }">
+							<InputText
+								v-model="filterModel.value"
+								type="text"
+								@input="filterCallback()"
+								class="p-column-filter"
+								style="width: 6rem"
+								placeholder="Search by date"
+							/>
+						</template>
+					</Column>
+					<Column
+						header="Opponent"
+						field="opponent_name"
+						:showFilterMenu="true"
+					>
+						<template #body="{ data }">
+							<Button link @click="openGameModal(data.game_id)">
+								{{ data.opponent_name }}
+							</Button>
+						</template>
+						<template #filter="{ filterModel, filterCallback }">
+							<InputText
+								v-model="filterModel.value"
+								type="text"
+								@input="filterCallback()"
+								class="p-column-filter"
+								style="width: 8rem"
+								placeholder="Search by opponent"
+							/>
+						</template>
+					</Column>
+					<Column header="Venue" field="venue" :showFilterMenu="true">
+						<template #body="{ data }">
+							{{ data.venue }}
+						</template>
+						<template #filter="{ filterModel, filterCallback }">
+							<InputText
+								v-model="filterModel.value"
+								type="text"
+								@input="filterCallback()"
+								style="width: 6rem"
+								class="p-column-filter"
+								placeholder="Search by venue"
+							/>
+						</template>
+					</Column>
+					<Column header="Occasion" field="occasion" :showFilterMenu="true">
+						<template #body="{ data }">
+							{{ data.occasion }}
+						</template>
+					</Column>
+					<Column header="Level" field="game_level" :showFilterMenu="true">
+						<template #body="{ data }">
+							{{ data.game_level }}
+						</template>
+					</Column>
+					<Column header="Type" field="game_type" :showFilterMenu="true">
+						<template #body="{ data }">
+							{{ data.game_type }}
+						</template>
+					</Column>
+				</DataTable>
+			</div>
+		</div>
 		<!-- Modal -->
 		<Dialog
 			v-model:visible="displayModal"
 			:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
 			:style="{ width: '60vw' }"
+			class="p-datatable-sm my-text-style"
 			:pt="{
 				root: {
 					style: {
@@ -128,16 +124,6 @@
 						border: '2px #00C solid',
 						'border-radius': '10px',
 						'background-color': 'white',
-					},
-				},
-				header: {
-					style: {
-						'border-bottom': 'solid 1px black',
-					},
-				},
-				footer: {
-					style: {
-						'border-top': 'solid 1px black',
 					},
 				},
 			}"

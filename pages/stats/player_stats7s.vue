@@ -1,12 +1,13 @@
 <template>
 	<div id="player-stats">
 		<Common-header title="7s Players" />
+
 		<DataTable
 			:value="data"
 			dataKey="name"
 			v-model:filters="filters"
 			:globalFilterFields="['member_type']"
-			:class="'p-datatable-sm'"
+			class="p-datatable-sm my-text-style"
 			:pt="{
 				wrapper: {
 					style: {

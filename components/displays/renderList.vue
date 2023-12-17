@@ -14,7 +14,7 @@
 					ref="dataTableRef"
 					:value="datalocal"
 					striped-rows
-					class="p-datatable-sm p-datatable-generic text-xs sm:text-sm md:text-md lg:text-lg"
+					class="p-datatable-sm p-datatable-generic my-text-style"
 					responsiveLayout="scroll"
 					:paginator="true"
 					:rows="pagesize"

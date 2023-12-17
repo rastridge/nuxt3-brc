@@ -9,7 +9,7 @@
 		<div>
 			<DataTable
 				:value="officers"
-				class="p-datatable-sm"
+				class="p-datatable-sm my-text-style"
 				:pt="{
 					wrapper: {
 						style: {

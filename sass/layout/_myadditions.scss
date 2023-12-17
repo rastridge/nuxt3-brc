@@ -112,3 +112,17 @@
 .my-text-style {
 	@include styleclass('text-xs sm:text-sm md:text-md lg:text-lg');
 }
+
+.my-header-style {
+	@include styleclass(
+		'm-4 text-center font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl'
+	);
+}
+
+.my-datatable-wrapper-style {
+	@include styleclass(
+		'p-2 text-md border-blue-700 border-2 border-round-md md:border-round-lg'
+	);
+}
+
+// 'p-2 text-md border-blue-900 border-1 border-round-md md:border-round-lg'

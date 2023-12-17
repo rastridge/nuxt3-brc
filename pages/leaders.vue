@@ -6,7 +6,7 @@
 		<div>
 			<DataTable
 				:value="leaders"
-				class="p-datatable-sm"
+				class="p-datatable-sm my-text-style"
 				stripedRows
 				:pt="{
 					wrapper: {

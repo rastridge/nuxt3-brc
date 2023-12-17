@@ -36,7 +36,7 @@
 		</div>
 		<DataTable
 			:value="filteredData"
-			class="p-datatable-sm"
+			class="p-datatable-sm my-text-style"
 			ref="dt"
 			:pt="{
 				wrapper: {

@@ -51,12 +51,10 @@
 			</div>
 		</div>
 		<div class="card">
-			<h6 class="font-semibold text-center">
-				Number {{ number }} Total ${{ total }}
-			</h6>
+			<h6 class="my-header-style">Number {{ number }} Total ${{ total }}</h6>
 			<DataTable
 				:value="contributions"
-				class="p-datatable-sm"
+				class="p-datatable-sm my-text-style"
 				tableStyle="width: 400px"
 				:pt="{
 					wrapper: {
@@ -135,8 +133,8 @@
 				>
 			</DataTable>
 		</div>
-		<div class="card w-full">
-			<h4>The Need</h4>
+		<div class="card w-full my-text-style">
+			<h4 class="my-header-style">The Need</h4>
 			<p>
 				We need a committed active playing membership of about 50 to be
 				successful. The Club is actively welcoming players from local colleges,
@@ -165,11 +163,11 @@
 				&nbsp;
 			</p>
 		</div>
-		<div class="card" style="width: 400px">
-			<h3>Top Contributors</h3>
+		<div class="card my-text-style" style="width: 400px">
+			<h3 class="my-header-style">Top Contributors</h3>
 			<DataTable
 				:value="topcontributors"
-				class="p-datatable-sm"
+				class="p-datatable-sm my-text-style"
 				tableStyle="width: 320px"
 				:pt="{
 					wrapper: {
