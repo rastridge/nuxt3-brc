@@ -8,6 +8,21 @@
 				<div
 					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-8rem md:w-10rem p-2"
 				>
+					<nuxt-link :to="`/clubhouse/other/wof`">
+						<div class="container">
+							<a>
+								<img
+									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+									class="w-full"
+								/>
+							</a>
+							<div class="centered text-sm md:text-lg">Wall of Fame</div>
+						</div>
+					</nuxt-link>
+				</div>
+				<div
+					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-8rem md:w-10rem p-2"
+				>
 					<div>
 						<nuxt-link :to="`/clubhouse/room/photo`">
 							<div class="container">
@@ -21,22 +36,6 @@
 							</div>
 						</nuxt-link>
 					</div>
-				</div>
-
-				<div
-					class="flex flex-column justify-content-center text-sm md:text-lg font-semibold text-white w-6rem md:w-8rem md:w-10rem p-2"
-				>
-					<nuxt-link :to="`/clubhouse/wof`">
-						<div class="container">
-							<a>
-								<img
-									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
-									class="w-full"
-								/>
-							</a>
-							<div class="centered text-sm md:text-lg">Wall of Fame</div>
-						</div>
-					</nuxt-link>
 				</div>
 
 				<div

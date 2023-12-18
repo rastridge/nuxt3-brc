@@ -68,7 +68,7 @@ async function getAllCurrent() {
 
 async function getOne(id) {
 	const sql =
-		`select 
+		`SELECT 
 				clubhouse_id,
 				clubhouse_id as id,
 				clubhouse_title,
@@ -78,8 +78,8 @@ async function getOne(id) {
 				clubhouse_filepath,
 				clubhouse_owner,									
 				clubhouse_category
-		from inbrc_clubhouse
-		where clubhouse_id = ` + id
+			FROM inbrc_clubhouse
+			WHERE clubhouse_id = ` + id
 
 	const clubhouse = await doDBQueryBuffalorugby(sql)
 	return clubhouse[0]
