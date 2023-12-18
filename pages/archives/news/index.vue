@@ -19,30 +19,30 @@
 				/>
 			</div>
 		</div>
-
-		<div class="surface-400 p-2 border-round-lg border-1">
-			<ul class="list-none text-sm md:text-lg">
-				<li
-					v-for="itm in year_data"
-					:key="itm.id"
-					class="cursor-pointer text-500 bg-white border-round-lg p-3 m-2"
-				>
-					<a href="#" @click="openModal(itm)">
-						<span class="text-sm md:text-lg text-600">{{
-							$dayjs(itm.news_event_dt).format('LL')
-						}}</span>
-						-
-						<span class="text-sm md:text-lg text-600 font-semibold">{{
-							itm.title
-						}}</span>
-						<span class="text-xs md:text-sm text-blue-600 cursor-pointer">
-							- Open</span
-						>
-					</a>
-				</li>
-			</ul>
+		<div class="my-simple-card-style">
+			<div>
+				<ul class="list-none text-sm md:text-lg">
+					<li
+						v-for="itm in year_data"
+						:key="itm.id"
+						class="cursor-pointer text-500 bg-white border-1 border-round-lg p-3 m-2"
+					>
+						<a href="#" @click="openModal(itm)">
+							<span class="text-sm md:text-lg text-600">{{
+								$dayjs(itm.news_event_dt).format('LL')
+							}}</span>
+							-
+							<span class="text-sm md:text-lg text-600 font-semibold">{{
+								itm.title
+							}}</span>
+							<span class="text-xs md:text-sm text-blue-600 cursor-pointer">
+								- Open</span
+							>
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
-		<!-- </div> -->
 
 		<!-- Modal -->
 		<Dialog

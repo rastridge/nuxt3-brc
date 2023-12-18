@@ -8,7 +8,7 @@
 			placeholder="Select a Different Year"
 			:pt="{
 				root: { class: 'w-full md:w-14rem' },
-				item: { class: 'text-xl' },
+				item: { class: 'md:text-xl  font-semibold' },
 				input: { class: 'md:text-xl  font-semibold' },
 			}"
 		/>

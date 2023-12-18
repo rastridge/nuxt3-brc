@@ -16,7 +16,7 @@
 			</div>
 			<div v-if="!record || !total" class="topsectionitem">Loading ...</div>
 		</div>
-		<div class="card">
+		<div class="my-simple-card-style">
 			<div v-if="total" style="overflow-x: auto">
 				<table class="nowrap">
 					<thead>
@@ -49,7 +49,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="card">
+			<div class="my-simple-card-style">
 				<div class="my-datatable-wrapper-style">
 					<DataTable
 						:value="record"

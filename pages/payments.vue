@@ -3,8 +3,9 @@
 		<div class="center-content">
 			<common-header title="Payments" />
 		</div>
+
 		<div
-			class="flex flex-column md:flex-row flex-wrap align-items-center md:align-items-start justify-content-center"
+			class="my-simple-card-style flex flex-column md:flex-row flex-wrap align-items-center md:align-items-start justify-content-center"
 		>
 			<Card
 				v-for="item in payments"

@@ -3,7 +3,7 @@
 		<div class="center-content">
 			<common-header title="Events" />
 		</div>
-		<div>
+		<div class="my-simple-card-style">
 			<Card
 				v-for="item in events"
 				:key="item.id"

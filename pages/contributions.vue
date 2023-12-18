@@ -50,7 +50,7 @@
 				/>
 			</div>
 		</div>
-		<div class="card">
+		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">
 				<h6 class="my-header-style">Number {{ number }} Total ${{ total }}</h6>
 				<DataTable
@@ -126,68 +126,68 @@
 					>
 				</DataTable>
 			</div>
-		</div>
-		<div class="card w-full my-text-style">
-			<h4 class="my-header-style">The Need</h4>
-			<p>
-				We need a committed active playing membership of about 50 to be
-				successful. The Club is actively welcoming players from local colleges,
-				from the local high school programs as well as walk-ons. Most of the new
-				recruits are younger, seeking jobs or under-employed. Paying the $300
-				annual dues and travel expenses to away games is a difficult prospect
-				for many of the kids.
-			</p>
-			<p>
-				Over the last two years the Alumni Scholarship Program has helped about
-				8 players per year with the expenses of playing top level rugby.
-				Under-employed and unemployed players were invited to sign contracts
-				which promise they will pay half their annual dues up front, work as
-				needed at club functions and attend practices regularly. At the end of
-				the season, if the conditions are met the club submits a bill to the
-				alumni fund for amount of the second dues installment and a percentage
-				of the travel expenses (van rental, room, gas, etc). Approximately $6000
-				alumni dollars have be spent supporting this Program over the last three
-				years.
-			</p>
-			<hr />
-			<p>
-				Buffalo Rugby Club Old Boys Alumni Fund<br />
-				The Buffalo Rugby Club is a Tax Exempt 501c3 Organization. Your
-				contributions are tax deductible.<br />
-				&nbsp;
-			</p>
-		</div>
-		<div class="card" style="width: 480px">
-			<div class="my-datatable-wrapper-style">
-				<h3 class="my-header-style">Top Contributors</h3>
-				<DataTable
-					:value="topcontributors"
-					class="p-datatable-sm my-text-style"
-					tableStyle="width: 100%"
-					scrollable
-					scrollHeight="400px"
-					dataKey="contribution_id"
-				>
-					<template #empty> No contributions found for this year </template>
-					<template #loading>
-						Loading contributions data. Please wait.
-					</template>
+			<div class="card w-full my-text-style">
+				<h4 class="my-header-style">The Need</h4>
+				<p>
+					We need a committed active playing membership of about 50 to be
+					successful. The Club is actively welcoming players from local
+					colleges, from the local high school programs as well as walk-ons.
+					Most of the new recruits are younger, seeking jobs or under-employed.
+					Paying the $300 annual dues and travel expenses to away games is a
+					difficult prospect for many of the kids.
+				</p>
+				<p>
+					Over the last two years the Alumni Scholarship Program has helped
+					about 8 players per year with the expenses of playing top level rugby.
+					Under-employed and unemployed players were invited to sign contracts
+					which promise they will pay half their annual dues up front, work as
+					needed at club functions and attend practices regularly. At the end of
+					the season, if the conditions are met the club submits a bill to the
+					alumni fund for amount of the second dues installment and a percentage
+					of the travel expenses (van rental, room, gas, etc). Approximately
+					$6000 alumni dollars have be spent supporting this Program over the
+					last three years.
+				</p>
+				<hr />
+				<p>
+					Buffalo Rugby Club Old Boys Alumni Fund<br />
+					The Buffalo Rugby Club is a Tax Exempt 501c3 Organization. Your
+					contributions are tax deductible.<br />
+					&nbsp;
+				</p>
+			</div>
+			<div style="width: 480px">
+				<div class="my-datatable-wrapper-style">
+					<h3 class="my-header-style">Top Contributors</h3>
+					<DataTable
+						:value="topcontributors"
+						class="p-datatable-sm my-text-style"
+						tableStyle="width: 100%"
+						scrollable
+						scrollHeight="400px"
+						dataKey="contribution_id"
+					>
+						<template #empty> No contributions found for this year </template>
+						<template #loading>
+							Loading contributions data. Please wait.
+						</template>
 
-					<Column field="Name" header="Contributor" frozen>
-						<template #body="slotProps">
-							<div>
-								{{
-									slotProps.data.showName ? slotProps.data.Name : 'Anonymous'
-								}}
-							</div>
-						</template>
-					</Column>
-					<Column field="Total" header="" frozen>
-						<template #body="slotProps">
-							<div>${{ slotProps.data.Total }}</div>
-						</template>
-					</Column>
-				</DataTable>
+						<Column field="Name" header="Contributor" frozen>
+							<template #body="slotProps">
+								<div>
+									{{
+										slotProps.data.showName ? slotProps.data.Name : 'Anonymous'
+									}}
+								</div>
+							</template>
+						</Column>
+						<Column field="Total" header="" frozen>
+							<template #body="slotProps">
+								<div>${{ slotProps.data.Total }}</div>
+							</template>
+						</Column>
+					</DataTable>
+				</div>
 			</div>
 		</div>
 	</div>

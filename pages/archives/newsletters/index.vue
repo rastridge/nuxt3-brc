@@ -19,12 +19,12 @@
 				/>
 			</div>
 		</div>
-		<div class="surface-400 p-2 border-round-lg border-1">
+		<div class="my-simple-card-style">
 			<ul class="list-none text-sm md:text-lg">
 				<li
 					v-for="itm in year_data"
 					:key="itm.id"
-					class="cursor-pointer text-500 bg-white border-round-lg p-3 m-2"
+					class="cursor-pointer text-500 font-semibold bg-white border-1 border-round-lg p-3 m-2"
 				>
 					<a href="#" @click="openModal(itm)">
 						<span class="text-sm md:text-lg text-600">{{

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-	<div class="card">
+	<div class="my-simple-card-style">
 		<div class="col-12 mt-10 text-center">Sakai logo</div>
 		<main class="px-4 py-10 text-center text-teal-700 text-8xl">
 			<div>

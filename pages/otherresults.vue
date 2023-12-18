@@ -9,31 +9,28 @@
 			</div>
 
 			<div class="topsectionitem">
-				<Card class="my-card-style">
-					<template #content>
-						<Button
-							href="https://xplorer.rugby/empire/fixtures-results?comp=F55b2bWvN7CKLA6cE&team=All&tab=Results"
-							class="m-1 text-white"
-							severity="info"
-							raised
-							label="League Results"
-							target="_blank"
-						>
-						</Button>
+				<div class="my-simple-card-style p-4">
+					<Button
+						href="https://xplorer.rugby/empire/fixtures-results?comp=F55b2bWvN7CKLA6cE&team=All&tab=Results"
+						class="m-1 text-white"
+						severity="info"
+						raised
+						label="League Results"
+						target="_blank"
+					>
+					</Button>
 
-						<Button
-							href="https://xplorer.rugby/empire/fixtures-results?comp=F55b2bWvN7CKLA6cE&team=All&tab=Ladder"
-							class="m-1 text-white"
-							severity="info"
-							raised
-							label="League Standings"
-							target="_blank"
-						>
-						</Button>
-					</template>
-				</Card>
+					<Button
+						href="https://xplorer.rugby/empire/fixtures-results?comp=F55b2bWvN7CKLA6cE&team=All&tab=Ladder"
+						class="m-1 text-white"
+						severity="info"
+						raised
+						label="League Standings"
+						target="_blank"
+					>
+					</Button>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
-<script></script>

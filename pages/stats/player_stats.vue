@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<Common-header title="15s Players" />
-		<div class="card">
+		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">
 				<DataTable
 					:value="data"

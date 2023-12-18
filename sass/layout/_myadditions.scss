@@ -97,6 +97,12 @@
 	);
 }
 
+.my-simple-card-style {
+	@include styleclass(
+		'bg-white border-round-sm md:border-round-lg shadow-6 m-2 p-2'
+	);
+}
+
 .my-card-style {
 	@include styleclass(
 		'border-round-sm md:border-round-lg shadow-6 m-2 p-2 bg-blue-600 text-white font-semibold'

@@ -25,7 +25,7 @@
 			/>
 
 			<div class="topsectionitem">
-				<div class="card">
+				<div class="my-simple-card-style">
 					<table class="my-text-style">
 						<tr>
 							<th>Select filters</th>
@@ -122,7 +122,7 @@
 				<p class="my-header-style">Selected records count {{ rows }}</p>
 			</div>
 		</div>
-		<div class="card">
+		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">
 				<DataTable
 					:value="filteredData"

@@ -2,7 +2,7 @@
 	<div id="player-stats">
 		<Common-header title="7s Players" />
 
-		<div class="card">
+		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">
 				<DataTable
 					:value="data"

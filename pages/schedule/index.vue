@@ -1,133 +1,133 @@
 <template>
 	<div id="schedule">
 		<Head>
-			<Title>Schedule ad Results</Title>
+			<Title>Schedule and Results</Title>
 		</Head>
-		<div>
-			<div class="topsectioncenter">
-				<div class="topsectionitem">
-					<common-header title="Game Schedule and Results" />
-				</div>
-
-				<div class="topsectionitem">
-					<select-season
-						:startyear="startyear"
-						:currentyear="year"
-						@submitted="onSubmit"
-						class="mb-3"
-					/>
-
-					<select-game-type
-						:currenttype="gametype"
-						@submitted="onSubmitGameType"
-					/>
-				</div>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<common-header title="Game Schedule and Results" />
 			</div>
 
-			<DataView
-				:value="filteredData"
-				:pt="{
-					root: {
-						style: {
-							padding: '0.5rem',
-							minWidth: '10rem',
-							border: '2px #00C solid',
-							'border-radius': '10px',
+			<div class="topsectionitem">
+				<select-season
+					:startyear="startyear"
+					:currentyear="year"
+					@submitted="onSubmit"
+					class="mb-3"
+				/>
+
+				<select-game-type
+					:currenttype="gametype"
+					@submitted="onSubmitGameType"
+				/>
+			</div>
+			<div class="my-simple-card-style">
+				<DataView
+					:value="filteredData"
+					:pt="{
+						root: {
+							style: {
+								padding: '0.5rem',
+								minWidth: '10rem',
+								border: '2px #00C solid',
+								'border-radius': '10px',
+							},
 						},
-					},
-				}"
-			>
-				<template #list="slotProps">
-					<div class="col-12">
-						<div
-							class="flex flex-column md:flex-row justify-content-between align-items-center xl:align-items-center gap-2 mb-2 p-3 border-round-md shadow-4 bg-blue-600 text-white font-semibold"
-						>
-							<!-- left -->
+					}"
+				>
+					<template #list="slotProps">
+						<div class="col-12">
 							<div
-								class="flex flex-row justify-content-center md:flex-column align-items-center md:align-items-start gap-3 border-soli w-full md:w-3"
+								class="flex flex-column md:flex-row justify-content-between align-items-center xl:align-items-center gap-2 mb-2 p-3 border-round-md shadow-4 bg-blue-600 text-white font-semibold"
 							>
-								<div class="flex align-items-center border-soli">
-									<span class="lg:text-xl font-bold text-900">
-										{{
-											$dayjs
-												.unix(slotProps.data.date_ut)
-												.format('ddd MMMM D YYYY')
-										}}<br />
-										{{ $dayjs.unix(slotProps.data.date_ut).format('h:mm A') }}
-										EDT
-										<br />
-									</span>
+								<!-- left -->
+								<div
+									class="flex flex-row justify-content-center md:flex-column align-items-center md:align-items-start gap-3 border-soli w-full md:w-3"
+								>
+									<div class="flex align-items-center border-soli">
+										<span class="lg:text-xl font-bold text-900">
+											{{
+												$dayjs
+													.unix(slotProps.data.date_ut)
+													.format('ddd MMMM D YYYY')
+											}}<br />
+											{{ $dayjs.unix(slotProps.data.date_ut).format('h:mm A') }}
+											EDT
+											<br />
+										</span>
+									</div>
+
+									<div class="flex align-items-center border-soli">
+										<span class="font-semibold"
+											>{{ getGameLevelCode(slotProps.data) }} Side
+										</span>
+									</div>
+
+									<div class="flex align-items-center border-soli">
+										<span class="font-semibold">{{
+											slotProps.data.game_type
+										}}</span>
+									</div>
 								</div>
 
-								<div class="flex align-items-center border-soli">
-									<span class="font-semibold"
-										>{{ getGameLevelCode(slotProps.data) }} Side
-									</span>
+								<!-- center stuff-->
+								<div
+									class="flex flex-column align-items-center gap-1 border-soli w-full md:w-6"
+								>
+									<div class="flex align-items-center border-soli">
+										<Button
+											:label="slotProps.data.title"
+											text
+											class="text-3xl text-300 font-bold"
+											@click.prevent="showGame(slotProps.data.game_id)"
+										>
+										</Button>
+									</div>
+									<div class="flex align-items-center border-soli">
+										<span class="text-2xl font-semibold">
+											{{ getResultCode(slotProps.data) }} &nbsp;&nbsp;&nbsp;
+											{{ slotProps.data.ptsFor }} -
+											{{ slotProps.data.ptsAgn }}</span
+										>
+									</div>
 								</div>
 
-								<div class="flex align-items-center border-soli">
-									<span class="font-semibold">{{
-										slotProps.data.game_type
-									}}</span>
-								</div>
-							</div>
-
-							<!-- center stuff-->
-							<div
-								class="flex flex-column align-items-center gap-1 border-soli w-full md:w-6"
-							>
-								<div class="flex align-items-center border-soli">
-									<Button
-										:label="slotProps.data.title"
-										text
-										class="text-3xl text-300 font-bold"
-										@click.prevent="showGame(slotProps.data.game_id)"
-									>
-									</Button>
-								</div>
-								<div class="flex align-items-center border-soli">
-									<span class="text-2xl font-semibold">
-										{{ getResultCode(slotProps.data) }} &nbsp;&nbsp;&nbsp;
-										{{ slotProps.data.ptsFor }} -
-										{{ slotProps.data.ptsAgn }}</span
-									>
-								</div>
-							</div>
-
-							<!-- right aligned stuff -->
-							<div
-								class="flex flex-row justify-content-center md:flex-column align-items-center md:align-items-start gap-2 border-soli w-full md:w-3"
-							>
-								<div class="flex align-items-center gap-3 border-soli">
-									<span class="md:text-xl font-semibold"
-										>@ {{ slotProps.data.venue }}</span
-									>
-								</div>
-								<div class="flex align-items-center border-soli">
-									<span>
-										{{ slotProps.data.occasion }}
-									</span>
-								</div>
-								<div class="flex align-items-center border-soli">
-									<Button
-										label="Show history"
-										class="text-300"
-										link
-										size="small"
-										@click="showHistory(slotProps.data.opponent_id)"
-									>
-									</Button>
-									<span class="text-sm text-800">
-										{{ slotProps.data.game_id }}
-									</span>
+								<!-- right aligned stuff -->
+								<div
+									class="flex flex-row justify-content-center md:flex-column align-items-center md:align-items-start gap-2 border-soli w-full md:w-3"
+								>
+									<div class="flex align-items-center gap-3 border-soli">
+										<span class="md:text-xl font-semibold"
+											>@ {{ slotProps.data.venue }}</span
+										>
+									</div>
+									<div class="flex align-items-center border-soli">
+										<span>
+											{{ slotProps.data.occasion }}
+										</span>
+									</div>
+									<div class="flex align-items-center border-soli">
+										<Button
+											label="Show history"
+											class="text-300"
+											link
+											size="small"
+											@click="showHistory(slotProps.data.opponent_id)"
+										>
+										</Button>
+										<span class="text-sm text-800">
+											{{ slotProps.data.game_id }}
+										</span>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</template>
-			</DataView>
-			<roster-chart />
+					</template>
+				</DataView>
+				<roster-chart />
+			</div>
 		</div>
+
 		<!-- Game Modal -->
 		<Dialog
 			v-model:visible="displayGameModal"

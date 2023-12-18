@@ -3,7 +3,7 @@
 		<div class="center-content">
 			<common-header title="Sponsors" />
 		</div>
-		<div>
+		<div class="my-simple-card-style">
 			<Card v-for="item in sponsors" :key="item.id" class="my-card-style">
 				<template #header>
 					<span class="text-xl">{{ item.ad_client_name }}</span></template

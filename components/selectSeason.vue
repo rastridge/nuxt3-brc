@@ -7,9 +7,8 @@
 			optionValue="year"
 			:pt="{
 				root: { class: 'w-full md:w-20rem' },
-				item: { class: 'text-xl' },
-				// input: ({ props, state, context }) => ({ class: 'text-2xl' }),
-				input: { class: 'md:text-xl font-semibold' },
+				item: { class: 'md:text-xl  font-semibold' },
+				input: { class: 'md:text-xl  font-semibold' },
 			}"
 		/>
 	</div>

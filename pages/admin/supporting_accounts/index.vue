@@ -14,7 +14,7 @@
 		</div>
 
 		<!-- supportingaccounts[0] = {{ supportingaccounts[0] }} -->
-		<div class="card">
+		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">
 				<DataTable
 					v-model:expandedRows="expandedRows"

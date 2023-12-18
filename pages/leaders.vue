@@ -3,7 +3,7 @@
 		<div class="center-content">
 			<common-header title="Club Leaders" />
 		</div>
-		<div class="card">
+		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">
 				<DataTable
 					:value="leaders"

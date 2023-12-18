@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<Common-header title="Opponents" />
-		<div class="card">
+		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">
 				<DataTable
 					v-model:expandedRows="expandedRows"

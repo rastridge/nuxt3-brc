@@ -6,7 +6,7 @@
 		<!-- 		<div
 			class="border-round-xl md:shadow-6 m-1 p-2 md:m-2 md:p-3 bg-blue-600 text-white text-sm md:text-lg"
 		> -->
-		<div class="card">
+		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">
 				<DataTable :value="officers" class="p-datatable-sm my-text-style">
 					<Column field="title" header=""></Column>

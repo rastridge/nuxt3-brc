@@ -1,6 +1,6 @@
 <template>
 	<div id="sponsorad">
-		<div class="card w-full">
+		<div class="my-simple-card-style w-full">
 			<div v-if="item">
 				<a :href="item.ad_client_website" target="_blank">
 					<img :src="item.ad_image_path" style="width: 100%" />

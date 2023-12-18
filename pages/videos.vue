@@ -16,15 +16,12 @@
 				/>
 			</div>
 		</div>
-		<div
-			v-if="videos.length"
-			class="surface-400 pt-3 pb-3 border-round-lg border-1"
-		>
-			<ul class="list-none text-xl">
+		<div v-if="videos.length" class="my-simple-card-style">
+			<ul class="list-none my-text-style">
 				<li
 					v-for="itm in filteredData"
 					:key="itm.video_id"
-					class="cursor-pointer bg-white border-1 p-3 m-2"
+					class="cursor-pointer bg-white border-round-lg border-1 p-3 m-2"
 					href="#"
 					@click.prevent="selectItem(itm)"
 				>
