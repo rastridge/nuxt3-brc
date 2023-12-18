@@ -12,7 +12,7 @@
 						<div class="container">
 							<a>
 								<img
-									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+									src="https://media.buffalorugby.org/imgs/wood-door.png"
 									class="w-full"
 								/>
 							</a>
@@ -28,7 +28,7 @@
 							<div class="container">
 								<a>
 									<img
-										src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+										src="https://media.buffalorugby.org/imgs/wood-door.png"
 										class="w-full"
 									/>
 								</a>
@@ -45,7 +45,7 @@
 						<div class="container">
 							<a>
 								<img
-									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+									src="https://media.buffalorugby.org/imgs/wood-door.png"
 									class="w-full"
 								/>
 							</a>
@@ -61,7 +61,7 @@
 						<div class="container">
 							<a>
 								<img
-									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+									src="https://media.buffalorugby.org/imgs/wood-door.png"
 									class="w-full"
 							/></a>
 							<div class="centered text-sm md:text-lg">Plaques Room</div>
@@ -76,7 +76,7 @@
 						<div class="container">
 							<a>
 								<img
-									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+									src="https://media.buffalorugby.org/imgs/wood-door.png"
 									class="w-full"
 							/></a>
 							<div class="centered text-sm md:text-lg">Jerseys Room</div>
@@ -91,7 +91,7 @@
 						<div class="container">
 							<a>
 								<img
-									src="https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png"
+									src="https://media.buffalorugby.org/imgs/wood-door.png"
 									class="w-full"
 							/></a>
 							<div class="centered text-sm md:text-lg">Balls Room</div>
@@ -104,9 +104,7 @@
 </template>
 
 <script setup>
-	const door = ref(
-		'https://res.cloudinary.com/rfamedia/image/upload/v1677355607/brc/clubhouse/wood-door-1-500x500_dqhdtt.png'
-	)
+	const door = ref('https://media.buffalorugby.org/imgs/wood-door.png')
 </script>
 
 <style scoped>
