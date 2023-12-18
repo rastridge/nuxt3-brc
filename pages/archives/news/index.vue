@@ -21,20 +21,18 @@
 		</div>
 		<div class="my-simple-card-style">
 			<div>
-				<ul class="list-none text-sm md:text-lg">
+				<ul class="list-non my-text-style font-semibold">
 					<li
 						v-for="itm in year_data"
 						:key="itm.id"
-						class="cursor-pointer text-500 bg-white border-1 border-round-lg p-3 m-2"
+						class="cursor-pointer text-500 bg-white border- border-round-lg p-3 m-2"
 					>
 						<a href="#" @click="openModal(itm)">
-							<span class="text-sm md:text-lg text-600">{{
+							<span class="text-900 font-italic">{{
 								$dayjs(itm.news_event_dt).format('LL')
 							}}</span>
 							-
-							<span class="text-sm md:text-lg text-600 font-semibold">{{
-								itm.title
-							}}</span>
+							<span class="text-900">{{ itm.title }}</span>
 							<span class="text-xs md:text-sm text-blue-600 cursor-pointer">
 								- Open</span
 							>
