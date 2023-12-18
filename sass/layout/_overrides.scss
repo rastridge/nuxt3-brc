@@ -1,28 +1,6 @@
 // Suggested location to add your overrides so that migration would be easy by just updating the SASS folder in the future
 @import '_myadditions';
 
-// why ???
-/* a {
-	outline: none !important;
-	box-shadow: none !important;
-}
-
-button {
-	outline: none !important;
-	box-shadow: none !important;
-} */
-
-// increase padding on large screens
-
-.card {
-	padding: 0.5rem;
-}
-@media (min-width: 768px) {
-	.card {
-		padding: 1.5rem;
-	}
-}
-
 .p-radiobutton {
 	margin-right: 5px;
 }

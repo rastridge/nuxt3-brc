@@ -22,19 +22,7 @@
 				/>
 			</div>
 			<div class="my-simple-card-style">
-				<DataView
-					:value="filteredData"
-					:pt="{
-						root: {
-							style: {
-								padding: '0.5rem',
-								minWidth: '10rem',
-								border: '2px #00C solid',
-								'border-radius': '10px',
-							},
-						},
-					}"
-				>
+				<DataView :value="filteredData">
 					<template #list="slotProps">
 						<div class="col-12">
 							<div
@@ -44,8 +32,8 @@
 								<div
 									class="flex flex-row justify-content-center md:flex-column align-items-center md:align-items-start gap-3 border-soli w-full md:w-3"
 								>
-									<div class="flex align-items-center border-soli">
-										<span class="lg:text-xl font-bold text-900">
+									<div class="flex align-items-end border-soli">
+										<span class="text-sm md:text-md lg:text-lg font-bold">
 											{{
 												$dayjs
 													.unix(slotProps.data.date_ut)
@@ -78,7 +66,7 @@
 										<Button
 											:label="slotProps.data.title"
 											text
-											class="text-3xl text-300 font-bold"
+											class="cursor-pointer text-2xl md:text-3xl text-blue-900 font-bold"
 											@click.prevent="showGame(slotProps.data.game_id)"
 										>
 										</Button>
@@ -97,7 +85,7 @@
 									class="flex flex-row justify-content-center md:flex-column align-items-center md:align-items-start gap-2 border-soli w-full md:w-3"
 								>
 									<div class="flex align-items-center gap-3 border-soli">
-										<span class="md:text-xl font-semibold"
+										<span class="text-sm md:text-md lg:text-lg font-bold"
 											>@ {{ slotProps.data.venue }}</span
 										>
 									</div>
@@ -109,13 +97,13 @@
 									<div class="flex align-items-center border-soli">
 										<Button
 											label="Show history"
-											class="text-300"
-											link
+											class="cursor-pointer font-semibold text-300"
+											text
 											size="small"
 											@click="showHistory(slotProps.data.opponent_id)"
 										>
 										</Button>
-										<span class="text-sm text-800">
+										<span class="text-sm text-700">
 											{{ slotProps.data.game_id }}
 										</span>
 									</div>

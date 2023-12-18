@@ -1,10 +1,12 @@
 <template>
 	<div>
 		<Common-header :title="content_data.content_name" />
-		<div
-			class="border-round-xl md:shadow-6 m-1 p-2 md:m-2 md:p-3 bg-blue-600 text-white text-sm md:text-lg"
-		>
-			<span v-html="content_data.content_body"></span>
+		<div class="my-simple-card-style">
+			<div
+				class="my-text-style border-round-xl md:shadow-6 m-1 p-2 md:m-2 md:p-3 bg-blue-600 text-white"
+			>
+				<span v-html="content_data.content_body"></span>
+			</div>
 		</div>
 	</div>
 </template>

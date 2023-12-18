@@ -18,7 +18,7 @@
 				class="flex flex-column md:flex-row flex-wrap align-items-center md:align-items-start justify-content-center gap-2"
 			>
 				<div class="flex justify-content-center">
-					<div>
+					<div class="my-card-style">
 						<div class="my-header-style">Latest on Facebook</div>
 						<iframe
 							src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBuffaloRugbyClub%2F&tabs=timeline&width=340&height=400&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId"
@@ -33,7 +33,7 @@
 					</div>
 				</div>
 				<div class="flex justify-content-center">
-					<div>
+					<div class="my-card-style">
 						<div class="my-header-style">Latest on Instagram</div>
 						<!--  -->
 						<blockquote
