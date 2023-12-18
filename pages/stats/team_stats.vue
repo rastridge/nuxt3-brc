@@ -49,36 +49,37 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="my-datatable-wrapper-style">
-				<DataTable
-					:value="record"
-					class="p-datatable-sm my-text-style"
-					rowHover
-				>
-					<!-- <DataTable :value="filteredData" paginator :rows="20"> -->
-					<Column field="season" header="Season">
-						<template #body="slotProps">
-							{{ slotProps.data.season }}
-						</template>
-					</Column>
-					<Column field="game_count" header="Games"></Column>
-					<Column field="wins" header="Wins"></Column>
-					<Column field="losses" header="Losses"></Column>
-					<Column field="ties" header="Ties"></Column>
-					<Column field="unknown" header="Unknown"></Column>
-					<Column header="Win%">
-						<template #body="slotProps">
-							{{
-								(
-									(slotProps.data.wins /
-										(slotProps.data.game_count - slotProps.data.unknown)) *
-									100
-								).toFixed(0)
-							}}
-							%
-						</template></Column
+			<div class="card">
+				<div class="my-datatable-wrapper-style">
+					<DataTable
+						:value="record"
+						class="p-datatable-sm my-text-style"
+						rowHover
 					>
-				</DataTable>
+						<Column field="season" header="Season">
+							<template #body="slotProps">
+								{{ slotProps.data.season }}
+							</template>
+						</Column>
+						<Column field="game_count" header="Games"></Column>
+						<Column field="wins" header="Wins"></Column>
+						<Column field="losses" header="Losses"></Column>
+						<Column field="ties" header="Ties"></Column>
+						<Column field="unknown" header="Unknown"></Column>
+						<Column header="Win%">
+							<template #body="slotProps">
+								{{
+									(
+										(slotProps.data.wins /
+											(slotProps.data.game_count - slotProps.data.unknown)) *
+										100
+									).toFixed(0)
+								}}
+								%
+							</template></Column
+						>
+					</DataTable>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -51,87 +51,81 @@
 			</div>
 		</div>
 		<div class="card">
-			<h6 class="my-header-style">Number {{ number }} Total ${{ total }}</h6>
-			<DataTable
-				:value="contributions"
-				class="p-datatable-sm my-text-style"
-				tableStyle="width: 400px"
-				:pt="{
-					wrapper: {
-						style: {
-							padding: '0.5rem',
-							minWidth: '10rem',
-							border: '2px #00C solid',
-							'border-radius': '10px',
-						},
-					},
-				}"
-				scrollable
-				scrollHeight="400px"
-				dataKey="contribution_id"
-				:loading="loading"
-			>
-				<template #empty> No contributions found for this year </template>
-				<template #loading> Loading contributions data. Please wait. </template>
+			<div class="my-datatable-wrapper-style">
+				<h6 class="my-header-style">Number {{ number }} Total ${{ total }}</h6>
+				<DataTable
+					:value="contributions"
+					class="p-datatable-sm my-text-style"
+					tableStyle="width: 400px"
+					scrollable
+					scrollHeight="400px"
+					dataKey="contribution_id"
+					:loading="loading"
+				>
+					<template #empty> No contributions found for this year </template>
+					<template #loading>
+						Loading contributions data. Please wait.
+					</template>
 
-				<Column
-					field="contribution_date"
-					header="Date"
-					style="white-space: nowrap"
-				>
-					<template #body="slotProps">
-						<div>
-							{{ $dayjs(slotProps.data.contribution_date).format('ll') }}
-						</div>
-					</template>
-				</Column>
-				<Column
-					field="member_lastname"
-					header="Contributor"
-					frozen
-					style="white-space: nowrap"
-				>
-					<template #body="slotProps">
-						<div>
-							{{
-								slotProps.data.contribution_showName
-									? slotProps.data.member_firstname +
-									  ' ' +
-									  slotProps.data.member_lastname
-									: 'Anonymous'
-							}}
-						</div>
-					</template>
-				</Column>
-				<Column field="year_joined" header="Joined">
-					<template #body="slotProps">
-						<div>
-							{{
-								slotProps.data.year_joined != 0
-									? slotProps.data.year_joined
-									: ''
-							}}
-						</div>
-					</template>
-				</Column>
-				<Column field="contribution_amount" header="Amount">
-					<template #body="slotProps">
-						<div>
-							{{
-								slotProps.data.contribution_showAmount
-									? slotProps.data.contribution_amount
-									: ''
-							}}
-						</div>
-					</template>
-				</Column>
-				<Column
-					field="contribution_comment"
-					header="Comment"
-					style="white-space: nowrap"
-					>{{ slotProps.data.contribution_comment }}</Column
-				>
-			</DataTable>
+					<Column
+						field="contribution_date"
+						header="Date"
+						style="white-space: nowrap"
+					>
+						<template #body="slotProps">
+							<div>
+								{{ $dayjs(slotProps.data.contribution_date).format('ll') }}
+							</div>
+						</template>
+					</Column>
+					<Column
+						field="member_lastname"
+						header="Contributor"
+						frozen
+						style="white-space: nowrap"
+					>
+						<template #body="slotProps">
+							<div>
+								{{
+									slotProps.data.contribution_showName
+										? slotProps.data.member_firstname +
+										  ' ' +
+										  slotProps.data.member_lastname
+										: 'Anonymous'
+								}}
+							</div>
+						</template>
+					</Column>
+					<Column field="year_joined" header="Joined">
+						<template #body="slotProps">
+							<div>
+								{{
+									slotProps.data.year_joined != 0
+										? slotProps.data.year_joined
+										: ''
+								}}
+							</div>
+						</template>
+					</Column>
+					<Column field="contribution_amount" header="Amount">
+						<template #body="slotProps">
+							<div>
+								{{
+									slotProps.data.contribution_showAmount
+										? slotProps.data.contribution_amount
+										: ''
+								}}
+							</div>
+						</template>
+					</Column>
+					<Column
+						field="contribution_comment"
+						header="Comment"
+						style="white-space: nowrap"
+						>{{ slotProps.data.contribution_comment }}</Column
+					>
+				</DataTable>
+			</div>
 		</div>
 		<div class="card w-full my-text-style">
 			<h4 class="my-header-style">The Need</h4>
@@ -163,41 +157,38 @@
 				&nbsp;
 			</p>
 		</div>
-		<div class="card my-text-style" style="width: 400px">
-			<h3 class="my-header-style">Top Contributors</h3>
-			<DataTable
-				:value="topcontributors"
-				class="p-datatable-sm my-text-style"
-				tableStyle="width: 320px"
-				:pt="{
-					wrapper: {
-						style: {
-							minWidth: '10rem',
-							border: '2px #00C solid',
-							'border-radius': '10px',
-						},
-					},
-				}"
-				scrollable
-				scrollHeight="400px"
-				dataKey="contribution_id"
-			>
-				<template #empty> No contributions found for this year </template>
-				<template #loading> Loading contributions data. Please wait. </template>
+		<div class="card" style="width: 480px">
+			<div class="my-datatable-wrapper-style">
+				<h3 class="my-header-style">Top Contributors</h3>
+				<DataTable
+					:value="topcontributors"
+					class="p-datatable-sm my-text-style"
+					tableStyle="width: 100%"
+					scrollable
+					scrollHeight="400px"
+					dataKey="contribution_id"
+				>
+					<template #empty> No contributions found for this year </template>
+					<template #loading>
+						Loading contributions data. Please wait.
+					</template>
 
-				<Column field="Name" header="Contributor" frozen>
-					<template #body="slotProps">
-						<div>
-							{{ slotProps.data.showName ? slotProps.data.Name : 'Anonymous' }}
-						</div>
-					</template>
-				</Column>
-				<Column field="Total" header="" frozen>
-					<template #body="slotProps">
-						<div>${{ slotProps.data.Total }}</div>
-					</template>
-				</Column>
-			</DataTable>
+					<Column field="Name" header="Contributor" frozen>
+						<template #body="slotProps">
+							<div>
+								{{
+									slotProps.data.showName ? slotProps.data.Name : 'Anonymous'
+								}}
+							</div>
+						</template>
+					</Column>
+					<Column field="Total" header="" frozen>
+						<template #body="slotProps">
+							<div>${{ slotProps.data.Total }}</div>
+						</template>
+					</Column>
+				</DataTable>
+			</div>
 		</div>
 	</div>
 </template>

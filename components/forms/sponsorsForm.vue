@@ -46,8 +46,8 @@
 				validation="required"
 			/>
 
-			<div class="w-7 border-1 p-2 m-2">
-				<!-- ad image file upload 			-->
+			<div class="my-fileupload-wrapper-style">
+				<!-- sponsor image file upload 			-->
 				<p>Image must be 750w 125h 72dpi</p>
 				<label for="ad_image">Add or Replace Sponsor image file</label><br />
 				<!-- show image file  -->

@@ -21,7 +21,7 @@
 			/>
 			<FormKit label="Category" name="archive_category" type="text" />
 
-			<div class="w-7 border-1 p-2 m-2">
+			<div class="my-fileupload-wrapper-style">
 				<p>PDF file {{ state.archive_filepath }}</p>
 				<FileUpload
 					class="mb-4 my-test-style"

@@ -125,4 +125,7 @@
 	);
 }
 
+.my-fileupload-wrapper-style {
+	@include styleclass('w-8 md:w-full border-1 p-2 m-2 border-round-sm');
+}
 // 'p-2 text-md border-blue-900 border-1 border-round-md md:border-round-lg'

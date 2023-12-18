@@ -25,186 +25,175 @@
 			/>
 
 			<div class="topsectionitem">
-				<Card class="w-20rem border-round m-2">
-					<template #content>
-						<table class="text-sm md:text-lg">
-							<tr>
-								<th>Select filters</th>
-								<th>Yes</th>
-								<th>No</th>
-								<th>NA</th>
-							</tr>
-							<tr>
-								<td class="text-right">Good Email</td>
-								<td>
-									<input type="radio" v-model="email" value="1" />
-								</td>
-								<td>
-									<input type="radio" v-model="email" value="0" />
-								</td>
-								<td>
-									<input type="radio" v-model="email" value="2" />
-								</td>
-							</tr>
+				<div class="card">
+					<table class="my-text-style">
+						<tr>
+							<th>Select filters</th>
+							<th>Yes</th>
+							<th>No</th>
+							<th>NA</th>
+						</tr>
+						<tr>
+							<td class="text-right">Good Email</td>
+							<td>
+								<input type="radio" v-model="email" value="1" />
+							</td>
+							<td>
+								<input type="radio" v-model="email" value="0" />
+							</td>
+							<td>
+								<input type="radio" v-model="email" value="2" />
+							</td>
+						</tr>
 
-							<tr>
-								<td class="text-right">Marked for emailing</td>
-								<td>
-									<input type="radio" v-model="marked_for_email" value="1" />
-								</td>
-								<td>
-									<input type="radio" v-model="marked_for_email" value="0" />
-								</td>
-								<td>
-									<input type="radio" v-model="marked_for_email" value="2" />
-								</td>
-							</tr>
+						<tr>
+							<td class="text-right">Marked for emailing</td>
+							<td>
+								<input type="radio" v-model="marked_for_email" value="1" />
+							</td>
+							<td>
+								<input type="radio" v-model="marked_for_email" value="0" />
+							</td>
+							<td>
+								<input type="radio" v-model="marked_for_email" value="2" />
+							</td>
+						</tr>
 
-							<tr>
-								<td class="text-right">Email Opened in last 90 days</td>
-								<td>
-									<!-- Yes -->
-									<input type="radio" v-model="email_opened" value="1" />
-								</td>
-								<td>
-									<!-- No  -->
-									<input type="radio" v-model="email_opened" value="0" />
-								</td>
-								<td>
-									<!-- Does not apply  -->
-									<input type="radio" v-model="email_opened" value="2" />
-								</td>
-							</tr>
+						<tr>
+							<td class="text-right">Email Opened in last 90 days</td>
+							<td>
+								<!-- Yes -->
+								<input type="radio" v-model="email_opened" value="1" />
+							</td>
+							<td>
+								<!-- No  -->
+								<input type="radio" v-model="email_opened" value="0" />
+							</td>
+							<td>
+								<!-- Does not apply  -->
+								<input type="radio" v-model="email_opened" value="2" />
+							</td>
+						</tr>
 
-							<tr>
-								<td class="text-right">Good Address</td>
-								<td>
-									<input type="radio" v-model="address" value="1" />
-								</td>
-								<td>
-									<input type="radio" v-model="address" value="0" />
-								</td>
-								<td>
-									<input type="radio" v-model="address" value="2" />
-								</td>
-							</tr>
-							<tr>
-								<td class="text-right">Marked for mailing (calendar)</td>
-								<td>
-									<input type="radio" v-model="marked_for_mail" value="1" />
-								</td>
-								<td>
-									<input type="radio" v-model="marked_for_mail" value="0" />
-								</td>
-								<td>
-									<input type="radio" v-model="marked_for_mail" value="2" />
-								</td>
-							</tr>
+						<tr>
+							<td class="text-right">Good Address</td>
+							<td>
+								<input type="radio" v-model="address" value="1" />
+							</td>
+							<td>
+								<input type="radio" v-model="address" value="0" />
+							</td>
+							<td>
+								<input type="radio" v-model="address" value="2" />
+							</td>
+						</tr>
+						<tr>
+							<td class="text-right">Marked for mailing (calendar)</td>
+							<td>
+								<input type="radio" v-model="marked_for_mail" value="1" />
+							</td>
+							<td>
+								<input type="radio" v-model="marked_for_mail" value="0" />
+							</td>
+							<td>
+								<input type="radio" v-model="marked_for_mail" value="2" />
+							</td>
+						</tr>
 
-							<tr>
-								<td class="text-right">Donated</td>
-								<td>
-									<input type="radio" v-model="donated" value="1" />
-								</td>
-								<td>
-									<input type="radio" v-model="donated" value="0" />
-								</td>
-								<td>
-									<input type="radio" v-model="donated" value="2" />
-								</td>
-							</tr>
-						</table>
-					</template>
-				</Card>
+						<tr>
+							<td class="text-right">Donated</td>
+							<td>
+								<input type="radio" v-model="donated" value="1" />
+							</td>
+							<td>
+								<input type="radio" v-model="donated" value="0" />
+							</td>
+							<td>
+								<input type="radio" v-model="donated" value="2" />
+							</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 
 			<!-- filteredData[0] === {{ filteredData[0] }} -->
 			<div class="topsectionitem">
 				<!-- Total records -->
-				<p class="text-center font-semibold md:text-lg mb-2">
-					Total Records count = {{ rows }}
-				</p>
+				<p class="my-header-style">Selected records count {{ rows }}</p>
 			</div>
 		</div>
+		<div class="card">
+			<div class="my-datatable-wrapper-style">
+				<DataTable
+					:value="filteredData"
+					class="p-datatable-sm my-text-style"
+					ref="dt"
+					scrollable
+					scrollHeight="600px"
+					dataKey="account_id"
+					:loading="loading"
+					paginator
+					:rows="10"
+					:rowsPerPageOptions="[5, 10, 20, 50]"
+					paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+				>
+					<template #empty> No members found </template>
+					<template #loading> Loading data. Please wait. </template>
+					<template #header>
+						<div style="text-align: left">
+							<Button
+								icon="pi pi-external-link"
+								label="Export to CSV"
+								@click="exportCSV($event)"
+							/>
+						</div>
+					</template>
+					<Column
+						field="modified_dt"
+						header="Last modified"
+						style="white-space: nowrap"
+					>
+						<template #body="slotProps">
+							<div>
+								{{ $dayjs(slotProps.data.modified_dt).format('ll') }}
+							</div>
+						</template>
+					</Column>
 
-		<DataTable
-			:value="filteredData"
-			class="p-datatable-sm my-text-style"
-			ref="dt"
-			:pt="{
-				wrapper: {
-					style: {
-						padding: '0.5rem',
-						minWidth: '10rem',
-						border: '2px #00C solid',
-						'border-radius': '10px',
-					},
-				},
-			}"
-			scrollable
-			scrollHeight="600px"
-			dataKey="account_id"
-			:loading="loading"
-			paginator
-			:rows="10"
-			:rowsPerPageOptions="[5, 10, 20, 50]"
-			paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-		>
-			<template #empty> No members found </template>
-			<template #loading> Loading data. Please wait. </template>
-			<template #header>
-				<div style="text-align: left">
-					<Button
-						icon="pi pi-external-link"
-						label="Export to CSV"
-						@click="exportCSV($event)"
-					/>
-				</div>
-			</template>
-			<Column
-				field="modified_dt"
-				header="Last modified"
-				style="white-space: nowrap"
-			>
-				<template #body="slotProps">
-					<div>
-						{{ $dayjs(slotProps.data.modified_dt).format('ll') }}
-					</div>
-				</template>
-			</Column>
+					<Column field="name" header="Name" frozen style="white-space: nowrap">
+					</Column>
 
-			<Column field="name" header="Name" frozen style="white-space: nowrap">
-			</Column>
+					<Column field="account_addr_phone" header="Phone"> </Column>
+					<Column field="address" header="Address"> </Column>
 
-			<Column field="account_addr_phone" header="Phone"> </Column>
-			<Column field="address" header="Address"> </Column>
+					<Column field="mail_recipient" header="US Mail Recip">
+						<template #body="slotProps">
+							<div>
+								{{ slotProps.data.mail_recipient ? 'Y' : 'N' }}
+							</div>
+						</template>
+					</Column>
 
-			<Column field="mail_recipient" header="US Mail Recip">
-				<template #body="slotProps">
-					<div>
-						{{ slotProps.data.mail_recipient ? 'Y' : 'N' }}
-					</div>
-				</template>
-			</Column>
+					<Column field="account_email" header="Email"> </Column>
 
-			<Column field="account_email" header="Email"> </Column>
+					<Column field="newsletter_recipient" header="Email Recip">
+						<template #body="slotProps">
+							<div>
+								{{ slotProps.data.newsletter_recipient ? 'Y' : 'N' }}
+							</div>
+						</template>
+					</Column>
 
-			<Column field="newsletter_recipient" header="Email Recip">
-				<template #body="slotProps">
-					<div>
-						{{ slotProps.data.newsletter_recipient ? 'Y' : 'N' }}
-					</div>
-				</template>
-			</Column>
-
-			<Column field="account_email_opening" header="Last email opening">
-				<template #body="slotProps">
-					<div>
-						{{ $dayjs(slotProps.data.account_email_opening).format('ll') }}
-					</div>
-				</template>
-			</Column>
-		</DataTable>
+					<Column field="account_email_opening" header="Last email opening">
+						<template #body="slotProps">
+							<div>
+								{{ $dayjs(slotProps.data.account_email_opening).format('ll') }}
+							</div>
+						</template>
+					</Column>
+				</DataTable>
+			</div>
+		</div>
 	</div>
 </template>
 

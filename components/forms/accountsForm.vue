@@ -178,8 +178,8 @@
 				min="1966"
 				step="1"
 			/>
-			<div class="w-8 md:w-10 border-1 p-2 m-2">
-				<!-- ad image file upload 			-->
+			<div class="my-fileupload-wrapper-style">
+				<!-- wof image file upload 	-->
 				<label
 					><span class="font-semibold"
 						>Add or Replace WOF image file</span
