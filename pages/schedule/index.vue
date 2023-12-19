@@ -26,7 +26,7 @@
 					<template #list="slotProps">
 						<div class="col-12">
 							<div
-								class="flex flex-column md:flex-row justify-content-between align-items-center xl:align-items-center gap-2 mb-2 p-3 border-round-md shadow-4 bg-blue-600 text-white font-semibold"
+								class="flex flex-column md:flex-row justify-content-between align-items-center xl:align-items-center gap-2 mb-2 p-3 border-round-md shadow-4 bg-blue-700 text-white font-semibold"
 							>
 								<!-- left -->
 								<div
