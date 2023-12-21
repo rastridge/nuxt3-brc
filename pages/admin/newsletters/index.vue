@@ -7,8 +7,7 @@
 			<div class="topsectionitem">
 				<admin-header :title="app" />
 			</div>
-			<!-- <div v-if="!year_data" class="topsectionitem">Loading ...</div>
-			<div v-else> -->
+
 			<div class="topsectionitem">
 				<select-year
 					:startyear="startyear"
@@ -57,7 +56,7 @@
 	//
 	const onSubmit = function (value) {
 		year.value = value
-		placemark.setYear(year.value)
+		placemark.setYear(value)
 	}
 
 	//
@@ -73,7 +72,11 @@
 		year_data.value = data.value
 	}
 
-	watchEffect(() => getYearOfNewsletters(year.value))
+	watchEffect(() => {
+		getYearOfNewsletters(year.value)
+		// alert('IN watchEffect')
+		// placemark.setPage(0)
+	})
 
 	//
 	// Renderlist actions

@@ -14,7 +14,7 @@
 	/* clumsy attempt to bring menu items closer together */
 	@media (max-width: 960px) {
 		.p-menuitem-content {
-			margin: -10px;
+			margin-top: -5px;
 		}
 	}
 	@media (min-width: 992px) {

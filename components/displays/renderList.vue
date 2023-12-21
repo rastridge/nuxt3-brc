@@ -167,9 +167,11 @@
 	// Initial settings for pagination
 	//
 	const first = ref(placemark.getPage)
+
 	//
 	// Watch = Save paginator page number
 	const onPaginate = (e) => {
+		// Only called on first load and when pagination value is clicked
 		first.value = e.rows * e.page
 		placemark.setPage(first.value)
 	}
@@ -184,6 +186,17 @@
 	//
 	watchEffect(() => {
 		// alert('IN WATCH')
+		// alert('first.value = ' + first.value)
+		// placemark.setYear(placemark.getYear)
+		// alert('placemark.getYear = ' + placemark.getYear)
+
+		// if(){}
+		// next 2 lines trigger watchEffect so can't be here
+		// placemark.setPage(0)
+		// first.value = placemark.getPage
+		// first.value = 0
+		// alert('IN WATCH first.value = ' + first.value)
+
 		datalocal.value = props.data
 	})
 
