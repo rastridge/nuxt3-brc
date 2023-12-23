@@ -69,6 +69,9 @@
 	const onSubmit = function (value) {
 		year.value = value
 		placemark.setYear(year.value)
+		// new year - set page to zero
+		placemark.setPage(0)
+		page.value = 0
 	}
 
 	//
