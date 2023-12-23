@@ -13,6 +13,7 @@
 		<div v-else class="renderlist-enclosure">
 			<render-list
 				:data="votes"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"

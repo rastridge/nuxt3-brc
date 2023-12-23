@@ -20,6 +20,7 @@
 		<div v-if="year_data" class="renderlist-enclosure">
 			<render-list
 				:data="year_data"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"
@@ -49,13 +50,16 @@
 
 	const year = ref(placemark.getYear)
 	const startyear = ref(2004)
-
 	const year_data = ref(null)
+	const page = ref(placemark.getPage)
 	//
 	// Select year action
 	//
 	const onSubmit = function (value) {
 		year.value = value
+		// new year - set page to zero
+		placemark.setPage(0)
+		page.value = 0
 		placemark.setYear(value)
 	}
 
@@ -71,6 +75,9 @@
 		)
 		year_data.value = data.value
 	}
+
+	// on mount
+	// getYearOfNewsletters(year.value)
 
 	watchEffect(() => {
 		getYearOfNewsletters(year.value)

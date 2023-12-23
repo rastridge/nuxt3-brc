@@ -12,6 +12,7 @@
 		<div class="renderlist-enclosure">
 			<render-list
 				:data="payments"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"

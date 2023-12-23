@@ -12,6 +12,7 @@
 		<div class="renderlist-enclosure">
 			<render-list
 				:data="sponsors"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"

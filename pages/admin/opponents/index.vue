@@ -12,6 +12,7 @@
 		<div class="renderlist-enclosure">
 			<render-list
 				:data="opponents_data"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"

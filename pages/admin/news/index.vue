@@ -22,6 +22,7 @@
 		<div class="renderlist-enclosure">
 			<render-list
 				:data="filteredData"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"

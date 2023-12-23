@@ -32,6 +32,7 @@
 		<div class="renderlist-enclosure">
 			<render-list
 				:data="filteredData"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"
@@ -61,6 +62,7 @@
 	//
 	const alpha = ref(placemark.getAlpha)
 	const member_type_id = ref(placemark.getMemberTypeId)
+	const page = ref(placemark.getPage)
 
 	// const member_type_id = ref(9)
 	//

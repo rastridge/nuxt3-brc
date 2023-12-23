@@ -8,14 +8,15 @@
 				<admin-header :title="app" />
 			</div>
 		</div>
-		<div v-if="!users" class="text-center text-2xl">
+		<!-- 		<div v-if="!users" class="text-center text-2xl">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar
 			>Loading ...
 		</div>
-
-		<div v-else class="renderlist-enclosure">
+ -->
+		<div class="renderlist-enclosure">
 			<render-list
 				:data="users"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"

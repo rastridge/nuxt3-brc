@@ -12,6 +12,7 @@
 		<div class="renderlist-enclosure">
 			<render-list
 				:data="clubhouse_data"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"
@@ -29,10 +30,15 @@
 	definePageMeta({
 		middleware: ['auth'],
 	})
+	import { usePlacemarkStore } from '~/stores'
+	const placemark = usePlacemarkStore()
+
 	const { getAll, deleteOne, changeStatusOne } = useFetchAll()
 	//
 	// Initialize values for Renderlist
 	//
+	const page = ref(placemark.getPage)
+
 	const { getAccess } = useRenderListAccess()
 	const app = 'clubhouse'
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)

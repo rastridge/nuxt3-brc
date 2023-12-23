@@ -112,6 +112,7 @@
 		<div class="renderlist-enclosure">
 			<render-list
 				:data="supportingaccounts"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"

@@ -9,6 +9,7 @@
 			</Button>
 		</div>
 		<div v-if="viewable">
+			current = {{ current }} page = {{ page }}
 			<div class="my-renderlist-styles">
 				<DataTable
 					ref="dataTableRef"
@@ -20,7 +21,7 @@
 					:rows="pagesize"
 					paginator-template="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
 					:rows-per-page-options="[10, 20, 50]"
-					:first="first"
+					:first="current"
 					current-page-report-template="Showing {first} to {last} of {totalRecords}"
 					@page="onPaginate"
 				>
@@ -147,6 +148,7 @@
 	//
 	const props = defineProps({
 		data: { type: Array, required: true },
+		page: { type: Number, default: 0, required: false },
 		pagesize: { type: Number, default: 15, required: false },
 		app: { type: String, default: '', required: true },
 		statusable: { type: Boolean, default: false, required: false },
@@ -166,14 +168,15 @@
 	//
 	// Initial settings for pagination
 	//
-	const first = ref(placemark.getPage)
+	const current = ref(props.page)
+	// alert('renderlist called - current = ' + current.value)
 
 	//
 	// Watch = Save paginator page number
 	const onPaginate = (e) => {
 		// Only called on first load and when pagination value is clicked
-		first.value = e.rows * e.page
-		placemark.setPage(first.value)
+		current.value = e.rows * e.page
+		placemark.setPage(current.value)
 	}
 	//
 	// Initial settings for dialog
@@ -185,26 +188,11 @@
 	// React to change in Incoming data
 	//
 	watchEffect(() => {
-		// alert('IN WATCH')
-		// alert('first.value = ' + first.value)
-		// placemark.setYear(placemark.getYear)
-		// alert('placemark.getYear = ' + placemark.getYear)
-
-		// if(){}
-		// next 2 lines trigger watchEffect so can't be here
-		// placemark.setPage(0)
-		// first.value = placemark.getPage
-		// first.value = 0
-		// alert('IN WATCH first.value = ' + first.value)
-
+		// alert('watchEffect current.value ' + current.value)
+		current.value = props.page
 		datalocal.value = props.data
 	})
 
-	//
-	/* 	const editItem = (id) => {
-		placemark.setPage(first.value)
-		navigateTo('`/admin/${app}/${slotProps.data.id}`')
-	} */
 	//
 	// Change status in local data and database
 	//

@@ -7,9 +7,9 @@
 			<div class="topsectionitem">
 				<admin-header :title="app" />
 			</div>
-			<div v-if="!contributions" class="topsectionitem">
+			<!-- 			<div v-if="!contributions" class="topsectionitem">
 				<ProgressSpinner /> Loading ...
-			</div>
+			</div> -->
 			<!--Select year -->
 			<div class="topsectionitem">
 				<select-year
@@ -24,6 +24,7 @@
 		<div class="renderlist-enclosure">
 			<render-list
 				:data="filteredData"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"

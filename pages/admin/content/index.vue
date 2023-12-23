@@ -13,6 +13,7 @@
 		<div v-else class="renderlist-enclosure">
 			<render-list
 				:data="content_data"
+				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"
