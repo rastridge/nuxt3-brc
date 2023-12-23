@@ -49,6 +49,7 @@
 	const { getAccess } = useRenderListAccess()
 	const app = 'archive'
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
+	const page = ref(placemark.getPage)
 
 	//
 	// Initialize year select

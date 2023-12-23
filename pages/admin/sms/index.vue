@@ -30,10 +30,14 @@
 	definePageMeta({
 		middleware: ['auth'],
 	})
-	const { getAll, deleteOne, changeStatusOne } = useFetchAll()
+	import { usePlacemarkStore } from '~/stores'
+	const placemark = usePlacemarkStore()
 
+	const { getAll, deleteOne, changeStatusOne } = useFetchAll()
 	const { getAccess } = useRenderListAccess()
 	const app = 'sms'
+	const page = ref(placemark.getPage)
+
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
 
 	//

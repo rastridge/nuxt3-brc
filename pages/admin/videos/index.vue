@@ -30,6 +30,9 @@
 	definePageMeta({
 		middleware: ['auth'],
 	})
+	import { usePlacemarkStore } from '~/stores'
+	const placemark = usePlacemarkStore()
+
 	const { getAll, deleteOne, changeStatusOne } = useFetchAll()
 	const { getAccess } = useRenderListAccess()
 
@@ -37,6 +40,8 @@
 	// Initialize values for Renderlist
 	//
 	const app = 'videos'
+	const page = ref(placemark.getPage)
+
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
 	const { data: video_data, pending } = await getAll(app)
 

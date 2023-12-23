@@ -47,6 +47,7 @@
 	// Initialize values for Renderlist and Select Year
 	//
 	const app = 'events'
+	const page = ref(placemark.getPage)
 	const { getAccess } = useRenderListAccess()
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
 	const { getAll, deleteOne, changeStatusOne } = useFetchAll()

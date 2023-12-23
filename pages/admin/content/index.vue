@@ -13,7 +13,6 @@
 		<div v-else class="renderlist-enclosure">
 			<render-list
 				:data="content_data"
-				:page="page"
 				:app="app"
 				:statusable="statusable"
 				:editable="editable"
@@ -31,6 +30,9 @@
 	definePageMeta({
 		middleware: ['auth'],
 	})
+	import { usePlacemarkStore } from '~/stores'
+	const placemark = usePlacemarkStore()
+
 	const { getAll, deleteOne, changeStatusOne } = useFetchAll()
 	const { getAccess } = useRenderListAccess()
 
@@ -38,6 +40,7 @@
 	// Initialize values for Renderlist
 	//
 	const app = 'content'
+	const page = ref(placemark.getPage)
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
 	const { data: content_data, pending } = await getAll(app)
 

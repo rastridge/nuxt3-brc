@@ -201,10 +201,12 @@
 	definePageMeta({
 		middleware: ['auth'],
 	})
+	import { usePlacemarkStore } from '~/stores'
+	const placemark = usePlacemarkStore()
+
 	const { $dayjs } = useNuxtApp()
 
 	const { getAll } = useFetchAll()
-
 	const { getMemberTypeOptions } = useMembertypes()
 	const memberTypeOptions = await getMemberTypeOptions()
 

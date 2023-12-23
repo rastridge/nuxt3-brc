@@ -131,10 +131,15 @@
 		middleware: ['auth'],
 	})
 	import { FilterMatchMode } from 'primevue/api'
+	import { usePlacemarkStore } from '~/stores'
+	const placemark = usePlacemarkStore()
+
 	//
 	// Initialize values for Renderlist
 	//
 	const app = 'supporting_accounts'
+	const page = ref(placemark.getPage)
+
 	const { getAccess } = useRenderListAccess()
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
 	const { getAll, deleteOne, changeStatusOne } = useFetchAll()

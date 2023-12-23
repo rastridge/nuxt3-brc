@@ -48,6 +48,8 @@
 	//
 	const { getAccess } = useRenderListAccess()
 	const app = 'news'
+	const page = ref(placemark.getPage)
+
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
 
 	//

@@ -35,6 +35,9 @@
 		middleware: ['auth'],
 	})
 	import { useAlertStore } from '~/stores/alertStore'
+	import { usePlacemarkStore } from '~/stores'
+	const placemark = usePlacemarkStore()
+
 	const alert = useAlertStore()
 	const { getAll, deleteOne, changeStatusOne } = useFetchAll()
 
@@ -43,6 +46,8 @@
 	//
 	const { getAccess } = useRenderListAccess()
 	const app = 'users'
+	const page = ref(placemark.getPage)
+
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
 
 	//
