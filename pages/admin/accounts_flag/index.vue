@@ -8,13 +8,15 @@
 				<admin-header :title="app" />
 			</div>
 
-			<p v-if="!accounts" class="topsectionitem">
+			<!-- 			<p v-if="!accounts" class="topsectionitem">
 				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 				Loading accounts ...
-			</p>
+			</p> -->
 			<div class="topsectionitem">
+				<p class="my-header-style">Member type</p>
 				<Dropdown
 					v-model="member_type_id"
+					class="mb-2"
 					:options="memberTypeOptions"
 					optionLabel="label"
 					optionValue="value"
@@ -35,6 +37,8 @@
 				@deleteItem="deleteItem"
 			/>
 		</div>
+		<p class="my-header-style">Current Info</p>
+
 		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">
 				<DataTable
@@ -138,8 +142,7 @@
 	//
 	// initial testing values
 	//
-	const alpha = ref(placemark.getAlpha)
-	const member_type_id = ref(12)
+	const member_type_id = ref(placemark.getMemberTypeId)
 	const page = ref(placemark.getPage)
 
 	// const member_type_id = ref(placemark.getMemberTypeId)
@@ -173,6 +176,8 @@
 
 	watch(member_type_id, (newid) => {
 		placemark.setMemberTypeId(newid)
+		placemark.setPage(0)
+		page.value = 0
 	})
 
 	//

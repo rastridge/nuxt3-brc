@@ -7,10 +7,10 @@
 			<div class="topsectionitem">
 				<admin-header :title="app" />
 			</div>
-			<div v-if="!stats" class="topsectionitem">
+			<!-- 			<div v-if="!stats" class="topsectionitem">
 				<ProgressSpinner /> Loading ...
-			</div>
-			<div v-else>
+			</div> -->
+			<div>
 				<!--Select season -->
 				<div class="topsectionitem">
 					<select-season
@@ -49,9 +49,9 @@
 		middleware: ['auth'],
 	})
 	import { usePlacemarkStore } from '@/stores'
+	const placemark = usePlacemarkStore()
 	const { $dayjs } = useNuxtApp()
 
-	const placemark = usePlacemarkStore()
 	//
 	// initialize renderlist
 	//
@@ -60,12 +60,14 @@
 	const stats = ref([])
 
 	const app = 'game_player_stats'
+	const page = ref(placemark.getPage)
 
 	//
 	// Initialize year select
 	//
 	const startyear = 1966
 	const year = ref(placemark.getYear)
+
 	//
 	// select Game type
 	//
@@ -85,6 +87,14 @@
 			}
 		})
 	})
+
+	// Save current after changes
+	watch(gametype, (newgametype) => {
+		placemark.setGameTypeId(newgametype)
+		placemark.setPage(0)
+		page.value = 0
+	})
+
 	//
 	// get season data
 	//
@@ -111,6 +121,8 @@
 	const onSubmit = async function (value) {
 		year.value = value
 		placemark.setYear(year.value)
+		placemark.setPage(0)
+		page.value = 0
 		await getSeason()
 	}
 	//

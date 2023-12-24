@@ -7,11 +7,11 @@
 			<div class="topsectionitem">
 				<admin-header :title="app" />
 			</div>
-			<p v-if="pending" class="topsectionitem">
+			<!-- 			<p v-if="pending" class="topsectionitem">
 				<ProgressSpinner /> Loading ...
-			</p>
+			</p> -->
 			<div class="topsectionitem">
-				<p class="text-sm md:text-lg font-semibold">Member type</p>
+				<p class="my-header-style">Member type</p>
 				<Dropdown
 					v-model="member_type_id"
 					:options="memberTypeOptions"
@@ -100,11 +100,22 @@
 
 	// Save current after changes
 	watch(member_type_id, (newid) => {
+		// alert('placemark.getAlpha=')
 		placemark.setMemberTypeId(newid)
+		placemark.setAlpha('1')
+		alpha.value = '1'
+		placemark.setPage(0)
+		page.value = 0
 	})
+
 	watch(alpha, (newalpha) => {
+		// alert('placemark.getAlpha=' + placemark.getAlpha)
 		placemark.setAlpha(newalpha)
+		// placemark.setMemberTypeId('1')
+		placemark.setPage(0)
+		page.value = 0
 	})
+
 	//
 	// Get membertype opyions
 	//
