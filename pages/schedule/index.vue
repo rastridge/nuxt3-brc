@@ -21,7 +21,7 @@
 					@submitted="onSubmitGameType"
 				/>
 			</div>
-			<div class="my-simple-card-style">
+			<div class="my-simple-card-style w-full md:w-10">
 				<DataView :value="filteredData">
 					<template #list="slotProps">
 						<div class="col-12">
