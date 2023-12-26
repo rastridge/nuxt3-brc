@@ -56,6 +56,7 @@ export default defineNuxtConfig({
 
 	components: [
 		'~/components/app',
+		'~/components/selectors',
 		'~/components/forms',
 		'~/components/displays',
 		'~/components',

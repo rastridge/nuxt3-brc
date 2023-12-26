@@ -26,7 +26,28 @@ export const accountsService = {
 	addFlagByRegister,
 	getAllFlag,
 	editOneFlag,
+	lookupByEmail,
 }
+
+async function lookupByEmail(email) {
+	const sql = `SELECT
+							account_id as id,
+							account_id
+						FROM
+							inbrc_accounts
+						WHERE
+							deleted = 0
+							AND
+							account_email LIKE '${email}'`
+
+	// filename messsage, variable
+	// activityLog('lookupByEmail', 'sql=', sql)
+
+	const accounts = await doDBQueryBuffalorugby(sql)
+	// return accounts[0].id
+	return accounts
+}
+
 async function getRecentUpdates() {
 	const sql = `SELECT
 							account_id,

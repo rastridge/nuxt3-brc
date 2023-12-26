@@ -7,9 +7,9 @@
 			<div class="topsectionitem">
 				<admin-header :title="app" />
 			</div>
-			<!-- 			<p v-if="pending" class="topsectionitem">
-				<ProgressSpinner /> Loading ...
-			</p> -->
+			<div class="topsectionitem">
+				<lookup-by-email />
+			</div>
 			<div class="topsectionitem">
 				<p class="my-header-style">Member type</p>
 				<Dropdown
