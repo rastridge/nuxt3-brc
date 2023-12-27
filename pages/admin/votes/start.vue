@@ -1,42 +1,41 @@
 <template>
 	<div class="start">
-		<table>
-			<tr>
-				<td>
-					<div>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<div
+					class="w-12 text-left my-text-style border-round-md md:border-round-lg shadow-6 mb-3 m-2 p-4"
+				>
+					<p>
 						To vote, please enter your Buffalo Rugby Membership email address
 						below. You will receive an email shortly with further instructions
+					</p>
+					<div class="topsectionitem">
+						<p>
+							If you do not receive the email within 10 minutes email
+							<a href="mailto:secretary@buffalorugby.org"
+								>secretary@buffalorugby.org</a
+							>
+							for help
+						</p>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div>
-						If you do not receive the email within 10 minutes email
-						<a href="mailto:secretary@buffalorugby.org"
-							>secretary@buffalorugby.org</a
-						>
-						for help
-					</div>
-				</td>
-			</tr>
-		</table>
-
-		<FormKit
-			type="email"
-			name="email"
-			label="Your BRC email address"
-			validation="required|email"
-			@input="handleSubmit($event)"
-		>
-		</FormKit>
-		<!-- </FormKit> -->
+				</div>
+			</div>
+			<div class="topsectionitem m-2">
+				<FormKit
+					type="email"
+					name="email"
+					label="Enter your BRC email address"
+					@input="handleSubmit($event)"
+				>
+				</FormKit>
+				<!-- </FormKit> -->
+			</div>
+		</div>
 	</div>
 </template>
 
 <script setup>
 	const handleSubmit = (e) => {
-		console.log('e=', e)
 		const { data, error } = useFetch('/votes/sendballot', {
 			method: 'POST',
 			body: { email: e },

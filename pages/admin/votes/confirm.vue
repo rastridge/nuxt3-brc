@@ -1,5 +1,7 @@
 <template>
 	<div id="confirm">
-		<p class="">You will receive an email shortly with further instructions</p>
+		<p class="font-semibold text-center">
+			You will receive an email shortly with further instructions
+		</p>
 	</div>
 </template>

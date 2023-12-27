@@ -293,16 +293,15 @@ async function registerBallot({ account_email, answers }) {
 
 async function sendBallot(email) {
 	const htmlBody =
-		'<h3>Heads up: <br>There may be more than one available question on which to vote. If so, the next question will come up when the current one is submitted.' +
+		'<h3>Heads up: </h3><h3>There may be more than one available question on which to vote. If so, the next question will come up when the current one is submitted.</h3>' +
+		'<br>' +
+		'<h3>Your vote is final once you hit Submit</h3>' +
 		'<br>' +
 		'<br>' +
-		'Your vote is final once you hit Submit' +
+		'<h3>You can read the choices, Cancel and come back later to finish if you like</h3>' +
 		'<br>' +
 		'<br>' +
-		'You can read the choices, Cancel and come back later to finish' +
-		'<br>' +
-		'<br>' +
-		`<a href="${HOSTING}/admin/votes/form/` +
+		`<h3><a href="${HOSTING}/admin/votes/form/` +
 		email.email +
 		'">Start Voting Here</></h3>'
 	// from composable

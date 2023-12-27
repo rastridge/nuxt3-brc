@@ -7,10 +7,22 @@
 			<div class="topsectionitem">
 				<admin-header :title="app" />
 			</div>
+			<div class="topsectionitem w-40rem">
+				<div
+					class="text-left my-text-style border-round-md md:border-round-lg shadow-6 mb-3 m-2 p-4"
+				>
+					<h6 class="font-semibold">For each new voting round</h6>
+					<p>1. Change status of old votes to inactive</p>
+					<p>2. Create new voting questions</p>
+					<p>
+						3. Send newsletter to voters including this message: "Go to
+						https://thebuffalorugby.club/admin/votes/start to begin voting"
+					</p>
+				</div>
+			</div>
 		</div>
-		<div v-if="!votes" class="topsectionitem">Loading ...</div>
 
-		<div v-else class="renderlist-enclosure">
+		<div class="renderlist-enclosure">
 			<render-list
 				:data="votes"
 				:page="page"

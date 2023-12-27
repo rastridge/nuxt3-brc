@@ -1,18 +1,29 @@
 <template>
 	<div v-if="props.id !== 0">
-		<p class="font-semibold text-red-500">
-			Do not edit after voting has begun!
-		</p>
-		<p class="font-semibold text-red-500 mb-2">
-			To change choices, Cancel, then Delete the question and Add a new question
-			with new choices
-		</p>
-		<p class="font-semibold">Voted on {{ question.vote_vote_cnt }} times</p>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<div
+					class="text-left my-text-style border-round-md md:border-round-lg shadow-6 mb-3 m-2 p-4"
+				>
+					<p class="font-semibold">Do not edit after voting has begun!</p>
+					<p class="font-semibold">
+						To change choices, Cancel, then Delete the question and Add a new
+						question with new choices
+					</p>
+				</div>
+			</div>
+			<div class="topsectionitem">
+				<p class="font-semibold text-center">
+					Voted on {{ question.vote_vote_cnt }} times
+				</p>
+			</div>
+		</div>
 	</div>
 	<p v-if="saving">
 		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 		Saving ...
 	</p>
+
 	<!-- updated_choices = {{ updated_choices }}<br /><br />
 		choice_values = {{ choice_values }}<br /><br /> -->
 	<!-- choices = {{ choices }}<br /><br /> -->
