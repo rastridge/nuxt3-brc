@@ -9,7 +9,6 @@
 			</Button>
 		</div>
 		<div v-if="viewable">
-			current = {{ current }} page = {{ page }}
 			<div class="my-renderlist-styles">
 				<DataTable
 					ref="dataTableRef"
@@ -169,7 +168,6 @@
 	// Initial settings for pagination
 	//
 	const current = ref(props.page)
-	// alert('renderlist called - current = ' + current.value)
 
 	//
 	// Watch = Save paginator page number
