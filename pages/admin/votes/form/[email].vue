@@ -19,7 +19,11 @@
 			</Button>
 		</div>
 		<div v-else>
-			<h1 class="">You have no unanswered questions</h1>
+			<h1
+				class="text-xs sm:text-sm md:text-md lg:text-lg mx-auto border-round-md md:border-round-lg shadow-6 m-2 p-4 w-full md:w-6"
+			>
+				You have no remaining unanswered questions
+			</h1>
 		</div>
 	</div>
 </template>

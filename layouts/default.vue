@@ -34,10 +34,6 @@
 		>
 			<!-- <div class="layout-main-container"> -->
 			<div class="layout-main surface-400 card p-0 md:p-2 lg:p-3 my-card-styl">
-				<p class="text-center text-sm">
-					Refactoring in progress | Experimental
-				</p>
-
 				<slot />
 			</div>
 			<div v-if="!auth.isLoggedIn"><AppFooter /></div>
