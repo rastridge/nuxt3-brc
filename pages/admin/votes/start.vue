@@ -24,14 +24,14 @@
 				<FormKit
 					type="form"
 					:config="{ validationVisibility: 'live' }"
-					submit-label="Start voting"
+					submit-label="Send me the email"
 					@submit="handleSubmit"
 				>
 					<FormKit
 						type="email"
 						name="email"
 						label="Enter your BRC email address"
-						validation="required"
+						validation="required | email"
 					>
 					</FormKit>
 				</FormKit>
@@ -44,7 +44,6 @@
 <script setup>
 	const handleSubmit = (state) => {
 		const email = state.email
-		alert(email)
 		const { data, error } = useFetch('/votes/sendballot', {
 			method: 'POST',
 			body: { email },
