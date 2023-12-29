@@ -291,7 +291,9 @@ async function registerBallot({ account_email, answers }) {
 	}
 }
 
-async function sendBallot(email) {
+async function sendBallot(emailx) {
+	const { email } = emailx
+	console.log(email)
 	const htmlBody =
 		'<h3>Heads up: </h3><h3>There may be more than one available question on which to vote. If so, the next question will come up when the current one is submitted.</h3>' +
 		'<br>' +
@@ -302,10 +304,11 @@ async function sendBallot(email) {
 		'<br>' +
 		'<br>' +
 		`<h3><a href="${HOSTING}/admin/votes/form/` +
-		email.email +
+		email +
 		'">Start Voting Here</></h3>'
 	// from composable
-	sendEmail(email.email, 'Vote', htmlBody)
+	await sendEmail(email, 'Vote', htmlBody)
+	return 1
 }
 
 async function deleteOne(id) {
