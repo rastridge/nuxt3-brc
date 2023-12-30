@@ -31,5 +31,11 @@
 			margin-top: -15px;
 		}
 	}
+	@media (max-width: 480px) {
+		:deep(.p-menuitem-content) {
+			margin-top: -20px;
+		}
+	}
+
 	/* 		*/
 </style>
