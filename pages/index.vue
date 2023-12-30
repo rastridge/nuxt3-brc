@@ -3,7 +3,7 @@
 	{{ TRACKINGPIXEL }}
 	<img :src="TRACKING" height="1" width="1" />
  -->
-	<div class="car">
+	<div class="pt-5">
 		<Carousel :value="images" :numVisible="1" circular :autoplayInterval="6000">
 			<template #item="slotProps">
 				<div class="text-center">

@@ -13,7 +13,7 @@
 
 <template>
 	<div>
-		<NuxtLoadingIndicator />
+		<!-- <NuxtLoadingIndicator /> -->
 
 		<!-- default start up blue primary  theme? -->
 		<!-- <Link
