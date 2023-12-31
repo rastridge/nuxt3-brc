@@ -1,8 +1,8 @@
 <script setup lang="ts">
 	// import { useToast } from 'primevue/usetoast'
 	import { usePrimeVue } from 'primevue/config'
-	import AppTopBar from '../components/app/AppTopbar.vue'
-	import AppFooter from '../components/app/AppFooter.vue'
+	// import AppTopBar from '../components/app/AppTopbar.vue'
+	// import AppFooter from '../components/app/AppFooter.vue'
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
 
@@ -24,7 +24,9 @@
 			rel="stylesheet"
 			:href="'https://cdn.jsdelivr.net/npm/primevue@3.15.0/resources/themes/saga-blue/theme.css'"
 		/>
-		<AppTopBar />
+
+		<app-header />
+
 		<div
 			:class="[
 				!auth.isLoggedIn

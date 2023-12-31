@@ -1,5 +1,7 @@
 <template>
-	<Menubar :model="model" />
+	<div class="w-full md:w-10 lg:w-8 mx-auto">
+		<Menubar :model="model" />
+	</div>
 </template>
 
 <script setup lang="ts">
