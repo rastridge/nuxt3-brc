@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full md:w-10 lg:w-8 mx-auto">
+	<div class="w-10 lg:w-11 xl:w-9 mx-auto">
 		<Menubar :model="model" />
 	</div>
 </template>
@@ -12,15 +12,22 @@
 <style scoped>
 	:deep(.p-menubar) {
 		padding: 0.2rem;
+		/* background-color: transparent; */
+		background-color: lightgray;
+		border: 1px dotted black;
+		border-radius: 5px;
+		box-shadow: 2px 2px 2px rgb(78, 77, 77);
 	}
 
 	:deep(.p-menuitem-text) {
 		font-size: small;
+		/* color: white; */
 	}
 
 	@media (min-width: 992px) {
 		:deep(.p-menuitem-text) {
 			font-size: large;
+			/* color: white; */
 		}
 		:deep(.p-menubar) {
 			padding: 0.4rem;

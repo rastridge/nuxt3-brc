@@ -1,41 +1,52 @@
 <template>
-	<div class="layout-topbar">
-		<ul class="layout-topbar-menu hidden md:flex">
+	<div
+		class="pb-1 pt-1 urface-400 shadow-3 md:shadow-4 border-round-sm md:border-round-lg w-full md:w-12 lg:w-10 mx-auto"
+	>
+		<ul class="flex gap-2">
 			<li>
-				<button class="p-link layout-topbar-button" @click="redirectToFacebook">
-					<i class="pi pi-facebook" />
+				<button
+					class="p-link my-text-style text-white hover:text-blue-200"
+					@click="redirectToFacebook"
+				>
+					<i class="pi pi-facebook my-text-style" />
 					<span>facebook</span>
 				</button>
 			</li>
 
 			<li>
-				<button class="p-link layout-topbar-button" @click="redirectToYoutube">
-					<i class="pi pi-twitter" />
+				<button
+					class="p-link my-text-style text-white hover:text-blue-200"
+					@click="redirectToYoutube"
+				>
+					<i class="pi pi-twitter my-text-style" />
 					<span>youtube</span>
 				</button>
 			</li>
 			<li>
 				<button
-					class="p-link layout-topbar-button"
+					class="p-link my-text-style text-white hover:text-blue-200"
 					@click="redirectToInstagram"
 				>
-					<i class="pi pi-instagram" />
+					<i class="pi pi-instagram my-text-style" />
 					<span>instagram</span>
 				</button>
 			</li>
 			<li>
-				<button class="p-link layout-topbar-button" @click="redirectToRegister">
-					<i class="pi pi-user-plus" />
-					<span>Register to Join Men</span>
+				<button
+					class="p-link my-text-style text-white hover:text-blue-200"
+					@click="redirectToRegister"
+				>
+					<i class="pi pi-user-plus my-text-style" />
+					<span>Join Men</span>
 				</button>
 			</li>
 			<li>
 				<button
-					class="p-link layout-topbar-button"
+					class="p-link my-text-style text-white hover:text-blue-200"
 					@click="redirectToFlagRegister"
 				>
-					<i class="pi pi-user-plus" />
-					<span>Register to Join Flag Youth</span>
+					<i class="pi pi-user-plus my-text-style" />
+					<span>Join Youth</span>
 				</button>
 			</li>
 		</ul>
@@ -62,3 +73,13 @@
 		navigateTo('/registerflag')
 	}
 </script>
+
+<style scoped>
+	ul {
+		list-style: none;
+	}
+	i {
+		font-size: 0.7rem;
+		margin-right: 0.2rem;
+	}
+</style>

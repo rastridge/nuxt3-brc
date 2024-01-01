@@ -1,6 +1,6 @@
 /* header enclosure */
 .layout-header {
-	utline: 1px solid wheat;
+	utline: 1px solid red;
 	width: 100%;
 	padding: 0 2rem;
 	// background-color: transparent;
@@ -10,11 +10,11 @@
 /* social menu bar */
 
 .layout-topbar {
-	utline: 1px solid wheat;
-	height: 4rem;
+	outline: 1px solid red;
+	height: 2rem;
 	width: 100%;
 	padding: 0;
-	// background-color: transparent;
+	background-color: transparent;
 	background-color: rgb(233, 78, 78);
 	display: none;
 
@@ -43,24 +43,23 @@
 		}
 
 		i {
-			font-size: 1.5rem;
+			font-size: 1rem;
 		}
 
 		span {
-			font-size: 1rem;
-			display: none;
+			font-size: 0.75rem;
 		}
 	}
 
 	.layout-menu-button {
-		margin-left: 2rem;
+		margin-left: 1rem;
 	}
 
 	.layout-topbar-menu-button {
 		display: none;
 
 		i {
-			font-size: 1.25rem;
+			font-size: 1rem;
 		}
 	}
 
@@ -79,12 +78,11 @@
 
 @media (min-width: 768px) {
 	.layout-topbar {
-		utline: 1px solid wheat;
+		outline: 2px solid green;
 		height: 4rem;
 		width: 100%;
 		padding: 0;
 		// background-color: transparent;
-		background-color: rgb(233, 78, 78);
 		display: contents;
 
 		.layout-topbar-menu-button {
@@ -118,6 +116,7 @@
 
 				span {
 					font-weight: medium;
+					font-size: 0.8rem;
 					display: block;
 				}
 			}
@@ -127,6 +126,6 @@
 
 @media (min-width: 992px) {
 	.layout-topbar {
-		padding: 0 4rem;
+		padding: 0 6rem;
 	}
 }
