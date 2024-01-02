@@ -3,7 +3,8 @@
 </script>
 
 <template>
-	<div class="mt-4 layout-footer">
+	<!-- <div class="mt-4 layout-footer"> -->
+	<div class="mt-4">
 		<div class="text-center w-full">
 			<sponsor-ads />
 			<span class="my-text-style text-gray-50"
