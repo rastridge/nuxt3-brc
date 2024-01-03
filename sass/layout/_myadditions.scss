@@ -31,7 +31,12 @@
 	border-radius: 5px;
 }
 
-/* */
+/* 
+formkit adjustments
+*/
+.formkit-inner {
+	background-color: white;
+}
 
 [data-invalid] .formkit-inner {
 	border-color: red;
@@ -48,6 +53,9 @@
 	padding: 0.5em;
 } */
 
+/* 
+quill adjustments
+*/
 .ql-align-center {
 	text-align: center;
 }
@@ -77,8 +85,12 @@
 	font-size: small;
 }
 
+/* primeflex
+*/
 @import 'primeflex/primeflex.scss';
 
+/* my prineflex composite styles
+*/
 .topsectioncenter {
 	@include styleclass('flex flex-column align-items-center');
 }
@@ -98,7 +110,6 @@
 		'bg-blue-500 text-white hover:bg-blue-600 border-round transition-colors transition-duration-150 p-3 border-none'
 	);
 }
-
 .my-simple-card-style {
 	@include styleclass(
 		'bg-white border-round-lg md:border-round-xl shadow-6 m-0 md:m-2 p-1 md:p-2'

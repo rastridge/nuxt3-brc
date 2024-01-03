@@ -4,15 +4,13 @@
 </script>
 
 <template>
-	<div class="layout-header">
-		<div v-if="!auth.isLoggedIn" class="order-1 border-white p-2">
-			<app-social />
-		</div>
-		<div v-if="!auth.isLoggedIn" class="order-1 border-white p-2">
-			<app-brand />
-		</div>
-		<div class="order-1 order-white p-2">
-			<app-menu />
-		</div>
+	<div v-if="!auth.isLoggedIn" class="order-1 border-white">
+		<app-social />
+	</div>
+	<div v-if="!auth.isLoggedIn" class="order-1 border-white">
+		<app-brand />
+	</div>
+	<div class="order-1 border-white">
+		<app-menu />
 	</div>
 </template>

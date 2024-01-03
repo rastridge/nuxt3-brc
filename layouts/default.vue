@@ -25,21 +25,16 @@
 			:href="'https://cdn.jsdelivr.net/npm/primevue@3.15.0/resources/themes/saga-blue/theme.css'"
 		/>
 
-		<app-header />
-
-		<!-- <div
-			:class="[
-				!auth.isLoggedIn
-					? 'layout-main-container'
-					: 'layout-main-container-admin',
-			]"
-		>	 -->
-		<div>
-			<!-- <div class="layout-main-container"> -->
-			<div class="layout-main surface-400 card p-0 md:p-2 lg:p-3 my-card-styl">
-				<slot />
-			</div>
-			<div v-if="!auth.isLoggedIn"><AppFooter /></div>
+		<div
+			class="bg-transparent border-round-lg md:border-round-xl md:m-2 p-1 md:p-2"
+		>
+			<app-header />
 		</div>
+		<div
+			class="surface-400 border-round-lg md:border-round-xl shadow-6 m-0 md:m-2 p-1 md:p-2"
+		>
+			<slot />
+		</div>
+		<div v-if="!auth.isLoggedIn"><AppFooter /></div>
 	</div>
 </template>

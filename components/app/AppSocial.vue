@@ -1,8 +1,10 @@
 <template>
 	<div
-		class="pb-1 pt-1 urface-400 shadow-3 md:shadow-4 border-round-sm md:border-round-lg w-full md:w-12 lg:w-10 mx-auto"
+		class="border- border-white border-round-sm md:border-round-lg w-full md:w-12 lg:w-10 mx-auto"
 	>
-		<ul class="flex gap-2">
+		<ul
+			class="flex gap-2 border- border-white w-30rem md:w-40rem lg:w-10 xl:w-8 mx-auto"
+		>
 			<li>
 				<button
 					class="p-link my-text-style text-white hover:text-blue-200"
