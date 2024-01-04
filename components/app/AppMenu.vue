@@ -37,12 +37,12 @@
 	/* clumsy attempt to bring menu items closer together */
 	@media (max-width: 960px) {
 		:deep(.p-menuitem-content) {
-			margin-top: -15px;
+			margin-top: -10px;
 		}
 	}
 	@media (max-width: 480px) {
 		:deep(.p-menuitem-content) {
-			margin-top: -20px;
+			margin-top: -15px;
 		}
 	}
 

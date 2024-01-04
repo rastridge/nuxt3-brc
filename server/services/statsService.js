@@ -486,7 +486,7 @@ async function getAdjacent(direction) {
 	let FILTER = ''
 	let FILTER2 = ''
 
-	if (direction == 'next') {
+	if (direction === 'Next') {
 		FILTER = '>='
 		FILTER2 = 'ASC'
 	} else {
@@ -515,7 +515,7 @@ async function getAdjacent(direction) {
 				ORDER BY
 					date_ut ${FILTER2}
 				LIMIT 2`
-	// console.log('sql= ', sql)
+	console.log('sql= ', sql)
 	const stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
