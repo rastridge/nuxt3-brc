@@ -515,7 +515,6 @@ async function getAdjacent(direction) {
 				ORDER BY
 					date_ut ${FILTER2}
 				LIMIT 2`
-	console.log('sql= ', sql)
 	const stats = await doDBQueryBuffalorugby(sql)
 	return stats
 }
