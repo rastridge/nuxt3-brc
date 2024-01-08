@@ -1,6 +1,10 @@
 <template>
 	<div class="w-10 lg:w-11 xl:w-9 mx-auto">
-		<Menubar :model="model" />
+		<Menubar :model="model"
+			><template #start>
+				<img alt="logo" src="/bflo_blue.png" height="40" />
+			</template>
+		</Menubar>
 	</div>
 </template>
 
