@@ -1,6 +1,6 @@
 <template>
 	<p v-if="id">
-		Current version of newsletter opned count {{ newsletter_opened_cnt }}
+		Current version of newsletter opened count {{ newsletter_opened_cnt }}
 		<br />
 		Sent count {{ newsletter_recp_cnt }}
 	</p>
