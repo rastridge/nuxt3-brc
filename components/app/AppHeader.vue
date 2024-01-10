@@ -4,6 +4,7 @@
 </script>
 
 <template>
+	<p>branch deploy</p>
 	<div v-if="!auth.isLoggedIn" class="order-1 border-white">
 		<app-social />
 	</div>
