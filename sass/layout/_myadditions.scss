@@ -35,7 +35,7 @@
 formkit adjustments
 */
 .formkit-inner {
-	background-color: white;
+	background-color: rgb(255, 255, 255);
 }
 
 [data-invalid] .formkit-inner {
@@ -43,10 +43,10 @@ formkit adjustments
 	box-shadow: 0 0 0 1px red;
 }
 
-[data-complete] .formkit-inner {
+/* [data-complete] .formkit-inner {
 	border-color: green;
 	box-shadow: 0 0 0 1px green;
-}
+} */
 /* [data-complete] .formkit-inner::after {
 	content: '✅';
 	display: block;

@@ -6,12 +6,9 @@
 					{{ alert.message }}
 				</div>
 			</div>
-			<div
-				v-if="!auth.isLoggedIn"
-				class="topsectionitem surface-card p-4 shadow-2 border-round w-full lg:w-5"
-			>
+			<div v-if="!auth.isLoggedIn" class="topsectionitem my-card-style p-3">
 				<div class="text-center mb-5">
-					<div class="text-900 md:text-2xl font-medium mb-3">
+					<div class="text-white md:text-xl font-medium mb-3">
 						Login Admin User
 					</div>
 				</div>

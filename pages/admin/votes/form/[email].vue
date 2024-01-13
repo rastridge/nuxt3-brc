@@ -1,5 +1,5 @@
 <template>
-	<div class="edit">
+	<div class="my-simple-card-style">
 		<div v-if="haveQuestions">
 			<div v-for="(question, q_index) in questions" :key="q_index">
 				<FormKit
@@ -29,6 +29,8 @@
 </template>
 
 <script setup>
+	import '@formkit/themes/genesis'
+
 	const route = useRoute()
 
 	const account_email = ref(route.params.email)
