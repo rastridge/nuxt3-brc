@@ -114,7 +114,7 @@
 		<Dialog
 			v-model:visible="displayModal"
 			:breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-			:style="{ width: '60vw' }"
+			:style="{ width: '100vw' }"
 			class="p-datatable-sm my-text-style"
 			:pt="{
 				root: {
@@ -127,7 +127,7 @@
 					},
 				},
 			}"
-		>
+			><template #header>{{ game.opponent_name }}</template>
 			<display-game-info :item="game" />
 			<display-roster :players="players" />
 			<template #footer>

@@ -131,7 +131,7 @@
 	}
 
 	//
-	// get newletter recipient types for Dropdown
+	// get newsletter recipient types for Dropdown
 	//
 	const { data: newsletterRecipientTypes } = await useFetch(
 		'/newsletters/newsletterrecipienttypes',
@@ -143,7 +143,7 @@
 		}
 	)
 	//
-	// convert for Formkit "label" "value"
+	// Convert for Formkit "label" "value"
 	//
 	const setNewsletterRecipientTypeOptions = (nltypes) => {
 		let result = []
