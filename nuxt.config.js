@@ -1,8 +1,12 @@
 import pkg from './package.json'
+import vsharp from 'vite-plugin-vsharp'
 
 export default defineNuxtConfig({
 	devtools: false,
 	ssr: false,
+	vite: {
+		plugins: [vsharp()],
+	},
 	runtimeConfig: {
 		API_SECRET: process.env.API_SECRET,
 		DB_HOST: process.env.DB_HOST,

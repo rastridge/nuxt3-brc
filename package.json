@@ -28,7 +28,8 @@
 		"nuxt": "^3.8.2",
 		"nuxt-simple-robots": "^3.1.9",
 		"sass": "^1.62.1",
-		"typescript": "^5.0.4"
+		"typescript": "^5.0.4",
+		"vite-plugin-vsharp": "^1.7.3"
 	},
 	"dependencies": {
 		"@formkit/nuxt": "^0.17.4",
