@@ -36,12 +36,13 @@
 	// Info for dropdown
 	//
 	const { $dayjs } = useNuxtApp()
-	const thisyear = parseInt($dayjs().format('YYYY'))
 	const year = ref(props.currentyear)
+
 	const seasons = computed(() => {
 		{
+			let thisyear = parseInt($dayjs().format('YYYY'))
 			let temp = []
-			for (let yr = props.startyear; yr <= thisyear + 1; yr++) {
+			for (let yr = props.startyear; yr < thisyear; yr++) {
 				temp.push({
 					year: yr,
 					season: yr + ' Fall  -> ' + (yr + 1) + ' Spring',

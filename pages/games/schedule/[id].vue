@@ -130,7 +130,6 @@
 
 <script setup>
 	import { usePlacemarkStore } from '@/stores'
-	import dayjs from 'dayjs'
 	const { $dayjs } = useNuxtApp()
 
 	const placemark = usePlacemarkStore()
@@ -146,7 +145,8 @@
 	//
 	const startyear = 1966
 	const year = ref(0)
-
+	//
+	// reset year to 0
 	if (id.value === 0) {
 		if (placemark.getYear === 0) {
 			placemark.initYear()

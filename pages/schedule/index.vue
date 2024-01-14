@@ -201,11 +201,11 @@
 </template>
 
 <script setup>
-	import dayjs from 'dayjs'
-	const { $dayjs } = useNuxtApp()
-
+	import { usePlacemarkStore } from '@/stores'
+	const placemark = usePlacemarkStore()
 	const { getGameLevelCode, getResultCode } = useGames()
-
+	const { $dayjs } = useNuxtApp()
+	const { SEASON_DIVIDE_DATE } = useRuntimeConfig()
 	const loading = ref(true)
 	//
 	// Initialize year select
@@ -214,6 +214,11 @@
 	const year = ref(parseInt($dayjs().format('YYYY')))
 
 	//
+	// If spring, decrease a year
+	//
+	if ($dayjs().format() < $dayjs(year + SEASON_DIVIDE_DATE).format()) {
+		year.value--
+	}
 	// get / set season data
 	//
 	const season = ref([])
