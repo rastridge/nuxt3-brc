@@ -43,6 +43,9 @@ formkit adjustments
 	box-shadow: 0 0 0 1px red;
 }
 
+[data-type='checkbox'] .formkit-inner {
+	background: transparent;
+}
 /* [data-complete] .formkit-inner {
 	border-color: green;
 	box-shadow: 0 0 0 1px green;

@@ -3,8 +3,8 @@
 		Contributor {{ state.contribution_name }}
 	</h5>
 	<div v-else>
-		<Card style="width: 20em; margin-bottom: 1rem">
-			<template #title> Contributor</template>
+		<Card class="my-card-style mb-1">
+			<template #title> Contributor name</template>
 			<template #content>
 				<AutoComplete
 					v-model="selectedItem"
