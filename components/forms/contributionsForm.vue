@@ -3,9 +3,9 @@
 		Contributor {{ state.contribution_name }}
 	</h5>
 	<div v-else>
-		<Card class="my-card-style mb-1">
-			<template #title> Contributor name</template>
+		<card class="card my-card-style mb-1">
 			<template #content>
+				<p>Contributor name</p>
 				<AutoComplete
 					v-model="selectedItem"
 					optionLabel="title"
@@ -14,7 +14,7 @@
 					@item-select="getPrevious"
 				/>
 			</template>
-		</Card>
+		</card>
 	</div>
 	<div class="my-form-style">
 		<FormKit
