@@ -2,6 +2,10 @@
 
 - https://github.com/sfxcode/nuxt3-primevue-starter
 
+# Node version
+
+- nvm use stable (v21.5.0)
+
 ## Before using this app with original buffalorugby database some modifications to the DB are needed
 
 # All Game Dates Times must be changed

@@ -45,7 +45,6 @@
 				name="news_event_dt"
 				validation="required"
 			/>
-			state.news_event_dt = {{ state.news_event_dt }}
 			<FormKit
 				type="date"
 				label="Release Date"

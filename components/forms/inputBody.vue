@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="editor m-1">
+		<div class="bg-white mb-2">
 			<ClientOnly>
 				<quill-editor
 					contentType="html"
