@@ -402,12 +402,25 @@ async function editOne({
 }
 
 async function deleteOne(id) {
-	const sql =
-		`UPDATE inbrc_newsletters SET deleted=1, deleted_dt= NOW() WHERE newsletter_id = ` +
-		id
-	const newsletter = await doDBQueryBuffalorugby(sql)
+	const conn = await getConnectionBuffalorugby()
 
-	return newsletter
+	try {
+		await conn.query('START TRANSACTION')
+
+		let sql = `UPDATE inbrc_newsletters SET deleted=1, deleted_dt= NOW() WHERE newsletter_id = ${id}`
+		await conn.execute(sql)
+
+		sql = `UPDATE inbrc_newsletter_openings SET deleted = 1 WHERE newsletter_id = ${id}`
+		await conn.execute(sql)
+
+		await conn.query('COMMIT')
+		await conn.end()
+		return 'COMMIT'
+	} catch (e) {
+		await conn.query('ROLLBACK')
+		await conn.end()
+		return 'ROLLBACK'
+	}
 }
 
 async function changeStatus({ id, status }) {
