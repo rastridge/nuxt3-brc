@@ -14,6 +14,7 @@ import FileUpload from 'primevue/fileupload'
 import Image from 'primevue/image'
 import InputText from 'primevue/inputtext'
 import Menubar from 'primevue/menubar'
+import Message from 'primevue/message'
 import OverlayPanel from 'primevue/overlaypanel'
 import Password from 'primevue/password'
 import ProgressBar from 'primevue/progressbar'
@@ -40,6 +41,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 	nuxtApp.vueApp.component('InputText', InputText)
 	nuxtApp.vueApp.component('Image', Image)
 	nuxtApp.vueApp.component('Menubar', Menubar)
+	nuxtApp.vueApp.component('Message', Message)
 	nuxtApp.vueApp.component('OverlayPanel', OverlayPanel)
 	nuxtApp.vueApp.component('Password', Password)
 	nuxtApp.vueApp.component('ProgressSpinner', ProgressSpinner)

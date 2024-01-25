@@ -29,6 +29,7 @@
 				/>
 			</div>
 		</div>
+
 		<div class="renderlist-enclosure">
 			<render-list
 				:data="filteredData"
@@ -43,6 +44,20 @@
 				@deleteItem="deleteItem"
 			/>
 		</div>
+		<Dialog
+			v-model:visible="visible"
+			modal
+			header="Can't do that"
+			:style="{ width: '25rem' }"
+		>
+			<span class="p-text-secondary block mb-5"
+				>Member is in a game roster - can not delete</span
+			>
+
+			<template #footer>
+				<Button label="Continue" outlined @click="visible = false" autofocus />
+			</template>
+		</Dialog>
 	</div>
 </template>
 
@@ -154,9 +169,13 @@
 
 	//
 	// Renderlist actions
-	//
+
+	const visible = ref(false)
 	const deleteItem = async (id) => {
-		await deleteOne('accounts', id)
+		const e = await deleteOne('accounts', id)
+		if (e.value) {
+			visible.value = true
+		}
 	}
 
 	const changeStatus = async ({ id, status }) => {

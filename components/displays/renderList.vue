@@ -221,19 +221,3 @@
 		emit('deleteItem', id)
 	}
 </script>
-
-<!-- <style scoped>
-	.table-box {
-		background-color: rgb(255, 255, 255);
-		padding: 0.5rem;
-		padding-top: 1rem;
-		border-radius: 10px;
-		border: thin rgb(0, 0, 0) solid;
-	}
-
-	.p-component {
-		font-family: Roboto, Helvetica, Arial;
-		font-size: 0.9rem;
-		font-weight: normal;
-	}
-</style> -->

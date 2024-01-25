@@ -20,12 +20,13 @@ export default function useFetchAll() {
 	}
 
 	const deleteOne = async (app, id) => {
-		const { pending, error } = await useFetch(`/${app}/${id}`, {
+		const { data, pending, error } = await useFetch(`/${app}/${id}`, {
 			method: 'DELETE',
 			headers: {
 				authorization: auth.user.token,
 			},
 		})
+		return data
 	}
 
 	const changeStatusOne = async (app, { id, status }) => {

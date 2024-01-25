@@ -397,15 +397,35 @@ async function editOne(info) {
 }
 
 async function deleteOne(id) {
-	const sql = `UPDATE inbrc_accounts
+	//
+	// check for games played
+	// if so do not delete
+	//
+	let sql = `SELECT
+				count(*) as played
+			FROM
+				inbrc_stats_player
+			WHERE
+				player_id = ?;`
+	let inserts = []
+	inserts.push(id)
+	const games = await doDBQueryBuffalorugby(sql, inserts)
+	const played = games[0].played
+
+	let message = ''
+	if (!played) {
+		sql = `UPDATE inbrc_accounts
 							SET
 									deleted = '1',
 									deleted_dt= NOW()
 								WHERE account_id = ?;`
-	let inserts = []
-	inserts.push(id)
-	const accounts = await doDBQueryBuffalorugby(sql, inserts)
-	return accounts
+		inserts = []
+		inserts.push(id)
+		const account = await doDBQueryBuffalorugby(sql, inserts)
+	} else {
+		message = 'Member is on a game roster, cannot delete'
+	}
+	return message
 }
 
 async function changeStatus({ id, status }) {
