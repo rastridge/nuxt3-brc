@@ -397,47 +397,34 @@ async function editOne(info) {
 }
 
 async function deleteOne(id) {
-	let message = ''
-	try {
-		const conn = await getConnectionBuffalorugby()
-		await conn.query('START TRANSACTION')
-
-		//
-		// check for games played
-		// if so do not delete
-		//
-		let sql = `SELECT
+	//
+	// check for games played
+	// if so do not delete
+	//
+	let sql = `SELECT
 				count(*) as played
 			FROM
 				inbrc_stats_player
 			WHERE
-				player_id = ${id} OR replaced_by = ${id};`
-		let inserts = []
-		sql = mysql.format(sql, inserts)
-		const games = await conn.execute(sql)
-		const played = games[0][0].played
-		if (played === 0) {
-			sql = `UPDATE inbrc_accounts
+				player_id = ?;`
+	let inserts = []
+	inserts.push(id)
+	const games = await doDBQueryBuffalorugby(sql, inserts)
+	const played = games[0].played
+
+	let message = ''
+	if (!played) {
+		sql = `UPDATE inbrc_accounts
 							SET
 									deleted = '1',
 									deleted_dt= NOW()
 								WHERE account_id = ?;`
-			inserts = []
-			inserts.push(id)
-			sql = mysql.format(sql, inserts)
-			const games = await conn.execute(sql)
-		} else {
-			message = 'Member is on a game roster, cannot delete'
-		}
-
-		await conn.query('COMMIT')
-		await conn.end()
-	} catch (e) {
-		await conn.query('ROLLBACK')
-		await conn.end()
-		return 'ROLLBACK'
+		inserts = []
+		inserts.push(id)
+		const account = await doDBQueryBuffalorugby(sql, inserts)
+	} else {
+		message = 'Member is on a game roster, cannot delete'
 	}
-
 	return message
 }
 
