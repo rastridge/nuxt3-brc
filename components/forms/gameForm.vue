@@ -55,24 +55,16 @@
 
 			<!-- referee input-->
 			<FormKit label="Referee" name="referee" type="text" />
+
 			<!-- venue input-->
 			<FormKit label="Venue" name="venue" type="text" validation="required" />
+
 			<!-- Date input-->
-			<FormKit
-				type="date"
-				label="Date"
-				name="date"
-				validation="required"
-				@input="setUnixDate($event)"
-			/>
+			<FormKit type="date" label="Date" name="date" validation="required" />
+
 			<!-- Time input-->
-			<FormKit
-				type="time"
-				label="Time"
-				name="time"
-				validation="required"
-				@input="setUnixTime($event)"
-			/>
+			<FormKit type="time" label="Time" name="time" validation="required" />
+
 			<!-- Game Type input-->
 			<FormKit
 				type="select"
@@ -82,6 +74,7 @@
 				:options="gametypes"
 				validation="required"
 			/>
+
 			<!-- Game Level input-->
 			<FormKit
 				type="select"
@@ -293,7 +286,6 @@
 	const players = ref([])
 	const state = ref({})
 	const reset = ref('')
-	const ut = ref(0)
 	const pending_players = ref('')
 
 	//
@@ -560,14 +552,6 @@
 		}
 	}
 
-	const setUnixDate = (e) => {
-		ut.value = $dayjs(e + ' ' + state.value.time).unix()
-	}
-
-	const setUnixTime = (e) => {
-		ut.value = $dayjs(state.value.date + ' ' + e).unix()
-	}
-
 	const confirmedReplace = (newid) => {
 		showReplaceDialog.value = false
 		getReplacePlayers(newid)
@@ -644,7 +628,7 @@
 			players.value[index].rname = value.title
 		})
 		state.players = players.value
-		state.date_ut = ut.value
+		state.date_ut = $dayjs(state.date + ' ' + state.time).unix()
 		saving.value = true
 
 		emit('submitted', state)
