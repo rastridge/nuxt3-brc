@@ -7,6 +7,7 @@
 			<div class="topsectionitem">
 				<common-header title="Game Schedule and Results" />
 			</div>
+			initial year w/o selection = {{ year }}
 
 			<div class="topsectionitem">
 				<select-season

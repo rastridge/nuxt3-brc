@@ -12,6 +12,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 		placemark.setPage(0)
 		placemark.setAlpha('1')
 		placemark.initYear()
+		placemark.initSeason()
 		placemark.setMemberTypeId(2)
 		placemark.setGameTypeId(1)
 	} else {
@@ -25,9 +26,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
 				from.path.slice(0, 6) !== '/games' &&
 				from.path.slice(0, 5) !== '/stats')
 		) {
-			// placemark.setPage(0)// Problem Zeroes the page when edit is picked
-			// placemark.initYear()
-			// placemark.setGameTypeId(1)
 		}
 	}
 	//

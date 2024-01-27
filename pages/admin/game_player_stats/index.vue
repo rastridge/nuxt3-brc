@@ -7,15 +7,13 @@
 			<div class="topsectionitem">
 				<admin-header :title="app" />
 			</div>
-			<!-- 			<div v-if="!stats" class="topsectionitem">
-				<ProgressSpinner /> Loading ...
-			</div> -->
+
 			<div>
 				<!--Select season -->
 				<div class="topsectionitem">
 					<select-season
 						:startyear="startyear"
-						:currentyear="year"
+						:currentyear="season"
 						@submitted="onSubmit"
 						class="mb-3"
 					/>
@@ -48,38 +46,29 @@
 	definePageMeta({
 		middleware: ['auth'],
 	})
+
 	import { usePlacemarkStore } from '@/stores'
 	const placemark = usePlacemarkStore()
-	const { $dayjs } = useNuxtApp()
 
-	//
 	// initialize renderlist
 	//
 	const { getAccess } = useRenderListAccess()
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
-	const stats = ref([])
 
 	const app = 'game_player_stats'
 	const page = ref(placemark.getPage)
 
-	//
 	// Initialize year select
 	//
 	const startyear = 1966
-	const year = ref(placemark.getYear)
+	const season = ref(placemark.getSeason)
 
-	//
 	// select Game type
 	//
 	const gametype = ref(placemark.getGameTypeId)
 
 	const filteredData = computed(() => {
 		return stats.value.filter((d) => {
-			// console.log(
-			// 	'$dayjs.unix(d.date_ut).format(YYYY-MM-DD)',
-			// 	$dayjs.unix(d.date_ut).format('YYYY-MM-DD')
-			// )
-			// console.log('d.date_ut', d.date_ut)
 			if (gametype.value === 7) {
 				return d.game_type_id === 7
 			} else {
@@ -98,8 +87,9 @@
 	//
 	// get season data
 	//
-	const getSeason = async () => {
-		const url = `/game_player_stats/getseason/${year.value}`
+	const stats = ref([])
+	const getSeason = async (season) => {
+		const url = `/game_player_stats/getseason/${season}`
 		const { data, error } = await useFetch(url, {
 			method: 'get',
 		})
@@ -115,17 +105,20 @@
 		}
 	}
 
+	// get current season on initial load
+	//
+	await getSeason(season.value)
+
 	//
 	// set season after drop down choice
 	//
-	const onSubmit = async function (value) {
-		year.value = value
-		placemark.setYear(year.value)
+	const onSubmit = async function (season) {
+		placemark.setSeason(season)
 		placemark.setPage(0)
 		page.value = 0
-		await getSeason()
+		await getSeason(season)
 	}
-	//
+
 	// set gametype after drop down choice
 	//
 	const onSubmitGameType = async function (value) {
@@ -133,12 +126,6 @@
 		placemark.setGameTypeId(gametype.value)
 	}
 
-	//
-	// get current season on select season submit
-	//
-	getSeason()
-
-	//
 	// Renderlist actions
 	//
 	const { deleteOne, changeStatusOne } = useFetchAll()

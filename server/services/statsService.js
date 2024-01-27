@@ -350,6 +350,7 @@ async function getSeason(year1) {
 			
 							ORDER BY
 								dt DESC`
+	// console.log('sql= ', sql)
 	const games1 = await doDBQueryBuffalorugby(sql)
 
 	// Negative Unix Epoch Special case
