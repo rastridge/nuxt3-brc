@@ -426,6 +426,15 @@ async function deleteOne(id) {
 			inserts.push(id)
 			sql = mysql.format(sql, inserts)
 			const games = await conn.execute(sql)
+
+			sql = `UPDATE inbrc_newsletter_openings
+							SET
+									deleted = '1'
+								WHERE account_id = ?;`
+			inserts = []
+			inserts.push(id)
+			sql = mysql.format(sql, inserts)
+			await conn.execute(sql)
 		} else {
 			message = 'Member is on a game roster, cannot delete'
 		}
@@ -435,7 +444,7 @@ async function deleteOne(id) {
 	} catch (e) {
 		await conn.query('ROLLBACK')
 		await conn.end()
-		return 'ROLLBACK'
+		return 'ROLLBACK ' + e
 	}
 
 	return message

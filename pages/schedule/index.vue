@@ -209,7 +209,6 @@
 	const { getGameLevelCode, getResultCode } = useGames()
 
 	const { $dayjs } = useNuxtApp()
-	// const { SEASON_DIVIDE_DATE } = useRuntimeConfig()
 
 	// Initialize year select
 	//
