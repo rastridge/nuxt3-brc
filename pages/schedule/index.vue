@@ -7,12 +7,11 @@
 			<div class="topsectionitem">
 				<common-header title="Game Schedule and Results" />
 			</div>
-			initial year w/o selection = {{ year }}
-
+			season {{ season }}
 			<div class="topsectionitem">
 				<select-season
 					:startyear="startyear"
-					:currentyear="year"
+					:currentyear="season"
 					@submitted="onSubmit"
 					class="mb-3"
 				/>
@@ -34,7 +33,9 @@
 									class="flex flex-row justify-content-center md:flex-column align-items-center md:align-items-start gap-3 border-soli w-full md:w-3"
 								>
 									<div class="flex align-items-end border-soli">
-										<span class="text-sm md:text-md lg:text-lg font-bold">
+										<span
+											class="text-sm md:text-md lg:text-lg font-bold text-red-500"
+										>
 											{{
 												$dayjs
 													.unix(slotProps.data.date_ut)
@@ -67,7 +68,7 @@
 										<Button
 											:label="slotProps.data.title"
 											text
-											class="cursor-pointer text-2xl md:text-3xl text-blue-900 font-bold"
+											class="cursor-pointer text-2xl md:text-3xl text-red-500 font-bold"
 											@click.prevent="showGame(slotProps.data.game_id)"
 										>
 										</Button>
@@ -204,27 +205,24 @@
 <script setup>
 	import { usePlacemarkStore } from '@/stores'
 	const placemark = usePlacemarkStore()
+
 	const { getGameLevelCode, getResultCode } = useGames()
+
 	const { $dayjs } = useNuxtApp()
-	const { SEASON_DIVIDE_DATE } = useRuntimeConfig()
-	const loading = ref(true)
-	//
+	// const { SEASON_DIVIDE_DATE } = useRuntimeConfig()
+
 	// Initialize year select
 	//
 	const startyear = 1966
-	const year = ref(parseInt($dayjs().format('YYYY')))
+	// set to season by year
+	placemark.initSeason()
+	const season = ref(placemark.getSeason)
 
+	// getSeason games
 	//
-	// If spring, decrease a year
-	//
-	if ($dayjs().format() < $dayjs(year + SEASON_DIVIDE_DATE).format()) {
-		year.value--
-	}
-	// get / set season data
-	//
-	const season = ref([])
-	const getSeason = async (year) => {
-		const url = `/game_player_stats/getseason/${year}`
+	const games = ref([])
+	const getSeason = async (season) => {
+		const url = `/game_player_stats/getseason/${season}`
 		const { data, error, pending } = await useFetch(url, {
 			method: 'get',
 		})
@@ -241,25 +239,28 @@
 		return data.value
 	}
 
-	season.value = await getSeason(year.value)
-
+	// initial games
 	//
+	games.value = await getSeason(season.value)
+
 	// set gametype after drop down choice
 	//
 	const gametype = ref(1)
 	const onSubmitGameType = (value) => {
 		gametype.value = value
 	}
+
+	// get season from dropdown
 	//
-	// get season
-	//
-	const onSubmit = async (value) => {
-		year.value = value
-		season.value = await getSeason(year.value)
+	const onSubmit = async (s) => {
+		season.value = s
+		games.value = await getSeason(s)
 	}
 
+	// filter by game type
+	//
 	const filteredData = computed(() => {
-		return season.value.filter((d) => {
+		return games.value.filter((d) => {
 			if (gametype.value === 7) {
 				return d.game_type_id === 7
 			} else {
@@ -268,10 +269,8 @@
 		})
 	})
 
+	// game info modal
 	//
-	// game modal
-	//
-
 	const info = ref(null)
 	const players = ref(null)
 	const getPlayers = async (game_id) => {
@@ -288,6 +287,7 @@
 			players.value = data.value
 		}
 	}
+
 	const getOne = async (id) => {
 		const url = `/game_player_stats/${id}`
 		const { data, error } = await useFetch(url, {
@@ -310,9 +310,6 @@
 		displayGameModal.value = false
 	}
 	const showGame = async (id) => {
-		// placemark.setYear(year.value)
-		// navigateTo(`/schedule/game/${id}`)
-		//get game info
 		await getOne(id)
 		await getPlayers(id)
 		openModal()
@@ -334,5 +331,3 @@
 		openHistoryModal()
 	}
 </script>
-
-<style scoped></style>

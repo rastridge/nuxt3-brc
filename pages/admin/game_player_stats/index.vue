@@ -54,7 +54,6 @@
 	//
 	const { getAccess } = useRenderListAccess()
 	const { editable, addable, deleteable, statusable, viewable } = getAccess(app)
-
 	const app = 'game_player_stats'
 	const page = ref(placemark.getPage)
 
