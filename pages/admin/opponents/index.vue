@@ -23,6 +23,18 @@
 				@deleteItem="deleteItem"
 			/>
 		</div>
+		<Dialog
+			v-model:visible="visible"
+			modal
+			header="Can't do that"
+			:style="{ width: '25rem' }"
+		>
+			<span class="p-text-secondary block mb-5">{{ message }}</span>
+
+			<template #footer>
+				<Button label="Continue" outlined @click="visible = false" autofocus />
+			</template>
+		</Dialog>
 	</div>
 </template>
 
@@ -48,8 +60,14 @@
 	//
 	// Renderlist actions
 	//
+	const visible = ref(false)
+	const message = ref('')
 	const deleteItem = async (id) => {
-		await deleteOne(app, id)
+		const msg = await deleteOne(app, id)
+		if (msg.value) {
+			message.value = msg.value
+			visible.value = true
+		}
 	}
 
 	const changeStatus = async ({ id, status }) => {

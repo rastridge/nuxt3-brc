@@ -50,9 +50,7 @@
 			header="Can't do that"
 			:style="{ width: '25rem' }"
 		>
-			<span class="p-text-secondary block mb-5"
-				>Member is in a game roster - can not delete</span
-			>
+			<span class="p-text-secondary block mb-5">{{ message }}</span>
 
 			<template #footer>
 				<Button label="Continue" outlined @click="visible = false" autofocus />
@@ -67,7 +65,6 @@
 	})
 	import { usePlacemarkStore } from '~/stores'
 	import { useAlertStore } from '~/stores/alertStore'
-	const alert = useAlertStore()
 	const placemark = usePlacemarkStore()
 	const { getAll, deleteOne, changeStatusOne } = useFetchAll()
 	const { getMemberTypeOptions } = useMembertypes()
@@ -115,7 +112,6 @@
 
 	// Save current after changes
 	watch(member_type_id, (newid) => {
-		// alert('placemark.getAlpha=')
 		placemark.setMemberTypeId(newid)
 		placemark.setAlpha('1')
 		alpha.value = '1'
@@ -124,9 +120,7 @@
 	})
 
 	watch(alpha, (newalpha) => {
-		// alert('placemark.getAlpha=' + placemark.getAlpha)
 		placemark.setAlpha(newalpha)
-		// placemark.setMemberTypeId('1')
 		placemark.setPage(0)
 		page.value = 0
 	})
@@ -171,9 +165,11 @@
 	// Renderlist actions
 
 	const visible = ref(false)
+	const message = ref('')
 	const deleteItem = async (id) => {
-		const e = await deleteOne('accounts', id)
-		if (e.value) {
+		const msg = await deleteOne('accounts', id)
+		if (msg.value) {
+			message.value = msg.value
 			visible.value = true
 		}
 	}

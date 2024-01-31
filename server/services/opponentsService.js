@@ -1,5 +1,7 @@
+import mysql from 'mysql2/promise'
 const CONFIG = useRuntimeConfig()
 const { doDBQueryBuffalorugby } = useQuery()
+const { getConnectionBuffalorugby } = useDBConnection()
 
 export const opponentsService = {
 	getAll,
@@ -154,11 +156,50 @@ async function addOne(item) {
 }
 
 async function deleteOne(id) {
-	const sql =
-		`UPDATE inbrc_opponents SET deleted = 1, deleted_dt= NOW() WHERE opponent_id = ` +
-		id
-	const opponents = await doDBQueryBuffalorugby(sql)
-	return opponents
+	let message = null
+	const conn = await getConnectionBuffalorugby()
+	try {
+		await conn.query('START TRANSACTION')
+
+		//
+		// check for games with opponent
+		// if so do not delete
+		//
+		let sql = `SELECT
+				count(*) as used
+			FROM
+				inbrc_stats_games
+			WHERE
+				opponent_id = ${id}
+				AND deleted = '0';`
+		let inserts = []
+		sql = mysql.format(sql, inserts)
+
+		const games = await conn.execute(sql)
+		const used = games[0][0].used
+
+		if (used === 0) {
+			sql = `UPDATE inbrc_opponents
+							SET
+									deleted = '1',
+									deleted_dt= NOW()
+								WHERE opponent_id = ?;`
+			inserts = []
+			inserts.push(id)
+			sql = mysql.format(sql, inserts)
+			await conn.execute(sql)
+		} else {
+			message = 'Opponent is in a game, cannot delete'
+		}
+
+		await conn.query('COMMIT')
+		await conn.end()
+		return message
+	} catch (e) {
+		await conn.query('ROLLBACK')
+		await conn.end()
+		return 'ROLLBACK ' + e
+	}
 }
 
 async function changeStatus({ id, status }) {

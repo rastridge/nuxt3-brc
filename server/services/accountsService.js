@@ -397,9 +397,9 @@ async function editOne(info) {
 }
 
 async function deleteOne(id) {
-	let message = ''
+	let message = null
+	const conn = await getConnectionBuffalorugby()
 	try {
-		const conn = await getConnectionBuffalorugby()
 		await conn.query('START TRANSACTION')
 
 		//
@@ -441,13 +441,12 @@ async function deleteOne(id) {
 
 		await conn.query('COMMIT')
 		await conn.end()
+		return message
 	} catch (e) {
 		await conn.query('ROLLBACK')
 		await conn.end()
 		return 'ROLLBACK ' + e
 	}
-
-	return message
 }
 
 async function changeStatus({ id, status }) {
