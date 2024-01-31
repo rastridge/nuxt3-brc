@@ -419,7 +419,7 @@ async function deleteOne(id) {
 	} catch (e) {
 		await conn.query('ROLLBACK')
 		await conn.end()
-		return 'ROLLBACK'
+		return 'ROLLBACK ' + e
 	}
 }
 

@@ -411,7 +411,7 @@ async function deleteOne(id) {
 			FROM
 				inbrc_stats_player
 			WHERE
-				player_id = ${id} OR replaced_by = ${id};`
+				(player_id = ${id} OR replaced_by = ${id}) AND deleted = 0;`
 		let inserts = []
 		sql = mysql.format(sql, inserts)
 		const games = await conn.execute(sql)

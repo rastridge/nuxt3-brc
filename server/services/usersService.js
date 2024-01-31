@@ -157,15 +157,27 @@ async function getOne(id) {
 }
 
 async function deleteOne(id) {
-	const sql =
-		`UPDATE inbrc_admin_users
-								SET deleted=1, deleted_dt= NOW()
-								WHERE admin_user_id=` + id
+	const conn = await getConnectionBuffalorugby()
+	try {
+		await conn.query('START TRANSACTION')
 
-	const user = await doDBQueryBuffalorugby(sql)
+		let sql = `DELETE FROM inbrc_admin_users
+								WHERE admin_user_id= ${id}`
+		await conn.execute(sql)
 
-	return user
+		sql = `DELETE FROM inbrc_admin_perms WHERE admin_user_id = ${id}`
+		await conn.execute(sql)
+
+		await conn.query('COMMIT')
+		await conn.end()
+		return 'COMMIT'
+	} catch (e) {
+		await conn.query('ROLLBACK')
+		await conn.end()
+		return 'ROLLBACK ' + e
+	}
 }
+
 /***************************************** */
 /*              addOne                     */
 /***************************************** */
