@@ -1,5 +1,7 @@
 import mysql from 'mysql2/promise'
 const { doDBQueryBuffalorugby } = useQuery()
+const { getConnectionBuffalorugby } = useDBConnection()
+
 const { sendEmail } = useEmail()
 
 // const { HOST } = useRuntimeConfig()
@@ -312,12 +314,7 @@ async function sendBallot({ email }) {
 }
 
 async function deleteOne(id) {
-	const conn = await mysql.createConnection({
-		host: 'mysql.buffalorugby.org',
-		user: 'rastridge',
-		password: 'a1s2d3f4',
-		database: 'buffalorugby',
-	})
+	const conn = await getConnectionBuffalorugby()
 
 	try {
 		await conn.query('START TRANSACTION')
@@ -340,7 +337,7 @@ async function deleteOne(id) {
 	} catch (e) {
 		await conn.query('ROLLBACK')
 		await conn.end()
-		return 'ROLLBACK'
+		return 'ROLLBACK ' + e
 	}
 }
 
