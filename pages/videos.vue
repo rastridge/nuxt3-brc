@@ -1,7 +1,7 @@
 <template>
 	<div id="videos">
 		<Head>
-			<Title>Videos Archive </Title>
+			<Title>Buffalo Rugby Club Videos </Title>
 		</Head>
 		<div class="topsectioncenter">
 			<div class="topsectionitem">

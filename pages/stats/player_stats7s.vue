@@ -1,5 +1,8 @@
 <template>
 	<div id="player-stats">
+		<Head>
+			<Title>Buffalo Rugby Club Player Statistics 7s</Title>
+		</Head>
 		<Common-header title="7s Players" />
 
 		<div class="my-simple-card-style">

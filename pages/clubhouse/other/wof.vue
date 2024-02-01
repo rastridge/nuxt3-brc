@@ -1,5 +1,8 @@
 <template>
 	<div id="clubhouse">
+		<Head>
+			<Title>Buffalo Rugby Club Wall of Fame </Title>
+		</Head>
 		<div class="text-center">
 			<common-header title="Virtual Clubhouse Wall of Fame" />
 			<Button

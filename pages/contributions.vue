@@ -1,7 +1,7 @@
 <template>
 	<div id="contributions">
 		<Head>
-			<Title>Contributions</Title>
+			<Title>Buffalo Rugby Club Contributions</Title>
 		</Head>
 		<div class="topsectioncenter">
 			<div class="topsectionitem">
@@ -208,7 +208,6 @@
 			}
 		)
 		let sum = 0
-
 		for (let i = 0; i < data.value.length; i++) {
 			sum += data.value[i].contribution_amount
 		}

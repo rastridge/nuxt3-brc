@@ -1,5 +1,8 @@
 <template>
 	<div id="payments">
+		<Head>
+			<Title>Buffalo Rugby Club Payments</Title>
+		</Head>
 		<div class="center-content">
 			<common-header title="Payments" />
 		</div>

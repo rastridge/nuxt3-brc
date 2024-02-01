@@ -1,5 +1,8 @@
 <template>
 	<div id="clubhouse">
+		<Head>
+			<Title>Buffalo Rugby Club Virtual Clubhouse</Title>
+		</Head>
 		<div class="text-center">
 			<common-header title="Virtual Clubhouse" />
 			<Button

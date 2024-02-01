@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<Head>
+			<Title>Buffalo Rugby Club Opponents</Title>
+		</Head>
 		<Common-header title="Opponents" />
 		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">

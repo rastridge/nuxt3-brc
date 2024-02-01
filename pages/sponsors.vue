@@ -1,5 +1,8 @@
 <template>
 	<div id="sponsors">
+		<Head>
+			<Title>Buffalo Rugby Club Sponsors</Title>
+		</Head>
 		<div class="center-content">
 			<common-header title="Sponsors" />
 		</div>

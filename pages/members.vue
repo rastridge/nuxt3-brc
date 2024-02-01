@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<Head>
+			<Title>Buffalo Rugby Club Members</Title>
+		</Head>
 		<Common-header title="Members" />
 		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">

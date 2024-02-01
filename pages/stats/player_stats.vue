@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<Head>
+			<Title>Buffalo Rugby Club Player Statistics 15s</Title>
+		</Head>
 		<Common-header title="15s Players" />
 		<div class="my-simple-card-style">
 			<div class="my-datatable-wrapper-style">

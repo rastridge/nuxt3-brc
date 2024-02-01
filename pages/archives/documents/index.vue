@@ -1,7 +1,7 @@
 <template>
 	<div id="documents">
 		<Head>
-			<Title>Document Archive </Title>
+			<Title>Buffalo Rugby Club Document Archive </Title>
 		</Head>
 		<div class="topsectioncenter">
 			<div class="topsectionitem">

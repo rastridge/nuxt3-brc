@@ -1,7 +1,7 @@
 <template>
 	<div id="team_stats">
 		<Head>
-			<Title>Team Record</Title>
+			<Title>Buffalo Rugby Club Team Record</Title>
 		</Head>
 		<div class="topsectioncenter">
 			<div class="topsectionitem">

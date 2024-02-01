@@ -1,5 +1,8 @@
 <template>
-	<div id="events">
+	<div id="leaders">
+		<Head>
+			<Title>Buffalo Rugby Club Leaders</Title>
+		</Head>
 		<div class="center-content">
 			<common-header title="Club Leaders" />
 		</div>

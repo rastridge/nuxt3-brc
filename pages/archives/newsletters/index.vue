@@ -1,7 +1,7 @@
 <template>
 	<div id="archive-newsletter">
 		<Head>
-			<Title>Newsletters Archive </Title>
+			<Title>Buffalo Rugby Club Newsletters Archive </Title>
 		</Head>
 		<div class="topsectioncenter">
 			<div class="topsectionitem">
