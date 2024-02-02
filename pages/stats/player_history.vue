@@ -1,7 +1,7 @@
 <template>
 	<div id="player-history">
 		<Head>
-			<Title>Player History</Title>
+			<Title>Buffalo Rugby Club Player History</Title>
 		</Head>
 		<div class="topsectioncenter">
 			<div class="topsectionitem">

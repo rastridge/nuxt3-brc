@@ -1,5 +1,8 @@
 <template>
 	<div class="stats">
+		<Head>
+			<Title>Buffalo Rugby Club Game</Title>
+		</Head>
 		<!-- <common-header :title="item.opponent_name" /> -->
 		<div v-if="playersLoaded && infoLoaded">
 			<Button class="p-button-sm m-1" @click.prevent="returnToList()">

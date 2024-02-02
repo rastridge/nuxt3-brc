@@ -1,5 +1,8 @@
 <template>
 	<div id="stats">
+		<Head>
+			<Title>Buffalo Rugby Club Game History</Title>
+		</Head>
 		<div>
 			<Button class="p-button-sm m-1" @click.prevent="returnToList()">
 				Return to Season

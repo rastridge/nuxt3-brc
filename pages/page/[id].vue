@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<Head>
+			<Title>Buffalo Rugby Club {{ content_data.content_name }}</Title>
+		</Head>
 		<Common-header :title="content_data.content_name" />
 		<div class="my-simple-card-style">
 			<div

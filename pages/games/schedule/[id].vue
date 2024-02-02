@@ -1,7 +1,7 @@
 <template>
 	<div id="schedule">
 		<Head>
-			<Title>Schedule</Title>
+			<Title>Buffalo Rugby Club Game Schedule</Title>
 		</Head>
 		<div class="topsectioncenter">
 			<div class="topsectionitem">

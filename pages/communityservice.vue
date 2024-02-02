@@ -1,5 +1,8 @@
 <template>
 	<div id="community">
+		<Head>
+			<Title>Buffalo Rugby Club Community Service</Title>
+		</Head>
 		<Card class="w-full my-card-style">
 			<template #title
 				><div class="my-text-style text-center">
