@@ -7,7 +7,7 @@
 			<div class="topsectionitem">
 				<common-header title="Game Schedule and Results" />
 			</div>
-			season {{ season }}
+
 			<div class="topsectionitem">
 				<select-season
 					:startyear="startyear"
@@ -21,6 +21,7 @@
 					@submitted="onSubmitGameType"
 				/>
 			</div>
+
 			<div class="my-simple-card-style w-full md:w-10">
 				<DataView :value="filteredData">
 					<template #list="slotProps">
