@@ -91,6 +91,7 @@ export default defineNuxtConfig({
 		prefetch: true,
 		families: {
 			Roboto: true,
+			Anton: true,
 			'Josefin+Sans': true,
 			Lato: [100, 300],
 			Raleway: {

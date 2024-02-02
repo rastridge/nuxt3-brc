@@ -1,5 +1,4 @@
-<script setup lang="ts">
-	// import { useToast } from 'primevue/usetoast'
+<script setup>
 	import { usePrimeVue } from 'primevue/config'
 	// import AppTopBar from '../components/app/AppTopbar.vue'
 	// import AppFooter from '../components/app/AppFooter.vue'
@@ -13,17 +12,15 @@
 
 <template>
 	<div>
-		<!-- <NuxtLoadingIndicator /> -->
-
 		<!-- default start up blue primary  theme? -->
 		<!-- <Link
 			rel="stylesheet"
 			:href="'https://cdn.jsdelivr.net/npm/primevue@3.15.0/resources/themes/vela-blue/theme.css'"
 		/> -->
-		<Link
+		<!-- 		<Link
 			rel="stylesheet"
 			:href="'https://cdn.jsdelivr.net/npm/primevue@3.15.0/resources/themes/saga-blue/theme.css'"
-		/>
+		/> -->
 
 		<div
 			class="bg-transparent border-round-lg md:border-round-xl md:m-2 p-1 md:p-2"
