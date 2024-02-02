@@ -349,8 +349,8 @@ async function getSeason(year1) {
 								AND date_ut > UNIX_TIMESTAMP(CONCAT("${year1}","${SEASON_DIVIDE_DATE}")) AND  date_ut <= UNIX_TIMESTAMP(CONCAT("${YEAR2}","${SEASON_DIVIDE_DATE}"))
 			
 							ORDER BY
-								dt DESC`
-	// console.log('sql= ', sql)
+								g.date_ut DESC`
+	console.log('sql= ', sql)
 	const games1 = await doDBQueryBuffalorugby(sql)
 
 	// Negative Unix Epoch Special case
@@ -460,6 +460,7 @@ async function getOne(id) {
 									g.referee,
 									g.venue,
 									g.comment,
+									g.date,
 									g.date_ut,
 									g.game_type_id,
 									t.game_type,
@@ -798,6 +799,7 @@ async function addOne({
 	referee,
 	venue,
 	comment,
+	date,
 	date_ut,
 	game_type_id,
 	game_level,
@@ -806,16 +808,16 @@ async function addOne({
 	ptsAgn,
 	players,
 }) {
-	const conn = await mysql.createConnection({
+	/* 	const conn = await mysql.createConnection({
 		host: 'mysql.buffalorugby.org',
 		user: 'rastridge',
 		password: 'a1s2d3f4',
 		// database: 'buffalorugby_testing',
 		database: 'buffalorugby',
-	})
+	}) */
+	const conn = await getConnectionBuffalorugby()
 
 	try {
-		// const conn = await getConnectionBuffalorugby()
 		await conn.query('START TRANSACTION')
 
 		let sql = `INSERT INTO inbrc_stats_games 
@@ -824,6 +826,7 @@ async function addOne({
 								referee = ?,
 								venue = ?,
 								comment = ?,
+								date = ?,
 								date_ut = ?,
 								game_type_id = ?,
 								game_level = ?,
@@ -840,6 +843,7 @@ async function addOne({
 			referee,
 			venue,
 			comment,
+			date,
 			date_ut,
 			game_type_id,
 			game_level,
@@ -902,6 +906,7 @@ async function editOne({
 	opponent_id,
 	referee,
 	venue,
+	date,
 	date_ut,
 	game_type_id,
 	game_level,
@@ -911,16 +916,15 @@ async function editOne({
 	ptsAgn,
 	players,
 }) {
-	const conn = await mysql.createConnection({
+	/* const conn = await mysql.createConnection({
 		host: 'mysql.buffalorugby.org',
 		user: 'rastridge',
 		password: 'a1s2d3f4',
 		// database: 'buffalorugby_testing',
 		database: 'buffalorugby',
-	})
+	}) */
+	const conn = await getConnectionBuffalorugby()
 	try {
-		// const conn = await getConnectionBuffalorugby()
-
 		await conn.query('START TRANSACTION')
 
 		let sql = `UPDATE inbrc_stats_games SET
@@ -928,6 +932,7 @@ async function editOne({
 								referee = ?,
 								venue = ?,
 								comment = ?,
+								date=?,
 								date_ut = ?,
 								game_type_id = ?,
 								game_level = ?,
@@ -944,6 +949,7 @@ async function editOne({
 			referee,
 			venue,
 			comment,
+			date,
 			date_ut,
 			game_type_id,
 			game_level,
