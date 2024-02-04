@@ -1,3 +1,17 @@
+<template>
+	<div>
+		<Head>
+			<Title>Add archive Item</Title>
+		</Head>
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add archive Item" />
+			</div>
+			<archive-form @submitted="onSubmit" />
+		</div>
+	</div>
+</template>
+
 <script setup>
 	definePageMeta({
 		middleware: ['auth'],
@@ -14,19 +28,3 @@
 		navigateTo(`/admin/archive`)
 	}
 </script>
-
-<template>
-	<div>
-		<Head>
-			<Title>Add archive Item</Title>
-		</Head>
-		<div class="topsectioncenter">
-			<div class="topsectionitem">
-				<admin-header title="Add archive Item" />
-			</div>
-			<archive-form @submitted="onSubmit" />
-		</div>
-	</div>
-</template>
-
-<style scoped></style>
