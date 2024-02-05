@@ -55,7 +55,7 @@ export default defineNuxtConfig({
 	buildModules: ['@nuxtjs/google-fonts', '@nuxtjs/google-analytics'],
 
 	googleAnalytics: {
-		id: 'G-XJJHD3MS8X',
+		id: 'G-ZP8342GYFQ',
 		// Options
 	},
 	/* 	robots: {
