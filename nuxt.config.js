@@ -56,8 +56,12 @@ export default defineNuxtConfig({
 	buildModules: ['@nuxtjs/google-fonts', '@nuxtjs/google-analytics'],
 
 	googleAnalytics: {
-		id: 'G-ZP8342GYFQ',
-		// Options
+		id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+	},
+	publicRuntimeConfig: {
+		googleAnalytics: {
+			id: process.env.GOOGLE_ANALYTICS_ID,
+		},
 	},
 	/* 	robots: {
 		// provide simple disallow rules for all robots `user-agent: *`
