@@ -43,6 +43,7 @@ export default defineNuxtConfig({
 			APP_NAME: pkg.name,
 			HOST: process.env.HOST,
 			TITLE: process.env.TITLE,
+			GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
 		},
 	},
 	modules: [
@@ -55,8 +56,12 @@ export default defineNuxtConfig({
 	buildModules: ['@nuxtjs/google-fonts', '@nuxtjs/google-analytics'],
 
 	googleAnalytics: {
-		id: 'G-ZP8342GYFQ',
-		// Options
+		id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+	},
+	publicRuntimeConfig: {
+		googleAnalytics: {
+			id: process.env.GOOGLE_ANALYTICS_ID,
+		},
 	},
 	/* 	robots: {
 		// provide simple disallow rules for all robots `user-agent: *`
