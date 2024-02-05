@@ -52,8 +52,12 @@ export default defineNuxtConfig({
 		// '@vueuse/nuxt',
 		'nuxt-simple-robots',
 	],
-	buildModules: ['@nuxtjs/google-fonts'],
+	buildModules: ['@nuxtjs/google-fonts', '@nuxtjs/google-analytics'],
 
+	googleAnalytics: {
+		id: 'G-XJJHD3MS8X',
+		// Options
+	},
 	/* 	robots: {
 		// provide simple disallow rules for all robots `user-agent: *`
 		disallow: ['/'],
