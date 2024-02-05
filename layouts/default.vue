@@ -6,7 +6,7 @@
 
 <template>
 	<div>
-		config.public.GOOGLE_ANALYTICS_ID {{ config.public.GOOGLE_ANALYTICS_ID }}
+		<!-- config.public.GOOGLE_ANALYTICS_ID {{ config.public.GOOGLE_ANALYTICS_ID }} -->
 		<div
 			class="bg-transparent border-round-lg md:border-round-xl md:m-2 p-1 md:p-2"
 		>
