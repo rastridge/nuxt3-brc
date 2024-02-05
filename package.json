@@ -22,6 +22,7 @@
 		"@iconify-json/twemoji": "^1.1.11",
 		"@nuxt/devtools": "^1.0.6",
 		"@nuxt/image": "^1.0.0-rc.1",
+		"@nuxtjs/google-analytics": "^2.4.0",
 		"@nuxtjs/google-fonts": "^3.0.0",
 		"@pinia/nuxt": "^0.4.9",
 		"c8": "^7.13.0",
