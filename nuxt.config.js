@@ -57,10 +57,12 @@ export default defineNuxtConfig({
 
 	googleAnalytics: {
 		id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+		debug: true,
 	},
 	publicRuntimeConfig: {
 		googleAnalytics: {
 			id: process.env.GOOGLE_ANALYTICS_ID,
+			debug: true,
 		},
 	},
 	/* 	robots: {
