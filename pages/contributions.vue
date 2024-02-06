@@ -60,12 +60,8 @@
 					scrollable
 					scrollHeight="400px"
 					dataKey="contribution_id"
-					:loading="loading"
 				>
 					<template #empty> No contributions found for this year </template>
-					<template #loading>
-						Loading contributions data. Please wait.
-					</template>
 
 					<Column
 						field="contribution_date"
@@ -168,9 +164,6 @@
 						dataKey="contribution_id"
 					>
 						<template #empty> No contributions found for this year </template>
-						<template #loading>
-							Loading contributions data. Please wait.
-						</template>
 
 						<Column field="Name" header="Contributor" frozen>
 							<template #body="slotProps">

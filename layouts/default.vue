@@ -1,12 +1,26 @@
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
-	const config = useRuntimeConfig()
+
+	import { useMenuStore } from '@/stores'
+	const menuStore = useMenuStore()
+	// const customMenuItems = menuStore.getCustomMenuItems
 </script>
 
 <template>
 	<div>
-		<!-- config.public.GOOGLE_ANALYTICS_ID {{ config.public.GOOGLE_ANALYTICS_ID }} -->
+		<!-- <NuxtLoadingIndicator /> -->
+
+		<!-- default start up blue primary  theme? -->
+		<!-- <Link
+			rel="stylesheet"
+			:href="'https://cdn.jsdelivr.net/npm/primevue@3.15.0/resources/themes/vela-blue/theme.css'"
+		/> -->
+		<Link
+			rel="stylesheet"
+			:href="'https://cdn.jsdelivr.net/npm/primevue@3.15.0/resources/themes/saga-blue/theme.css'"
+		/>
+
 		<div
 			class="bg-transparent border-round-lg md:border-round-xl md:m-2 p-1 md:p-2"
 		>
