@@ -66,7 +66,7 @@
 		window.open('https://youtube.com/buffalorugby', '_blank')
 	}
 	function redirectToInstagram(event: any) {
-		window.open('https://instagram.com/BuffaloRFC', '_blank')
+		window.open('https://instagram.com/buffalorugbyclub', '_blank')
 	}
 	function redirectToRegister(event: any) {
 		navigateTo('/register')
