@@ -44,7 +44,6 @@ export default defineNuxtConfig({
 			HOST: process.env.HOST,
 			TITLE: process.env.TITLE,
 			GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
-			GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
 		},
 	},
 	modules: [
