@@ -52,17 +52,14 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		// '@vueuse/nuxt',
 		'nuxt-simple-robots',
+		'nuxt-gtag',
 	],
-	buildModules: ['@nuxtjs/google-fonts', '@nuxtjs/google-analytics'],
+	buildModules: ['@nuxtjs/google-fonts'],
 
-	googleAnalytics: {
+	gtag: {
 		id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
 	},
-	publicRuntimeConfig: {
-		googleAnalytics: {
-			id: process.env.GOOGLE_ANALYTICS_ID,
-		},
-	},
+
 	/* 	robots: {
 		// provide simple disallow rules for all robots `user-agent: *`
 		disallow: ['/'],
