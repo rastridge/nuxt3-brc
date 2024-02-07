@@ -1,22 +1,4 @@
 <template>
-	<!-- 	<p
-		v-if="
-			pending_players &&
-			pending_gametypes &&
-			pending_suggestions &&
-			pending_players
-		"
-	>
-		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar> Loading
-		...
-	</p>
-	pending_players =
-	{{
-		pending_players &&
-		pending_gametypes &&
-		pending_suggestions &&
-		pending_players
-	}} -->
 	<div class="my-form-style">
 		<FormKit
 			type="form"
@@ -26,8 +8,8 @@
 			@submit="submitForm(state)"
 		>
 			<!-- opponent input-->
-			<div v-if="!props.id">
-				<Card style="width: 30em; margin-bottom: 1rem">
+			<div v-if="(reset_opponent && !addForm) || addForm">
+				<Card style="width: 25em; margin-bottom: 1rem">
 					<template #title> Find opponent</template>
 					<template #content>
 						<AutoComplete
@@ -37,12 +19,11 @@
 							@complete="search_opponents"
 							@item-select="setOpponent"
 						/>
-						<br />
-						<p>
+						<p class="m-2">
 							If the opponent for this game can not be found in the existing
 							opponents list, you must first create the opponent<br />
 							<Button
-								class="p-button-sm"
+								class="p-button-sm mt-1"
 								label="Create Opponent"
 								@click="navigateTo('/admin/opponents/add')"
 							>
@@ -51,7 +32,16 @@
 					</template>
 				</Card>
 			</div>
-			<FormKit label="Opponent" name="opponent_name" type="text" disabled />
+			<div v-if="!addForm" class="block text-900 font-medium mb-2">
+				<label class="mr-2" for="reset_opponent">Change opponent</label>
+				<Checkbox id="reset_opponent" v-model="reset_opponent" :binary="true" />
+			</div>
+			<FormKit
+				label="Opponent"
+				name="opponent_name"
+				type="text"
+				disabled="true"
+			/>
 
 			<!-- referee input-->
 			<FormKit label="Referee" name="referee" type="text" />
@@ -107,7 +97,6 @@
 		<Button label="Cancel" @click.prevent="cancelForm()" style="margin: 1rem">
 		</Button>
 	</div>
-
 	<!-- if add OR game current date is before game date -->
 	<div
 		v-if="
@@ -286,7 +275,10 @@
 	const players = ref([])
 	const state = ref({})
 	const reset = ref('')
+	const reset_opponent = ref(false)
 	const pending_players = ref('')
+
+	const addForm = ref(props.id === 0)
 
 	//
 	// Player name autocomplete
@@ -376,9 +368,19 @@
 		// lazy: true,
 	})
 
-	// if (!pending_suggestions) {
-	suggestions.value = sug.value
-	// }
+	// opponent names suggestions
+	//
+	const { data: opps_sug, error: error5 } = await useFetch(
+		`/opponents/suggestions`,
+		{
+			method: 'get',
+			headers: {
+				authorization: auth.user.token,
+			},
+		}
+	)
+	suggestions_opponents.value = opps_sug.value
+
 	//
 	//
 	// edit if there is an id
@@ -441,25 +443,8 @@
 				title: value.rname ? value.rname : '',
 			})
 		})
-		// }
 	} else {
 		// add
-		//
-		// opponent names suggestions
-		//
-		const {
-			data: opps_sug,
-			error: error5,
-			pending: pending_suggestions,
-		} = await useFetch(`/opponents/suggestions`, {
-			method: 'get',
-			headers: {
-				authorization: auth.user.token,
-			},
-			// lazy: true,
-		})
-		suggestions_opponents.value = opps_sug.value
-
 		//
 		// initialize blank Add form
 		//
@@ -542,6 +527,12 @@
 			result.push(n)
 		})
 		previousgames.value = result
+	}
+	//
+	// insert opponent
+	//
+	const resetOpponent = () => {
+		c
 	}
 
 	//
