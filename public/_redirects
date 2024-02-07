@@ -111,25 +111,25 @@ RewriteCond %{QUERY_STRING} ^id=([0-9]\*)
 
 #
 
-/site/newsletters/newsletters_archive.php /archive/newsletters
+/site/newsletters/newsletters_archive.php /archives/newsletters
 
 #
 
 RewriteCond %{QUERY_STRING} ^id=(\d\*[^&])$
-/site/news/detail.php /archive/news/page/%1?
+/site/news/detail.php /archives/news/page/%1?
 
 #
 
 RewriteCond %{QUERY_STRING} ^index=(\d\*[^&])
-/site/news/detail_for_FB.php /archive/news/page/%1?
+/site/news/detail_for_FB.php /archives/news/page/%1?
 
 #
 
-/site/news/news_archive.php /archive/news
+/site/news/news_archive.php /archives/news
 
 #
 
-/archive$ /archive/documents
+/archive$ /archives/documents
 
 #
 
