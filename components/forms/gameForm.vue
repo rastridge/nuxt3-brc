@@ -326,10 +326,12 @@
 		} else {
 			filteredOpponents.value = suggestions_opponents.value.filter(
 				(suggestion) => {
-					return suggestion.opponent_name
-						.toLowerCase()
-						.startsWith(event.query.toLowerCase())
-					// .includes(event.query.toLowerCase())
+					return (
+						suggestion.opponent_name
+							.toLowerCase()
+							// .startsWith(event.query.toLowerCase())
+							.includes(event.query.toLowerCase())
+					)
 				}
 			)
 		}
