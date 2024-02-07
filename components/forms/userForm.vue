@@ -191,9 +191,9 @@
 	//
 	const reset = ref(false)
 	const repeatPass = ref('')
-	const resetPassword = () => {
+	/* 	const resetPassword = () => {
 		reset.value = !reset.value
-	}
+	} */
 
 	//
 	// Input validations
