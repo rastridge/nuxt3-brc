@@ -2,6 +2,8 @@
 #
 /site/stats/detail.php  id=:id /schedule/page/:id
 #
+/site/stats /schedule
+#
 /register/men /register
 
 #
@@ -96,10 +98,6 @@
 
 RewriteCond %{QUERY_STRING} ^id=([0-9]\*)
 /site/stats/detail.php$ /schedule/page/%1?
-
-#
-
-/site/stats$ /schedule
 
 #
 
