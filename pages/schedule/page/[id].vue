@@ -1,25 +1,22 @@
 <template>
 	<div class="stats">
-		<!-- <common-header :title="item.opponent_name" /> -->
-		<div v-if="playersLoaded && infoLoaded">
-			<Button class="p-button-sm m-1" @click.prevent="returnToList()">
-				Return to Season
-			</Button>
+		<Head>
+			<Title>Buffalo Rugby Club {{ game.opponent_name }}</Title>
+		</Head>
 
-			<display-game-info :item="game" />
-			<display-roster :players="players" />
-
-			<Button class="p-button-sm m-1" @click.prevent="returnToList()">
-				Return to Season
-			</Button>
+		<div class="my-simple-card-style">
+			<div
+				class="my-text-style border-round-xl md:shadow-6 m-1 p-2 md:m-2 md:p-3 bg-blue-600 text-white"
+			>
+				<Common-header :title="game.opponent_name" />
+				<display-game-info :item="game" />
+				<display-roster :players="players" />
+			</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
-	useHead({
-		title: 'Buffalo Rugby Club Game',
-	})
 	//
 	// Get account id to edit
 	//
@@ -28,12 +25,9 @@
 
 	const players = ref([])
 	const game = ref({})
-	const playersLoaded = ref(false)
-	const infoLoaded = ref(false)
 
 	onMounted(() => {
 		getOne(id.value) // get game info
-		// setGame(game.value)
 		getPlayers(id.value) // get game info for players
 	})
 
@@ -42,15 +36,7 @@
 		const { data, error } = await useFetch(url, {
 			method: 'get',
 		})
-		if (error.value) {
-			throw createError({
-				...error.value,
-				statusMessage: `Could not get data from ${url}`,
-			})
-		} else {
-			playersLoaded.value = true
-			players.value = data.value
-		}
+		players.value = data.value
 	}
 
 	const getOne = async (id) => {
@@ -58,18 +44,6 @@
 		const { data, error } = await useFetch(url, {
 			method: 'get',
 		})
-		if (error.value) {
-			throw createError({
-				...error.value,
-				statusMessage: `Could not get data from ${url}`,
-			})
-		} else {
-			infoLoaded.value = true
-			game.value = data.value
-		}
-	}
-
-	const returnToList = () => {
-		navigateTo(`/games/schedule/0`)
+		game.value = data.value
 	}
 </script>

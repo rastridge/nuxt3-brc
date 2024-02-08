@@ -1,3 +1,5 @@
+/site/news/detail.php id=:id /archives/news/page/:id
+#
 /register/men /register
 
 #
