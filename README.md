@@ -38,9 +38,25 @@ yarn build
 
 - netlify site "thebuffalorugby.club"
 
-# API to support all image requests
+# Supporting APIs
+
+A number of outside services are used to implement apps
+
+- ElasticEmail - email
+- Twilio - text messaging
+- media.buffalorugby.org - image storage
+
+## API to support all image requests
 
 - media.buffalorugby.org
+
+Setup and Usage
+
+At Dreamhost
+
+- enable passenger
+- create tmp/restart.txt
+- create .htaccess
 
 Upload server code to ISP Dreamhost.com using rsync
 
@@ -60,3 +76,13 @@ Restart server
 ```
 alias restart-media-buffalo-api='touch /home/rastridge/media.buffalorugby.org/tmp/restart.txt'
 ```
+
+# Sending Emails
+
+ElasticEmail
+setup and Usage
+
+# Sending Text Messages
+
+Twilio
+Setup and Usage

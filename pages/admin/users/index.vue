@@ -13,7 +13,7 @@
 			>Loading ...
 		</div>
  -->
-		<div class="renderlist-enclosure">
+		<div>
 			<render-list
 				:data="users"
 				:page="page"

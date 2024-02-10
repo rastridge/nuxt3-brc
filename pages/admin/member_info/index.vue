@@ -122,77 +122,75 @@
 				<p class="my-header-style">Selected records count {{ rows }}</p>
 			</div>
 		</div>
-		<div class="my-simple-card-style">
-			<div class="my-datatable-wrapper-style">
-				<DataTable
-					:value="filteredData"
-					class="p-datatable-sm my-text-style"
-					ref="dt"
-					scrollable
-					scrollHeight="600px"
-					dataKey="account_id"
-					:loading="loading"
-					paginator
-					:rows="10"
-					:rowsPerPageOptions="[5, 10, 20, 50]"
-					paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+		<div class="renderlist-enclosure">
+			<DataTable
+				:value="filteredData"
+				class="p-datatable-sm renderlist-enclosure my-text-style"
+				ref="dt"
+				scrollable
+				scrollHeight="600px"
+				dataKey="account_id"
+				:loading="loading"
+				paginator
+				:rows="10"
+				:rowsPerPageOptions="[5, 10, 20, 50]"
+				paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+			>
+				<template #empty> No members found </template>
+				<template #loading> Loading data. Please wait. </template>
+				<template #header>
+					<div style="text-align: left">
+						<Button
+							icon="pi pi-external-link"
+							label="Export to CSV"
+							@click="exportCSV($event)"
+						/>
+					</div>
+				</template>
+				<Column
+					field="modified_dt"
+					header="Last modified"
+					style="white-space: nowrap"
 				>
-					<template #empty> No members found </template>
-					<template #loading> Loading data. Please wait. </template>
-					<template #header>
-						<div style="text-align: left">
-							<Button
-								icon="pi pi-external-link"
-								label="Export to CSV"
-								@click="exportCSV($event)"
-							/>
+					<template #body="slotProps">
+						<div>
+							{{ $dayjs(slotProps.data.modified_dt).format('ll') }}
 						</div>
 					</template>
-					<Column
-						field="modified_dt"
-						header="Last modified"
-						style="white-space: nowrap"
-					>
-						<template #body="slotProps">
-							<div>
-								{{ $dayjs(slotProps.data.modified_dt).format('ll') }}
-							</div>
-						</template>
-					</Column>
+				</Column>
 
-					<Column field="name" header="Name" frozen style="white-space: nowrap">
-					</Column>
+				<Column field="name" header="Name" frozen style="white-space: nowrap">
+				</Column>
 
-					<Column field="account_addr_phone" header="Phone"> </Column>
-					<Column field="address" header="Address"> </Column>
+				<Column field="account_addr_phone" header="Phone"> </Column>
+				<Column field="address" header="Address"> </Column>
 
-					<Column field="mail_recipient" header="US Mail Recip">
-						<template #body="slotProps">
-							<div>
-								{{ slotProps.data.mail_recipient ? 'Y' : 'N' }}
-							</div>
-						</template>
-					</Column>
+				<Column field="mail_recipient" header="US Mail Recip">
+					<template #body="slotProps">
+						<div>
+							{{ slotProps.data.mail_recipient ? 'Y' : 'N' }}
+						</div>
+					</template>
+				</Column>
 
-					<Column field="account_email" header="Email"> </Column>
+				<Column field="account_email" header="Email"> </Column>
 
-					<Column field="newsletter_recipient" header="Email Recip">
-						<template #body="slotProps">
-							<div>
-								{{ slotProps.data.newsletter_recipient ? 'Y' : 'N' }}
-							</div>
-						</template>
-					</Column>
+				<Column field="newsletter_recipient" header="Email Recip">
+					<template #body="slotProps">
+						<div>
+							{{ slotProps.data.newsletter_recipient ? 'Y' : 'N' }}
+						</div>
+					</template>
+				</Column>
 
-					<Column field="account_email_opening" header="Last email opening">
-						<template #body="slotProps">
-							<div>
-								{{ $dayjs(slotProps.data.account_email_opening).format('ll') }}
-							</div>
-						</template>
-					</Column>
-				</DataTable>
-			</div>
+				<Column field="account_email_opening" header="Last email opening">
+					<template #body="slotProps">
+						<div>
+							{{ $dayjs(slotProps.data.account_email_opening).format('ll') }}
+						</div>
+					</template>
+				</Column>
+			</DataTable>
 		</div>
 	</div>
 </template>

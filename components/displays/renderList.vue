@@ -8,7 +8,7 @@
 			>
 			</Button>
 		</div>
-		<div v-if="viewable">
+		<div v-if="viewable" class="renderlist-enclosure">
 			<div class="my-renderlist-styles">
 				<DataTable
 					ref="dataTableRef"

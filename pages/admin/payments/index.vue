@@ -9,7 +9,7 @@
 			</div>
 			<span v-if="error" class="text-danger">ERROR: {{ error }}</span>
 		</div>
-		<div class="renderlist-enclosure">
+		<div>
 			<render-list
 				:data="payments"
 				:page="page"

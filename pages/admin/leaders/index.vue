@@ -7,21 +7,20 @@
 			<div class="topsectionitem">
 				<admin-header :title="app" />
 			</div>
-			<div v-if="pending" class="topsectionitem">Loading ...</div>
-			<div v-else class="renderlist-enclosure">
-				<render-list
-					:data="leaders"
-					:page="page"
-					:app="app"
-					:statusable="statusable"
-					:editable="editable"
-					:deleteable="deleteable"
-					:addable="addable"
-					:viewable="viewable"
-					@changeStatus="changeStatus"
-					@deleteItem="deleteItem"
-				/>
-			</div>
+		</div>
+		<div>
+			<render-list
+				:data="leaders"
+				:page="page"
+				:app="app"
+				:statusable="statusable"
+				:editable="editable"
+				:deleteable="deleteable"
+				:addable="addable"
+				:viewable="viewable"
+				@changeStatus="changeStatus"
+				@deleteItem="deleteItem"
+			/>
 		</div>
 	</div>
 </template>

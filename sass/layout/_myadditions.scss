@@ -102,11 +102,11 @@ quill adjustments
 	@include styleclass('w-20rem mt-2 text-center');
 }
 .renderlist-enclosure {
-	@include styleclass('border-1 border-round-lg bg-white min-w-min');
+	@include styleclass('border-1 border-round-lg bg-white m-0 md:m-2 lg:m-3');
 }
 
 .my-renderlist-styles {
-	@include styleclass('p-1 border-top-1');
+	@include styleclass('p-0 md:p-2');
 }
 .mybutton {
 	@include styleclass(
