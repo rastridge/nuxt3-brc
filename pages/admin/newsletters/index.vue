@@ -17,7 +17,7 @@
 				/>
 			</div>
 		</div>
-		<div v-if="year_data" class="renderlist-enclosure">
+		<div>
 			<render-list
 				:data="year_data"
 				:page="page"
@@ -50,7 +50,7 @@
 
 	const year = ref(placemark.getYear)
 	const startyear = ref(2004)
-	const year_data = ref(null)
+	const year_data = ref([])
 	const page = ref(placemark.getPage)
 	//
 	// Select year action

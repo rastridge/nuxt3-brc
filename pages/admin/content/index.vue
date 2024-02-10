@@ -8,9 +8,8 @@
 				<admin-header :title="app" />
 			</div>
 		</div>
-		<div v-if="pending" class="topsectionitem">Loading ...</div>
 
-		<div v-else class="renderlist-enclosure">
+		<div>
 			<render-list
 				:data="content_data"
 				:app="app"

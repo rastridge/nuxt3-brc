@@ -9,7 +9,7 @@
 			</div>
 			<div v-if="pending" class="topsectionitem">Loading ...</div>
 		</div>
-		<div class="renderlist-enclosure">
+		<div>
 			<render-list
 				:data="video_data"
 				:page="page"

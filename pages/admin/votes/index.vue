@@ -22,7 +22,7 @@
 			</div>
 		</div>
 
-		<div class="renderlist-enclosure">
+		<div>
 			<render-list
 				:data="votes"
 				:page="page"

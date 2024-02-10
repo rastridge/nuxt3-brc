@@ -109,7 +109,7 @@
 				</DataTable>
 			</div>
 		</div>
-		<div class="renderlist-enclosure">
+		<div>
 			<render-list
 				:data="supportingaccounts"
 				:page="page"

@@ -19,7 +19,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="renderlist-enclosure">
+		<div>
 			<render-list
 				:data="filteredData"
 				:page="page"
