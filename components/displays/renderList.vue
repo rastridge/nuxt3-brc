@@ -47,14 +47,14 @@
 					>
 						<Column field="date_ut" header="Date">
 							<template #body="slotProps">
-								{{ $dayjs.unix(slotProps.data.date_ut).format('M-D-YYYY') }}
+								{{ $dayjs.unix(slotProps.data.date_ut).format('YYYY M D') }}
 							</template>
 						</Column>
 					</div>
 					<div v-else>
 						<Column field="dt" header="Date">
 							<template #body="slotProps">
-								{{ $dayjs(slotProps.data.dt).format('M-D-YYYY') }}
+								{{ $dayjs(slotProps.data.dt).format('YYYY M D') }}
 							</template>
 						</Column>
 					</div>

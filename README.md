@@ -6,6 +6,14 @@ https://github.com/sfxcode/nuxt3-primevue-starter
 
 # Project setup and usage
 
+# NUXT 3 Version of Buffalo Rugby Club Website
+
+## Originally based on
+
+https://github.com/sfxcode/nuxt3-primevue-starter
+
+# Project setup and usage
+
 Install node:
 
 ```
