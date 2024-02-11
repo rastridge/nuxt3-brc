@@ -1,0 +1,36 @@
+@import 'themes/saga-blue.scss';
+@import 'sakai/layout';
+@import 'myquill';
+@import 'myprimeflex';
+@import 'myformkit';
+
+.alert-danger {
+	margin-right: auto;
+	padding: 0.25rem;
+	background-color: white;
+	color: red;
+	width: 25%;
+	text-align: center;
+	border: 1px solid red;
+	border-radius: 5px;
+}
+.alert-success {
+	margin-right: auto;
+	padding: 0.25rem;
+	background-color: white;
+	color: yellow;
+	width: 25%;
+	text-align: center;
+	border: 1px solid yellow;
+	border-radius: 5px;
+}
+.alert-info {
+	// margin-right: auto;
+	padding: 0.5rem;
+	background-color: white;
+	color: green;
+	width: 100%;
+	text-align: center;
+	border: 1px solid green;
+	border-radius: 5px;
+}
