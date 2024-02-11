@@ -53,8 +53,19 @@ export default defineNuxtConfig({
 		// '@vueuse/nuxt',
 		'nuxt-simple-robots',
 		'nuxt-gtag',
+		[
+			'@nuxtjs/google-fonts',
+			{
+				families: {
+					Roboto: true,
+					Inter: [400, 700],
+				},
+			},
+		],
 	],
-	buildModules: ['@nuxtjs/google-fonts'],
+	googleFonts: {
+		outputDir: 'assets/fonts',
+	},
 
 	gtag: {
 		id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided

@@ -1,6 +1,5 @@
 <script setup>
 	import { useMenuStore, useAuthStore } from '@/stores'
-	// import { useAuthStore } from '~/stores/authStore'
 	import '@formkit/themes/genesis'
 	const auth = useAuthStore()
 	const menuStore = useMenuStore()
