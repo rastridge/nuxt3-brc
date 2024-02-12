@@ -54,7 +54,7 @@
 					<div v-else>
 						<Column field="dt" header="Date">
 							<template #body="slotProps">
-								{{ $dayjs(slotProps.data.dt).format('YYYY M D') }}
+								{{ $dayjs(slotProps.data.dt).format('MMM D, YYYY') }}
 							</template>
 						</Column>
 					</div>
