@@ -11,6 +11,7 @@
 			<div class="topsectionitem mb-2">
 				<Card class="my-card-style">
 					<template #content>
+						<h5>Paypal</h5>
 						<form
 							action="https://www.paypal.com/donate"
 							method="post"
@@ -38,6 +39,20 @@
 							/>
 						</form>
 					</template>
+				</Card>
+			</div>
+			<!-- check-->
+			<div class="topsectionitem mb-2">
+				<Card class="my-card-style">
+					<template #content>
+						<p>
+							Mail check payable to <br />Buffalo Rugby Alumni Fund<br />
+							<br />
+							Buffalo Rugby Club<br />
+							293 Washington Hwy<br />
+							Amherst, NY 14226
+						</p></template
+					>
 				</Card>
 			</div>
 			<!-- ------------ yearly contributions --------------------------->
