@@ -16,7 +16,7 @@
 					stripedRows
 					filterDisplay="row"
 					paginator
-					:rows="20"
+					:rows="10"
 					:rowsPerPageOptions="[5, 10, 20, 50]"
 					paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
 					currentPageReportTemplate="{first} to {last} of {totalRecords}"
@@ -116,6 +116,9 @@
 					</template>
 				</DataTable>
 			</div>
+		</div>
+		<div>
+			<recent-updates />
 		</div>
 	</div>
 </template>

@@ -6,50 +6,50 @@
 			class="flex gap-2 border- border-white w-30rem md:w-40rem lg:w-10 xl:w-8 mx-auto"
 		>
 			<li>
-				<p-button
+				<Button
 					class="p-link my-text-style text-white hover:text-blue-200"
 					@click="redirectToFacebook"
 				>
 					<i class="pi pi-facebook my-text-style" />
 					<span>facebook</span>
-				</p-button>
+				</Button>
 			</li>
 
 			<li>
-				<p-button
+				<Button
 					class="p-link my-text-style text-white hover:text-blue-200"
 					@click="redirectToYoutube"
 				>
 					<i class="pi pi-twitter my-text-style" />
 					<span>youtube</span>
-				</p-button>
+				</Button>
 			</li>
 			<li>
-				<p-button
+				<Button
 					class="p-link my-text-style text-white hover:text-blue-200"
 					@click="redirectToInstagram"
 				>
 					<i class="pi pi-instagram my-text-style" />
 					<span>instagram</span>
-				</p-button>
+				</Button>
 			</li>
 			<li>
-				<p-button
+				<Button
 					class="p-link my-text-style text-white hover:text-blue-200"
 					@click="redirectToRegister"
 				>
 					<i class="pi pi-user-plus my-text-style" />
 					<span>Join Men</span>
-				</p-button>
+				</Button>
 			</li>
 			<li>
-				<p-button
+				<Button
 					class="p-link my-text-style text-white hover:text-blue-200"
 					@click="redirectToFlagRegister"
 				>
 					<i class="pi pi-user-plus my-text-style" />
 					<span>Join Youth</span>
-				</p-button>
+				</Button>
 			</li>
 		</ul>
 	</div>
