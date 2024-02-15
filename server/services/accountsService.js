@@ -127,7 +127,9 @@ async function addOne(info) {
 		const [rows, fields] = await CONN.execute(sql)
 		const temp = rows
 		const lc_account_email = info.account_email.toLowerCase()
-		const emailExists = temp.find((u) => u.account_email === lc_account_email)
+		const emailExists = temp.find(
+			(u) => u.account_email.toLowerCase() === lc_account_email
+		)
 
 		// If no email conflict
 		//
@@ -244,7 +246,7 @@ async function addOne(info) {
 	} catch (e) {
 		await CONN.query('ROLLBACK')
 		await CONN.end()
-		return e
+		return 'ROLLBACK ' + e
 	}
 }
 

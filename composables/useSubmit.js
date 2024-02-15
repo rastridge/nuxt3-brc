@@ -51,6 +51,7 @@ export default function useSubmit() {
 				// message if email exists
 				alert.error(data.value.message)
 			}
+			return data.value.message
 		}
 	}
 
@@ -70,6 +71,7 @@ export default function useSubmit() {
 				// message if email exists
 				alert.error(data.value.message)
 			}
+			return data.value.message
 		}
 	}
 
