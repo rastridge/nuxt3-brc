@@ -116,7 +116,6 @@
 	const props = defineProps({
 		id: { Number, default: 0 },
 	})
-
 	//
 	// Initialize form
 	//
