@@ -258,7 +258,6 @@
 	// initialize form for add
 	//
 	const state = ref({})
-
 	state.value.member_year = $dayjs().format('YYYY')
 	state.value.account_addr_phone = '+1716'
 	state.value.member_show_phone = '1'
