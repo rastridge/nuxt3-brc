@@ -1,5 +1,4 @@
 <template>
-	<p v-if="alert.message" class="alert-danger">ERROR: {{ alert.message }}</p>
 	<div class="my-form-style">
 		<FormKit
 			type="form"
@@ -8,6 +7,9 @@
 			submit-label="Submit member"
 			@submit="submitForm"
 		>
+			<p v-if="alert.message" class="alert-danger w-full">
+				ERROR: {{ alert.message }}
+			</p>
 			<FormKit
 				label="First Name"
 				name="member_firstname"
@@ -88,13 +90,15 @@
 				}"
 				validation-visibility="live"
 			/>
+			<p v-if="alert.message" class="alert-danger w-full">
+				ERROR: {{ alert.message }}
+			</p>
+			<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 		</FormKit>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<p v-if="alert.message" class="alert-danger">ERROR: {{ alert.message }}</p>
-		<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 	</div>
 </template>
 

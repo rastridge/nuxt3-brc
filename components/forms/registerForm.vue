@@ -1,7 +1,9 @@
 <template>
 	<div>
-		<p v-if="alert.message" class="alert-danger">ERROR: {{ alert.message }}</p>
 		<div class="my-form-style">
+			<p v-if="alert.message" class="alert-danger w-full">
+				ERROR: {{ alert.message }}
+			</p>
 			<FormKit
 				type="form"
 				:config="{ validationVisibility: 'live' }"
@@ -92,13 +94,13 @@
 					}"
 					validation-visibility="live"
 				/>
+				<p v-if="alert.message" class="alert-danger w-full">
+					ERROR: {{ alert.message }}
+				</p>
 			</FormKit>
 			<p v-if="saving">
 				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 				Saving ...
-			</p>
-			<p v-if="alert.message" class="alert-danger">
-				ERROR: {{ alert.message }}
 			</p>
 			<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 		</div>

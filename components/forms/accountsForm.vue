@@ -2,10 +2,10 @@
 	<p v-if="!memberTypeOptions || !memberAdminTypeOptions || !state">
 		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>Loading
 	</p>
-	<p v-if="alert.message" class="alert-danger w-20rem">
-		ERROR: {{ alert.message }}
-	</p>
 	<div class="my-form-style">
+		<p v-if="alert.message" class="alert-danger w-full">
+			ERROR: {{ alert.message }}
+		</p>
 		<FormKit
 			type="form"
 			:config="{ validationVisibility: 'live' }"
