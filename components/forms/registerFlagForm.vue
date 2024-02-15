@@ -1,15 +1,7 @@
 <template>
 	<div>
 		<div>
-			<p v-if="alert.message" class="alert-danger w-20rem">
-				ERROR: {{ alert.message }}
-			</p>
-
 			<div class="my-form-style">
-				<p class="alert-danger w-20rem">
-					Form must be completed by legal guardian or parent of the player being
-					registered
-				</p>
 				<FormKit
 					type="form"
 					:config="{ validationVisibility: 'live' }"
@@ -17,6 +9,13 @@
 					submit-label="Submit member"
 					@submit="submitForm"
 				>
+					<p class="alert-danger w-full">
+						Form must be completed by legal guardian or parent of the player
+						being registered
+					</p>
+					<p v-if="alert.message" class="alert-danger w-full">
+						ERROR: {{ alert.message }}
+					</p>
 					<FormKit
 						label="Prove you are a human. What is 3x5?"
 						type="text"
@@ -161,17 +160,17 @@
 							{ label: 'No', value: 0 },
 						]"
 					/>
+					<p v-if="alert.message" class="alert-danger w-full">
+						ERROR: {{ alert.message }}
+					</p>
+					<Button class="mb-3 center" label="Cancel" @click="cancelForm">
+					</Button>
 				</FormKit>
 
 				<p v-if="saving">
 					<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 					Saving ...
 				</p>
-				<p v-if="alert.message" class="alert-danger w-20rem">
-					ERROR: {{ alert.message }}
-				</p>
-				<Button class="mb-3 center" label="Cancel" @click="cancelForm">
-				</Button>
 			</div>
 		</div>
 	</div>

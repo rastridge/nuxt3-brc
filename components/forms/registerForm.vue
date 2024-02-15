@@ -4,6 +4,9 @@
 			<p v-if="alert.message" class="alert-danger w-full">
 				ERROR: {{ alert.message }}
 			</p>
+			<p v-if="alert.message" class="alert-danger w-full">
+				ERROR: {{ alert.message }}
+			</p>
 			<FormKit
 				type="form"
 				:config="{ validationVisibility: 'live' }"
@@ -99,6 +102,9 @@
 				</p>
 				<Button class="mb-3 center" label="Cancel" @click="cancelForm">
 				</Button>
+				<p v-if="alert.message" class="alert-danger w-full">
+					ERROR: {{ alert.message }}
+				</p>
 			</FormKit>
 			<p v-if="saving">
 				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
