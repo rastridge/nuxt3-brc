@@ -3,9 +3,8 @@
 		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>Loading
 	</p>
 	<div class="my-form-style">
-		<p v-if="alert.message" class="alert-danger w-full">
-			ERROR: {{ alert.message }}
-		</p>
+		<display-alert />
+
 		<FormKit
 			type="form"
 			:config="{ validationVisibility: 'live' }"
@@ -206,9 +205,7 @@
 					>
 					<Image :src="state.member_pic_path" alt="Image" width="72" />
 				</div>
-				<p v-if="alert.message" class="alert-danger w-full">
-					ERROR: {{ alert.message }}
-				</p>
+				<display-alert />
 			</div>
 			<Button class="mb-2 my-text-style" label="Cancel" @click="cancelForm">
 			</Button>

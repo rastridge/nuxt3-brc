@@ -7,9 +7,8 @@
 			submit-label="Submit member"
 			@submit="submitForm"
 		>
-			<p v-if="alert.message" class="alert-danger w-full">
-				ERROR: {{ alert.message }}
-			</p>
+			<display-alert />
+
 			<FormKit
 				label="First Name"
 				name="member_firstname"
@@ -90,9 +89,8 @@
 				}"
 				validation-visibility="live"
 			/>
-			<p v-if="alert.message" class="alert-danger w-full">
-				ERROR: {{ alert.message }}
-			</p>
+			<display-alert />
+
 			<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 		</FormKit>
 		<p v-if="saving">
@@ -104,8 +102,6 @@
 
 <script setup>
 	import { getNode } from '@formkit/core'
-	import { useAlertStore } from '~/stores/alertStore'
-	const alert = useAlertStore()
 	const { getCountries, setRegions } = useLocations()
 	const saving = ref(false)
 	const state = ref(null)

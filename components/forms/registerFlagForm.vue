@@ -13,9 +13,8 @@
 						Form must be completed by legal guardian or parent of the player
 						being registered
 					</p>
-					<p v-if="alert.message" class="alert-danger w-full">
-						ERROR: {{ alert.message }}
-					</p>
+					<display-alert />
+
 					<FormKit
 						label="Prove you are a human. What is 3x5?"
 						type="text"
@@ -160,9 +159,8 @@
 							{ label: 'No', value: 0 },
 						]"
 					/>
-					<p v-if="alert.message" class="alert-danger w-full">
-						ERROR: {{ alert.message }}
-					</p>
+					<display-alert />
+
 					<Button class="mb-3 center" label="Cancel" @click="cancelForm">
 					</Button>
 				</FormKit>
