@@ -21,9 +21,8 @@
 				<Button class="p-button mb-4" label="Cancel" @click="cancelForm">
 				</Button>
 			</div>
-			<p v-if="alert.message" class="alert-danger">
-				ERROR: {{ alert.message }}
-			</p>
+			<display-alert />
+
 			<label for="admin_user_name" class="block text-900 font-medium mb-2"
 				>Username</label
 			>
@@ -82,9 +81,7 @@
 			</div>
 
 			<!-- conflict - existing email or username  -->
-			<p v-if="alert.message" class="alert-danger">
-				ERROR: {{ alert.message }}
-			</p>
+			<display-alert />
 
 			<div class="m-5 md:text-xl font-semibold text-center">
 				Admin User Permissions

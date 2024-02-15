@@ -1,7 +1,4 @@
 <template>
-	<p v-if="alert.message" class="alert-danger w-20rem">
-		ERROR: {{ alert.message }}
-	</p>
 	<p v-if="!state">
 		<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>Loading
 	</p>
@@ -13,6 +10,8 @@
 			submit-label="Submit member"
 			@submit="submitForm"
 		>
+			<display-alert />
+
 			<FormKit
 				label="First Name"
 				name="member_firstname"
@@ -160,17 +159,14 @@
 					{ label: 'No', value: 0 },
 				]"
 			/>
+			<display-alert />
+			<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 		</FormKit>
 
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-
-		<p v-if="alert.message" class="alert-danger w-20rem">
-			ERROR: {{ alert.message }}
-		</p>
-		<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
 	</div>
 </template>
 

@@ -70,17 +70,11 @@
 					customUpload
 					@uploader="customUploader"
 				/>
-				<p v-if="error" class="alert-danger w-full">
-					Error: Must submit image file
-				</p>
 			</div>
+			<Button class="my-text-style" label="Cancel" @click="cancelForm()">
+			</Button>
+			<display-alert />
 		</FormKit>
-
-		<Button class="my-text-style" label="Cancel" @click="cancelForm()">
-		</Button>
-		<p v-if="alert.message" class="alert-danger w-20rem">
-			ERROR: {{ alert.message }}
-		</p>
 
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
@@ -109,7 +103,6 @@
 	const alert = useAlertStore()
 	const auth = useAuthStore()
 	const saving = ref(false)
-	const error = ref(false)
 	const fileInput = ref(null)
 	const image = ref(null)
 
@@ -205,11 +198,11 @@
 			state.value.ad_image_path = data.imageUrl
 		} else {
 			alert.error(
-				'Illegal dimensons ' +
+				'Incorrect image dimensons ' +
 					imageDimensions.height +
 					'px ' +
 					imageDimensions.width +
-					'px - Image must be 750w 125h'
+					'px - Image must be 750px 125px'
 			)
 		}
 	}
@@ -220,10 +213,10 @@
 	const submitForm = (state) => {
 		if (state.ad_image_path) {
 			saving.value = true
-			error.value = false
+			alert.clear()
 			emit('submitted', state)
 		} else {
-			error.value = true
+			alert.error('Image required')
 		}
 	}
 

@@ -1,11 +1,6 @@
 <template>
 	<div id="loginpage">
 		<div class="topsectioncenter">
-			<div class="topsectionitem">
-				<div v-if="alert.message" :class="`alert ${alert.type}`">
-					{{ alert.message }}
-				</div>
-			</div>
 			<div v-if="!auth.isLoggedIn" class="topsectionitem my-card-style p-3">
 				<div class="text-center mb-5">
 					<div class="text-white md:text-xl font-medium mb-3">
@@ -13,6 +8,7 @@
 					</div>
 				</div>
 				<FormKit type="form" submit-label="Login" @submit="handleSubmit">
+					<display-alert />
 					<FormKit
 						type="text"
 						name="username"
@@ -63,9 +59,7 @@
 
 <script setup>
 	import { useAuthStore } from '~/stores/authStore'
-	import { useAlertStore } from '~/stores/alertStore'
 	const auth = useAuthStore()
-	const alert = useAlertStore() // used in template
 
 	const keeploggedin = ref(false)
 
