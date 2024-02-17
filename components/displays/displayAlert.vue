@@ -27,7 +27,6 @@
 		text-align: center;
 		border: 1px solid red;
 		border: none;
-
 		border-radius: 5px;
 	}
 	.alert-success {
@@ -39,7 +38,6 @@
 		text-align: center;
 		border: 1px solid yellow;
 		border: none;
-
 		border-radius: 5px;
 	}
 	.alert-info {
