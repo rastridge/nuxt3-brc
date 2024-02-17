@@ -33,15 +33,7 @@
 	import ImageUploader from 'quill-image-uploader'
 	import { useAuthStore } from '~/stores/authStore'
 	const auth = useAuthStore()
-	/* 	const {
-		CLOUD_NAME,
-		CLOUD_API_KEY,
-		CLOUD_API_SECRET,
-		CLOUD_UPLOAD_PRESET,
-		CLOUD_API,
-		MY_MEDIA_API,
-	} = useRuntimeConfig() */
-	//
+
 	// Incoming
 	//
 	const props = defineProps({
@@ -94,20 +86,4 @@
 			},
 		},
 	}
-
-	// const fileinfo = ref('')
-
-	// const getFiles = async () => {
-	// 	const res = await fetch('https://media.my-test-site.net/files', {
-	// 		method: 'GET',
-	// 		headers: {
-	// 			authorization: auth.user.token,
-	// 			Accept: '*/*',
-	// 		},
-	// 	})
-	// 	// 		if (res.ok) {
-	// 	// 	fileinfo.value = await res.json()
-	// 	// }
-	// 	fileinfo.value = await res.json()
-	// }
 </script>
