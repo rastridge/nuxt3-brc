@@ -159,7 +159,6 @@
 				placeholder="Select admin type"
 				name="member_admin_type_id"
 				:options="memberAdminTypeOptions"
-				validation="required"
 			/>
 			<FormKit
 				type="select"
