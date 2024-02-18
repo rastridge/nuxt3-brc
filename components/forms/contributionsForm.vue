@@ -1,6 +1,6 @@
 <template>
 	<div class="my-form-style">
-		<h6 v-if="props.id" class="text-left">
+		<h6 v-if="props.id" class="text-left my-text-style font-semibold">
 			Contributor {{ state.contribution_name }}
 		</h6>
 		<div v-else class="mb-2">
