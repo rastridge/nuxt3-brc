@@ -3,7 +3,7 @@ import vsharp from 'vite-plugin-vsharp'
 
 export default defineNuxtConfig({
 	devtools: false,
-	ssr: false,
+	ssr: true,
 	vite: {
 		plugins: [vsharp()],
 	},
@@ -14,9 +14,6 @@ export default defineNuxtConfig({
 		DB_PASSWORD: process.env.DB_PASSWORD,
 		DB_DATABASE: process.env.DB_DATABASE,
 		DATABASE_URL: process.env.DATABASE_URL,
-		SHADOW_DATABASE_URL: process.env.SHADOW_DATABASE_URL,
-		ONSERVER: process.server,
-		ONCLIENT: process.client,
 
 		TO: process.env.TO,
 		TO_FLAG: process.env.TO_FLAG,
