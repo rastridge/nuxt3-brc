@@ -1,6 +1,6 @@
 <template>
 	<Button
-		class="p-button-sm"
+		class="p-button-sm mb-1"
 		label="Cancel"
 		@click="cancelForm()"
 		severity="warning"
@@ -12,7 +12,6 @@
 		destination: { String, default: '/', required: false },
 	})
 	const cancelForm = () => {
-		alert(props.destination)
 		navigateTo(props.destination)
 	}
 </script>

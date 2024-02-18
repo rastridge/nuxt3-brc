@@ -8,7 +8,9 @@
 			<div class="topsectionitem">
 				<admin-header title="Add User" />
 			</div>
-			<user-form @submitted="onSubmit" />
+			<div class="w-full">
+				<user-form @submitted="onSubmit" />
+			</div>
 		</div>
 	</div>
 </template>

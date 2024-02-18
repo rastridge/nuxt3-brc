@@ -1,22 +1,18 @@
 <template>
-	<h5 v-if="props.id" class="text-left">
-		Contributor {{ state.contribution_name }}
-	</h5>
-	<div v-else>
-		<card class="card my-card-style mb-1">
-			<template #content>
-				<p>Contributor name</p>
-				<AutoComplete
-					v-model="selectedItem"
-					optionLabel="title"
-					:suggestions="filteredNames"
-					@complete="search"
-					@item-select="getPrevious"
-				/>
-			</template>
-		</card>
-	</div>
 	<div class="my-form-style">
+		<h6 v-if="props.id" class="text-left">
+			Contributor {{ state.contribution_name }}
+		</h6>
+		<div v-else class="mb-2">
+			<p class="font-semibold">Contributor name</p>
+			<AutoComplete
+				v-model="selectedItem"
+				optionLabel="title"
+				:suggestions="filteredNames"
+				@complete="search"
+				@item-select="getPrevious"
+			/>
+		</div>
 		<FormKit
 			type="form"
 			:config="{ validationVisibility: 'live' }"

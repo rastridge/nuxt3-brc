@@ -1,3 +1,19 @@
+<template>
+	<div>
+		<Head>
+			<Title>Add Account</Title>
+		</Head>
+
+		<div class="topsectioncenter">
+			<div class="topsectionitem">
+				<admin-header title="Add account" />
+			</div>
+
+			<accounts-form @submitted="onSubmit" />
+		</div>
+	</div>
+</template>
+
 <script setup>
 	definePageMeta({
 		middleware: ['auth'],
@@ -17,17 +33,3 @@
 		}
 	}
 </script>
-
-<template>
-	<div>
-		<Head>
-			<Title>Add Account</Title>
-		</Head>
-		<div class="topsectioncenter">
-			<div class="topsectionitem">
-				<admin-header title="Add account" />
-			</div>
-			<accounts-form @submitted="onSubmit" />
-		</div>
-	</div>
-</template>

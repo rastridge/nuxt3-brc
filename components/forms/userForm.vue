@@ -11,16 +11,11 @@
 					Saving ...
 				</p>
 
-				<Button
-					class="mb-4 mr-4"
-					label="Submit user"
-					@click="submitForm(state)"
-				>
-				</Button>
+			<Button class="mb-4 mr-4" label="Submit user" @click="submitForm(state)">
+			</Button>
 
-				<display-alert />
-				<display-cancelform :destination="'/admin/users'" />
-			</div>
+			<display-alert />
+			<display-cancelform :destination="'/admin/users'" />
 
 			<label for="admin_user_name" class="block text-900 font-medium mb-2"
 				>Username</label
