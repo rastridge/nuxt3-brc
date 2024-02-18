@@ -244,7 +244,7 @@ async function addOne({
 }
 async function deleteOne(id) {
 	const sql = `UPDATE inbrc_contributions SET deleted = 1, deleted_dt= NOW() WHERE contribution_id = ${id}`
-	contributions = await doDBQueryDatestring(sql)
+	const contributions = await doDBQueryDatestring(sql)
 
 	return contributions
 }

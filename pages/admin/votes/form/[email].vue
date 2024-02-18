@@ -9,14 +9,13 @@
 					:options="options[q_index]"
 				/>
 			</div>
+			<display-cancelform :destination="'/news'" />
 			<Button
 				label="Submit"
 				severity="info"
 				class="m-2"
 				@click="handleSubmit(account_email, answers)"
 			/>
-			<Button label="Cancel" class="m-2" @click.prevent="cancelForm()">
-			</Button>
 		</div>
 		<div v-else>
 			<h1
@@ -132,5 +131,4 @@
 		})
 		navigateTo('/admin/votes/thanks')
 	}
-	const cancelForm = () => navigateTo('/news')
 </script>

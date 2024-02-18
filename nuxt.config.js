@@ -23,17 +23,11 @@ export default defineNuxtConfig({
 		FROM: process.env.FROM,
 		FROM_NAME: process.env.FROM_NAME,
 
-		apiSecret: process.env.API_SECRET,
 		EE_API_KEY: process.env.EE_API_KEY,
 		TWILIO_NUMBER: process.env.TWILIO_NUMBER,
 		TWILIO_ACCOUNT_SID: process.env.TWILIO_ACCOUNT_SID,
 		TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN,
-		CLOUD_NAME: process.env.CLOUD_NAME,
-		CLOUD_API_KEY: process.env.CLOUD_API_KEY,
-		CLOUD_API: process.env.CLOUD_API,
-		CLOUD_API_SECRET: process.env.CLOUD_API_SECRET,
-		CLOUD_UPLOAD_PRESET: process.env.CLOUD_UPLOAD_PRESET,
-		MY_MEDIA_API: process.env.MY_MEDIA_API,
+
 		SEASON_DIVIDE_DATE: process.env.SEASON_DIVIDE_DATE,
 
 		// Keys within public, will be also be

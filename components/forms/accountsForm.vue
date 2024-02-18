@@ -206,8 +206,7 @@
 				</div>
 				<display-alert />
 			</div>
-			<Button class="mb-2 my-text-style" label="Cancel" @click="cancelForm">
-			</Button>
+			<display-cancelform :destination="'/admin/accounts/men'" />
 		</FormKit>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
@@ -372,9 +371,5 @@
 	const submitForm = (state) => {
 		saving.value = true
 		emit('submitted', state)
-	}
-	const cancelForm = () => {
-		navigateTo('/admin/accounts/men') // needs to be / for self register
-		// navigateTo('http://localhost:3000/admin/accounts/men', { external: true }) // needs to be / for self register
 	}
 </script>

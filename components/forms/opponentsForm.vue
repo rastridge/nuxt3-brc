@@ -51,12 +51,12 @@
 				type="textarea"
 				validation="required"
 			/>
+			<display-cancelform :destination="'/admin/opponents'" />
 		</FormKit>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button label="Cancel" @click="cancelForm()"> </Button>
 	</div>
 	<!-- </div> -->
 </template>
@@ -108,9 +108,5 @@
 	const submitForm = (state) => {
 		saving.value = true
 		emit('submitted', state)
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/opponents')
 	}
 </script>

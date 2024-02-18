@@ -44,13 +44,13 @@
 			<FormKit label="Coach" name="coach" type="text" value="" />
 			<FormKit label="Asst Coach" name="assistant_coach" type="text" value="" />
 			<FormKit label="Chair BOD" name="chair_bod" type="text" value="" />
+			<display-cancelform :destination="'/admin/leaders'" />
 		</FormKit>
 
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button label="Cancel" @click="cancelForm()"> </Button>
 	</div>
 	<!-- </div> -->
 </template>
@@ -122,9 +122,5 @@
 	const submitForm = (state) => {
 		saving.value = true
 		emit('submitted', state)
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/leaders')
 	}
 </script>

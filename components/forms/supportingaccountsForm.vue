@@ -53,13 +53,13 @@
 				validation="required"
 				value=""
 			/>
+			<display-cancelform :destination="'/admin/supporting_accounts'" />
 		</FormKit>
 
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button label="Cancel" @click="cancelForm()"> </Button>
 	</div>
 </template>
 
@@ -108,9 +108,5 @@
 	const submitForm = (state) => {
 		saving.value = true
 		emit('submitted', state)
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/supporting_accounts')
 	}
 </script>

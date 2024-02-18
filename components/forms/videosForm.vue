@@ -49,12 +49,12 @@
 				name="video_expire_dt"
 				validation="required"
 			/>
+			<display-cancelform :destination="'/admin/videos'" />
 		</FormKit>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button label="Cancel" @click="cancelForm()"> </Button>
 	</div>
 </template>
 
@@ -116,9 +116,5 @@
 	const submitForm = async (state) => {
 		saving.value = true
 		emit('submitted', state)
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/videos')
 	}
 </script>

@@ -40,13 +40,12 @@
 				name="archive_date"
 				validation="required"
 			/>
+			<display-cancelform :destination="'/admin/archive'" />
 		</FormKit>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button class="my-text-style" label="Cancel" @click.prevent="cancelForm()">
-		</Button>
 	</div>
 
 	<!-- Modal -->
@@ -156,9 +155,5 @@
 		} else {
 			error.value = true
 		}
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/archive') // needs to be / for self register
 	}
 </script>

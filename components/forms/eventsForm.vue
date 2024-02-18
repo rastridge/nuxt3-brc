@@ -46,12 +46,12 @@
 				name="expire_dt"
 				validation="required"
 			/>
+			<display-cancelform :destination="'/admin/events'" />
 		</FormKit>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button label="Cancel" @click.prevent="cancelForm()"> </Button>
 	</div>
 </template>
 
@@ -119,9 +119,5 @@
 	const submitForm = (state) => {
 		saving.value = true
 		emit('submitted', state)
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/events') // needs to be / for self register
 	}
 </script>

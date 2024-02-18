@@ -58,12 +58,12 @@
 				name="news_expire_dt"
 				validation="required"
 			/>
+			<display-cancelform :destination="'/admin/news'" />
 		</FormKit>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button label="Cancel" @click.prevent="cancelForm()"> </Button>
 	</div>
 </template>
 
@@ -159,9 +159,5 @@
 		state.news_release_dt = $dayjs(state.news_release_dt).format('YYYY-MM-DD')
 		state.news_expire_dt = $dayjs(state.news_expire_dt).format('YYYY-MM-DD')
 		emit('submitted', state)
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/news') // needs to be / for self register
 	}
 </script>

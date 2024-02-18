@@ -1,22 +1,18 @@
 <template>
-	<h5 v-if="props.id" class="text-left">
-		Contributor {{ state.contribution_name }}
-	</h5>
-	<div v-else>
-		<card class="card my-card-style mb-1">
-			<template #content>
-				<p>Contributor name</p>
-				<AutoComplete
-					v-model="selectedItem"
-					optionLabel="title"
-					:suggestions="filteredNames"
-					@complete="search"
-					@item-select="getPrevious"
-				/>
-			</template>
-		</card>
-	</div>
 	<div class="my-form-style">
+		<h6 v-if="props.id" class="text-left my-text-style font-semibold">
+			Contributor {{ state.contribution_name }}
+		</h6>
+		<div v-else class="mb-2">
+			<p class="font-semibold">Contributor name</p>
+			<AutoComplete
+				v-model="selectedItem"
+				optionLabel="title"
+				:suggestions="filteredNames"
+				@complete="search"
+				@item-select="getPrevious"
+			/>
+		</div>
 		<FormKit
 			type="form"
 			:config="{ validationVisibility: 'live' }"
@@ -71,12 +67,12 @@
 				name="contribution_comment"
 				validation="required"
 			/>
+			<display-cancelform :destination="'/admin/contributions'" />
 		</FormKit>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button label="Cancel" @click="cancelForm()"> </Button>
 	</div>
 </template>
 
@@ -190,9 +186,5 @@
 		state.account_id = selectedItem.value.account_id
 		saving.value = true
 		emit('submitted', state)
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/contributions') // needs to be / for self register
 	}
 </script>
