@@ -71,12 +71,12 @@
 				name="contribution_comment"
 				validation="required"
 			/>
+			<display-cancelform :destination="'/admin/contributions'" />
 		</FormKit>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button label="Cancel" @click="cancelForm()"> </Button>
 	</div>
 </template>
 
@@ -190,9 +190,5 @@
 		state.account_id = selectedItem.value.account_id
 		saving.value = true
 		emit('submitted', state)
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/contributions') // needs to be / for self register
 	}
 </script>

@@ -30,12 +30,12 @@
 				type="textarea"
 				validation="required"
 			/>
+			<display-cancelform :destination="'/admin/sms'" />
 		</FormKit>
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-		<Button class="m-1" label="Cancel" @click="cancelForm()"> </Button>
 	</div>
 </template>
 
@@ -102,10 +102,6 @@
 		emit('submitted', state)
 	}
 
-	const cancelForm = () => {
-		navigateTo('/admin/sms')
-	}
-	//
 	// get newletter recipient types for Dropdown
 	//
 	const { data: newsletterRecipientTypes } = await useFetch(

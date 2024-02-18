@@ -14,30 +14,10 @@
 				</div>
 			</div>
 
-			<!-- 			xxx old xxx
-			<form>
-				<label for="username" class="block text-900 font-medium mb-2"
-					>Username</label
-				>
-				<InputText
-					id="username"
-					type="text"
-					v-model="username"
-					class="w-full mb-3"
-				/>
-			</form>
-			<Button
-				label="Submit"
-				icon="pi pi-user"
-				class="w-50 mr-3"
-				@click="handleSubmit"
-			></Button>
-			<Button label="Cancel" class="w-50" @click="cancelForm()"></Button> -->
-
 			<FormKit type="form" submit-label="Request" @submit="handleSubmit">
 				<FormKit type="text" name="username" label="Username"> </FormKit>
+				<display-cancelform :destination="'/loginpage'" />
 			</FormKit>
-			<Button label="Cancel" class="small w-50" @click="cancelForm()"></Button>
 		</div>
 	</div>
 </template>
@@ -46,12 +26,9 @@
 	// initialize formkit state
 	const username = ref('')
 
-	//
 	// form actions
 	//
-	const cancelForm = () => {
-		navigateTo('/loginpage')
-	}
+
 	const handleSubmit = async function (state) {
 		const username = state.username
 		const { data, error } = await useFetch('/users/resetrequest', {

@@ -52,9 +52,8 @@
 					Error: Must submit image file
 				</p>
 			</div>
+			<display-cancelform :destination="'/admin/clubhouse'" />
 		</FormKit>
-		<Button class="my-text-style" label="Cancel" @click.prevent="cancelForm()">
-		</Button>
 
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
@@ -164,9 +163,5 @@
 		} else {
 			error.value = true
 		}
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/clubhouse') // needs to be / for self register
 	}
 </script>

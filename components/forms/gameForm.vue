@@ -87,15 +87,13 @@
 			<FormKit label="Pts For" name="ptsFor" type="text" />
 			<!-- points against input-->
 			<FormKit label="Pts against" name="ptsAgn" type="text" />
+			<display-cancelform :destination="'/admin/game_player_stats'" />
 		</FormKit>
 
 		<p v-if="saving">
 			<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 			Saving ...
 		</p>
-
-		<Button label="Cancel" @click.prevent="cancelForm()" style="margin: 1rem">
-		</Button>
 	</div>
 	<!-- if add OR game current date is before game date -->
 	<div
@@ -625,8 +623,5 @@
 		saving.value = true
 
 		emit('submitted', state)
-	}
-	const cancelForm = () => {
-		navigateTo('/admin/game_player_stats') // needs to be / for self register
 	}
 </script>

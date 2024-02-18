@@ -43,7 +43,7 @@
 				validation="required"
 			/>
 		</FormKit>
-		<Button label="Cancel" @click.prevent="cancelForm()"> </Button>
+		<display-cancelform :destination="'/admin/votes'" />
 
 		<!-- FormKit list input Voodoo -->
 		<h6>Choices</h6>
@@ -100,12 +100,7 @@
 				>
 				</Button>
 			</div>
-			<!-- <pre wrap> In formkit value = {{ value }}</pre> -->
 		</FormKit>
-		<!-- 		<p class="font-semibold text-red-500">
-			Editing a choice will remove existing vote counts!
-		</p> -->
-		<!-- <Button label="Cancel" @click.prevent="cancelForm()"> </Button> -->
 	</div>
 </template>
 
@@ -195,10 +190,6 @@
 		question.choices = updated_choices.value
 
 		emit('submitted', question)
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/votes')
 	}
 </script>
 

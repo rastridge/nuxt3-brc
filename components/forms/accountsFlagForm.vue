@@ -160,7 +160,7 @@
 				]"
 			/>
 			<display-alert />
-			<Button class="mb-3 center" label="Cancel" @click="cancelForm"> </Button>
+			<display-cancelform :destination="'/admin/accounts_flag'" />
 		</FormKit>
 
 		<p v-if="saving">
@@ -257,10 +257,4 @@
 
 		emit('submitted', state)
 	}
-	const cancelForm = () => {
-		navigateTo('/admin/accounts_flag') // needs to be / for self register
-	}
-
-	//
-	// FormKit stuff
 </script>

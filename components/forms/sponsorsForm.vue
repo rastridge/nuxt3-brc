@@ -71,9 +71,8 @@
 					@uploader="customUploader"
 				/>
 			</div>
-			<Button class="my-text-style" label="Cancel" @click="cancelForm()">
-			</Button>
 			<display-alert />
+			<display-cancelform :destination="'/admin/sponsors'" />
 		</FormKit>
 
 		<p v-if="saving">
@@ -217,9 +216,5 @@
 		} else {
 			alert.error('Image required')
 		}
-	}
-
-	const cancelForm = () => {
-		navigateTo('/admin/sponsors')
 	}
 </script>

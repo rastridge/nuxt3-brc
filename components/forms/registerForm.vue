@@ -93,8 +93,7 @@
 					validation-visibility="live"
 				/>
 				<display-alert />
-				<Button class="mb-3 center" label="Cancel" @click="cancelForm">
-				</Button>
+				<display-cancelform />
 			</FormKit>
 			<p v-if="saving">
 				<ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
@@ -251,9 +250,7 @@
 		saving.value = true
 		emit('submitted', state)
 	}
-	const cancelForm = () => {
-		navigateTo('/') // needs to be / for self register
-	}
+
 	//
 	// errors
 	//

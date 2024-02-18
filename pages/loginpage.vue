@@ -51,7 +51,7 @@
 						>
 					</div>
 				</FormKit>
-				<Button label="Cancel" @click="cancelForm()"></Button>
+				<display-cancelform />
 			</div>
 		</div>
 	</div>
@@ -63,9 +63,6 @@
 
 	const keeploggedin = ref(false)
 
-	const cancelForm = () => {
-		navigateTo('/')
-	}
 	const handleSubmit = async (state) => {
 		// console.log(state.username + state.password + keeploggedin.value)
 		if (state.username && state.password) {
